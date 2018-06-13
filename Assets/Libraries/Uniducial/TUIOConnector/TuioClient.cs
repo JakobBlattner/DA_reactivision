@@ -24,6 +24,8 @@ using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 
+using UnityEngine;
+
 using OSC.NET;
 
 namespace TUIO
@@ -314,6 +316,8 @@ namespace TUIO
 								TuioCursor updateCursor = new TuioCursor(s_id,tcur.getCursorID(),xpos,ypos);
 								updateCursor.update(xpos,ypos,xspeed,yspeed,maccel);
 								frameCursors.Add(updateCursor);
+
+                                Debug.Log(xpos +" "+ ypos);
 							}
 						}
 					}
