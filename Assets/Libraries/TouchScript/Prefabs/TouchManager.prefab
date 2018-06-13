@@ -82,7 +82,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: TouchScript.TouchManager+PointerEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  advancedProps: 0
+  basicEditor: 1
   displayDevice: {fileID: 0}
   shouldCreateCameraLayer: 1
   shouldCreateStandardInput: 1
@@ -102,9 +102,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e276ccba4f7314d9988af19f9b3a611b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  advancedProps: 0
+  basicEditor: 1
   generalProps: 0
   windowsProps: 0
+  webglProps: 0
   windows8API: 0
   windows7API: 0
   webGLTouch: 1
