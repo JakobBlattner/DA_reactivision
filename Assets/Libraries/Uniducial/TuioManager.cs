@@ -90,9 +90,12 @@ namespace UniducialLibrary
             this.m_TUIOObjects.Remove(in_TUIOObject);
         }
 
+        //TODO: implement Cursor Logic
         void TuioListener.addTuioCursor(TuioCursor tcur)
         {
-            // throw new System.NotImplementedException();
+            //TODO remove next line
+            Debug.Log("new Cursor with ID: " + tcur.getCursorID());
+            //throw new System.NotImplementedException();
         }
 
         void TuioListener.updateTuioCursor(TuioCursor tcur)
@@ -104,6 +107,7 @@ namespace UniducialLibrary
         {
             //throw new System.NotImplementedException();
         }
+        //------------------------------------
 
         void TuioListener.refresh(TuioTime ftime)
         {

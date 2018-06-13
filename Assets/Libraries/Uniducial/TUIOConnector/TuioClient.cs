@@ -309,7 +309,10 @@ namespace TUIO
 							TuioCursor addCursor = new TuioCursor(s_id,-1,xpos,ypos);
 							frameCursors.Add(addCursor);
 
-						} else {
+                            //TODO remove next line
+                            Debug.Log("first contact - set: " + xpos + " " + ypos);
+
+                        } else {
 							TuioCursor tcur = (TuioCursor)cursorList[s_id];
 							if (tcur==null) return;
 							if ((tcur.getX()!=xpos) || (tcur.getY()!=ypos) || (tcur.getXSpeed()!=xspeed) || (tcur.getYSpeed()!=yspeed) || (tcur.getMotionAccel()!=maccel)) {
@@ -317,7 +320,8 @@ namespace TUIO
 								updateCursor.update(xpos,ypos,xspeed,yspeed,maccel);
 								frameCursors.Add(updateCursor);
 
-                                Debug.Log(xpos +" "+ ypos);
+                                //TODO remove next line
+                                Debug.Log("set: "+xpos +" "+ ypos);
 							}
 						}
 					}

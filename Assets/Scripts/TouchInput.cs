@@ -8,6 +8,11 @@ public class TouchInput : MonoBehaviour
 
     void Update()
     {
+        if(Input.touchCount > 0)
+        {
+            Debug.Log("TouchCount > 0");
+        }
+
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
             Debug.Log("Input detected");
