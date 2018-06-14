@@ -310,7 +310,7 @@ namespace TUIO
 							frameCursors.Add(addCursor);
 
                             //TODO remove next line
-                            Debug.Log("first contact - set: " + xpos + " " + ypos);
+                            //Debug.Log("first contact - set: " + xpos + " " + ypos);
 
                         } else {
 							TuioCursor tcur = (TuioCursor)cursorList[s_id];
@@ -321,7 +321,7 @@ namespace TUIO
 								frameCursors.Add(updateCursor);
 
                                 //TODO remove next line
-                                Debug.Log("set: "+xpos +" "+ ypos);
+                                //Debug.Log("set: "+xpos +" "+ ypos);
 							}
 						}
 					}

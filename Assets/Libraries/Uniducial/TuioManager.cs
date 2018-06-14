@@ -23,6 +23,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TUIO;
+using System;
+
 namespace UniducialLibrary
 {
     public class TuioManager : TuioListener
@@ -32,7 +34,7 @@ namespace UniducialLibrary
         private static TuioManager m_Instance;
         private TuioClient m_Client;
         private List<TuioObject> m_TUIOObjects;
-
+        private List<TuioCursor> mTUIOCursors;
         public static TuioManager Instance
         {
             get
@@ -64,7 +66,7 @@ namespace UniducialLibrary
 
             //init members
             this.m_TUIOObjects = new List<TuioObject>();
-
+            this.mTUIOCursors = new List<TuioCursor>();
 
         }
 
@@ -90,24 +92,19 @@ namespace UniducialLibrary
             this.m_TUIOObjects.Remove(in_TUIOObject);
         }
 
-        //TODO: implement Cursor Logic
         void TuioListener.addTuioCursor(TuioCursor tcur)
-        {
-            //TODO remove next line
-            Debug.Log("new Cursor with ID: " + tcur.getCursorID());
-            //throw new System.NotImplementedException();
+        {            
+            mTUIOCursors.Add(tcur);
         }
 
         void TuioListener.updateTuioCursor(TuioCursor tcur)
         {
-            //throw new System.NotImplementedException();
         }
 
         void TuioListener.removeTuioCursor(TuioCursor tcur)
         {
-            //throw new System.NotImplementedException();
+            mTUIOCursors.Remove(tcur);
         }
-        //------------------------------------
 
         void TuioListener.refresh(TuioTime ftime)
         {
@@ -155,6 +152,32 @@ namespace UniducialLibrary
                     return tuioObject;
                 }
 
+            }
+
+            return null;
+        }
+
+        internal bool IsCursorAlive(int in_cursorID)
+        {
+            foreach (TuioCursor tuioCursor in this.mTUIOCursors)
+            {
+                if (tuioCursor.getCursorID() == in_cursorID)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public TuioCursor GetCursor(int in_cursorID)
+        {
+            foreach (TuioCursor tuioCursor in this.mTUIOCursors)
+            {
+                if (tuioCursor.getCursorID() == in_cursorID)
+                {
+                    return tuioCursor;
+                }
             }
 
             return null;
