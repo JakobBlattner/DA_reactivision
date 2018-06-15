@@ -1124,6 +1124,11 @@ Prefab:
       propertyPath: m_Name
       value: Loop_Marker_0
       objectReference: {fileID: 0}
+    - target: {fileID: 114673922824313086, guid: 139d36c3c11c5ca4b9eb9286545eff8e,
+        type: 2}
+      propertyPath: startMarker
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 139d36c3c11c5ca4b9eb9286545eff8e, type: 2}
   m_IsPrefabParent: 0
