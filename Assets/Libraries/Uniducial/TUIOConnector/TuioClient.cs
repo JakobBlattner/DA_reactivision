@@ -202,7 +202,6 @@ namespace TUIO
 					}
 
 				} else if (command == "alive") {
-
 					newObjectList.Clear();
 					for (int i=1;i<args.Count;i++) {
 						// get the message content

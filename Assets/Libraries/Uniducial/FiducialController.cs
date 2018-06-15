@@ -47,6 +47,8 @@ public class FiducialController : MonoBehaviour
     private UniducialLibrary.TuioManager m_TuioManager;
     private Camera m_MainCamera;
 
+    private TokenPosition m_TokenPosition;
+
     //members
     private Vector2 m_ScreenPosition;
     private Vector3 m_WorldPosition;
@@ -95,6 +97,9 @@ public class FiducialController : MonoBehaviour
     {
         //get reference to main camera
         this.m_MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+
+        //intantiate TokenPosition
+        this.m_TokenPosition = new TokenPosition();
 
         //check if the main camera exists
         if (this.m_MainCamera == null)
@@ -167,11 +172,15 @@ public class FiducialController : MonoBehaviour
             }
             else
             {
+                transform.position = m_TokenPosition.CalculateGridPosition(MarkerID, CameraOffset);
+
+                /*
                 Vector3 position = new Vector3(xPos * Screen.width,
                     (1 - yPos) * Screen.height, this.CameraOffset);
                 this.m_WorldPosition = this.m_MainCamera.ScreenToWorldPoint(position);
                 //worldPosition += cameraOffset * mainCamera.transform.forward;
-                transform.position = this.m_WorldPosition;
+                transform.position = this.m_WorldPosition;*/
+
             }
         }
 
