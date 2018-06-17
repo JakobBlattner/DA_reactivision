@@ -4,7 +4,8 @@ using TUIO;
 using UniducialLibrary;
 using UnityEngine;
 
-public class TokenPosition : MonoBehaviour {
+public class TokenPosition : MonoBehaviour
+{
 
     private int bars = 4; // Anzahl der Takte
     private int tunes = 23;
@@ -49,10 +50,10 @@ public class TokenPosition : MonoBehaviour {
         m_MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
         //calculate snapping grid
-        gridHeight = m_MainCamera.pixelHeight - heightOffset*2;
-        gridWidth = m_MainCamera.pixelWidth - widthOffset*2;
+        gridHeight = m_MainCamera.pixelHeight - heightOffset * 2;
+        gridWidth = m_MainCamera.pixelWidth - widthOffset * 2;
         cellHeight = gridHeight / tunes;
-        cellWidth = gridWidth / (minimalUnit * bars);        
+        cellWidth = gridWidth / (minimalUnit * bars);
     }
 
     public Vector3 CalculateGridPosition(int markerID, float cameraOffset)
@@ -61,26 +62,10 @@ public class TokenPosition : MonoBehaviour {
         Vector3 position = new Vector3(m_obj.getX() * Screen.width, (1 - m_obj.getY()) * Screen.height, cameraOffset);
 
         //if marker is not moving snap to grid position
-        if(m_obj.getMotionSpeed() == 0)
+        if (m_obj.getMotionSpeed() == 0)
         {
             #region X-Axis
-            //if marker is below grid area
-            if (position.x < widthOffset)
-                position.x = 0;        
-            //if marker is above grid area
-            else if (position.x > gridWidth + widthOffset)
-                position.x = gridWidth - cellWidth;
-            //if marker is on grid area
-            else
-            {
-                float xPos = position.x - widthOffset;
-                float markerXOffset = xPos % cellWidth;
-                if (markerXOffset < cellWidth / 2)
-                    position.x = xPos - markerXOffset;
-                else
-                    position.x = xPos - markerXOffset + cellWidth;
-
-            }
+            this.CalculateXPosition(position);
             #endregion
 
             #region Y-Axis
@@ -100,13 +85,35 @@ public class TokenPosition : MonoBehaviour {
                 else
                     position.y = yPos - markerYOffset + cellHeight;
             }
-            #endregion 
-
-            position.x += widthOffset;
             position.y += heightOffset;
+            #endregion 
         }
 
         return this.m_MainCamera.ScreenToWorldPoint(position);
+    }
+
+    //In screen space
+    public float CalculateXPosition(Vector3 position)
+    {
+        //if marker is below grid area
+        if (position.x < widthOffset)
+            position.x = 0;
+        //if marker is above grid area
+        else if (position.x > gridWidth + widthOffset)
+            position.x = gridWidth - cellWidth;
+        //if marker is on grid area
+        else
+        {
+            float xPos = position.x - widthOffset;
+            float markerXOffset = xPos % cellWidth;
+            if (markerXOffset < cellWidth / 2)
+                position.x = xPos - markerXOffset;
+            else
+                position.x = xPos - markerXOffset + cellWidth;
+
+        }
+        position.x += widthOffset;
+        return position.x;
     }
 
 }

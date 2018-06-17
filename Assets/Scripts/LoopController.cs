@@ -8,7 +8,7 @@ public class LoopController : MonoBehaviour
 {
 
     private TuioManager m_tuioManager;
-
+    private TokenPosition m_tokenPosition;
     public bool startMarker = false;
     public int touchArea = 1;
     public int minLoopArea = 10;
@@ -19,6 +19,7 @@ public class LoopController : MonoBehaviour
     private float otherLoopMarkerXPos;
     private GameObject movingCursor;
     private GameObject[] cursors;
+    private Vector3 newPos;
 
     void Start()
     {
@@ -44,6 +45,7 @@ public class LoopController : MonoBehaviour
             Debug.LogError("No Loop Start GameObject defined. Must be exactely one.");
 
         m_tuioManager = TuioManager.Instance;
+        m_tokenPosition = TokenPosition.Instance;
     }
 
     void Update()
@@ -60,7 +62,8 @@ public class LoopController : MonoBehaviour
                 xTouchPos = Camera.main.WorldToScreenPoint(cursor.transform.position).x;
                 xPos = Camera.main.WorldToScreenPoint(this.transform.position).x;
 
-                if ((((xTouchPos - xPos) > 0 && (xTouchPos - xPos) < touchArea) || //touch right of loopMarker 
+                if (m_tuioManager.IsCursorAlive(cursor.GetComponent<TouchController>().CursorID) && //if cursor is active 
+                    (((xTouchPos - xPos) > 0 && (xTouchPos - xPos) < touchArea) || //touch right of loopMarker 
                     ((xPos - xTouchPos) > 0 && (xPos - xTouchPos) < touchArea)) //touch left of loopMarker
                     && !cursor.GetComponent<TouchController>().movingLoopMarker) //cursor is not already moving another loopMarker
                 {
@@ -76,7 +79,13 @@ public class LoopController : MonoBehaviour
         {
             moving = false;
             movingCursor.GetComponent<TouchController>().movingLoopMarker = false;
-            movingCursor = null;
+
+            #region Grid Snapping
+            newPos = Camera.main.WorldToScreenPoint(this.transform.position);
+            newPos = Camera.main.ScreenToWorldPoint(new Vector3(m_tokenPosition.CalculateXPosition(newPos), newPos.y, newPos.z));
+
+            this.transform.position = newPos;
+            #endregion
         }
         //moves cursor
         else if (moving)
@@ -84,11 +93,9 @@ public class LoopController : MonoBehaviour
             otherLoopMarkerXPos = Camera.main.WorldToScreenPoint(otherLoopMarker.transform.position).x;
             float m_CursorX = Camera.main.WorldToScreenPoint(movingCursor.transform.position).x;
 
-            Debug.Log(m_CursorX + " " + otherLoopMarkerXPos);
-
-            //cant move cursor so that minimum loop area is undershot
-            if ((startMarker && otherLoopMarkerXPos > (m_CursorX + minLoopArea)) //for the start Marker
-                || (!startMarker && otherLoopMarkerXPos < (m_CursorX - minLoopArea))) //for the end Marker
+            //cant move loop marker so that minimum loop area is undershot
+            if ((startMarker && otherLoopMarkerXPos > (m_CursorX + minLoopArea)) //for the start marker
+                || (!startMarker && otherLoopMarkerXPos < (m_CursorX - minLoopArea))) //for the end marker
                 this.transform.position = new Vector3(movingCursor.transform.position.x, this.transform.position.y, this.transform.position.z);
         }
 
@@ -96,15 +103,10 @@ public class LoopController : MonoBehaviour
 
         if (startMarker)
         {
+            //Put in different scripts
             //TODO: visualize bar between start and end Loop Marker
             //TODO: color area between start and end loop marker
-
-            //Put in different scripts?
-
-            #region Move Loop Area
             //TODO: move loop area
-
-            #endregion
         }
 
     }
