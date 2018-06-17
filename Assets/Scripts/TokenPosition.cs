@@ -4,7 +4,7 @@ using TUIO;
 using UniducialLibrary;
 using UnityEngine;
 
-public class TokenPosition : MonoBehaviour
+public class TokenPosition 
 {
 
     private int bars = 4; // Anzahl der Takte

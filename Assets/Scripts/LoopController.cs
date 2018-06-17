@@ -53,7 +53,7 @@ public class LoopController : MonoBehaviour
         m_locationBar = FindObjectsOfType<LocationBar>()[0];
 
         //Snaps bar at the start to valid position
-        this.GridSnapping(true);
+        this.GridSnapping();
     }
 
     //TODO: color area between start and end loop marker
@@ -89,7 +89,7 @@ public class LoopController : MonoBehaviour
             moving = false;
             movingCursor.GetComponent<TouchController>().movingLoopMarker = false;
 
-            this.GridSnapping(false);
+            this.GridSnapping();
         }
         //moves cursor
         else if (moving)
@@ -108,7 +108,7 @@ public class LoopController : MonoBehaviour
     }
 
     #region Grid Snapping
-    private void GridSnapping(bool resetLoop)
+    private void GridSnapping()
     {
         newPos = Camera.main.WorldToScreenPoint(this.transform.position);
         newPos = Camera.main.ScreenToWorldPoint(new Vector3(m_tokenPosition.CalculateXPosition(newPos), newPos.y, newPos.z));
@@ -117,7 +117,7 @@ public class LoopController : MonoBehaviour
 
         //tells locationBar new position
         if (startMarker)
-            m_locationBar.SetStartBarPosition(newPos, resetLoop);
+            m_locationBar.SetStartBarPosition(newPos);
         else
             m_locationBar.SetEndBarPosition(newPos);
     }

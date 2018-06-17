@@ -14,13 +14,19 @@ public class LocationBar : MonoBehaviour {
     private TokenPosition m_tokenPostion;
     private LineRenderer m_lineRenderer;
 
+    //for in update loop calculation
+    private float timeForTotalDistance;
+    private float cellsBetweenBars;
+    private float speed;
+    private float lengthTravelledInPercent;
+
     private float cellWidth;
     private int msPerCell;
     private float distanceToCover;
     private float totalDistance;
     private float startTime;
+    private float currentTime;
 
-    //Finds start bar and end bar of loop area
     void Start() {
         GameObject[] loopMarkers = GameObject.FindGameObjectsWithTag("LoopGO");
         foreach (GameObject loopMarker in loopMarkers) {
@@ -32,28 +38,26 @@ public class LocationBar : MonoBehaviour {
         }
 
         m_tokenPostion = TokenPosition.Instance;
-        m_lineRenderer = this.GetComponent<LineRenderer>();
+        m_lineRenderer = this.GetComponent<LineRenderer>();        
+
+        //Gets non changing variables
+        msPerCell = 60000 / bpm; //in ms
+        cellWidth = m_tokenPostion.GetCellWidthInWorldLength();
+        totalDistance = Vector3.Distance(startBarPosition, endBarPosition);
 
         //sets first two points of line renderer
         this.ResetLoop();
-
-        //Calculates speed
-        msPerCell = 60000 / bpm; //in ms
-        cellWidth = m_tokenPostion.GetCellWidthInWorldLength();
-
-        totalDistance = Vector3.Distance(startBarPosition, endBarPosition);
         startTime = Time.time;
     }
 
     void Update () {
         //calculates the speed according to the cells between start and end bar and bpm
-        float cellsBetweenBars = totalDistance / cellWidth;
-        float timePerTotalDistance = (cellsBetweenBars* msPerCell)/1000;
-        float speed = (totalDistance / timePerTotalDistance);
+        this.UpdateValues();
 
-        float lengthTraveled = ((Time.time - startTime)* speed) / totalDistance;
+        currentTime = Time.time;
+        lengthTravelledInPercent = ((currentTime - startTime)* speed) / totalDistance;
 
-        Vector3 lerpVec = Vector3.Lerp(startBarPosition, endBarPosition, lengthTraveled);
+        Vector3 lerpVec = Vector3.Lerp(startBarPosition, endBarPosition, lengthTravelledInPercent);
 
         //sets first and second position of LineRenderer
         m_lineRenderer.SetPosition(0, new Vector3(lerpVec.x, -5, 10));
@@ -61,26 +65,34 @@ public class LocationBar : MonoBehaviour {
 
         //resets loop if endBar has been reached by current_location_bar
         if (lerpVec.x >= endBarPosition.x)
-        {
             this.ResetLoop();
-            startTime = Time.time;
-        }
     }
 
     private void ResetLoop()
     {
         m_lineRenderer.SetPosition(0, new Vector3(startBarPosition.x, -5, 10));
         m_lineRenderer.SetPosition(1, new Vector3(startBarPosition.x, 5 /*equals max y position in px*/, 10));
+
+        startTime = Time.time;
     }
 
     //Sets new position of StartBar in screen space
-    public void SetStartBarPosition(Vector3 newPosition, bool resetLoop)
+    public void SetStartBarPosition(Vector3 newPosition)
     {
-        this.startBarPosition = newPosition;
-        totalDistance = Vector3.Distance(startBarPosition, endBarPosition);
+        //Calculates correct behaviour of current_location_bar when startBar changes
+        if(m_lineRenderer == null)
+        {
+            this.m_lineRenderer = this.GetComponent<LineRenderer>();
+        }
+        Vector3 currentBarPos = m_lineRenderer.GetPosition(0);
 
-        if (resetLoop)
-            this.ResetLoop();
+        totalDistance = Vector3.Distance(newPosition, endBarPosition);
+        this.UpdateValues();
+
+        lengthTravelledInPercent = 1 - Math.Abs(currentBarPos.x - endBarPosition.x) / totalDistance;
+        startTime = currentTime - (lengthTravelledInPercent * timeForTotalDistance);
+
+        this.startBarPosition = newPosition;
     }
 
     //Sets new position of EndBar in screen space
@@ -88,5 +100,12 @@ public class LocationBar : MonoBehaviour {
     {
         this.endBarPosition = newPosition;
         totalDistance = Vector3.Distance(startBarPosition, endBarPosition);
+    }
+
+    private void UpdateValues()
+    {
+        cellsBetweenBars = totalDistance / cellWidth;
+        timeForTotalDistance = (cellsBetweenBars * msPerCell) / 1000;
+        speed = (totalDistance / timeForTotalDistance);
     }
 }
