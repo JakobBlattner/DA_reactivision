@@ -65,7 +65,7 @@ public class TokenPosition : MonoBehaviour
         if (m_obj.getMotionSpeed() == 0)
         {
             #region X-Axis
-            this.CalculateXPosition(position);
+            position.x = this.CalculateXPosition(position);
             #endregion
 
             #region Y-Axis
@@ -74,7 +74,7 @@ public class TokenPosition : MonoBehaviour
                 position.y = 0;
             //if marker is above grid area
             else if (position.y > gridHeight + heightOffset)
-                position.y = gridHeight - cellHeight;
+                position.y = gridHeight + heightOffset - cellHeight;
             //if marker is on grid area
             else
             {
@@ -100,7 +100,7 @@ public class TokenPosition : MonoBehaviour
             position.x = 0;
         //if marker is above grid area
         else if (position.x > gridWidth + widthOffset)
-            position.x = gridWidth - cellWidth;
+            position.x = gridWidth + widthOffset- cellWidth;
         //if marker is on grid area
         else
         {
