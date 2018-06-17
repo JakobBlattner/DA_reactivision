@@ -9,6 +9,8 @@ public class LoopController : MonoBehaviour
 
     private TuioManager m_tuioManager;
     private TokenPosition m_tokenPosition;
+    private LocationBar m_locationBar;
+
     public bool startMarker = false;
     public int touchArea = 1;
     public int minLoopArea = 10;
@@ -44,14 +46,21 @@ public class LoopController : MonoBehaviour
         if (counter == 0)
             Debug.LogError("No Loop Start GameObject defined. Must be exactely one.");
 
+        cursors = GameObject.FindGameObjectsWithTag("Cursor");
+
         m_tuioManager = TuioManager.Instance;
         m_tokenPosition = TokenPosition.Instance;
+        m_locationBar = FindObjectsOfType<LocationBar>()[0];
+
+        //Snaps bar at the start to valid position
+        this.GridSnapping(true);
     }
+
+    //TODO: color area between start and end loop marker
+    //TODO: move loop area
 
     void Update()
     {
-        cursors = GameObject.FindGameObjectsWithTag("Cursor");
-
         #region Move Loop Markers
 
         if (!moving)
@@ -80,12 +89,7 @@ public class LoopController : MonoBehaviour
             moving = false;
             movingCursor.GetComponent<TouchController>().movingLoopMarker = false;
 
-            #region Grid Snapping
-            newPos = Camera.main.WorldToScreenPoint(this.transform.position);
-            newPos = Camera.main.ScreenToWorldPoint(new Vector3(m_tokenPosition.CalculateXPosition(newPos), newPos.y, newPos.z));
-
-            this.transform.position = newPos;
-            #endregion
+            this.GridSnapping(false);
         }
         //moves cursor
         else if (moving)
@@ -101,13 +105,21 @@ public class LoopController : MonoBehaviour
 
         #endregion
 
-        if (startMarker)
-        {
-            //Put in different scripts
-            //TODO: visualize bar between start and end Loop Marker
-            //TODO: color area between start and end loop marker
-            //TODO: move loop area
-        }
-
     }
+
+    #region Grid Snapping
+    private void GridSnapping(bool resetLoop)
+    {
+        newPos = Camera.main.WorldToScreenPoint(this.transform.position);
+        newPos = Camera.main.ScreenToWorldPoint(new Vector3(m_tokenPosition.CalculateXPosition(newPos), newPos.y, newPos.z));
+
+        this.transform.position = newPos;
+
+        //tells locationBar new position
+        if (startMarker)
+            m_locationBar.SetStartBarPosition(newPos, resetLoop);
+        else
+            m_locationBar.SetEndBarPosition(newPos);
+    }
+    #endregion
 }

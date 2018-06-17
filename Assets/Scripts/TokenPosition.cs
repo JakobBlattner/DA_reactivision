@@ -17,6 +17,7 @@ public class TokenPosition : MonoBehaviour
     private float gridHeight;
     private float gridWidth;
     private float cellWidth;
+    private float cellWidthInWorldLength;
     private float cellHeight;
 
     private TuioManager tuioManager;
@@ -54,6 +55,8 @@ public class TokenPosition : MonoBehaviour
         gridWidth = m_MainCamera.pixelWidth - widthOffset * 2;
         cellHeight = gridHeight / tunes;
         cellWidth = gridWidth / (minimalUnit * bars);
+
+        cellWidthInWorldLength = cellWidth / (m_MainCamera.pixelWidth / 18);
     }
 
     public Vector3 CalculateGridPosition(int markerID, float cameraOffset)
@@ -114,6 +117,11 @@ public class TokenPosition : MonoBehaviour
         }
         position.x += widthOffset;
         return position.x;
+    }
+
+    public float GetCellWidthInWorldLength()
+    {
+        return cellWidthInWorldLength;
     }
 
 }

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212141611034838234}
   - component: {fileID: 114673922824313086}
   m_Layer: 0
-  m_Name: Loop_Marker_X
+  m_Name: Loop_Bar_X
   m_TagString: LoopGO
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,8 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9a1e9c48a52914084e2f383504f2d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: 1
+  startMarker: 0
   touchArea: 20
+  minLoopArea: 10
 --- !u!212 &212141611034838234
 SpriteRenderer:
   m_ObjectHideFlags: 1

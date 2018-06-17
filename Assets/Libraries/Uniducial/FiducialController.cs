@@ -99,7 +99,7 @@ public class FiducialController : MonoBehaviour
         this.m_MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
         //intantiate TokenPosition
-        this.m_TokenPosition = new TokenPosition();
+        this.m_TokenPosition = TokenPosition.Instance;
 
         //check if the main camera exists
         if (this.m_MainCamera == null)
