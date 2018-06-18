@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //visualize bar between start and end Loop Marker
-public class LocationBar : MonoBehaviour {
+public class LocationBar : MonoBehaviour
+{
 
     //TODO Get BPM from rotary encoder --> Arduino
     public int bpm = 100;
@@ -27,9 +28,11 @@ public class LocationBar : MonoBehaviour {
     private float startTime;
     private float currentTime;
 
-    void Start() {
+    void Start()
+    {
         GameObject[] loopMarkers = GameObject.FindGameObjectsWithTag("LoopGO");
-        foreach (GameObject loopMarker in loopMarkers) {
+        foreach (GameObject loopMarker in loopMarkers)
+        {
 
             if (loopMarker.GetComponent<LoopController>().startMarker)
                 startBarPosition = loopMarker.transform.position;//Camera.main.WorldToScreenPoint(loopMarker.transform.position);
@@ -38,7 +41,7 @@ public class LocationBar : MonoBehaviour {
         }
 
         m_tokenPostion = TokenPosition.Instance;
-        m_lineRenderer = this.GetComponent<LineRenderer>();        
+        m_lineRenderer = this.GetComponent<LineRenderer>();
 
         //Gets non changing variables
         msPerCell = 60000 / bpm; //in ms
@@ -50,12 +53,13 @@ public class LocationBar : MonoBehaviour {
         startTime = Time.time;
     }
 
-    void Update () {
+    void Update()
+    {
         //calculates the speed according to the cells between start and end bar and bpm
         this.UpdateValues();
 
         currentTime = Time.time;
-        lengthTravelledInPercent = ((currentTime - startTime)* speed) / totalDistance;
+        lengthTravelledInPercent = ((currentTime - startTime) * speed) / totalDistance;
 
         Vector3 lerpVec = Vector3.Lerp(startBarPosition, endBarPosition, lengthTravelledInPercent);
 
@@ -79,18 +83,30 @@ public class LocationBar : MonoBehaviour {
     //Sets new position of StartBar in screen space
     public void SetStartBarPosition(Vector3 newPosition)
     {
+
         //Calculates correct behaviour of current_location_bar when startBar changes
-        if(m_lineRenderer == null)
+        if (m_lineRenderer == null)
         {
             this.m_lineRenderer = this.GetComponent<LineRenderer>();
         }
         Vector3 currentBarPos = m_lineRenderer.GetPosition(0);
 
-        totalDistance = Vector3.Distance(newPosition, endBarPosition);
-        this.UpdateValues();
+        if (newPosition.x < currentBarPos.x)
+        {
+            totalDistance = Vector3.Distance(newPosition, endBarPosition);
+            this.UpdateValues();
 
-        lengthTravelledInPercent = 1 - Math.Abs(currentBarPos.x - endBarPosition.x) / totalDistance;
-        startTime = currentTime - (lengthTravelledInPercent * timeForTotalDistance);
+            lengthTravelledInPercent = 1 - Math.Abs(currentBarPos.x - endBarPosition.x) / totalDistance;
+            startTime = currentTime - (lengthTravelledInPercent * timeForTotalDistance);
+        }
+        else
+        {
+            totalDistance = Vector3.Distance(newPosition, endBarPosition);
+            this.UpdateValues();
+
+            lengthTravelledInPercent = 0;
+            startTime = Time.time;
+        }
 
         this.startBarPosition = newPosition;
     }
