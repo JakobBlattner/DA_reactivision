@@ -10,7 +10,7 @@ public class TokenPosition
     private int bars = 4; // Anzahl der Takte
     private int tunes = 23;
     private int minimalUnit = 4; //minimale Einheit --> Unterteilung des Grids
-    private int heightOffset = 100; //in pixels
+    private int heightOffset = 20; //in pixels
     private int widthOffset = 20; //in pixels
 
     private Camera m_MainCamera;

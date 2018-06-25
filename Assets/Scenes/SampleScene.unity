@@ -815,6 +815,11 @@ Prefab:
       propertyPath: m_Color.b
       value: 0.764151
       objectReference: {fileID: 0}
+    - target: {fileID: 114525754211048818, guid: cc20fba3f10c801439a51d10c8af5658,
+        type: 2}
+      propertyPath: InvertY
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc20fba3f10c801439a51d10c8af5658, type: 2}
   m_IsPrefabParent: 0
@@ -904,7 +909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &959674405
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -958,7 +963,7 @@ Transform:
   m_GameObject: {fileID: 959674404}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.2292745, y: -0.10645579, z: 11.130859}
-  m_LocalScale: {x: 1.4, y: 1.4, z: 1}
+  m_LocalScale: {x: 1.4, y: 1.8725, z: 1}
   m_Children: []
   m_Father: {fileID: 1203484548}
   m_RootOrder: 0
