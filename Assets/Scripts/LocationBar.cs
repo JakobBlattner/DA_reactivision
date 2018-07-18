@@ -9,8 +9,8 @@ public class LocationBar : MonoBehaviour
 
     //TODO Get BPM from rotary encoder --> Arduino
     public int bpm = 100;
-    private Vector3 startBarPosition;
-    private Vector3 endBarPosition;
+    public Vector3 startBarPosition;
+    public Vector3 endBarPosition;
 
     private TokenPosition m_tokenPostion;
     private LineRenderer m_lineRenderer;
@@ -23,10 +23,12 @@ public class LocationBar : MonoBehaviour
 
     private float cellWidth;
     private int msPerCell;
-    private float distanceToCover;
-    private float totalDistance;
+    public float totalDistance;
     private float startTime;
     private float currentTime;
+
+    public float timeMarker;
+
 
     void Start()
     {
@@ -57,6 +59,9 @@ public class LocationBar : MonoBehaviour
     {
         //calculates the speed according to the cells between start and end bar and bpm
         this.UpdateValues();
+        timeMarker = (Time.time - startTime) % timeForTotalDistance;
+
+
 
         currentTime = Time.time;
         lengthTravelledInPercent = ((currentTime - startTime) * speed) / totalDistance;
@@ -71,6 +76,8 @@ public class LocationBar : MonoBehaviour
         if (lerpVec.x >= endBarPosition.x)
             this.ResetLoop();
     }
+
+
 
     private void ResetLoop()
     {
@@ -91,19 +98,16 @@ public class LocationBar : MonoBehaviour
         }
         Vector3 currentBarPos = m_lineRenderer.GetPosition(0);
 
+        totalDistance = Vector3.Distance(newPosition, endBarPosition);
+        this.UpdateValues();
+
         if (newPosition.x < currentBarPos.x)
         {
-            totalDistance = Vector3.Distance(newPosition, endBarPosition);
-            this.UpdateValues();
-
             lengthTravelledInPercent = 1 - Math.Abs(currentBarPos.x - endBarPosition.x) / totalDistance;
             startTime = currentTime - (lengthTravelledInPercent * timeForTotalDistance);
         }
         else
         {
-            totalDistance = Vector3.Distance(newPosition, endBarPosition);
-            this.UpdateValues();
-
             lengthTravelledInPercent = 0;
             startTime = Time.time;
         }
@@ -123,5 +127,33 @@ public class LocationBar : MonoBehaviour
         cellsBetweenBars = totalDistance / cellWidth;
         timeForTotalDistance = (cellsBetweenBars * msPerCell) / 1000;
         speed = (totalDistance / timeForTotalDistance);
+    }
+
+
+
+    public int GetTactPosition(Vector2 pos) {
+        return TokenPosition.Instance.GetTactPosition(pos);
+    }
+
+    public int GetNote(Vector2 pos)
+    {
+        return TokenPosition.Instance.GetNote(pos);
+    }
+
+    public int GetTactPosition(float time) {
+        time = time % timeForTotalDistance;
+        var relativeXpos = time / timeForTotalDistance;
+        return (int)Mathf.Floor(relativeXpos * 16);
+
+
+
+
+
+        /*
+        var tactPositionWithRest = (relativeXpos * totalDistance) + startBarPosition.x;
+
+        var asdkjfhaskdjf = new Vector2(startBarPosition.x + relativeXpos, startBarPosition.y);
+        return 2;
+        */
     }
 }

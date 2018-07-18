@@ -6,10 +6,8 @@ using UnityEngine;
 
 public class TokenPosition 
 {
-
-    private int bars = 4; // Anzahl der Takte
+    private int bars = 16; // Anzahl der Takte
     private int tunes = 23;
-    private int minimalUnit = 4; //minimale Einheit --> Unterteilung des Grids
     private int heightOffset = 20; //in pixels
     private int widthOffset = 20; //in pixels
 
@@ -17,8 +15,22 @@ public class TokenPosition
     private float gridHeight;
     private float gridWidth;
     private float cellWidth;
-    private float cellWidthInWorldLength;
+    public Vector2 cellSizeWorld;
     private float cellHeight;
+
+
+
+
+    Vector2 minWorldCoords;
+    Vector2 maxWorldCoords;
+    Vector2 worldDiff;
+
+
+
+
+
+
+
 
     private TuioManager tuioManager;
     private static TokenPosition m_Instance;
@@ -50,13 +62,31 @@ public class TokenPosition
         tuioManager = TuioManager.Instance;
         m_MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
+        // 
+        minWorldCoords = this.m_MainCamera.ScreenToWorldPoint(new Vector2(0 + (widthOffset * 2), 0 + heightOffset));
+        maxWorldCoords = this.m_MainCamera.ScreenToWorldPoint(new Vector2(m_MainCamera.pixelWidth - (widthOffset * 2), m_MainCamera.pixelHeight - heightOffset));
+        worldDiff = maxWorldCoords - minWorldCoords;
+
         //calculate snapping grid
         gridHeight = m_MainCamera.pixelHeight - heightOffset * 2;
         gridWidth = m_MainCamera.pixelWidth - widthOffset * 2;
         cellHeight = gridHeight / tunes;
-        cellWidth = gridWidth / (minimalUnit * bars);
+        cellWidth = gridWidth / bars;
 
-        cellWidthInWorldLength = cellWidth / (m_MainCamera.pixelWidth / 18);
+
+        cellSizeWorld = Vector2.zero;
+        //cellSizeWorld.x = cellWidth / (m_MainCamera.pixelWidth / (bars + 2));
+        cellSizeWorld.x = worldDiff.x / bars;
+        cellSizeWorld.y = worldDiff.y / tunes;
+    }
+
+    public int GetNote(Vector2 pos) {
+        var relativeYpos = (pos.y - minWorldCoords.y) / (cellSizeWorld.y * tunes);
+        return (int)Mathf.Floor(relativeYpos * tunes);
+    }
+    public int GetTactPosition(Vector2 pos) {
+        var relativeXpos = (pos.x - minWorldCoords.x) / (cellSizeWorld.x * bars);
+        return (int)Mathf.Floor(relativeXpos * bars);
     }
 
     public Vector3 CalculateGridPosition(int markerID, float cameraOffset)
@@ -121,7 +151,7 @@ public class TokenPosition
 
     public float GetCellWidthInWorldLength()
     {
-        return cellWidthInWorldLength;
+        return cellSizeWorld.x;
     }
 
 }
