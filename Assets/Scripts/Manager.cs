@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.IO.Ports;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +16,14 @@ public class Manager : MonoBehaviour {
 
     public float timeSendOffset = 0f;
     public int lastSentNote = 0;
+
+    private static SerialPort serialPort;
+    private static String serialPortName = "/dev/cu.usbmodem1421";
+    private String receivedMsg = "";
+    private int msgIndex = 0;
+    private int damping = 0;
+    private static int serialBaudrate = 9600;
+
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +41,9 @@ public class Manager : MonoBehaviour {
         for (int i = 0; i < noteMarkers.Length; ++i) {
             noteMarkers[i] = markerObjets[i].GetComponent<NoteMarker>();
         }
+
+        serialPort = new SerialPort(serialPortName, serialBaudrate);
+        serialPort.Open();
 	}
 	
 	// Update is called once per frame
@@ -46,7 +59,36 @@ public class Manager : MonoBehaviour {
             {
                 // TODO: Serial Communication with Arduino
                 lastSentNote += noteMarker.duration - 1;
-                Debug.Log("Send note " + this.locationBar.GetNote(noteMarker.transform.position) + " (MarkerID = " + noteMarker.fiducialController.MarkerID + ")");
+                int noteToSend = this.locationBar.GetNote(noteMarker.transform.position);
+                Debug.Log("Send note " + noteToSend + " (MarkerID = " + noteMarker.fiducialController.MarkerID + ")");
+                int s = 0;
+                int f = 0;
+                if(noteToSend < 10) { // TODO: create a function for this
+                    s = 2;
+                    f = noteToSend;
+                }
+                else if (10 <= noteToSend && noteToSend < 20)
+                {
+                    s = 1;
+                    f = noteToSend - 10;
+                } else if (20 <= noteToSend && noteToSend < 30)
+                {
+                    s = 0;
+                    f = noteToSend - 20;
+                }
+                if (serialPort.IsOpen)
+                {
+                    serialPort.WriteLine(msgIndex + "," + s + "," + f + "," + noteMarker.duration + "," + damping);
+                    Debug.Log("[LOG: wrote cmd]");
+                }
+                /*do // wait until received msg starts with last sent id
+                {
+                    receivedMsg = serialPort.ReadExisting();
+                    Debug.Log("[LOG: received: " + receivedMsg + "]");
+                } while (!receivedMsg.StartsWith("" + msgIndex));
+                Debug.Log(receivedMsg);*/
+                msgIndex++;
+
             }
         }
 
