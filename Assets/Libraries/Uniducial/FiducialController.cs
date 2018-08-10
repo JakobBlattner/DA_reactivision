@@ -172,7 +172,8 @@ public class FiducialController : MonoBehaviour
             }
             else
             {
-                transform.position = m_TokenPosition.CalculateGridPosition(MarkerID, CameraOffset);
+                bool isLoopBarMarker = this.GetComponent<LoopController>();
+                transform.position = m_TokenPosition.CalculateGridPosition(MarkerID, CameraOffset, isLoopBarMarker);
 
                 /*
                 Vector3 position = new Vector3(xPos * Screen.width,

@@ -89,10 +89,10 @@ public class TokenPosition
         return (int)Mathf.Floor(relativeXpos * bars);
     }
 
-    public Vector3 CalculateGridPosition(int markerID, float cameraOffset)
+    public Vector3 CalculateGridPosition(int markerID, float cameraOffset, bool isLoopBarMarker)
     {
         TuioObject m_obj = tuioManager.GetMarker(markerID);
-        Vector3 position = new Vector3(m_obj.getX() * Screen.width, (1 - m_obj.getY()) * Screen.height, cameraOffset);
+        Vector3 position = new Vector3(m_obj.getX() * Screen.width, isLoopBarMarker ? 0.5f*Screen.height : (1 - m_obj.getY()) * Screen.height, cameraOffset);
 
         //if marker is not moving snap to grid position
         if (m_obj.getMotionSpeed() == 0)
@@ -102,23 +102,27 @@ public class TokenPosition
             #endregion
 
             #region Y-Axis
-            //if marker is below grid area
-            if (position.y < heightOffset)
-                position.y = 0;
-            //if marker is above grid area
-            else if (position.y > gridHeight + heightOffset)
-                position.y = gridHeight + heightOffset - cellHeight;
-            //if marker is on grid area
-            else
+            //doesn't move object on y-axis, when it's a LoopBarMarker
+            if (!isLoopBarMarker)
             {
-                float yPos = position.y - heightOffset;
-                float markerYOffset = yPos % cellHeight;
-                if (markerYOffset < cellHeight / 2)
-                    position.y = yPos - markerYOffset;
+                //if marker is below grid area
+                if (position.y < heightOffset)
+                    position.y = 0;
+                //if marker is above grid area
+                else if (position.y > gridHeight + heightOffset)
+                    position.y = gridHeight + heightOffset - cellHeight;
+                //if marker is on grid area
                 else
-                    position.y = yPos - markerYOffset + cellHeight;
+                {
+                    float yPos = position.y - heightOffset;
+                    float markerYOffset = yPos % cellHeight;
+                    if (markerYOffset < cellHeight / 2)
+                        position.y = yPos - markerYOffset;
+                    else
+                        position.y = yPos - markerYOffset + cellHeight;
+                }
+                position.y += heightOffset;
             }
-            position.y += heightOffset;
             #endregion 
         }
 

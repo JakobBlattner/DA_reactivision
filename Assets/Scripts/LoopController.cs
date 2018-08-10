@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TUIO;
 using UniducialLibrary;
 using UnityEngine;
 
@@ -8,19 +9,21 @@ public class LoopController : MonoBehaviour
 {
 
     private TuioManager m_tuioManager;
+    private TuioObject m_obj;
     private TokenPosition m_tokenPosition;
     private LocationBar m_locationBar;
+    private FiducialController m_fiducialController;
 
     public bool startMarker = false;
-    public int touchArea = 1;
-    public int minLoopArea = 10;
+    //public int touchArea = 1;
+    //public int minLoopArea = 10;
     private GameObject otherLoopMarker;
     private bool moving = false;
     private float xPos;
-    private float xTouchPos;
-    private float otherLoopMarkerXPos;
-    private GameObject movingCursor;
-    private GameObject[] cursors;
+    //private float xTouchPos;
+    //private float otherLoopMarkerXPos;
+    //private GameObject movingCursor;
+    //private GameObject[] cursors;
     private Vector3 newPos;
 
     void Start()
@@ -46,14 +49,16 @@ public class LoopController : MonoBehaviour
         if (counter == 0)
             Debug.LogError("No Loop Start GameObject defined. Must be exactely one.");
 
-        cursors = GameObject.FindGameObjectsWithTag("Cursor");
+        //cursors = GameObject.FindGameObjectsWithTag("
 
+        newPos = this.transform.position;
         m_tuioManager = TuioManager.Instance;
         m_tokenPosition = TokenPosition.Instance;
         m_locationBar = FindObjectsOfType<LocationBar>()[0];
+        m_fiducialController = this.GetComponent<FiducialController>();
 
         //Snaps bar at the start to valid position
-        this.GridSnapping();
+        //this.GridSnapping();
     }
 
     //TODO: color area between start and end loop marker
@@ -62,7 +67,26 @@ public class LoopController : MonoBehaviour
     void Update()
     {
         #region Move Loop Markers
+        if (m_obj != null)
+        {
+            if (m_obj.getMotionSpeed() == 0 &&
+                this.transform.position.x != newPos.x)
+            {
+                newPos = Camera.main.WorldToScreenPoint(this.transform.position);
+                newPos = Camera.main.ScreenToWorldPoint(new Vector3(m_tokenPosition.CalculateXPosition(newPos), newPos.y, newPos.z));
 
+                this.transform.position = newPos;
+
+                //tells locationBar new position
+                if (startMarker)
+                    m_locationBar.SetStartBarPosition(newPos);
+                else
+                    m_locationBar.SetEndBarPosition(newPos);
+            }
+        }
+        else
+            m_obj = m_tuioManager.GetMarker(m_fiducialController.MarkerID);
+        /*
         if (!moving)
         {
             foreach (GameObject cursor in cursors)
@@ -101,13 +125,13 @@ public class LoopController : MonoBehaviour
             if ((startMarker && otherLoopMarkerXPos > (m_CursorX + minLoopArea)) //for the start marker
                 || (!startMarker && otherLoopMarkerXPos < (m_CursorX - minLoopArea))) //for the end marker
                 this.transform.position = new Vector3(movingCursor.transform.position.x, this.transform.position.y, this.transform.position.z);
-        }
+        }*/
 
         #endregion
 
     }
 
-    #region Grid Snapping
+    /*#region Grid Snapping
     private void GridSnapping()
     {
         newPos = Camera.main.WorldToScreenPoint(this.transform.position);
@@ -121,5 +145,5 @@ public class LoopController : MonoBehaviour
         else
             m_locationBar.SetEndBarPosition(newPos);
     }
-    #endregion
+    #endregion*/
 }
