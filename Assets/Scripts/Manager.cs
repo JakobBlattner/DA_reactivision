@@ -3,6 +3,9 @@ using System.IO.Ports;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TUIO;
+using UniducialLibrary;
+
 
 public class Manager : MonoBehaviour {
     public NoteMarker[] noteMarkers = new NoteMarker[16];
@@ -42,6 +45,7 @@ public class Manager : MonoBehaviour {
             noteMarkers[i] = markerObjets[i].GetComponent<NoteMarker>();
         }
 
+
         serialPort = new SerialPort(serialPortName, serialBaudrate);
         serialPort.Open();
 	}
@@ -60,7 +64,7 @@ public class Manager : MonoBehaviour {
                 // TODO: Serial Communication with Arduino
                 lastSentNote += noteMarker.duration - 1;
                 int noteToSend = this.locationBar.GetNote(noteMarker.transform.position);
-                Debug.Log("Send note " + noteToSend + " (MarkerID = " + noteMarker.fiducialController.MarkerID + ")");
+                //Debug.Log("Send note " + noteToSend + " (MarkerID = " + noteMarker.fiducialController.MarkerID + ")");
                 int s = 0;
                 int f = 0;
                 if(noteToSend < 10) { // TODO: create a function for this
@@ -81,6 +85,7 @@ public class Manager : MonoBehaviour {
                     serialPort.WriteLine(msgIndex + "," + s + "," + f + "," + noteMarker.duration + "," + damping);
                     Debug.Log("[LOG: wrote cmd]");
                 }
+                Debug.Log("Marker " + noteMarker.fiducialController.MarkerID + " with Note " + noteToSend + " has been played for " + noteMarker.duration);
                 /*do // wait until received msg starts with last sent id
                 {
                     receivedMsg = serialPort.ReadExisting();
@@ -88,7 +93,6 @@ public class Manager : MonoBehaviour {
                 } while (!receivedMsg.StartsWith("" + msgIndex));
                 Debug.Log(receivedMsg);*/
                 msgIndex++;
-
             }
         }
 
@@ -97,6 +101,7 @@ public class Manager : MonoBehaviour {
         //var noteMarker = this.activeMarkers[locationBarTactPosition];
 	}
 
+    
 
     public void NoteMarkerMoved(NoteMarker marker, Vector2 delta) {
         // Remove from active markers
@@ -107,10 +112,12 @@ public class Manager : MonoBehaviour {
             }
         }
 
-        Debug.Log("Marker " + marker.fiducialController.MarkerID + " moved");
+        Debug.Log("Marker " + marker.fiducialController.MarkerID + " moved by " + delta);
     }
 
     public void NoteMarkerRemoved(NoteMarker marker) {// Remove from active markers
+        var tactPos = this.locationBar.GetTactPosition(marker.lastPosition);
+
         for (int i = 0; i < this.activeMarkers.Length; ++i)
         {
             if (this.activeMarkers[i] == marker)
@@ -120,10 +127,10 @@ public class Manager : MonoBehaviour {
             }
         }
 
-        Debug.Log("Marker " + marker.fiducialController.MarkerID + " removed");
+        Debug.Log("Marker " + marker.fiducialController.MarkerID + " removed from position " + tactPos);
     }
 
-    public void NoteMarkerPositined(NoteMarker marker) {
+    public void NoteMarkerPositioned(NoteMarker marker) {
         // Add to active markers
         var tactPos = this.locationBar.GetTactPosition(marker.lastPosition);
 
@@ -136,6 +143,6 @@ public class Manager : MonoBehaviour {
         }
 
         this.activeMarkers[tactPos] = marker;
-        Debug.Log("Marker " + marker.fiducialController.MarkerID + " positined (TactPos " + tactPos + ")");
+        Debug.Log("Marker " + marker.fiducialController.MarkerID + " positined at " + tactPos + ")");
     }
 }

@@ -18,8 +18,8 @@ public class LoopController : MonoBehaviour
     //public int touchArea = 1;
     //public int minLoopArea = 10;
     private GameObject otherLoopMarker;
-    private bool moving = false;
-    private float xPos;
+    //private bool moving = false;
+    //private float xPos;
     //private float xTouchPos;
     //private float otherLoopMarkerXPos;
     //private GameObject movingCursor;

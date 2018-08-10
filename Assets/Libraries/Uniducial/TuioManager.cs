@@ -120,11 +120,11 @@ namespace UniducialLibrary
             if (this.m_Client.isConnected())
             {
 
-                Debug.Log("Listening to TUIO port " + m_Client.getPort() + ".");
+                //Debug.Log("Listening to TUIO port " + m_Client.getPort() + ".\n");
             }
             else
             {
-                Debug.LogError("Failed to connect to TUIO port " + m_Client.getPort() + ".");
+                Debug.LogError("Failed to connect to TUIO port " + m_Client.getPort() + ".\n");
             }
         }
 
