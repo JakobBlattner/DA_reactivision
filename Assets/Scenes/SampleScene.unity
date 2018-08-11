@@ -528,6 +528,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -542,6 +543,33 @@ AudioListener:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f87e4989c5e703e428df4339d59e2c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showMainBehavior: 1
+  showInnerGlowBehavior: 0
+  rtFormat: 0
+  blurShader: {fileID: 4800000, guid: 1855d9636fad3914bacc4a543165c974, type: 3}
+  compositeShader: {fileID: 4800000, guid: e384de4389ba527479054baf0ddb1d3e, type: 3}
+  selectiveRenderShader: {fileID: 4800000, guid: c04b7cae8accdfb4e9c2648823ff39d7,
+    type: 3}
+  glowLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  glowType: 0
+  glowTint: {r: 1, g: 1, b: 1, a: 0}
+  blurSpreadInner: 0.6
+  blurIterations: 5
+  glowIntensityInner: 0.4
+  samples: 2
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -551,7 +579,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -563,7 +591,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -574,7 +602,7 @@ Camera:
   m_HDR: 1
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -742,6 +770,21 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 212141611034838234, guid: 139d36c3c11c5ca4b9eb9286545eff8e,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.9528302
+      objectReference: {fileID: 0}
+    - target: {fileID: 212141611034838234, guid: 139d36c3c11c5ca4b9eb9286545eff8e,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.9483357
+      objectReference: {fileID: 0}
+    - target: {fileID: 212141611034838234, guid: 139d36c3c11c5ca4b9eb9286545eff8e,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.9483357
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 139d36c3c11c5ca4b9eb9286545eff8e, type: 2}
   m_IsPrefabParent: 0
@@ -797,6 +840,20 @@ Prefab:
     - target: {fileID: 1038271999322542, guid: cc20fba3f10c801439a51d10c8af5658, type: 2}
       propertyPath: m_Name
       value: Marker_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212352547249519412, guid: cc20fba3f10c801439a51d10c8af5658,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e3efa4275cbd62c46af5469c7c5c8eef, type: 2}
+    - target: {fileID: 1038271999322542, guid: cc20fba3f10c801439a51d10c8af5658, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114525754211048818, guid: cc20fba3f10c801439a51d10c8af5658,
+        type: 2}
+      propertyPath: IsPositionMapped
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc20fba3f10c801439a51d10c8af5658, type: 2}
@@ -887,7 +944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &959674405
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1472,6 +1529,21 @@ Prefab:
       propertyPath: startMarker
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 212141611034838234, guid: 139d36c3c11c5ca4b9eb9286545eff8e,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212141611034838234, guid: 139d36c3c11c5ca4b9eb9286545eff8e,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212141611034838234, guid: 139d36c3c11c5ca4b9eb9286545eff8e,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 139d36c3c11c5ca4b9eb9286545eff8e, type: 2}
   m_IsPrefabParent: 0
@@ -1490,7 +1562,7 @@ GameObject:
   - component: {fileID: 2062727482}
   - component: {fileID: 2062727481}
   m_Layer: 0
-  m_Name: MrManager
+  m_Name: TuneManagerGO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

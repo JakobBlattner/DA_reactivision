@@ -18483,3 +18483,587 @@ FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialCo
 
 =============== Game ended ================
 
+
+
+=============== Game started ================
+
+
+ 8/11/2018 3:15:59 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 3:16:17 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 3:16:24 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 3:16:39 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 3:17:05 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 5:17:17 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 5:25:43 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 5:26:25 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 6:31:14 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 6:31:20 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 6:34:04 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 6:34:05 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 6:35:31 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 6:36:13 PM Error 
+ Menu Component/Input/Fiducial Controller can't be checked because doesn't exist
+ UnityEngine.GUIUtility:ProcessEvent(Int32, IntPtr)
+
+ 8/11/2018 6:36:19 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 6:36:36 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 6:36:41 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 6:38:52 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 6:39:03 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 6:39:40 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 6:39:59 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 6:41:39 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 6:41:56 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 6:47:47 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 6:47:50 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 6:48:47 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 6:48:50 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 7:19:55 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 7:20:08 PM Error 
+ Menu Component/Input/Fiducial Controller can't be checked because doesn't exist
+ 
+ 8/11/2018 7:21:07 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 7:38:59 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 7:39:05 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 7:39:48 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start ()
+
+ 8/11/2018 7:39:55 PM Log 
+ Marker 0 moved by (10.6, -1.1)
+ 
+ 8/11/2018 7:39:55 PM Log 
+ Marker 0 moved by (-10.3, -0.3)
+ 
+ 8/11/2018 7:40:00 PM Log 
+ Marker 0 positined at 4)
+ 
+ 8/11/2018 7:40:01 PM Log 
+ Marker 0 with Note 11 has been played for 1
+ 
+ 8/11/2018 7:40:08 PM Log 
+ Marker 0 with Note 11 has been played for 1
+ 
+ 8/11/2018 7:40:16 PM Log 
+ Marker 0 with Note 11 has been played for 1
+ 
+ 8/11/2018 7:40:18 PM Log 
+ Stopped listening to TUIO port 3333.
+ 
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 7:51:00 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 7:51:22 PM Error 
+ Menu Component/Input/Fiducial Controller can't be checked because doesn't exist
+ 
+ 8/11/2018 7:52:12 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 7:54:44 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 7:54:58 PM Error 
+ Menu Component/Input/Fiducial Controller can't be checked because doesn't exist
+ 
+ 8/11/2018 7:58:00 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 7:58:07 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 7:58:12 PM Error 
+ Menu Component/Input/Fiducial Controller can't be checked because doesn't exist
+ 
+ 8/11/2018 7:58:54 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+UnityEngine.GUIUtility:ProcessEvent(Int32, IntPtr)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 8:03:36 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 8:04:27 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 8:04:30 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 8:05:12 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 8:05:24 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 8:07:13 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 8:07:23 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 8:07:29 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/11/2018 8:08:11 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/11/2018 8:08:36 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
