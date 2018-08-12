@@ -44,7 +44,7 @@ public class GlowScript : MonoBehaviour
     }
     void Update()
     {
-        
+        //gets current position of the current_location_bar
         lr_pos = lineRenderer.GetPosition(0);
 
         //if locationBar is over this sprite and the marker is not moving, make it glow

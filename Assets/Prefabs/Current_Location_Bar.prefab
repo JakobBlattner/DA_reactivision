@@ -53,6 +53,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bpm: 100
+  startBarPosition: {x: 0, y: 0, z: 0}
+  endBarPosition: {x: 0, y: 0, z: 0}
+  totalDistance: 0
+  timeMarker: 0
 --- !u!120 &120353493494393188
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -68,7 +72,7 @@ LineRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 2a74ec838c8273041981765310136117, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -142,6 +146,6 @@ LineRenderer:
     numCapVertices: 0
     alignment: 0
     textureMode: 0
-    generateLightingData: 0
+    generateLightingData: 1
   m_UseWorldSpace: 1
   m_Loop: 0
