@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MKDemoMat3View1
+  m_Name: Material_blue
   m_Shader: {fileID: 4800000, guid: 3e6c1776342300545976f0ad6a86ef1b, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 5
@@ -35,11 +35,11 @@ Material:
     - _EnableExternalAlpha: 0
     - _InvFade: 1
     - _MKGlowOffSet: 0
-    - _MKGlowPower: 0
+    - _MKGlowPower: 2.5
     - _MKGlowTexStrength: 5
     m_Colors:
-    - _Color: {r: 0.871714, g: 0.8962264, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _MKGlowColor: {r: 0.9353567, g: 0.99215686, b: 0, a: 1}
-    - _MKGlowTexColor: {r: 0.9210834, g: 1, b: 0.023584902, a: 1}
+    - _MKGlowColor: {r: 0, g: 0.013520718, b: 1, a: 1}
+    - _MKGlowTexColor: {r: 0, g: 0.24652743, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

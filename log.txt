@@ -19067,3 +19067,1248 @@ FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialCo
 
 =============== Game ended ================
 
+
+
+=============== Game started ================
+
+
+ 8/12/2018 2:31:15 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 2:31:19 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 2:54:28 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 2:54:28 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:28 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:37 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:37 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:37 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:37 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:37 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:37 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:37 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:37 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:38 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:39 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:40 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:41 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:41 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:41 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:41 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:41 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:41 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:41 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:41 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:41 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:41 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:41 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:41 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:41 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:41 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:41 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:41 PM Exception 
+ ArgumentException: Input Key named: Space is unknown
+ UnityEngine.Input.GetKeyDown (System.String name) (at C:/buildslave/unity/build/artifacts/generated/bindings_old/common/Core/InputBindings.gen.cs:458)
+GlowScript.Update () (at Assets/Scripts/GlowScript.cs:21)
+
+ 8/12/2018 2:54:41 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 2:54:54 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 2:55:17 PM Error 
+ Menu Component/Input/Fiducial Controller can't be checked because doesn't exist
+ 
+ 8/12/2018 2:55:33 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 3:44:17 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 3:44:57 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 3:45:49 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 3:52:25 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 3:52:30 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 3:53:27 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 3:54:01 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 3:54:28 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 3:54:33 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 3:55:00 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 3:56:05 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 4:00:29 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
