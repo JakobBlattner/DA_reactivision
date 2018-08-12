@@ -20617,3 +20617,2124 @@ FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialCo
 
 =============== Game ended ================
 
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:02:27 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:02:59 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:08:03 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:08:26 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:09:11 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:11:42 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:24:02 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:24:21 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:24:58 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:27:42 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:28:01 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:28:35 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:28:42 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:29:21 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:30:02 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:30:11 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:31:13 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:31:32 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:37:13 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:38:13 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:38:19 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:38:39 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:38:58 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:40:36 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:40:40 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:41:13 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:41:36 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:41 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:42 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:43 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Exception 
+ NullReferenceException: Object reference not set to an instance of an object
+ GlowScript.Update () (at Assets/Scripts/GlowScript.cs:55)
+
+ 8/12/2018 6:41:44 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:43:15 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:43:49 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:43:52 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:43:58 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:44:00 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:44:41 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:46:56 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:47:04 PM Error 
+ Menu Component/Input/Fiducial Controller can't be checked because doesn't exist
+ 
+ 8/12/2018 6:47:13 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:47:17 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:47:52 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:48:16 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:48:30 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:48:38 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:49:05 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:53:30 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:54:11 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:55:06 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 6:55:30 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 6:58:59 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 7:02:45 PM Log 
+ Marker 2 removed from position 3
+ UnityEngine.Debug:Log(Object)
+Manager:NoteMarkerRemoved(NoteMarker) (at Assets/Scripts/Manager.cs:130)
+NoteMarker:Update() (at Assets/Scripts/NoteMarker.cs:46)
+
+ 8/12/2018 7:02:46 PM Log 
+ Marker 1 removed from position 3
+ UnityEngine.Debug:Log(Object)
+Manager:NoteMarkerRemoved(NoteMarker) (at Assets/Scripts/Manager.cs:130)
+NoteMarker:Update() (at Assets/Scripts/NoteMarker.cs:46)
+
+ 8/12/2018 7:03:56 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 7:04:00 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 7:04:37 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
+
+
+=============== Game started ================
+
+
+ 8/12/2018 7:05:14 PM Exception 
+ IOException: The port `/dev/cu.usbmodem1421' does not exist.
+ System.IO.Ports.WinSerialStream.ReportIOError (System.String optional_arg)
+System.IO.Ports.WinSerialStream..ctor (System.String port_name, Int32 baud_rate, Int32 data_bits, Parity parity, StopBits sb, Boolean dtr_enable, Boolean rts_enable, Handshake hs, Int32 read_timeout, Int32 write_timeout, Int32 read_buffer_size, Int32 write_buffer_size)
+(wrapper remoting-invoke-with-check) System.IO.Ports.WinSerialStream:.ctor (string,int,int,System.IO.Ports.Parity,System.IO.Ports.StopBits,bool,bool,System.IO.Ports.Handshake,int,int,int,int)
+System.IO.Ports.SerialPort.Open ()
+(wrapper remoting-invoke-with-check) System.IO.Ports.SerialPort:Open ()
+Manager.Start () (at Assets/Scripts/Manager.cs:50)
+
+ 8/12/2018 7:05:27 PM Log 
+ Stopped listening to TUIO port 3333.
+ UnityEngine.Debug:Log(Object)
+UniducialLibrary.TuioManager:Disconnect() (at Assets/Libraries/Uniducial/TuioManager.cs:198)
+FiducialController:OnApplicationQuit() (at Assets/Libraries/Uniducial/FiducialController.cs:154)
+
+
+=============== Game ended ================
+
