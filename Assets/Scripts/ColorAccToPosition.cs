@@ -7,20 +7,22 @@ public class ColorAccToPosition : MonoBehaviour {
     public Color blue;
     public Color red;
     public Color green;
-    private Color currentColor;
+    public Color currentColor;
+
+    private bool lastSetTuneOnStringAndBeat;
 
     private SpriteRenderer rend;
     private TokenPosition tokenPosition;
     private float note;
-    //private Vector2 currentPos;
 
 	void Start() {
         rend = GetComponent<SpriteRenderer>();
         tokenPosition = TokenPosition.Instance;
-	}
+        lastSetTuneOnStringAndBeat = true;
+    }
 	
 	void FixedUpdate () {
-        if (rend.isVisible)
+        if (rend.isVisible && lastSetTuneOnStringAndBeat)
         {
             note = tokenPosition.GetNote(this.transform.position);
 
@@ -38,5 +40,15 @@ public class ColorAccToPosition : MonoBehaviour {
     public Color GetCurrentColor()
     {
         return currentColor;
+    }
+
+    public void SetCurrentColor(Color color)
+    {
+        currentColor = color;
+    }
+
+    public void SetAsLastTuneOnStringAndBeat(bool v)
+    {
+        lastSetTuneOnStringAndBeat = v;
     }
 }

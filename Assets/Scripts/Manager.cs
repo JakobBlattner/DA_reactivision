@@ -52,6 +52,7 @@ public class Manager : MonoBehaviour {
 	
 	// Update is called once per frame
     void Update () {
+
         var tactPosWithOffset = this.locationBar.GetTactPosition(this.locationBar.timeMarker + timeSendOffset);
 
         if (lastSentNote < tactPosWithOffset || tactPosWithOffset == 0)
@@ -64,7 +65,7 @@ public class Manager : MonoBehaviour {
                 // TODO: Serial Communication with Arduino
                 lastSentNote += noteMarker.duration - 1;
                 int noteToSend = this.locationBar.GetNote(noteMarker.transform.position);
-                //Debug.Log("Send note " + noteToSend + " (MarkerID = " + noteMarker.fiducialController.MarkerID + ")");
+                Debug.Log("Send note " + noteToSend + " (MarkerID = " + noteMarker.fiducialController.MarkerID + ")");
                 int s = 0;
                 int f = 0;
                 if(noteToSend < 10) { // TODO: create a function for this
@@ -143,6 +144,6 @@ public class Manager : MonoBehaviour {
         }
 
         this.activeMarkers[tactPos] = marker;
-        Debug.Log("Marker " + marker.fiducialController.MarkerID + " positined at " + tactPos + ")");
+        Debug.Log("Marker " + marker.fiducialController.MarkerID + " positioned at " + tactPos + ")");
     }
 }

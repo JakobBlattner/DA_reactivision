@@ -105,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blueMaterial: {fileID: 2100000, guid: 5f3b857091cd2fb4080b600ef377be89, type: 2}
   greenMaterial: {fileID: 2100000, guid: cf0d8fe550fda764d895fef270f01f92, type: 2}
-  redMaterial: {fileID: 2100000, guid: 45e0509eb9db5d14788c52e821ce4131, type: 2}
+  redMaterial: {fileID: 2100000, guid: 3a32d133544246247937ff4cb012b899, type: 2}
   defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!212 &212873842367819186
 SpriteRenderer:
