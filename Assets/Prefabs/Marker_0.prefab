@@ -92,6 +92,7 @@ MonoBehaviour:
   blue: {r: 0, g: 0.011764706, b: 1, a: 1}
   red: {r: 0.85882354, g: 0, b: 0, a: 1}
   green: {r: 0, g: 0.77254903, b: 0.023529412, a: 1}
+  currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114804873815064360
 MonoBehaviour:
   m_ObjectHideFlags: 1
