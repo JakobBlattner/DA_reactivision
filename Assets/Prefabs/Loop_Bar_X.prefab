@@ -53,8 +53,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMarker: 0
-  touchArea: 20
-  minLoopArea: 10
 --- !u!212 &212141611034838234
 SpriteRenderer:
   m_ObjectHideFlags: 1

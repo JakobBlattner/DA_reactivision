@@ -72,7 +72,6 @@ public class LinesForOrientation : MonoBehaviour
                 lineLeft.localScale = new Vector3(scaleFactorY, scaleFactorX*2, 1);
                 lineRight.localScale = new Vector3(scaleFactorY, scaleFactorX*2, 1);
             }
-            //else if not thin
             else
             {
                 //make lines thin again
@@ -82,6 +81,7 @@ public class LinesForOrientation : MonoBehaviour
                 lineRight.localScale = new Vector3(scaleFactorY, scaleFactorX, 1);
             }
         }
+        //if the marker is not visible, also deactivate the linesFor Orientation
         else if (childrenSpriteRenderer[0].isVisible)
         {
             //deactivate spriteRenderer in children

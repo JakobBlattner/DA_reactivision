@@ -59,7 +59,7 @@ MonoBehaviour:
   IsPositionMapped: 1
   InvertX: 0
   InvertY: 0
-  IsRotationMapped: 1
+  IsRotationMapped: 0
   AutoHideGO: 1
   CameraOffset: 10
   RotateAround: 1

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TUIO;
 using UniducialLibrary;
@@ -7,7 +8,7 @@ using UnityEngine;
 public class TokenPosition 
 {
     private int bars = 16; // Anzahl der Takte
-    private int tunes = 23;
+    private int tunes = 23; //Anzahl der Töne (0 also counts)
     private int heightOffset = 20; //in pixels
     private int widthOffset = 20; //in pixels
 
@@ -157,5 +158,27 @@ public class TokenPosition
     {
         return cellSizeWorld.x;
     }
+
+    #region For OuterLinesForOrientation
+    public float GetXPosForBeat(int beat)
+    {
+        return beat * cellSizeWorld.x + minWorldCoords.x;
+    }
+
+    public float GetYPosForTune(int tune)
+    {
+        return tune * cellSizeWorld.y + minWorldCoords.y;
+    }
+
+    public int GetNumberOfBeats()
+    {
+        return bars;
+    }
+
+    public int GetNumberOfTunes()
+    {
+        return tunes;
+    }
+    #endregion
 
 }
