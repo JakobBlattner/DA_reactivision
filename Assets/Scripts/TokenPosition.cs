@@ -136,6 +136,8 @@ public class TokenPosition
     public float CalculateXPosition(Vector3 position, bool isLoopBarMarker, float markerWidthMultiplier)
     {
         float snappingDistance = cellWidth * markerWidthMultiplier;//different marker size has effects on different snapping distances
+        if (isLoopBarMarker)
+            snappingDistance = cellWidth/2;
 
         //if marker is below grid area
         if (position.x < widthOffset + snappingDistance)
