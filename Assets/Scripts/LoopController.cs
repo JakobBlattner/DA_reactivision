@@ -73,7 +73,7 @@ public class LoopController : MonoBehaviour
                 this.transform.position.x != newPos.x)
             {
                 newPos = Camera.main.WorldToScreenPoint(this.transform.position);
-                newPos = Camera.main.ScreenToWorldPoint(new Vector3(m_tokenPosition.CalculateXPosition(newPos), newPos.y, newPos.z));
+                newPos = Camera.main.ScreenToWorldPoint(new Vector3(m_tokenPosition.CalculateXPosition(newPos, true, 1), newPos.y, newPos.z));
 
                 this.transform.position = newPos;
 

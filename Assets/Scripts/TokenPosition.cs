@@ -5,10 +5,10 @@ using TUIO;
 using UniducialLibrary;
 using UnityEngine;
 
-public class TokenPosition 
+public class TokenPosition
 {
     private int bars = 16; // Anzahl der Takte
-    private int tunes = 23; //Anzahl der Töne (0 also counts)
+    private int tunes = 24; //Anzahl der Töne
     private int heightOffset = 20; //in pixels
     private int widthOffset = 20; //in pixels
 
@@ -76,16 +76,17 @@ public class TokenPosition
 
 
         cellSizeWorld = Vector2.zero;
-        //cellSizeWorld.x = cellWidth / (m_MainCamera.pixelWidth / (bars + 2));
         cellSizeWorld.x = worldDiff.x / bars;
         cellSizeWorld.y = worldDiff.y / tunes;
     }
 
-    public int GetNote(Vector2 pos) {
+    public int GetNote(Vector2 pos)
+    {
         var relativeYpos = (pos.y - minWorldCoords.y) / (cellSizeWorld.y * tunes);
         return (int)Mathf.Floor(relativeYpos * tunes);
     }
-    public int GetTactPosition(Vector2 pos) {
+    public int GetTactPosition(Vector2 pos)
+    {
         var relativeXpos = (pos.x - minWorldCoords.x) / (cellSizeWorld.x * bars);
         return (int)Mathf.Floor(relativeXpos * bars);
     }
@@ -93,13 +94,14 @@ public class TokenPosition
     public Vector3 CalculateGridPosition(int markerID, float cameraOffset, bool isLoopBarMarker)
     {
         TuioObject m_obj = tuioManager.GetMarker(markerID);
-        Vector3 position = new Vector3(m_obj.getX() * Screen.width, isLoopBarMarker ? 0.5f*Screen.height : (1 - m_obj.getY()) * Screen.height, cameraOffset);
+        Vector3 position = new Vector3(m_obj.getX() * Screen.width, isLoopBarMarker ? 0.5f * Screen.height : (1 - m_obj.getY()) * Screen.height, cameraOffset);
+        float markerWidthMultiplier = markerID < 8 ? 0.5f : (markerID < 16 ? 1 : (markerID < 24 ? 1.5f : 2)); //according to widht of marker/token. Later used for correct snapping
 
         //if marker is not moving snap to grid position
         if (m_obj.getMotionSpeed() == 0)
         {
             #region X-Axis
-            position.x = this.CalculateXPosition(position);
+            position.x = this.CalculateXPosition(position, isLoopBarMarker, markerWidthMultiplier);
             #endregion
 
             #region Y-Axis
@@ -131,18 +133,20 @@ public class TokenPosition
     }
 
     //In screen space
-    public float CalculateXPosition(Vector3 position)
+    public float CalculateXPosition(Vector3 position, bool isLoopBarMarker, float markerWidthMultiplier)
     {
+        float snappingDistance = cellWidth * markerWidthMultiplier;//different marker size has effects on different snapping distances
+
         //if marker is below grid area
-        if (position.x < widthOffset)
+        if (position.x < widthOffset + snappingDistance)
             position.x = 0;
         //if marker is above grid area
-        else if (position.x > gridWidth + widthOffset)
-            position.x = gridWidth + widthOffset- cellWidth;
+        else if (position.x > gridWidth + widthOffset - snappingDistance)
+            position.x = gridWidth + widthOffset - 2* snappingDistance;
         //if marker is on grid area
         else
         {
-            float xPos = position.x - widthOffset;
+            float xPos = position.x - widthOffset - snappingDistance;
             float markerXOffset = xPos % cellWidth;
             if (markerXOffset < cellWidth / 2)
                 position.x = xPos - markerXOffset;
@@ -150,7 +154,7 @@ public class TokenPosition
                 position.x = xPos - markerXOffset + cellWidth;
 
         }
-        position.x += widthOffset;
+        position.x += (widthOffset + snappingDistance);
         return position.x;
     }
 
@@ -162,12 +166,12 @@ public class TokenPosition
     #region For OuterLinesForOrientation
     public float GetXPosForBeat(int beat)
     {
-        return beat * cellSizeWorld.x + minWorldCoords.x;
+        return Camera.main.ScreenToWorldPoint(new Vector3(beat * cellWidth + widthOffset + cellWidth/2, 0, 0)).x;
     }
 
     public float GetYPosForTune(int tune)
     {
-        return tune * cellSizeWorld.y + minWorldCoords.y;
+        return Camera.main.ScreenToWorldPoint(new Vector3(0, tune * cellHeight + heightOffset + cellHeight/2, 0)).y;
     }
 
     public int GetNumberOfBeats()
