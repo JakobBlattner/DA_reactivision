@@ -19,8 +19,10 @@ public class LinesForOrientation : MonoBehaviour
     private Transform lineLeft;
     private Transform lineRight;
 
+    private float spriteWidthMultiplier;
     private float scaleFactorY;
-    private float scaleFactorX;
+    private float scaleFactorTopBottomX;
+    private float scaleFactorLefRightX;
 
     private FiducialController m_fiducial;
 
@@ -31,7 +33,9 @@ public class LinesForOrientation : MonoBehaviour
         m_sRend = belongingMarker.GetComponent<SpriteRenderer>();
         childrenSpriteRenderer = GetComponentsInChildren<SpriteRenderer>();
 
-        scaleFactorX = childrenSpriteRenderer[0].transform.localScale.x;
+        spriteWidthMultiplier = TokenPosition.GetMarkerWithMultiplier(m_fiducial.MarkerID);
+        scaleFactorTopBottomX = childrenSpriteRenderer[0].transform.localScale.x * spriteWidthMultiplier;
+        scaleFactorLefRightX = childrenSpriteRenderer[2].transform.localScale.x * spriteWidthMultiplier;
         scaleFactorY = childrenSpriteRenderer[0].transform.localScale.y;
 
         if (lineTop == null)
@@ -67,18 +71,18 @@ public class LinesForOrientation : MonoBehaviour
             if (m_fiducial.MovementDirection != new Vector2(0.0f, 0.0f))
             {
                 //make lines thicker
-                lineTop.localScale = new Vector3(scaleFactorX*2, scaleFactorY, 1);
-                lineBottom.localScale = new Vector3(scaleFactorX*2, scaleFactorY, 1);
-                lineLeft.localScale = new Vector3(scaleFactorY, scaleFactorX*2, 1);
-                lineRight.localScale = new Vector3(scaleFactorY, scaleFactorX*2, 1);
+                lineTop.localScale = new Vector3(scaleFactorTopBottomX, scaleFactorY*2, 1);
+                lineBottom.localScale = new Vector3(scaleFactorTopBottomX, scaleFactorY*2, 1);
+                lineLeft.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX * 2, 1);
+                lineRight.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX * 2, 1);
             }
             else
             {
                 //make lines thin again
-                lineTop.localScale = new Vector3(scaleFactorX, scaleFactorY, 1);
-                lineBottom.localScale = new Vector3(scaleFactorX, scaleFactorY, 1);
-                lineLeft.localScale = new Vector3(scaleFactorY, scaleFactorX, 1);
-                lineRight.localScale = new Vector3(scaleFactorY, scaleFactorX, 1);
+                lineTop.localScale = new Vector3(scaleFactorTopBottomX, scaleFactorY, 1);
+                lineBottom.localScale = new Vector3(scaleFactorTopBottomX, scaleFactorY, 1);
+                lineLeft.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX, 1);
+                lineRight.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX, 1);
             }
         }
         //if the marker is not visible, also deactivate the linesFor Orientation

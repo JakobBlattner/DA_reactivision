@@ -95,13 +95,12 @@ public class TokenPosition
     {
         TuioObject m_obj = tuioManager.GetMarker(markerID);
         Vector3 position = new Vector3(m_obj.getX() * Screen.width, isLoopBarMarker ? 0.5f * Screen.height : (1 - m_obj.getY()) * Screen.height, cameraOffset);
-        float markerWidthMultiplier = markerID < 8 ? 0.5f : (markerID < 16 ? 1 : (markerID < 24 ? 1.5f : 2)); //according to widht of marker/token. Later used for correct snapping
 
         //if marker is not moving snap to grid position
         if (m_obj.getMotionSpeed() == 0)
         {
             #region X-Axis
-            position.x = this.CalculateXPosition(position, isLoopBarMarker, markerWidthMultiplier);
+            position.x = this.CalculateXPosition(position, isLoopBarMarker, GetMarkerWithMultiplier(markerID));
             #endregion
 
             #region Y-Axis
@@ -134,10 +133,16 @@ public class TokenPosition
         return this.m_MainCamera.ScreenToWorldPoint(position);
     }
 
+    //used for correct snapping on the x axis and sprite scale
+    public static float GetMarkerWithMultiplier(int markerID)
+    {
+        return markerID < 8 ? 0.5f : (markerID < 16 ? 1 : (markerID < 24 ? 1.5f : 2));
+    }
+
     //In screen space
     public float CalculateXPosition(Vector3 position, bool isLoopBarMarker, float markerWidthMultiplier)
     {
-        float snappingDistance = cellWidth * markerWidthMultiplier;//different marker sizes have effects on snapping distances
+        float snappingDistance = cellWidth/2 + cellWidth * markerWidthMultiplier;//different marker sizes have effects on snapping distances
         if (isLoopBarMarker)
             snappingDistance = cellWidth / 2;
 
