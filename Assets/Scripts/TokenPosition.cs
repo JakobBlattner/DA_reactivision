@@ -63,9 +63,9 @@ public class TokenPosition
         tuioManager = TuioManager.Instance;
         m_MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
-        // 
-        minWorldCoords = this.m_MainCamera.ScreenToWorldPoint(new Vector2(0 + (widthOffset * 2), 0 + heightOffset));
-        maxWorldCoords = this.m_MainCamera.ScreenToWorldPoint(new Vector2(m_MainCamera.pixelWidth - (widthOffset * 2), m_MainCamera.pixelHeight - heightOffset));
+        //obsolet?
+        minWorldCoords = this.m_MainCamera.ScreenToWorldPoint(new Vector2(0 + (widthOffset * 2), 0 + heightOffset));//why widhtOffset *2?
+        maxWorldCoords = this.m_MainCamera.ScreenToWorldPoint(new Vector2(m_MainCamera.pixelWidth - (widthOffset * 2), m_MainCamera.pixelHeight - heightOffset));//why widthOffset * 2?
         worldDiff = maxWorldCoords - minWorldCoords;
 
         //calculate snapping grid
@@ -108,23 +108,25 @@ public class TokenPosition
             //doesn't move object on y-axis, when it's a LoopBarMarker
             if (!isLoopBarMarker)
             {
+                float snappingDistance = cellHeight / 2;
+
                 //if marker is below grid area
-                if (position.y < heightOffset)
+                if (position.y < heightOffset + snappingDistance)
                     position.y = 0;
                 //if marker is above grid area
-                else if (position.y > gridHeight + heightOffset)
+                else if (position.y > gridHeight + heightOffset - snappingDistance)
                     position.y = gridHeight + heightOffset - cellHeight;
                 //if marker is on grid area
                 else
                 {
-                    float yPos = position.y - heightOffset;
+                    float yPos = position.y - heightOffset - snappingDistance;
                     float markerYOffset = yPos % cellHeight;
                     if (markerYOffset < cellHeight / 2)
                         position.y = yPos - markerYOffset;
                     else
                         position.y = yPos - markerYOffset + cellHeight;
                 }
-                position.y += heightOffset;
+                position.y += (heightOffset + snappingDistance);
             }
             #endregion 
         }
@@ -135,16 +137,16 @@ public class TokenPosition
     //In screen space
     public float CalculateXPosition(Vector3 position, bool isLoopBarMarker, float markerWidthMultiplier)
     {
-        float snappingDistance = cellWidth * markerWidthMultiplier;//different marker size has effects on different snapping distances
+        float snappingDistance = cellWidth * markerWidthMultiplier;//different marker sizes have effects on snapping distances
         if (isLoopBarMarker)
-            snappingDistance = cellWidth/2;
+            snappingDistance = cellWidth / 2;
 
         //if marker is below grid area
         if (position.x < widthOffset + snappingDistance)
             position.x = 0;
         //if marker is above grid area
         else if (position.x > gridWidth + widthOffset - snappingDistance)
-            position.x = gridWidth + widthOffset - 2* snappingDistance;
+            position.x = gridWidth + widthOffset - 2 * snappingDistance;
         //if marker is on grid area
         else
         {
@@ -168,12 +170,12 @@ public class TokenPosition
     #region For OuterLinesForOrientation
     public float GetXPosForBeat(int beat)
     {
-        return Camera.main.ScreenToWorldPoint(new Vector3(beat * cellWidth + widthOffset + cellWidth/2, 0, 0)).x;
+        return Camera.main.ScreenToWorldPoint(new Vector3(beat * cellWidth + widthOffset + cellWidth / 2, 0, 0)).x;
     }
 
     public float GetYPosForTune(int tune)
     {
-        return Camera.main.ScreenToWorldPoint(new Vector3(0, tune * cellHeight + heightOffset + cellHeight/2, 0)).y;
+        return Camera.main.ScreenToWorldPoint(new Vector3(0, tune * cellHeight + heightOffset + cellHeight / 2, 0)).y;
     }
 
     public int GetNumberOfBeats()
