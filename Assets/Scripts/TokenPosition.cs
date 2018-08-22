@@ -19,19 +19,11 @@ public class TokenPosition
     public Vector2 cellSizeWorld;
     private float cellHeight;
 
-
-
-
+    //--von Raphael--
     Vector2 minWorldCoords;
     Vector2 maxWorldCoords;
     Vector2 worldDiff;
-
-
-
-
-
-
-
+    //---------------
 
     private TuioManager tuioManager;
     private static TokenPosition m_Instance;
@@ -74,10 +66,25 @@ public class TokenPosition
         cellHeight = gridHeight / tunes;
         cellWidth = gridWidth / bars;
 
-
         cellSizeWorld = Vector2.zero;
         cellSizeWorld.x = worldDiff.x / bars;
         cellSizeWorld.y = worldDiff.y / tunes;
+
+        //set sprite width and height (via scaling, Sprite has px size of 100x100) according to cellWidth and cellHeight
+        float scaleFactorWidth = cellWidth / 100;
+        float scaleFactorHeight = cellHeight / 100;
+
+        GameObject[] markers = GameObject.FindGameObjectsWithTag("Marker");
+        foreach (GameObject marker in markers)
+        {
+            FiducialController fidCon = marker.GetComponent<FiducialController>();
+            //set scaleFactorHeight 
+            Vector3 scaleVec = new Vector3(0, scaleFactorWidth, 0.5f);
+            //set scaleFactorWidth (according to height)
+            scaleVec.x = scaleFactorWidth * GetMarkerWithMultiplier(fidCon.MarkerID) *2;
+            marker.transform.localScale = scaleVec;
+        }
+
     }
 
     public int GetNote(Vector2 pos)
@@ -133,16 +140,10 @@ public class TokenPosition
         return this.m_MainCamera.ScreenToWorldPoint(position);
     }
 
-    //used for correct snapping on the x axis and sprite scale
-    public static float GetMarkerWithMultiplier(int markerID)
-    {
-        return markerID < 8 ? 0.5f : (markerID < 16 ? 1 : (markerID < 24 ? 1.5f : 2));
-    }
-
     //In screen space
     public float CalculateXPosition(Vector3 position, bool isLoopBarMarker, float markerWidthMultiplier)
     {
-        float snappingDistance = cellWidth/2 + cellWidth * markerWidthMultiplier;//different marker sizes have effects on snapping distances
+        float snappingDistance = cellWidth / 2 + cellWidth * markerWidthMultiplier;//different marker sizes have effects on snapping distances
         if (isLoopBarMarker)
             snappingDistance = cellWidth / 2;
 
@@ -165,6 +166,12 @@ public class TokenPosition
         }
         position.x += (widthOffset + snappingDistance);
         return position.x;
+    }
+
+    //used for correct snapping on the x axis and sprite scale
+    public static float GetMarkerWithMultiplier(int markerID)
+    {
+        return markerID < 8 ? 0.5f : (markerID < 16 ? 1 : (markerID < 24 ? 1.5f : 2));
     }
 
     public float GetCellWidthInWorldLength()
