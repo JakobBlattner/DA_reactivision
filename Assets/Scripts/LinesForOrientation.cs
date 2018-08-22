@@ -34,8 +34,8 @@ public class LinesForOrientation : MonoBehaviour
         childrenSpriteRenderer = GetComponentsInChildren<SpriteRenderer>();
 
         spriteWidthMultiplier = TokenPosition.GetMarkerWithMultiplier(m_fiducial.MarkerID);
-        scaleFactorTopBottomX = childrenSpriteRenderer[0].transform.localScale.x * spriteWidthMultiplier;
-        scaleFactorLefRightX = childrenSpriteRenderer[2].transform.localScale.x * spriteWidthMultiplier;
+        scaleFactorTopBottomX = belongingMarker.transform.localScale.x * 2; ;
+        scaleFactorLefRightX = childrenSpriteRenderer[2].transform.localScale.x / 2;
         scaleFactorY = childrenSpriteRenderer[0].transform.localScale.y;
 
         if (lineTop == null)
@@ -71,8 +71,8 @@ public class LinesForOrientation : MonoBehaviour
             if (m_fiducial.MovementDirection != new Vector2(0.0f, 0.0f))
             {
                 //make lines thicker
-                lineTop.localScale = new Vector3(scaleFactorTopBottomX, scaleFactorY*2, 1);
-                lineBottom.localScale = new Vector3(scaleFactorTopBottomX, scaleFactorY*2, 1);
+                lineTop.localScale = new Vector3(scaleFactorTopBottomX, scaleFactorY * 2, 1);
+                lineBottom.localScale = new Vector3(scaleFactorTopBottomX, scaleFactorY * 2, 1);
                 lineLeft.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX * 2, 1);
                 lineRight.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX * 2, 1);
             }
