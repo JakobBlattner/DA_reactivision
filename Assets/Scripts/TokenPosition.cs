@@ -56,8 +56,8 @@ public class TokenPosition
         m_MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
         //obsolet?
-        minWorldCoords = this.m_MainCamera.ScreenToWorldPoint(new Vector2(0 + (widthOffset * 2), 0 + heightOffset));//why widhtOffset *2?
-        maxWorldCoords = this.m_MainCamera.ScreenToWorldPoint(new Vector2(m_MainCamera.pixelWidth - (widthOffset * 2), m_MainCamera.pixelHeight - heightOffset));//why widthOffset * 2?
+        minWorldCoords = this.m_MainCamera.ScreenToWorldPoint(new Vector2(0 + (widthOffset /** 2*/), 0 + heightOffset));//why widhtOffset *2? --> outcommented
+        maxWorldCoords = this.m_MainCamera.ScreenToWorldPoint(new Vector2(m_MainCamera.pixelWidth - (widthOffset /** 2*/), m_MainCamera.pixelHeight - heightOffset));//why widthOffset * 2? --> outcommented
         worldDiff = maxWorldCoords - minWorldCoords;
 
         //calculate snapping grid

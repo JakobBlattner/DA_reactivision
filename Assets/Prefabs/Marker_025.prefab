@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114595937076349414}
   - component: {fileID: 114804873815064360}
   - component: {fileID: 114614251169622152}
+  - component: {fileID: 114127332647231322}
   m_Layer: 0
   m_Name: Marker_025
   m_TagString: Marker
@@ -38,12 +39,23 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1605195690530796}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -4.18, y: 1.86, z: -9.49}
+  m_LocalScale: {x: 0.5664063, y: 0.5664063, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114127332647231322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1605195690530796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0f5de91d4c2dd48bf4b75ca3997142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114448333054319800
 MonoBehaviour:
   m_ObjectHideFlags: 1
