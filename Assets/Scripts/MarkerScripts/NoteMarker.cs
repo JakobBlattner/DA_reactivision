@@ -7,7 +7,7 @@ public class NoteMarker : MonoBehaviour
     public Vector2 lastPosition;
     private Vector2 threshold = new Vector2(10.0f, 10.0f);
 
-    Manager manager;
+    TuneManager manager;
     public int duration = 0;
 
     public static int startMarkerId = 0;
@@ -25,7 +25,7 @@ public class NoteMarker : MonoBehaviour
     {
         // Init
         lastPosition = new Vector2(this.transform.position.x, this.transform.position.y);
-        manager = FindObjectOfType<Manager>();
+        manager = FindObjectOfType<TuneManager>();
 
         // Determine the duration
         fiducialController = this.GetComponent<FiducialController>();

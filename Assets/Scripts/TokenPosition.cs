@@ -100,10 +100,10 @@ public class TokenPosition
         return (int)Mathf.Floor(relativeXpos * bars);
     }
 
-    public Vector3 CalculateGridPosition(int markerID, float cameraOffset, bool isLoopBarMarker)
+    public Vector3 CalculateGridPosition(int markerID, float cameraOffset, bool isLoopBarMarker, bool isJoker)
     {
         TuioObject m_obj = tuioManager.GetMarker(markerID);
-        Vector3 position = new Vector3(m_obj.getX() * Screen.width, isLoopBarMarker ? 0.5f * Screen.height : (1 - m_obj.getY()) * Screen.height, cameraOffset);
+        Vector3 position = new Vector3(m_obj.getX() * Screen.width, isLoopBarMarker||isJoker ? 0.5f * Screen.height : (1 - m_obj.getY()) * Screen.height, cameraOffset);
 
         //if marker is not moving snap to grid position
         if (m_obj.getMotionSpeed() == 0)
@@ -114,7 +114,7 @@ public class TokenPosition
 
             #region Y-Axis
             //doesn't move object on y-axis, when it's a LoopBarMarker
-            if (!isLoopBarMarker)
+            if (!isLoopBarMarker && !isJoker)
             {
                 float snappingDistance = cellHeight / 2;
 
@@ -173,7 +173,7 @@ public class TokenPosition
     //used for correct snapping on the x axis and sprite scale
     public static float GetMarkerWithMultiplier(int markerID)
     {
-        return markerID < 8 ? 0.5f : (markerID < 16 ? 1 : (markerID < 24 ? 1.5f : 2));
+        return markerID < 13 ? 0.5f : (markerID < 23 ? 1 : (markerID < 30 ? 1.5f : 2));
     }
 
     public float GetCellWidthInWorldLength()

@@ -63,6 +63,7 @@ public class FiducialController : MonoBehaviour
     private float lastTimeMoved;
     private float lastTimeMovedThreshold;
     private bool isLoopBarMarker;
+    private bool isJoker;
 
     public float RotationMultiplier = 1;
 
@@ -96,6 +97,7 @@ public class FiducialController : MonoBehaviour
         this.m_IsVisible = true;
         //check if marker is a loopBarMarker;
         this.isLoopBarMarker = this.GetComponent<LoopController>();
+        this.isJoker = this.transform.parent.CompareTag("JokerParent");
         //60fps threshold
         lastTimeMovedThreshold = 1/60;//GetComponent<NoteMarker>().GetLastTimeMovedThreshold();
         this.lastTimeMoved = Time.time;
@@ -181,7 +183,7 @@ public class FiducialController : MonoBehaviour
             else if(Time.time - lastTimeMoved >= lastTimeMovedThreshold)
             {
                 lastTimeMoved = Time.time;
-                transform.position = m_TokenPosition.CalculateGridPosition(MarkerID, CameraOffset, isLoopBarMarker);
+                transform.position = m_TokenPosition.CalculateGridPosition(MarkerID, CameraOffset, isLoopBarMarker, isJoker);
 
                 /*
                 Vector3 position = new Vector3(xPos * Screen.width,
