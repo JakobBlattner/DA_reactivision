@@ -60,6 +60,9 @@ public class FiducialController : MonoBehaviour
     private float m_RotationSpeed;
     private float m_RotationAcceleration;
     private bool m_IsVisible;
+    private float lastTimeMoved;
+    private float lastTimeMovedThreshold;
+    private bool isLoopBarMarker;
 
     public float RotationMultiplier = 1;
 
@@ -91,6 +94,11 @@ public class FiducialController : MonoBehaviour
         this.m_RotationSpeed = 0f;
         this.m_RotationAcceleration = 0f;
         this.m_IsVisible = true;
+        //check if marker is a loopBarMarker;
+        this.isLoopBarMarker = this.GetComponent<LoopController>();
+        //60fps threshold
+        lastTimeMovedThreshold = 1/60;//GetComponent<NoteMarker>().GetLastTimeMovedThreshold();
+        this.lastTimeMoved = Time.time;
     }
 
     void Start()
@@ -170,9 +178,9 @@ public class FiducialController : MonoBehaviour
             {
                 transform.position = new Vector3(xPos, 1 - yPos, 0);
             }
-            else
+            else if(Time.time - lastTimeMoved >= lastTimeMovedThreshold)
             {
-                bool isLoopBarMarker = this.GetComponent<LoopController>();
+                lastTimeMoved = Time.time;
                 transform.position = m_TokenPosition.CalculateGridPosition(MarkerID, CameraOffset, isLoopBarMarker);
 
                 /*
@@ -181,7 +189,6 @@ public class FiducialController : MonoBehaviour
                 this.m_WorldPosition = this.m_MainCamera.ScreenToWorldPoint(position);
                 //worldPosition += cameraOffset * mainCamera.transform.forward;
                 transform.position = this.m_WorldPosition;*/
-
             }
         }
 

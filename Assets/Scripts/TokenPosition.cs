@@ -20,9 +20,9 @@ public class TokenPosition
     private float cellHeight;
 
     //--von Raphael--
-    Vector2 minWorldCoords;
-    Vector2 maxWorldCoords;
-    Vector2 worldDiff;
+    private Vector2 minWorldCoords;
+    private Vector2 maxWorldCoords;
+    private Vector2 worldDiff;
     //---------------
 
     private TuioManager tuioManager;
@@ -55,7 +55,9 @@ public class TokenPosition
         tuioManager = TuioManager.Instance;
         m_MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
-        //obsolet?
+        //variables in world coordinates
+        widthOffset = m_MainCamera.pixelWidth / 64;
+        heightOffset = m_MainCamera.pixelHeight / 64;
         minWorldCoords = this.m_MainCamera.ScreenToWorldPoint(new Vector2(0 + (widthOffset /** 2*/), 0 + heightOffset));//why widhtOffset *2? --> outcommented
         maxWorldCoords = this.m_MainCamera.ScreenToWorldPoint(new Vector2(m_MainCamera.pixelWidth - (widthOffset /** 2*/), m_MainCamera.pixelHeight - heightOffset));//why widthOffset * 2? --> outcommented
         worldDiff = maxWorldCoords - minWorldCoords;
