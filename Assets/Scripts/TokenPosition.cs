@@ -71,22 +71,6 @@ public class TokenPosition
         cellSizeWorld = Vector2.zero;
         cellSizeWorld.x = worldDiff.x / bars;
         cellSizeWorld.y = worldDiff.y / tunes;
-
-        //set sprite width and height (via scaling, Sprite has px size of 100x100) according to cellWidth and cellHeight
-        float scaleFactorWidth = cellWidth / 100;
-        float scaleFactorHeight = cellHeight / 100;
-
-        GameObject[] markers = GameObject.FindGameObjectsWithTag("Marker");
-        foreach (GameObject marker in markers)
-        {
-            FiducialController fidCon = marker.GetComponent<FiducialController>();
-            //set scaleFactorHeight 
-            Vector3 scaleVec = new Vector3(0, scaleFactorWidth, 0.5f);
-            //set scaleFactorWidth (according to height)
-            scaleVec.x = scaleFactorWidth * GetMarkerWithMultiplier(fidCon.MarkerID) *2;
-            marker.transform.localScale = scaleVec;
-        }
-
     }
 
     public int GetNote(Vector2 pos)
@@ -100,10 +84,10 @@ public class TokenPosition
         return (int)Mathf.Floor(relativeXpos * bars);
     }
 
-    public Vector3 CalculateGridPosition(int markerID, float cameraOffset, bool isLoopBarMarker, bool isJoker)
+    public Vector3 CalculateGridPosition(int markerID, float cameraOffset, bool isLoopBarMarker, bool isJoker, FiducialController fiducialController)
     {
         TuioObject m_obj = tuioManager.GetMarker(markerID);
-        Vector3 position = new Vector3(m_obj.getX() * Screen.width, isLoopBarMarker||isJoker ? 0.5f * Screen.height : (1 - m_obj.getY()) * Screen.height, cameraOffset);
+        Vector3 position = new Vector3(m_obj.getX() * Screen.width, isLoopBarMarker ? 0.5f * Screen.height : (1 - m_obj.getY()) * Screen.height, cameraOffset);
 
         //if marker is not moving snap to grid position
         if (m_obj.getMotionSpeed() == 0)
@@ -113,8 +97,14 @@ public class TokenPosition
             #endregion
 
             #region Y-Axis
+            //suggests the y Position because it's a joker marker
+            if (isJoker)
+            {
+                position.y = fiducialController.gameObject.GetComponent<JokerMarker>().CalculateYPosition(position, fiducialController);
+                //position.y = jokerSuggestions.CalculateYPosition(position, fiducialController);
+            }
             //doesn't move object on y-axis, when it's a LoopBarMarker
-            if (!isLoopBarMarker && !isJoker)
+            else if (!isLoopBarMarker)
             {
                 float snappingDistance = cellHeight / 2;
 
@@ -138,7 +128,6 @@ public class TokenPosition
             }
             #endregion 
         }
-
         return this.m_MainCamera.ScreenToWorldPoint(position);
     }
 
@@ -180,6 +169,18 @@ public class TokenPosition
     {
         return cellSizeWorld.x;
     }
+
+    #region For JokerSuggestion
+    public float GetHeightOffset()
+    {
+        return heightOffset;
+    }
+
+    public float GetCellHeight()
+    {
+        return cellHeight;
+    }
+    #endregion
 
     #region For OuterLinesForOrientation
     public float GetXPosForBeat(int beat)

@@ -183,7 +183,7 @@ public class FiducialController : MonoBehaviour
             else if(Time.time - lastTimeMoved >= lastTimeMovedThreshold)
             {
                 lastTimeMoved = Time.time;
-                transform.position = m_TokenPosition.CalculateGridPosition(MarkerID, CameraOffset, isLoopBarMarker, isJoker);
+                transform.position = m_TokenPosition.CalculateGridPosition(MarkerID, CameraOffset, isLoopBarMarker, isJoker, this);
 
                 /*
                 Vector3 position = new Vector3(xPos * Screen.width,
