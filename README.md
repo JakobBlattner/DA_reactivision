@@ -2,7 +2,5 @@
 Master Thesis Projekt by Jakob Blattner and Raphael Kamper on the TU Vienna
 
 Used libaries:
-
-Touchscript: https://github.com/TouchScript/TouchScript/wiki
-
-Uniducial: https://code.google.com/archive/p/uniducial/
+- MK Glow Free: https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/mk-glow-free-28044
+- Uniducial: https://code.google.com/archive/p/uniducial/
