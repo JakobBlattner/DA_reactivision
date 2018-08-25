@@ -209,5 +209,10 @@ namespace UniducialLibrary
             get { return m_Client.getPort(); }
             set { m_Client.setPort(value); }
         }
+
+        public TuioClient GetTuioClient()
+        {
+            return m_Client;
+        }
     }
 }

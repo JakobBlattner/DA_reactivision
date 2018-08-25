@@ -47,7 +47,8 @@ public class TuneManager : MonoBehaviour {
 
 
         serialPort = new SerialPort(serialPortName, serialBaudrate);
-        serialPort.Open();
+        //TODO remove comment slashes
+        //serialPort.Open();
 	}
 	
 	// Update is called once per frame

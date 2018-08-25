@@ -72,8 +72,8 @@ public class NoteMarker : MonoBehaviour
         lastTimeMoved = Time.time;
     }
 
-    public float GetLastTimeMovedThreshold()
+    /*public float GetLastTimeMovedThreshold()
     {
         return lastTimeMovedThreshold;
-    }
+    }*/
 }

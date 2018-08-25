@@ -5,10 +5,10 @@ using TUIO;
 using UniducialLibrary;
 using System;
 
-public class LastComeLastServe : MonoBehaviour
-    //implement TUIOListener
-    //set boolean after each event from TUIOListener
-    //check in loop if boolean event has been triggered/ set and act accordingly
+public class LastComeLastServe : MonoBehaviour, TuioListener
+//implement TUIOListener
+//set boolean after each event from TUIOListener
+//check in loop if boolean event has been triggered/ set and act accordingly
 {
 
     public Color grayedOutMarkerColor;
@@ -17,9 +17,14 @@ public class LastComeLastServe : MonoBehaviour
     private List<GameObject> greenMarkers;
     private List<GameObject> blueMarkers;
 
-    private TuioManager m_tuiomanager;
-
+    private Dictionary<int, GameObject> activeMarkers;
     private GameObject[] markers;
+
+    private List<TuioObject> addedTuioObjects;
+    private List<TuioObject> removedTuioObjects;
+    private List<TuioObject> updatedTuioObjects;
+
+    private TuioManager m_tuiomanager;
 
     // Use this for initialization
     void Start()
@@ -28,24 +33,47 @@ public class LastComeLastServe : MonoBehaviour
         greenMarkers = new List<GameObject>();
         blueMarkers = new List<GameObject>();
 
+        addedTuioObjects = new List<TuioObject>();
+        removedTuioObjects = new List<TuioObject>();
+        updatedTuioObjects = new List<TuioObject>();
+
+        //add this class to the callback list of the client
         m_tuiomanager = TuioManager.Instance;
+        TuioClient m_tuioClient = m_tuiomanager.GetTuioClient();
+        m_tuioClient.addTuioListener(this);
+
+        //get all markers in the game
+        markers = GameObject.FindGameObjectsWithTag("Marker");
     }
 
     public void FixedUpdate()
     {
-        //+2 for the markers which set the LoopBars
-        if(m_tuiomanager.GetObjectCount() != markers.Length+2)
+        //if new markers has been set, act accordingly
+        if (addedTuioObjects.Count != 0)
         {
-            GameObject [] allMarkers = GameObject.FindGameObjectsWithTag("Marker");
-            //current position from TokenPosition.Instance.GetTactPosition(Vector2);
+            foreach (TuioObject tuioObject in addedTuioObjects)
+                this.addMarker(tuioObject);
+            addedTuioObjects = new List<TuioObject>();
+        }
+        //if markers have been removed, act accordingly
+        if (removedTuioObjects.Count != 0)
+        {
+            foreach (TuioObject tuioObject in removedTuioObjects)
+                this.removeMarker(tuioObject);
+            removedTuioObjects = new List<TuioObject>();
+        }
+        if (updatedTuioObjects.Count != 0)
+        {
+            foreach (TuioObject tuioObject in updatedTuioObjects)
+                this.updateMarker(tuioObject);
+            updatedTuioObjects = new List<TuioObject>();
         }
     }
 
-    public void addedMarker(TuioObject tobj)
+    private void addMarker(TuioObject tobj)
     {
-        //get GameObject with TUIO ID of the obj
-       //GameObject[] markers = GameObject.FindGameObjectsWithTag("Marker");
 
+        //TODO work from here on
         foreach (GameObject marker in markers)
         {
             //if marker hast the same ID as the tuioObj
@@ -72,24 +100,26 @@ public class LastComeLastServe : MonoBehaviour
                     this.SetOldMarkerToGray(blueMarkers, marker);
                 }
 
-                //next line not needed, is by default true
-                //m_colorAccToPosition.SetAsLastTune(true);
+                m_colorAccToPosition.SetAsLastTuneOnStringAndBeat(true);
+                break;
             }
         }
     }
 
-    public void removedMarker(TuioObject tobj)
+    private void removeMarker(TuioObject tobj)
     {
         //when marker gets removed from table
     }
 
-    public void updateMarker(TuioObject tobj)
+    private void updateMarker(TuioObject tobj)
     {
         //when changing color and/or beat
     }
 
     private void SetOldMarkerToGray(List<GameObject> markers, GameObject marker)
     {
+
+        //TODO: redo as foreach loop
         if (markers.Count > 1)
         {
             ColorAccToPosition oldColorAccToPosition = markers[markers.Count - 2].GetComponent<ColorAccToPosition>();
@@ -98,4 +128,43 @@ public class LastComeLastServe : MonoBehaviour
         }
     }
 
+    //callback method, adds TuioObject to the list of active tuioObjects
+    public void addTuioObject(TuioObject tobj)
+    {
+        addedTuioObjects.Add(tobj);
+    }
+
+
+    public void updateTuioObject(TuioObject tobj)
+    {
+        //TODO implement behaviour when position is changing
+        throw new NotImplementedException();
+    }
+
+    //callback method, removes TuioObject from the list of active tuioObjects
+    public void removeTuioObject(TuioObject tobj)
+    {
+        addedTuioObjects.Remove(tobj);
+    }
+
+
+    #region not needed TuioListener methods
+    public void refresh(TuioTime ftime)
+    {
+    }
+
+    public void addTuioCursor(TuioCursor tcur)
+    {
+    }
+
+    public void updateTuioCursor(TuioCursor tcur)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void removeTuioCursor(TuioCursor tcur)
+    {
+        throw new NotImplementedException();
+    }
+    #endregion
 }
