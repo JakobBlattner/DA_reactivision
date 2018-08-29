@@ -8,7 +8,7 @@ public class LocationBar : MonoBehaviour
 {
 
     //TODO Get BPM from rotary encoder --> Arduino
-    public int bpm = 180;
+    public int bpm = 100;
     public Vector3 startBarPosition;
     public Vector3 endBarPosition;
 

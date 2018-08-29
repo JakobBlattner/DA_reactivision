@@ -20,9 +20,9 @@ public class TokenPosition
     private float cellHeight;
 
     //--von Raphael--
-    Vector2 minWorldCoords;
-    Vector2 maxWorldCoords;
-    Vector2 worldDiff;
+    private Vector2 minWorldCoords;
+    private Vector2 maxWorldCoords;
+    private Vector2 worldDiff;
     //---------------
 
     private TuioManager tuioManager;
@@ -55,7 +55,9 @@ public class TokenPosition
         tuioManager = TuioManager.Instance;
         m_MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
-        //obsolet?
+        //variables in world coordinates
+        widthOffset = m_MainCamera.pixelWidth / 64;
+        heightOffset = m_MainCamera.pixelHeight / 64;
         minWorldCoords = this.m_MainCamera.ScreenToWorldPoint(new Vector2(0 + (widthOffset /** 2*/), 0 + heightOffset));//why widhtOffset *2? --> outcommented
         maxWorldCoords = this.m_MainCamera.ScreenToWorldPoint(new Vector2(m_MainCamera.pixelWidth - (widthOffset /** 2*/), m_MainCamera.pixelHeight - heightOffset));//why widthOffset * 2? --> outcommented
         worldDiff = maxWorldCoords - minWorldCoords;
@@ -69,22 +71,6 @@ public class TokenPosition
         cellSizeWorld = Vector2.zero;
         cellSizeWorld.x = worldDiff.x / bars;
         cellSizeWorld.y = worldDiff.y / tunes;
-
-        //set sprite width and height (via scaling, Sprite has px size of 100x100) according to cellWidth and cellHeight
-        float scaleFactorWidth = cellWidth / 100;
-        float scaleFactorHeight = cellHeight / 100;
-
-        GameObject[] markers = GameObject.FindGameObjectsWithTag("Marker");
-        foreach (GameObject marker in markers)
-        {
-            FiducialController fidCon = marker.GetComponent<FiducialController>();
-            //set scaleFactorHeight 
-            Vector3 scaleVec = new Vector3(0, scaleFactorWidth, 0.5f);
-            //set scaleFactorWidth (according to height)
-            scaleVec.x = scaleFactorWidth * GetMarkerWithMultiplier(fidCon.MarkerID) *2;
-            marker.transform.localScale = scaleVec;
-        }
-
     }
 
     public int GetNote(Vector2 pos)
@@ -98,7 +84,7 @@ public class TokenPosition
         return (int)Mathf.Floor(relativeXpos * bars);
     }
 
-    public Vector3 CalculateGridPosition(int markerID, float cameraOffset, bool isLoopBarMarker)
+    public Vector3 CalculateGridPosition(int markerID, float cameraOffset, bool isLoopBarMarker, bool isJoker, FiducialController fiducialController)
     {
         TuioObject m_obj = tuioManager.GetMarker(markerID);
         Vector3 position = new Vector3(m_obj.getX() * Screen.width, isLoopBarMarker ? 0.5f * Screen.height : (1 - m_obj.getY()) * Screen.height, cameraOffset);
@@ -111,8 +97,14 @@ public class TokenPosition
             #endregion
 
             #region Y-Axis
+            //suggests the y Position because it's a joker marker
+            if (isJoker)
+            {
+                position.y = fiducialController.gameObject.GetComponent<JokerMarker>().CalculateYPosition(position, fiducialController);
+                //position.y = jokerSuggestions.CalculateYPosition(position, fiducialController);
+            }
             //doesn't move object on y-axis, when it's a LoopBarMarker
-            if (!isLoopBarMarker)
+            else if (!isLoopBarMarker)
             {
                 float snappingDistance = cellHeight / 2;
 
@@ -136,7 +128,6 @@ public class TokenPosition
             }
             #endregion 
         }
-
         return this.m_MainCamera.ScreenToWorldPoint(position);
     }
 
@@ -171,13 +162,25 @@ public class TokenPosition
     //used for correct snapping on the x axis and sprite scale
     public static float GetMarkerWithMultiplier(int markerID)
     {
-        return markerID < 8 ? 0.5f : (markerID < 16 ? 1 : (markerID < 24 ? 1.5f : 2));
+        return markerID < 13 ? 0.5f : (markerID < 23 ? 1 : (markerID < 30 ? 1.5f : 2));
     }
 
     public float GetCellWidthInWorldLength()
     {
         return cellSizeWorld.x;
     }
+
+    #region For JokerSuggestion
+    public float GetHeightOffset()
+    {
+        return heightOffset;
+    }
+
+    public float GetCellHeight()
+    {
+        return cellHeight;
+    }
+    #endregion
 
     #region For OuterLinesForOrientation
     public float GetXPosForBeat(int beat)

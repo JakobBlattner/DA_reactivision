@@ -6,6 +6,9 @@ using UniducialLibrary;
 using System;
 
 public class LastComeLastServe : MonoBehaviour
+    //implement TUIOListener
+    //set boolean after each event from TUIOListener
+    //check in loop if boolean event has been triggered/ set and act accordingly
 {
 
     public Color grayedOutMarkerColor;
@@ -82,7 +85,7 @@ public class LastComeLastServe : MonoBehaviour
 
     public void updateMarker(TuioObject tobj)
     {
-        //when chaning color and/or beat
+        //when changing color and/or beat
     }
 
     private void SetOldMarkerToGray(List<GameObject> markers, GameObject marker)
