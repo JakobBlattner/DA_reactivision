@@ -21,7 +21,7 @@ public class Manager : MonoBehaviour {
     public int lastSentNote = 0;
 
     private static SerialPort serialPort;
-    private static String serialPortName = "/dev/cu.usbmodem1421";
+    private static String serialPortName = "/dev/cu.usbmodem1411";
     private String receivedMsg = "";
     private int msgIndex = 0;
     private int damping = 0;

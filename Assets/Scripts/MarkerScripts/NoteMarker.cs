@@ -5,7 +5,7 @@ using UnityEngine;
 public class NoteMarker : MonoBehaviour
 {
     public Vector2 lastPosition;
-    private Vector2 threshold = new Vector2(10.0f, 10.0f);
+    private Vector2 threshold = new Vector2(1.5f, 1.5f);
 
     Manager manager;
     public int duration = 0;
@@ -18,7 +18,7 @@ public class NoteMarker : MonoBehaviour
     private float lastTimeMoved;
     private float lastTimeAlive;
     // TODO: May depend on BPM
-    private readonly float lastTimeMovedThreshold = 5.2534f;
+    private readonly float lastTimeMovedThreshold = 2.2534f;
 
     // Use this for initialization
     void Start()
