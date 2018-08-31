@@ -60,10 +60,10 @@ public class FiducialController : MonoBehaviour
     private float m_RotationSpeed;
     private float m_RotationAcceleration;
     private bool m_IsVisible;
-    private float lastTimeMoved;
-    private float lastTimeMovedThreshold;
     private bool isLoopBarMarker;
     private bool isJoker;
+    private Vector2 oldPosition;
+    private Vector2 movementThreshold;
 
     public float RotationMultiplier = 1;
 
@@ -98,9 +98,10 @@ public class FiducialController : MonoBehaviour
         //check if marker is a loopBarMarker;
         this.isLoopBarMarker = this.GetComponent<LoopController>();
         this.isJoker = this.transform.parent.CompareTag("JokerParent");
-        //60fps threshold
-        lastTimeMovedThreshold = 1/60;//GetComponent<NoteMarker>().GetLastTimeMovedThreshold();
-        this.lastTimeMoved = Time.time;
+        //movement threshold
+        this.oldPosition = Vector2.zero;
+        //TODO add to settings class
+        this.movementThreshold = Camera.main.ScreenToWorldPoint(new Vector2(TokenPosition.Instance.GetCellHeightInWorldLength() / 2, TokenPosition.Instance.GetCellWidthInWorldLength() / 2));
     }
 
     void Start()
@@ -176,15 +177,17 @@ public class FiducialController : MonoBehaviour
             if (this.InvertX) xPos = 1 - xPos;
             if (this.InvertY) yPos = 1 - yPos;
 
+            Vector2 currentPosInScreen = new Vector2(xPos, yPos);
+            var delta = currentPosInScreen - oldPosition;
+
             if (this.m_ControlsGUIElement)
             {
                 transform.position = new Vector3(xPos, 1 - yPos, 0);
             }
-            else if(Time.time - lastTimeMoved >= lastTimeMovedThreshold)
+            else if (Mathf.Abs(delta.x) > movementThreshold.x && Mathf.Abs(delta.y) > movementThreshold.y)
             {
-                lastTimeMoved = Time.time;
                 transform.position = m_TokenPosition.CalculateGridPosition(MarkerID, CameraOffset, isLoopBarMarker, isJoker, this);
-
+                oldPosition = Camera.main.WorldToScreenPoint(currentPosInScreen);
                 /*
                 Vector3 position = new Vector3(xPos * Screen.width,
                     (1 - yPos) * Screen.height, this.CameraOffset);

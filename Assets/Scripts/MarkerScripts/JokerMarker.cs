@@ -24,7 +24,7 @@ public class JokerMarker : MonoBehaviour {
 
         tokenPosition = TokenPosition.Instance;
         numberOfTunes = tokenPosition.GetNumberOfTunes();
-        cellHeight = tokenPosition.GetCellHeight();
+        cellHeight = tokenPosition.GetCellHeightInPx();
         heightOffSet = tokenPosition.GetHeightOffset();
 
         //TODO evaluate pentatonic tunes with numberOfTunes and pentatonicTunes array

@@ -171,13 +171,18 @@ public class TokenPosition
         return cellSizeWorld.x;
     }
 
+    public float GetCellHeightInWorldLength()
+    {
+        return cellSizeWorld.y;
+    }
+
     #region For JokerSuggestion
     public float GetHeightOffset()
     {
         return heightOffset;
     }
 
-    public float GetCellHeight()
+    public float GetCellHeightInPx()
     {
         return cellHeight;
     }
