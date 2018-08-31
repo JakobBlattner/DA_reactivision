@@ -17,8 +17,8 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     private List<GameObject> greenMarkers;
     private List<GameObject> blueMarkers;
 
-    private Dictionary<int, GameObject> activeMarkers;
-    private GameObject[] markers;
+    private Dictionary<int, GameObject> markers;
+    private GameObject[] activeMarkersOnGrid;
 
     private List<TuioObject> addedTuioObjects;
     private List<TuioObject> removedTuioObjects;
@@ -37,13 +37,21 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
         removedTuioObjects = new List<TuioObject>();
         updatedTuioObjects = new List<TuioObject>();
 
+        activeMarkersOnGrid = new GameObject[16];
+
         //add this class to the callback list of the client
         m_tuiomanager = TuioManager.Instance;
         TuioClient m_tuioClient = m_tuiomanager.GetTuioClient();
         m_tuioClient.addTuioListener(this);
 
         //get all markers in the game
-        markers = GameObject.FindGameObjectsWithTag("Marker");
+        GameObject[] markersArray = GameObject.FindGameObjectsWithTag("Marker");
+        //fills dictionary with markers for later easier access (MarkerID as key)
+        markers = new Dictionary<int, GameObject>();
+        foreach (GameObject marker in markersArray)
+        {
+            markers.Add(marker.GetComponent<FiducialController>().MarkerID, marker);
+        }
     }
 
     public void FixedUpdate()
@@ -52,68 +60,75 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
         if (addedTuioObjects.Count != 0)
         {
             foreach (TuioObject tuioObject in addedTuioObjects)
-                this.addMarker(tuioObject);
+                this.AddMarker(tuioObject);
             addedTuioObjects = new List<TuioObject>();
         }
         //if markers have been removed, act accordingly
         if (removedTuioObjects.Count != 0)
         {
             foreach (TuioObject tuioObject in removedTuioObjects)
-                this.removeMarker(tuioObject);
+                this.RemoveMarker(tuioObject);
             removedTuioObjects = new List<TuioObject>();
         }
         if (updatedTuioObjects.Count != 0)
         {
             foreach (TuioObject tuioObject in updatedTuioObjects)
-                this.updateMarker(tuioObject);
+                this.UpdateMarker(tuioObject);
             updatedTuioObjects = new List<TuioObject>();
         }
     }
 
-    private void addMarker(TuioObject tobj)
+    private void AddMarker(TuioObject tobj)
     {
+        GameObject currentMaker = markers[tobj.getSymbolID()];
 
-        //TODO work from here on
-        foreach (GameObject marker in markers)
+        //gets current color and adds marker to the according List
+        //then sets marker, which has been the latest marker before the new marker on the string, to grey
+        ColorAccToPosition m_colorAccToPosition = currentMaker.GetComponent<ColorAccToPosition>();
+        Color m_color = m_colorAccToPosition.GetCurrentColor();
+        char mainColor = this.CheckMainColor(m_color);
+
+        if (mainColor.Equals('r'))
         {
-            //if marker hast the same ID as the tuioObj
-            if (marker.GetComponent<FiducialController>().MarkerID == tobj.getSymbolID())
-            {
-                //gets current color and adds it to the according List
-                //then sets marker, which has been the latest marker before the new marker on the string, to grey
-                ColorAccToPosition m_colorAccToPosition = marker.GetComponent<ColorAccToPosition>();
-                Color m_color = m_colorAccToPosition.GetCurrentColor();
-
-                if (m_color.r > m_color.b && m_color.r > m_color.g)
-                {
-                    redMarkers.Add(marker);
-                    this.SetOldMarkerToGray(redMarkers, marker);
-                }
-                else if (m_color.g > m_color.b && m_color.g > m_color.r)
-                {
-                    greenMarkers.Add(marker);
-                    this.SetOldMarkerToGray(greenMarkers, marker);
-                }
-                else
-                {
-                    blueMarkers.Add(marker);
-                    this.SetOldMarkerToGray(blueMarkers, marker);
-                }
-
-                m_colorAccToPosition.SetAsLastTuneOnStringAndBeat(true);
-                break;
-            }
+            redMarkers.Add(currentMaker);
+            this.SetOldMarkerToGray(redMarkers, currentMaker);
         }
+        else if (mainColor.Equals('g'))
+        {
+            greenMarkers.Add(currentMaker);
+            this.SetOldMarkerToGray(greenMarkers, currentMaker);
+        }
+        else
+        {
+            blueMarkers.Add(currentMaker);
+            this.SetOldMarkerToGray(blueMarkers, currentMaker);
+        }
+
+        m_colorAccToPosition.SetAsLastTuneOnStringAndBeat(true);
     }
 
-    private void removeMarker(TuioObject tobj)
+    //when marker gets removed from table
+    private void RemoveMarker(TuioObject tobj)
     {
-        //when marker gets removed from table
+        //check list according to color and check each lastTimeMoved from NoteMarker
+        //check TuneManager for possible scenarios
     }
 
-    private void updateMarker(TuioObject tobj)
+    //when changing color and/or beat
+    private void UpdateMarker(TuioObject tobj)
     {
-        //when changing color and/or beat
+
+    }
+
+    //returns a char synonym for the main color component of the color
+    private char CheckMainColor(Color color)
+    {
+        if (color.r > color.b && color.r > color.g)
+            return 'r';
+        else if (color.g > color.b && color.g > color.r)
+            return 'g';
+        else
+            return 'b';
     }
 
     private void SetOldMarkerToGray(List<GameObject> markers, GameObject marker)
@@ -129,20 +144,19 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     }
 
     //callback method, adds TuioObject to the list of active tuioObjects
-    public void addTuioObject(TuioObject tobj)
+    public void AddTuioObject(TuioObject tobj)
     {
         addedTuioObjects.Add(tobj);
     }
 
-
-    public void updateTuioObject(TuioObject tobj)
+    //callback method, adds TuioObject to the list of updated tuioObjects
+    public void UpdateTuioObject(TuioObject tobj)
     {
-        //TODO implement behaviour when position is changing
-        throw new NotImplementedException();
+        updatedTuioObjects.Add(tobj);
     }
 
     //callback method, removes TuioObject from the list of active tuioObjects
-    public void removeTuioObject(TuioObject tobj)
+    public void RemoveTuioObject(TuioObject tobj)
     {
         addedTuioObjects.Remove(tobj);
     }

@@ -48,21 +48,21 @@ namespace TUIO
 		 *
 		 * @param  tobj  the TuioObject reference associated to the addTuioObject event
 		 */
-		void addTuioObject(TuioObject tobj);
+		void AddTuioObject(TuioObject tobj);
 
 		/**
 		 * This callback method is invoked by the TuioClient when an existing TuioObject is updated during the session.
 		 *
 		 * @param  tobj  the TuioObject reference associated to the updateTuioObject event
 		 */
-		void updateTuioObject(TuioObject tobj);
+		void UpdateTuioObject(TuioObject tobj);
 
 		/**
 		 * This callback method is invoked by the TuioClient when an existing TuioObject is removed from the session.
 		 *
 		 * @param  tobj  the TuioObject reference associated to the removeTuioObject event
 		 */
-		void removeTuioObject(TuioObject tobj);
+		void RemoveTuioObject(TuioObject tobj);
 
 		/**
 		 * This callback method is invoked by the TuioClient when a new TuioCursor is added to the session.

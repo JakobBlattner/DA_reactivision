@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class NoteMarker : MonoBehaviour
 {
-    public Vector2 lastPosition;
+    private Vector2 lastPosition;
     private Vector2 threshold = new Vector2(10.0f, 10.0f);
 
-    TuneManager manager;
+    private TuneManager manager;
     public int duration = 0;
 
     public static int startMarkerId = 0;
@@ -72,8 +72,8 @@ public class NoteMarker : MonoBehaviour
         lastTimeMoved = Time.time;
     }
 
-    /*public float GetLastTimeMovedThreshold()
+    public Vector2 GetLastPosition()
     {
-        return lastTimeMovedThreshold;
-    }*/
+        return lastPosition;
+    }
 }

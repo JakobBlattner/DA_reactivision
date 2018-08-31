@@ -27,6 +27,10 @@ public class TuneManager : MonoBehaviour {
     private int damping = 0;
     private static int serialBaudrate = 9600;
 
+    /*
+     TODO: Rewrite class, so that it is only responsible for communication with the Arduino
+         */
+
 
 	// Use this for initialization
 	void Start () {
@@ -117,8 +121,9 @@ public class TuneManager : MonoBehaviour {
         Debug.Log("Marker " + marker.fiducialController.MarkerID + " moved by " + delta);
     }
 
-    public void NoteMarkerRemoved(NoteMarker marker) {// Remove from active markers
-        var tactPos = this.locationBar.GetTactPosition(marker.lastPosition);
+    // Remove from active markers
+    public void NoteMarkerRemoved(NoteMarker marker) {
+        var tactPos = this.locationBar.GetTactPosition(marker.GetLastPosition());
 
         for (int i = 0; i < this.activeMarkers.Length; ++i)
         {
@@ -132,9 +137,9 @@ public class TuneManager : MonoBehaviour {
         Debug.Log("Marker " + marker.fiducialController.MarkerID + " removed from position " + tactPos);
     }
 
+    // Add to active markers
     public void NoteMarkerPositioned(NoteMarker marker) {
-        // Add to active markers
-        var tactPos = this.locationBar.GetTactPosition(marker.lastPosition);
+        var tactPos = this.locationBar.GetTactPosition(marker.GetLastPosition());
 
         if (tactPos < 0 || tactPos > 15) {
             return;
