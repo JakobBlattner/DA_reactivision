@@ -22,7 +22,7 @@ public class TuneManager : MonoBehaviour
     public int lastSentNote = 0;
 
     private static SerialPort serialPort;
-    private static String[] serialPortNames = { "/dev/cu.usbmodem1411", "/dev/cu.usbmodem1421" };
+    private static String[] serialPortNames = {"COM5", "/dev/cu.usbmodem1411", "/dev/cu.usbmodem1421" };
     private String receivedMsg = "";
     private int msgIndex = 0;
     private int damping = 0;
@@ -163,7 +163,7 @@ public class TuneManager : MonoBehaviour
         // Add to active markers
         var tactPos = this.locationBar.GetTactPosition(marker.lastPosition);
 
-        if (tactPos < 0 || tactPos > 15)
+        if (tactPos < 1 || tactPos > 16)
         {
             return;
         }
