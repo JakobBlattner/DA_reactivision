@@ -10,8 +10,6 @@ public class NoteMarker : MonoBehaviour
     TuneManager manager;
     public int duration = 0;
 
-    public static int startMarkerId = 0;
-    public static int endMarkerId = 31;
     public static int dvc = 4; // duration variation count
 
     public FiducialController fiducialController;
@@ -29,9 +27,7 @@ public class NoteMarker : MonoBehaviour
 
         // Determine the duration
         fiducialController = this.GetComponent<FiducialController>();
-        var maxNoteCount = endMarkerId - startMarkerId + 1;
-        var markerID = fiducialController.MarkerID;
-        duration = (markerID - startMarkerId) / (maxNoteCount / dvc) + 1; // 1 = 1/4, 2 = 2/4, 3 = 3/4, 4 = 4/4
+        duration = (int)(TokenPosition.GetMarkerWithMultiplier(fiducialController.MarkerID) * 2);// 1 = 1/4, 2 = 2/4, 3 = 3/4, 4 = 4/4
     }
 
     void Update()
@@ -40,7 +36,7 @@ public class NoteMarker : MonoBehaviour
         //TODO: Add Codeabschnitt, in dem vermerkt wird, ob der Marker gesetzt wurde (has come alive)
 
         if (!UniducialLibrary.TuioManager.Instance.IsMarkerAlive(fiducialController.MarkerID))
-        {            
+        {
             if (lastTimeAlive > 0f && Time.time > (lastTimeAlive + lastTimeMovedThreshold))
             {
                 manager.NoteMarkerRemoved(this);

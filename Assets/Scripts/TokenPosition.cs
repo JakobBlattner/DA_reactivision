@@ -160,6 +160,7 @@ public class TokenPosition
     }
 
     //used for correct snapping on the x axis and sprite scale
+    //TOOD Link with settings class
     public static float GetMarkerWithMultiplier(int markerID)
     {
         return markerID < 13 ? 0.5f : (markerID < 23 ? 1 : (markerID < 30 ? 1.5f : 2));
