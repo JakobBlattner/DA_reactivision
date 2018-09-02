@@ -5,20 +5,18 @@ using UnityEngine;
 public class NoteMarker : MonoBehaviour
 {
     public Vector2 lastPosition;
-    private Vector2 threshold = new Vector2(10.0f, 10.0f);
+    private Vector2 threshold = new Vector2(1.5f, 1.5f);
 
     TuneManager manager;
     public int duration = 0;
 
-    public static int startMarkerId = 0;
-    public static int endMarkerId = 31;
     public static int dvc = 4; // duration variation count
 
     public FiducialController fiducialController;
     private float lastTimeMoved;
     private float lastTimeAlive;
     // TODO: May depend on BPM
-    private readonly float lastTimeMovedThreshold = 5.2534f;
+    private readonly float lastTimeMovedThreshold = 2.2534f;
 
     // Use this for initialization
     void Start()
@@ -29,9 +27,7 @@ public class NoteMarker : MonoBehaviour
 
         // Determine the duration
         fiducialController = this.GetComponent<FiducialController>();
-        var maxNoteCount = endMarkerId - startMarkerId + 1;
-        var markerID = fiducialController.MarkerID;
-        duration = (markerID - startMarkerId) / (maxNoteCount / dvc) + 1; // 1 = 1/4, 2 = 2/4, 3 = 3/4, 4 = 4/4
+        duration = (int)(TokenPosition.GetMarkerWithMultiplier(fiducialController.MarkerID) * 2);// 1 = 1/4, 2 = 2/4, 3 = 3/4, 4 = 4/4
     }
 
     void Update()
@@ -40,7 +36,7 @@ public class NoteMarker : MonoBehaviour
         //TODO: Add Codeabschnitt, in dem vermerkt wird, ob der Marker gesetzt wurde (has come alive)
 
         if (!UniducialLibrary.TuioManager.Instance.IsMarkerAlive(fiducialController.MarkerID))
-        {            
+        {
             if (lastTimeAlive > 0f && Time.time > (lastTimeAlive + lastTimeMovedThreshold))
             {
                 manager.NoteMarkerRemoved(this);

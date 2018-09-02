@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JokerMarker : MonoBehaviour {
+public class JokerMarker : MonoBehaviour
+{
 
     private int[] pentatonicTunes;
     private int numberOfTunes;
     //private Dictionary<int, Vector3> jokerMarker;
     private Vector3 oldPosition;
+    private float realYPosition;
     private SpriteRenderer[] childrenSpriteRenderer;
     private SpriteRenderer m_sRend;
     private TokenPosition tokenPosition;
@@ -17,27 +19,32 @@ public class JokerMarker : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        //jokerMarker = new Dictionary<int, Vector3>();
         oldPosition = Vector3.back;
         childrenSpriteRenderer = GetComponentsInChildren<SpriteRenderer>();
         m_sRend = GetComponent<SpriteRenderer>();
 
         tokenPosition = TokenPosition.Instance;
         numberOfTunes = tokenPosition.GetNumberOfTunes();
-        cellHeight = tokenPosition.GetCellHeight();
+        cellHeight = tokenPosition.GetCellHeightInPx();
         heightOffSet = tokenPosition.GetHeightOffset();
 
-        //TODO evaluate pentatonic tunes with numberOfTunes and pentatonicTunes array
-        pentatonicTunes = new int[3];
-        pentatonicTunes[0] = 3;
-        pentatonicTunes[1] = 10;
-        pentatonicTunes[2] = 18;
+        //TODO get from settings class
+        pentatonicTunes = new int[9];
+        pentatonicTunes[0] = 1;
+        pentatonicTunes[1] = 3;
+        pentatonicTunes[2] = 6;
+        pentatonicTunes[3] = 8;
+        pentatonicTunes[4] = 10;
+        pentatonicTunes[5] = 13;
+        pentatonicTunes[6] = 15;
+        pentatonicTunes[7] = 18;
+        pentatonicTunes[8] = 20;
     }
 
     public float CalculateYPosition(Vector3 pos, FiducialController fiducialController)
     {
         //only does something, if the marker lays still
-        if (fiducialController.MovementDirection == new Vector2(0.0f, 0.0f))
+        if (fiducialController.MovementDirection == Vector2.zero)
         {
             //removes marker from list, if the token has been moved on the x axis
             if (oldPosition.x != pos.x)
@@ -47,7 +54,9 @@ public class JokerMarker : MonoBehaviour {
             //if marker is not in the recognised jokerMarker dictionary - set y Position
             if (oldPosition == Vector3.back)
             {
+                //TODO: check if needs to be rewritten to: switch to nearest pentatonic position
                 Debug.Log("User changed position of Joker with ID " + fiducialController.MarkerID);
+                realYPosition = pos.y;
                 pos.y = heightOffSet + pentatonicTunes[(int)Random.Range(0, pentatonicTunes.Length)] * cellHeight - cellHeight / 2;
                 oldPosition = pos;
 
@@ -63,7 +72,8 @@ public class JokerMarker : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         if (childrenSpriteRenderer.Length > 1)
         {
             if (m_sRend.isVisible && !childrenSpriteRenderer[1].isVisible)
@@ -71,7 +81,7 @@ public class JokerMarker : MonoBehaviour {
             else if (!m_sRend.isVisible)
                 EnableChildrenSpriteRenderer(false);
         }
-	}
+    }
 
     private void EnableChildrenSpriteRenderer(bool v)
     {
@@ -79,5 +89,10 @@ public class JokerMarker : MonoBehaviour {
         {
             childrenSpriteRenderer[i].enabled = v;
         }
+    }
+
+    public float GetRealYPosition()
+    {
+        return realYPosition;
     }
 }

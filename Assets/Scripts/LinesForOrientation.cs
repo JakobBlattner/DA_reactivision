@@ -68,7 +68,7 @@ public class LinesForOrientation : MonoBehaviour
             lineRight.position = new Vector3(endLoopBar.position.x - (childrenSpriteRenderer[3].bounds.size.x) / 2, currentPos.y, lineRight.position.z);
 
             //if(is moving)
-            if (m_fiducial.MovementDirection != new Vector2(0.0f, 0.0f))
+            if (!m_fiducial.IsSnapped())
             {
                 //make lines thicker
                 lineTop.localScale = new Vector3(scaleFactorTopBottomX, scaleFactorY * 2, 1);

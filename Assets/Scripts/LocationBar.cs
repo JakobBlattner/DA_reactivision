@@ -8,7 +8,7 @@ public class LocationBar : MonoBehaviour
 {
 
     //TODO Get BPM from rotary encoder --> Arduino
-    public int bpm = 180;
+    public int bpm = 100;
     public Vector3 startBarPosition;
     public Vector3 endBarPosition;
 
@@ -26,9 +26,6 @@ public class LocationBar : MonoBehaviour
     public float totalDistance;
     private float startTime;
     private float currentTime;
-
-    public float timeMarker;
-
 
     void Start()
     {
@@ -59,9 +56,6 @@ public class LocationBar : MonoBehaviour
     {
         //calculates the speed according to the cells between start and end bar and bpm
         this.UpdateValues();
-        timeMarker = (Time.time - startTime) % timeForTotalDistance;
-
-
 
         currentTime = Time.time;
         lengthTravelledInPercent = ((currentTime - startTime) * speed) / totalDistance;
@@ -138,22 +132,5 @@ public class LocationBar : MonoBehaviour
     public int GetNote(Vector2 pos)
     {
         return TokenPosition.Instance.GetNote(pos);
-    }
-
-    public int GetTactPosition(float time) {
-        time = time % timeForTotalDistance;
-        var relativeXpos = time / timeForTotalDistance;
-        return (int)Mathf.Floor(relativeXpos * 16);
-
-
-
-
-
-        /*
-        var tactPositionWithRest = (relativeXpos * totalDistance) + startBarPosition.x;
-
-        var asdkjfhaskdjf = new Vector2(startBarPosition.x + relativeXpos, startBarPosition.y);
-        return 2;
-        */
     }
 }
