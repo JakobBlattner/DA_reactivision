@@ -25,6 +25,9 @@ public class TokenPosition
     private Vector2 worldDiff;
     //---------------
 
+    //for Movement threshold
+    private float movementThreshold;
+
     private TuioManager tuioManager;
     private static TokenPosition m_Instance;
 
@@ -71,6 +74,11 @@ public class TokenPosition
         cellSizeWorld = Vector2.zero;
         cellSizeWorld.x = worldDiff.x / bars;
         cellSizeWorld.y = worldDiff.y / tunes;
+
+        //TODO add to settings class
+        var movementThresholdInWorld = (new Vector2(this.GetCellWidthInWorldLength() / 2, this.GetCellHeightInWorldLength() / 2));
+        this.movementThreshold = Vector2.Distance(Camera.main.WorldToScreenPoint(Vector2.zero), Camera.main.WorldToScreenPoint(movementThresholdInWorld));//new Vector3(movementThresholdInWorld.x * Screen.width, (1 - movementThresholdInWorld.y) * Screen.height, this.CameraOffset);
+
     }
 
     public int GetNote(Vector2 pos)
@@ -84,49 +92,66 @@ public class TokenPosition
         return (int)Mathf.Floor(relativeXpos * bars);
     }
 
-    public Vector3 CalculateGridPosition(int markerID, float cameraOffset, bool isLoopBarMarker, bool isJoker, FiducialController fiducialController)
+    public Vector3 CalculateGridPosition(int markerID, float cameraOffset, bool isLoopBarMarker, bool isJoker, FiducialController fiducialController, Vector3 oldPositionInScreen)
     {
         TuioObject m_obj = tuioManager.GetMarker(markerID);
         Vector3 position = new Vector3(m_obj.getX() * Screen.width, isLoopBarMarker ? 0.5f * Screen.height : (1 - m_obj.getY()) * Screen.height, cameraOffset);
 
-        //if marker is not moving snap to grid position
-        if (m_obj.getMotionSpeed() == 0)
+        //when the marker is snapped... 
+        if (fiducialController.IsSnapped())
         {
-            #region X-Axis
-            position.x = this.CalculateXPosition(position, isLoopBarMarker, GetMarkerWithMultiplier(markerID));
-            #endregion
-
-            #region Y-Axis
-            //suggests the y Position because it's a joker marker
-            if (isJoker)
+            //...and the new position is NOT far away enough from the old position, then set position to oldPosition 
+            if (Vector2.Distance(position, oldPositionInScreen) < movementThreshold)
+                position = oldPositionInScreen;
+            //...and the new position is far away enoug from the old position, set snapped to false
+            else
+                fiducialController.SetIsSnapped(false);
+        }
+        //otherwise, if marker is NOT snapped...
+        else if(!fiducialController.IsSnapped())
+        {
+            //...and motion speed is zero, snap him to nearest grid position and set snapped to true
+            if (m_obj.getMotionSpeed() == 0)
             {
-                position.y = fiducialController.gameObject.GetComponent<JokerMarker>().CalculateYPosition(position, fiducialController);
-                //position.y = jokerSuggestions.CalculateYPosition(position, fiducialController);
-            }
-            //doesn't move object on y-axis, when it's a LoopBarMarker
-            else if (!isLoopBarMarker)
-            {
-                float snappingDistance = cellHeight / 2;
+                #region X-Axis
+                position.x = this.CalculateXPosition(position, isLoopBarMarker, GetMarkerWithMultiplier(markerID));
+                #endregion
 
-                //if marker is below grid area
-                if (position.y < heightOffset + snappingDistance)
-                    position.y = 0;
-                //if marker is above grid area
-                else if (position.y > gridHeight + heightOffset - snappingDistance)
-                    position.y = gridHeight + heightOffset - cellHeight;
-                //if marker is on grid area
-                else
+                #region Y-Axis
+                //suggests the y Position because it's a joker marker
+                if (isJoker)
                 {
-                    float yPos = position.y - heightOffset - snappingDistance;
-                    float markerYOffset = yPos % cellHeight;
-                    if (markerYOffset < cellHeight / 2)
-                        position.y = yPos - markerYOffset;
-                    else
-                        position.y = yPos - markerYOffset + cellHeight;
+                    position.y = fiducialController.gameObject.GetComponent<JokerMarker>().CalculateYPosition(position, fiducialController);
                 }
-                position.y += (heightOffset + snappingDistance);
+                //doesn't move object on y-axis, when it's a LoopBarMarker
+                else if (!isLoopBarMarker)
+                {
+                    float snappingDistance = cellHeight / 2;
+
+                    //if marker is below grid area
+                    if (position.y < heightOffset + snappingDistance)
+                        position.y = 0;
+                    //if marker is above grid area
+                    else if (position.y > gridHeight + heightOffset - snappingDistance)
+                        position.y = gridHeight + heightOffset - cellHeight;
+                    //if marker is on grid area
+                    else
+                    {
+                        float yPos = position.y - heightOffset - snappingDistance;
+                        float markerYOffset = yPos % cellHeight;
+                        if (markerYOffset < cellHeight / 2)
+                            position.y = yPos - markerYOffset;
+                        else
+                            position.y = yPos - markerYOffset + cellHeight;
+                    }
+                    position.y += (heightOffset + snappingDistance);
+                }
+                #endregion
+
+                fiducialController.SetIsSnapped(true);
             }
-            #endregion 
+            //if the marker is moving, the position will be set in the return statement
+            //else{}
         }
         return this.m_MainCamera.ScreenToWorldPoint(position);
     }
