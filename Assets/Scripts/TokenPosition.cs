@@ -27,6 +27,7 @@ public class TokenPosition
 
     //for Movement threshold
     private float movementThreshold;
+    private Vector3 correctOldPos;
 
     private TuioManager tuioManager;
     private static TokenPosition m_Instance;
@@ -100,15 +101,19 @@ public class TokenPosition
         //when the marker is snapped... 
         if (fiducialController.IsSnapped())
         {
-            //...and the new position is NOT far away enough from the old position, then set position to oldPosition 
-            if (Vector2.Distance(position, oldPositionInScreen) < movementThreshold)
+            //reads correctOldPos if marker is a JokerMarkers
+            if (isJoker)
+                correctOldPos = new Vector3(oldPositionInScreen.x, fiducialController.gameObject.GetComponent<JokerMarker>().GetRealYPosition(), oldPositionInScreen.z);
+
+            //...and the new position is NOT far away enough from the old position (different for Joker Markers), then set position to oldPosition 
+            if (isJoker ? Vector2.Distance(position, correctOldPos) < movementThreshold : Vector2.Distance(position, oldPositionInScreen) < movementThreshold)
                 position = oldPositionInScreen;
             //...and the new position is far away enoug from the old position, set snapped to false
             else
                 fiducialController.SetIsSnapped(false);
         }
         //otherwise, if marker is NOT snapped...
-        else if(!fiducialController.IsSnapped())
+        else if (!fiducialController.IsSnapped())
         {
             //...and motion speed is zero, snap him to nearest grid position and set snapped to true
             if (m_obj.getMotionSpeed() == 0)
