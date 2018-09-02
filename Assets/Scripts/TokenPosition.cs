@@ -7,29 +7,30 @@ using UnityEngine;
 
 public class TokenPosition
 {
-    private int bars = 16; // Anzahl der Takte
-    private int tunes = 24; //Anzahl der Töne
-    private int heightOffset = 20; //in pixels
-    private int widthOffset = 20; //in pixels
+    private int beats;
+    private int tunes;
+    private int heightOffsetInPx;
+    private int widthOffsetInPx;
 
+    //in px
     private Camera m_MainCamera;
-    private float gridHeight;
-    private float gridWidth;
-    private float cellWidth;
+    private float gridHeightInPx;
+    private float gridWidthInPx;
+    private float cellWidthInPx;
     public Vector2 cellSizeWorld;
-    private float cellHeight;
+    private float cellHeightInPx;
 
-    //--von Raphael--
+    //in World coords
     private Vector2 minWorldCoords;
     private Vector2 maxWorldCoords;
     private Vector2 worldDiff;
-    //---------------
 
     //for Movement threshold
     private float movementThreshold;
     private Vector3 correctOldPos;
 
-    private TuioManager tuioManager;
+    private TuioManager m_tuioManager;
+    private Settings m_settings;
     private static TokenPosition m_Instance;
 
     public static TokenPosition Instance
@@ -56,30 +57,28 @@ public class TokenPosition
         m_Instance = this;
 
         //init variables
-        tuioManager = TuioManager.Instance;
+        m_tuioManager = TuioManager.Instance;
+        m_settings = Settings.Instance;
         m_MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
+        beats = m_settings.beats;
+        tunes = m_settings.tunes;
+
         //variables in world coordinates
-        widthOffset = m_MainCamera.pixelWidth / 64;
-        heightOffset = m_MainCamera.pixelHeight / 64;
-        minWorldCoords = this.m_MainCamera.ScreenToWorldPoint(new Vector2(0 + (widthOffset /** 2*/), 0 + heightOffset));//why widhtOffset *2? --> outcommented
-        maxWorldCoords = this.m_MainCamera.ScreenToWorldPoint(new Vector2(m_MainCamera.pixelWidth - (widthOffset /** 2*/), m_MainCamera.pixelHeight - heightOffset));//why widthOffset * 2? --> outcommented
-        worldDiff = maxWorldCoords - minWorldCoords;
+        widthOffsetInPx = m_settings.widthOffSetInPx;
+        heightOffsetInPx = m_settings.heightOffSetInPx;
+        minWorldCoords = m_settings.minWorldCoords;
+        maxWorldCoords = m_settings.maxWorldCoords;
+        worldDiff = m_settings.worldDiff;
 
         //calculate snapping grid
-        gridHeight = m_MainCamera.pixelHeight - heightOffset * 2;
-        gridWidth = m_MainCamera.pixelWidth - widthOffset * 2;
-        cellHeight = gridHeight / tunes;
-        cellWidth = gridWidth / bars;
+        gridHeightInPx = m_settings.gridHeightInPx;
+        gridWidthInPx = m_settings.gridWidthInPx;
+        cellHeightInPx = m_settings.cellHeightInPx;
+        cellWidthInPx = m_settings.cellWidthInPx;
+        cellSizeWorld = m_settings.cellSizeWorld;
 
-        cellSizeWorld = Vector2.zero;
-        cellSizeWorld.x = worldDiff.x / bars;
-        cellSizeWorld.y = worldDiff.y / tunes;
-
-        //TODO add to settings class
-        var movementThresholdInWorld = (new Vector2(this.GetCellWidthInWorldLength() / 2, this.GetCellHeightInWorldLength() / 2));
-        this.movementThreshold = Vector2.Distance(Camera.main.WorldToScreenPoint(Vector2.zero), Camera.main.WorldToScreenPoint(movementThresholdInWorld));//new Vector3(movementThresholdInWorld.x * Screen.width, (1 - movementThresholdInWorld.y) * Screen.height, this.CameraOffset);
-
+        movementThreshold = m_settings.movementThreshold;
     }
 
     public int GetNote(Vector2 pos)
@@ -89,13 +88,13 @@ public class TokenPosition
     }
     public int GetTactPosition(Vector2 pos)
     {
-        var relativeXpos = (pos.x - minWorldCoords.x) / (cellSizeWorld.x * bars);
-        return (int)Mathf.Floor(relativeXpos * bars);
+        var relativeXpos = (pos.x - minWorldCoords.x) / (cellSizeWorld.x * beats);
+        return (int)Mathf.Floor(relativeXpos * beats);
     }
 
     public Vector3 CalculateGridPosition(int markerID, float cameraOffset, bool isLoopBarMarker, bool isJoker, FiducialController fiducialController, Vector3 oldPositionInScreen)
     {
-        TuioObject m_obj = tuioManager.GetMarker(markerID);
+        TuioObject m_obj = m_tuioManager.GetMarker(markerID);
         Vector3 position = new Vector3(m_obj.getX() * Screen.width, isLoopBarMarker ? 0.5f * Screen.height : (1 - m_obj.getY()) * Screen.height, cameraOffset);
 
         //when the marker is snapped... 
@@ -119,7 +118,7 @@ public class TokenPosition
             if (m_obj.getMotionSpeed() == 0)
             {
                 #region X-Axis
-                position.x = this.CalculateXPosition(position, isLoopBarMarker, GetMarkerWithMultiplier(markerID));
+                position.x = this.CalculateXPosition(position, isLoopBarMarker, Settings.GetMarkerWithMultiplier(markerID));
                 #endregion
 
                 #region Y-Axis
@@ -131,25 +130,25 @@ public class TokenPosition
                 //doesn't move object on y-axis, when it's a LoopBarMarker
                 else if (!isLoopBarMarker)
                 {
-                    float snappingDistance = cellHeight / 2;
+                    float snappingDistance = cellHeightInPx / 2;
 
                     //if marker is below grid area
-                    if (position.y < heightOffset + snappingDistance)
+                    if (position.y < heightOffsetInPx + snappingDistance)
                         position.y = 0;
                     //if marker is above grid area
-                    else if (position.y > gridHeight + heightOffset - snappingDistance)
-                        position.y = gridHeight + heightOffset - cellHeight;
+                    else if (position.y > gridHeightInPx + heightOffsetInPx - snappingDistance)
+                        position.y = gridHeightInPx + heightOffsetInPx - cellHeightInPx;
                     //if marker is on grid area
                     else
                     {
-                        float yPos = position.y - heightOffset - snappingDistance;
-                        float markerYOffset = yPos % cellHeight;
-                        if (markerYOffset < cellHeight / 2)
+                        float yPos = position.y - heightOffsetInPx - snappingDistance;
+                        float markerYOffset = yPos % cellHeightInPx;
+                        if (markerYOffset < cellHeightInPx / 2)
                             position.y = yPos - markerYOffset;
                         else
-                            position.y = yPos - markerYOffset + cellHeight;
+                            position.y = yPos - markerYOffset + cellHeightInPx;
                     }
-                    position.y += (heightOffset + snappingDistance);
+                    position.y += (heightOffsetInPx + snappingDistance);
                 }
                 #endregion
 
@@ -164,79 +163,40 @@ public class TokenPosition
     //In screen space
     public float CalculateXPosition(Vector3 position, bool isLoopBarMarker, float markerWidthMultiplier)
     {
-        float snappingDistance = cellWidth / 2 + cellWidth * markerWidthMultiplier;//different marker sizes have effects on snapping distances
+        float snappingDistance = cellWidthInPx / 2 + cellWidthInPx * markerWidthMultiplier;//different marker sizes have effects on snapping distances
         if (isLoopBarMarker)
-            snappingDistance = cellWidth / 2;
+            snappingDistance = cellWidthInPx / 2;
 
         //if marker is below grid area
-        if (position.x < widthOffset + snappingDistance)
+        if (position.x < widthOffsetInPx + snappingDistance)
             position.x = 0;
         //if marker is above grid area
-        else if (position.x > gridWidth + widthOffset - snappingDistance)
-            position.x = gridWidth + widthOffset - 2 * snappingDistance;
+        else if (position.x > gridWidthInPx + widthOffsetInPx - snappingDistance)
+            position.x = gridWidthInPx + widthOffsetInPx - 2 * snappingDistance;
         //if marker is on grid area
         else
         {
-            float xPos = position.x - widthOffset - snappingDistance;
-            float markerXOffset = xPos % cellWidth;
-            if (markerXOffset < cellWidth / 2)
+            float xPos = position.x - widthOffsetInPx - snappingDistance;
+            float markerXOffset = xPos % cellWidthInPx;
+            if (markerXOffset < cellWidthInPx / 2)
                 position.x = xPos - markerXOffset;
             else
-                position.x = xPos - markerXOffset + cellWidth;
+                position.x = xPos - markerXOffset + cellWidthInPx;
 
         }
-        position.x += (widthOffset + snappingDistance);
+        position.x += (widthOffsetInPx + snappingDistance);
         return position.x;
     }
-
-    //used for correct snapping on the x axis and sprite scale
-    //TOOD Link with settings class
-    public static float GetMarkerWithMultiplier(int markerID)
-    {
-        return markerID < 13 ? 0.5f : (markerID < 23 ? 1 : (markerID < 30 ? 1.5f : 2));
-    }
-
-    public float GetCellWidthInWorldLength()
-    {
-        return cellSizeWorld.x;
-    }
-
-    public float GetCellHeightInWorldLength()
-    {
-        return cellSizeWorld.y;
-    }
-
-    #region For JokerSuggestion
-    public float GetHeightOffset()
-    {
-        return heightOffset;
-    }
-
-    public float GetCellHeightInPx()
-    {
-        return cellHeight;
-    }
-    #endregion
 
     #region For OuterLinesForOrientation
     public float GetXPosForBeat(int beat)
     {
-        return Camera.main.ScreenToWorldPoint(new Vector3(beat * cellWidth + widthOffset + cellWidth / 2, 0, 0)).x;
+        return Camera.main.ScreenToWorldPoint(new Vector3(beat * cellWidthInPx + widthOffsetInPx + cellWidthInPx / 2, 0, 0)).x;
     }
 
     public float GetYPosForTune(int tune)
     {
-        return Camera.main.ScreenToWorldPoint(new Vector3(0, tune * cellHeight + heightOffset + cellHeight / 2, 0)).y;
-    }
-
-    public int GetNumberOfBeats()
-    {
-        return bars;
-    }
-
-    public int GetNumberOfTunes()
-    {
-        return tunes;
+        return Camera.main.ScreenToWorldPoint(new Vector3(0, tune * cellHeightInPx + heightOffsetInPx + cellHeightInPx / 2, 0)).y;
     }
     #endregion
 

@@ -61,9 +61,6 @@ public class LoopController : MonoBehaviour
         //this.GridSnapping();
     }
 
-    //TODO: color area between start and end loop marker
-    //TODO: move loop area
-
     void Update()
     {
         #region Move Loop Markers

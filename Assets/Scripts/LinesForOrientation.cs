@@ -7,6 +7,8 @@ public class LinesForOrientation : MonoBehaviour
 {
     public GameObject belongingMarker;
 
+    private Settings m_settings;
+
     private SpriteRenderer m_sRend;
     private SpriteRenderer[] childrenSpriteRenderer;
 
@@ -29,14 +31,15 @@ public class LinesForOrientation : MonoBehaviour
     void Start()
     {
         m_fiducial = belongingMarker.GetComponent<FiducialController>();
+        m_settings = Settings.Instance;
 
         m_sRend = belongingMarker.GetComponent<SpriteRenderer>();
         childrenSpriteRenderer = GetComponentsInChildren<SpriteRenderer>();
 
-        spriteWidthMultiplier = TokenPosition.GetMarkerWithMultiplier(m_fiducial.MarkerID);
-        scaleFactorTopBottomX = belongingMarker.transform.localScale.x * 2; ;
-        scaleFactorLefRightX = childrenSpriteRenderer[2].transform.localScale.x / 2;
-        scaleFactorY = childrenSpriteRenderer[0].transform.localScale.y;
+        spriteWidthMultiplier = Settings.GetMarkerWithMultiplier(m_fiducial.MarkerID);
+        scaleFactorTopBottomX = belongingMarker.transform.localScale.x * m_settings.thickenFactorTopBottomX; ;
+        scaleFactorLefRightX = m_settings.scaleFactorLefRightX;
+        scaleFactorY = m_settings.scaleFactorY;
 
         if (lineTop == null)
             lineTop = transform.Find("Line_Top");

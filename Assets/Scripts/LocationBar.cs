@@ -7,12 +7,12 @@ using UnityEngine;
 public class LocationBar : MonoBehaviour
 {
 
-    //TODO Get BPM from rotary encoder --> Arduino
-    public int bpm = 100;
+    public int bpm;
     public Vector3 startBarPosition;
     public Vector3 endBarPosition;
 
     private TokenPosition m_tokenPostion;
+    private Settings m_settings;
     private LineRenderer m_lineRenderer;
 
     //for in update loop calculation
@@ -40,11 +40,13 @@ public class LocationBar : MonoBehaviour
         }
 
         m_tokenPostion = TokenPosition.Instance;
+        m_settings = Settings.Instance;
         m_lineRenderer = this.GetComponent<LineRenderer>();
 
         //Gets non changing variables
+        bpm = m_settings.bpm;
         msPerCell = 60000 / bpm; //in ms
-        cellWidth = m_tokenPostion.GetCellWidthInWorldLength();
+        cellWidth = m_settings.cellSizeWorld.x;
         totalDistance = Vector3.Distance(startBarPosition, endBarPosition);
 
         //sets first two points of line renderer

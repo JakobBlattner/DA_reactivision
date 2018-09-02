@@ -12,8 +12,8 @@ public class JokerMarker : MonoBehaviour
     private float realYPosition;
     private SpriteRenderer[] childrenSpriteRenderer;
     private SpriteRenderer m_sRend;
-    private TokenPosition tokenPosition;
-    private float cellHeight;
+    private Settings m_settings;
+    private float cellHeightInPx;
     private float heightOffSet;
 
     // Use this for initialization
@@ -23,22 +23,12 @@ public class JokerMarker : MonoBehaviour
         childrenSpriteRenderer = GetComponentsInChildren<SpriteRenderer>();
         m_sRend = GetComponent<SpriteRenderer>();
 
-        tokenPosition = TokenPosition.Instance;
-        numberOfTunes = tokenPosition.GetNumberOfTunes();
-        cellHeight = tokenPosition.GetCellHeightInPx();
-        heightOffSet = tokenPosition.GetHeightOffset();
+        m_settings = Settings.Instance;
+        numberOfTunes = m_settings.tunes;
+        cellHeightInPx = m_settings.cellHeightInPx;
+        heightOffSet = m_settings.heightOffSetInPx;
 
-        //TODO get from settings class
-        pentatonicTunes = new int[9];
-        pentatonicTunes[0] = 1;
-        pentatonicTunes[1] = 3;
-        pentatonicTunes[2] = 6;
-        pentatonicTunes[3] = 8;
-        pentatonicTunes[4] = 10;
-        pentatonicTunes[5] = 13;
-        pentatonicTunes[6] = 15;
-        pentatonicTunes[7] = 18;
-        pentatonicTunes[8] = 20;
+        pentatonicTunes = m_settings.pentatonicTunes;
     }
 
     public float CalculateYPosition(Vector3 pos, FiducialController fiducialController)
@@ -57,7 +47,7 @@ public class JokerMarker : MonoBehaviour
                 //TODO: check if needs to be rewritten to: switch to nearest pentatonic position
                 Debug.Log("User changed position of Joker with ID " + fiducialController.MarkerID);
                 realYPosition = pos.y;
-                pos.y = heightOffSet + pentatonicTunes[(int)Random.Range(0, pentatonicTunes.Length)] * cellHeight - cellHeight / 2;
+                pos.y = heightOffSet + pentatonicTunes[(int)Random.Range(0, pentatonicTunes.Length)] * cellHeightInPx - cellHeightInPx / 2;
                 oldPosition = pos;
 
                 return pos.y;

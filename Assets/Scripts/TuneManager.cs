@@ -9,9 +9,9 @@ using System.IO;
 
 public class TuneManager : MonoBehaviour
 {
-    public NoteMarker[] noteMarkers = new NoteMarker[16];
-    public NoteMarker[] activeMarkers = new NoteMarker[16];
-    public NoteMarker[] inactiveMarkers = new NoteMarker[100];
+    public NoteMarker[] noteMarkers;// = new NoteMarker[16];
+    public NoteMarker[] activeMarkers;// = new NoteMarker[16];
+    public NoteMarker[] inactiveMarkers;// = new NoteMarker[100];
 
     public LoopController startController;
     public LoopController endController;
@@ -27,11 +27,22 @@ public class TuneManager : MonoBehaviour
     private int msgIndex = 0;
     private int damping = 0;
     private static int serialBaudrate = 9600;
+    private Settings m_settings;
 
+    /*TODO:
+     Rewrite so that TuneManager is only responsible for communication with the arduino:
+     - TuneManager get's actice marker from LastComeLastServe.cs
+     */
 
     // Use this for initialization
     void Start()
     {
+        m_settings = Settings.Instance;
+
+        noteMarkers = new NoteMarker[m_settings.beats];
+        activeMarkers = new NoteMarker[m_settings.beats];
+        inactiveMarkers = new NoteMarker[100];
+
         // Get loop controllers
         var x = Component.FindObjectsOfType<LoopController>();
         startController = x[0].startMarker ? x[0] : x[1];
