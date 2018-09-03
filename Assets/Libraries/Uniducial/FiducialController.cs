@@ -97,7 +97,7 @@ public class FiducialController : MonoBehaviour
         this.m_IsVisible = true;
         //check if marker is a loopBarMarker;
         this.isLoopBarMarker = this.GetComponent<LoopController>();
-        this.isJoker = this.transform.parent.CompareTag("JokerParent");
+        this.isJoker = this.transform.parent.CompareTag(Settings.Instance.jokerParentTag);
         this.isSnapped = false;
         //movement threshold
         this.oldPosition = transform.position;
@@ -106,7 +106,7 @@ public class FiducialController : MonoBehaviour
     void Start()
     {
         //get reference to main camera
-        this.m_MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        this.m_MainCamera = GameObject.FindGameObjectWithTag(Settings.Instance.mainCameraTag).GetComponent<Camera>();
 
         //intantiate TokenPosition
         this.m_TokenPosition = TokenPosition.Instance;
@@ -183,7 +183,6 @@ public class FiducialController : MonoBehaviour
             }
             else
             {
-                //transform.position = m_TokenPosition.CalculateGridPosition(MarkerID, CameraOffset, isLoopBarMarker, isJoker, this);
                 Vector3 newPos = m_TokenPosition.CalculateGridPosition(MarkerID, CameraOffset, isLoopBarMarker, isJoker, this, Camera.main.WorldToScreenPoint(oldPosition));
                 if(!Vector3.Equals(newPos, oldPosition))
                 {

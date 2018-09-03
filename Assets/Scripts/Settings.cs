@@ -5,18 +5,30 @@ using TUIO;
 using UniducialLibrary;
 
 
-/*
+/**
  This class consists of all global variables and their values
- */
+ **/
 public class Settings : MonoBehaviour
 {
 
     private TuioManager tuioManager;
     private static Settings m_settings;
 
+    //color values
+    public readonly Color red = new Color(220, 0, 0, 255);
+    public readonly Color green = new Color(0, 200, 0, 255);
+    public readonly Color blue = new Color(0, 0, 255, 255);
+    public readonly Color grey = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+
+    //tag names
+    public readonly string markerTag = "Marker";
+    public readonly string jokerParentTag = "JokerParent";
+    public readonly string mainCameraTag = "MainCamera";
+
     //music stuff
     public readonly int tunes = 24;
     public readonly int beats = 16;
+    public readonly int tunesPerString = 8;
     public readonly int heightOffSetInPx = Camera.main.pixelHeight / 64;
     public readonly int widthOffSetInPx = Camera.main.pixelWidth / 64;
     //for JokerMarker

@@ -22,6 +22,10 @@ public class GlowScript : MonoBehaviour
     public Material redMaterial;
     public Material defaultMaterial;
 
+    private Color red;
+    private Color blue;
+    private Color green;
+
     void Start()
     {
         GameObject locationBar = GameObject.Find("Current_Location_Bar");
@@ -30,26 +34,32 @@ public class GlowScript : MonoBehaviour
         fiducial = GetComponent<FiducialController>();
 
         rend = GetComponent<SpriteRenderer>();
-        colorAccToPosition = GetComponent<ColorAccToPosition>();
+        //colorAccToPosition = GetComponent<ColorAccToPosition>();
         spriteSize = rend.bounds.size;
+
+        Settings settings = Settings.Instance;
+        red = settings.red;
+        blue = settings.blue;
+        green = settings.green;
     }
-    void FixedUpdate()
+    void LateUpdate()
     {
         if (rend.isVisible)
         {
             //gets current position of the current_location_bar
             lr_pos = lineRenderer.GetPosition(0);
-            r_color = colorAccToPosition.GetCurrentColor();
+            r_color = rend.color;
 
             //if current_location_bar is over this sprite and the marker is not moving, make it glow
             if (lr_pos.x >= (this.transform.position.x - spriteSize.x / 2) && lr_pos.x <= (this.transform.position.x + spriteSize.x / 2)
                 && fiducial.MovementDirection == new Vector2(0.0f, 0.0f))
             {
-                if (r_color.r > r_color.b && r_color.r > r_color.g)
+                //chooses correct glow material to be set
+                if (r_color == red)
                     rend.material = redMaterial;
-                else if (r_color.g > r_color.b && r_color.g > r_color.r)
+                else if (r_color == green)
                     rend.material = greenMaterial;
-                else
+                else if (r_color == blue)
                     rend.material = blueMaterial;
             }
             //sets material to defaultMaterial if current_location_bar is not over this sprite

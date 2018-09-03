@@ -9,9 +9,9 @@ using System.IO;
 
 public class TuneManager : MonoBehaviour
 {
-    public NoteMarker[] noteMarkers;// = new NoteMarker[16];
-    public NoteMarker[] activeMarkers;// = new NoteMarker[16];
-    public NoteMarker[] inactiveMarkers;// = new NoteMarker[100];
+    public NoteMarker[] noteMarkers;
+    public NoteMarker[] activeMarkers;
+    public NoteMarker[] inactiveMarkers;
 
     public LoopController startController;
     public LoopController endController;
@@ -52,7 +52,7 @@ public class TuneManager : MonoBehaviour
 
 
         // Get note markers
-        var markerObjets = GameObject.FindGameObjectsWithTag("Marker");
+        var markerObjets = GameObject.FindGameObjectsWithTag(m_settings.markerTag);
         noteMarkers = new NoteMarker[markerObjets.Length];
         for (int i = 0; i < noteMarkers.Length; ++i)
         {
@@ -136,7 +136,7 @@ public class TuneManager : MonoBehaviour
         //var noteMarker = this.activeMarkers[locationBarTactPosition];
     }
 
-
+    #region NoteMarker Interaction Messages
 
     public void NoteMarkerMoved(NoteMarker marker, Vector2 delta)
     {
@@ -187,4 +187,5 @@ public class TuneManager : MonoBehaviour
         this.activeMarkers[tactPos] = marker;
         Debug.Log("Marker " + marker.fiducialController.MarkerID + " positioned at " + tactPos + ")");
     }
+    #endregion
 }
