@@ -59,7 +59,7 @@ public class TokenPosition
         //init variables
         m_tuioManager = TuioManager.Instance;
         m_settings = Settings.Instance;
-        m_MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        m_MainCamera = GameObject.FindGameObjectWithTag(m_settings.mainCameraTag).GetComponent<Camera>();
 
         beats = m_settings.beats;
         tunes = m_settings.tunes;
@@ -153,6 +153,7 @@ public class TokenPosition
                 #endregion
 
                 fiducialController.SetIsSnapped(true);
+                fiducialController.gameObject.GetComponent<NoteMarker>().SetLastTimeSnapped(Time.time);
             }
             //if the marker is moving, the position will be set in the return statement
             //else{}

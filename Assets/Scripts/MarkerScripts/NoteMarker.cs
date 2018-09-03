@@ -5,9 +5,11 @@ using UnityEngine;
 public class NoteMarker : MonoBehaviour
 {
     public Vector2 lastPosition;
+    //TODO change threshold
     private Vector2 threshold = new Vector2(1.5f, 1.5f);
+    private float lastTimeSnapped;
 
-    TuneManager manager;
+    private TuneManager manager;
     public int duration = 0;
 
     public static int dvc = 4; // duration variation count
@@ -50,7 +52,6 @@ public class NoteMarker : MonoBehaviour
         var currentPosition = new Vector2(this.transform.position.x, this.transform.position.y);
         var delta = currentPosition - lastPosition;
 
-
         if (Mathf.Abs(delta.x) < threshold.x && Mathf.Abs(delta.y) < threshold.y)
         {
             // No can do babydooll
@@ -68,8 +69,14 @@ public class NoteMarker : MonoBehaviour
         lastTimeMoved = Time.time;
     }
 
-    public float GetLastTimeMovedThreshold()
+    public void SetLastTimeSnapped(float v)
     {
-        return lastTimeMovedThreshold;
+        this.lastTimeSnapped = v;
     }
+
+    public float GetLastTimeSnapped()
+    {
+        return lastTimeSnapped;
+    }
+
 }

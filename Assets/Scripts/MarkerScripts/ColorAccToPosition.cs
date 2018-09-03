@@ -2,53 +2,65 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorAccToPosition : MonoBehaviour {
+public class ColorAccToPosition : MonoBehaviour
+{
 
-    public Color blue;
-    public Color red;
-    public Color green;
-    public Color currentColor;
-
-    private bool lastSetTuneOnStringAndBeat;
+    private Color blue;
+    private Color red;
+    private Color green;
+    private Color grey;
+    private Color currentColor;
 
     private SpriteRenderer rend;
-    private TokenPosition tokenPosition;
+    private TokenPosition m_tokenPosition;
+    private Settings m_settings;
+    private int tunesPerString;
     private float note;
 
-	void Start() {
-        rend = GetComponent<SpriteRenderer>();
-        tokenPosition = TokenPosition.Instance;
-        lastSetTuneOnStringAndBeat = true;
-    }
-	
-	void FixedUpdate () {
-        if (rend.isVisible && lastSetTuneOnStringAndBeat)
-        {
-            note = tokenPosition.GetNote(this.transform.position);
+    void Start()
+    {
+        m_settings = Settings.Instance;
+        blue = m_settings.blue;
+        red = m_settings.red;
+        green = m_settings.green;
+        grey = m_settings.grey;
 
-            if (note < 8)
+        rend = GetComponent<SpriteRenderer>();
+        m_tokenPosition = TokenPosition.Instance;
+        tunesPerString = Settings.Instance.tunesPerString;
+        currentColor = rend.color;
+    }
+
+    void Update()
+    {
+        if (rend.isVisible && currentColor != grey)
+        {
+            note = m_tokenPosition.GetNote(this.transform.position);
+
+            if (note < tunesPerString)
                 rend.color = blue;
-            else if (note < 16)
+            else if (note < tunesPerString * 2)
                 rend.color = green;
             else
                 rend.color = red;
-
-            currentColor = rend.color;
         }
-    }
-
-    public Color GetCurrentColor()
-    {
-        return currentColor;
     }
 
     public void SetCurrentColor(Color color)
     {
+        rend.color = color;
         currentColor = color;
     }
 
-    public void SetAsLastTuneOnStringAndBeat(bool v)
+    public void CheckColor()
     {
-        lastSetTuneOnStringAndBeat = v;
+        note = m_tokenPosition.GetNote(this.transform.position);
+
+        if (note < tunesPerString)
+            rend.color = blue;
+        else if (note < tunesPerString * 2)
+            rend.color = green;
+        else
+            rend.color = red;
     }
 }

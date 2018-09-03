@@ -77,17 +77,17 @@ namespace UniducialLibrary
 
         #region TUIOListener methods
 
-        void TuioListener.addTuioObject(TuioObject in_TUIOObject)
+        void TuioListener.AddTuioObject(TuioObject in_TUIOObject)
         {
             this.m_TUIOObjects.Add(in_TUIOObject);
         }
 
-        void TuioListener.updateTuioObject(TuioObject tobj)
+        void TuioListener.UpdateTuioObject(TuioObject tobj)
         {
 
         }
 
-        void TuioListener.removeTuioObject(TuioObject in_TUIOObject)
+        void TuioListener.RemoveTuioObject(TuioObject in_TUIOObject)
         {
             this.m_TUIOObjects.Remove(in_TUIOObject);
         }
@@ -208,6 +208,11 @@ namespace UniducialLibrary
         {
             get { return m_Client.getPort(); }
             set { m_Client.setPort(value); }
+        }
+
+        public TuioClient GetTuioClient()
+        {
+            return m_Client;
         }
     }
 }

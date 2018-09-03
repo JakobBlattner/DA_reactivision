@@ -247,7 +247,7 @@ namespace TUIO
 								
 									for (int i=0;i<listenerList.Count;i++) {
 										TuioListener listener = (TuioListener)listenerList[i];
-										if (listener!=null) listener.removeTuioObject(removeObject);
+										if (listener!=null) listener.RemoveTuioObject(removeObject);
 									}
 									lock(objectSync) {
 										objectList.Remove(removeObject.getSessionID());
@@ -260,7 +260,7 @@ namespace TUIO
 									}
 									for (int i=0;i<listenerList.Count;i++) {
 										TuioListener listener = (TuioListener)listenerList[i];
-										if (listener!=null) listener.addTuioObject(addObject);
+										if (listener!=null) listener.AddTuioObject(addObject);
 									}
 									break;
 								default:
@@ -272,7 +272,7 @@ namespace TUIO
 
 									for (int i=0;i<listenerList.Count;i++) {
 										TuioListener listener = (TuioListener)listenerList[i];
-										if (listener!=null) listener.updateTuioObject(updateObject);
+										if (listener!=null) listener.UpdateTuioObject(updateObject);
 									}
 									break;
 							}

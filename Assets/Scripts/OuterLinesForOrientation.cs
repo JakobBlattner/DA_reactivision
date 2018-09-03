@@ -22,7 +22,7 @@ public class OuterLinesForOrientation : MonoBehaviour
 
         m_tokenPosition = TokenPosition.Instance;
         m_settings = Settings.Instance;
-        m_camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        m_camera = GameObject.FindGameObjectWithTag(m_settings.mainCameraTag).GetComponent<Camera>();
 
         //Instantiates variables for spawning top and bottom prefabs
         float prefabYBounds = prefab.GetComponent<SpriteRenderer>().bounds.size.y/2;
