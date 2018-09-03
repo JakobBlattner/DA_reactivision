@@ -7,12 +7,12 @@ using UnityEngine;
 public class LocationBar : MonoBehaviour
 {
 
-    //TODO Get BPM from rotary encoder --> Arduino
-    public int bpm = 100;
+    public int bpm;
     public Vector3 startBarPosition;
     public Vector3 endBarPosition;
 
     private TokenPosition m_tokenPostion;
+    private Settings m_settings;
     private LineRenderer m_lineRenderer;
 
     //for in update loop calculation
@@ -27,9 +27,6 @@ public class LocationBar : MonoBehaviour
     private float startTime;
     private float currentTime;
 
-    public float timeMarker;
-
-
     void Start()
     {
         GameObject[] loopMarkers = GameObject.FindGameObjectsWithTag("LoopGO");
@@ -43,11 +40,13 @@ public class LocationBar : MonoBehaviour
         }
 
         m_tokenPostion = TokenPosition.Instance;
+        m_settings = Settings.Instance;
         m_lineRenderer = this.GetComponent<LineRenderer>();
 
         //Gets non changing variables
+        bpm = m_settings.bpm;
         msPerCell = 60000 / bpm; //in ms
-        cellWidth = m_tokenPostion.GetCellWidthInWorldLength();
+        cellWidth = m_settings.cellSizeWorld.x;
         totalDistance = Vector3.Distance(startBarPosition, endBarPosition);
 
         //sets first two points of line renderer
@@ -59,9 +58,6 @@ public class LocationBar : MonoBehaviour
     {
         //calculates the speed according to the cells between start and end bar and bpm
         this.UpdateValues();
-        timeMarker = (Time.time - startTime) % timeForTotalDistance;
-
-
 
         currentTime = Time.time;
         lengthTravelledInPercent = ((currentTime - startTime) * speed) / totalDistance;
@@ -138,22 +134,5 @@ public class LocationBar : MonoBehaviour
     public int GetNote(Vector2 pos)
     {
         return TokenPosition.Instance.GetNote(pos);
-    }
-
-    public int GetTactPosition(float time) {
-        time = time % timeForTotalDistance;
-        var relativeXpos = time / timeForTotalDistance;
-        return (int)Mathf.Floor(relativeXpos * 16);
-
-
-
-
-
-        /*
-        var tactPositionWithRest = (relativeXpos * totalDistance) + startBarPosition.x;
-
-        var asdkjfhaskdjf = new Vector2(startBarPosition.x + relativeXpos, startBarPosition.y);
-        return 2;
-        */
     }
 }

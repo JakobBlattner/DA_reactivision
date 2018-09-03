@@ -6,6 +6,7 @@ public class OuterLinesForOrientation : MonoBehaviour
 {
 
     private TokenPosition m_tokenPosition;
+    private Settings m_settings;
     public GameObject prefab;
     private Transform startLoopBar;
     private Transform endLoopBar;
@@ -20,6 +21,7 @@ public class OuterLinesForOrientation : MonoBehaviour
             Debug.Log("No prefab in Script OuterLinesForOrientation set.");
 
         m_tokenPosition = TokenPosition.Instance;
+        m_settings = Settings.Instance;
         m_camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
         //Instantiates variables for spawning top and bottom prefabs
@@ -29,7 +31,7 @@ public class OuterLinesForOrientation : MonoBehaviour
         float xPos;
 
         //spawns number of beats Outer_Line_For_Orientation prefabs in loop for Top and Bottom
-        for (int i = 0; i < m_tokenPosition.GetNumberOfBeats(); i++)
+        for (int i = 0; i < m_settings.beats; i++)
         {
             xPos = m_tokenPosition.GetXPosForBeat(i);
             GameObject currentGO = Instantiate(prefab, new Vector3(xPos, topYPos, 0), Quaternion.identity);
@@ -41,13 +43,13 @@ public class OuterLinesForOrientation : MonoBehaviour
         //Instantiates variables for spawning and updating left and right lines on loopBars
         startLoopBar = GameObject.Find("Loop_Bar_0").transform;
         endLoopBar = GameObject.Find("Loop_Bar_1").transform;
-        int numberOfTunes = m_tokenPosition.GetNumberOfTunes();
+        int numberOfTunes = m_settings.tunes;
         leftLines = new Transform[numberOfTunes + 1];
         rightLines = new Transform[numberOfTunes + 1];
         float yPos;
 
         //spawns number of tunes Outer_Line_For_Orientation prefabs in loop for left and right
-        for (int i = 0; i < m_tokenPosition.GetNumberOfTunes(); i++)
+        for (int i = 0; i < m_settings.tunes; i++)
         {
             yPos = m_tokenPosition.GetYPosForTune(i);
             leftLines[i] = Instantiate(prefab, new Vector3(startLoopBar.transform.position.x - prefabYBounds, yPos, 0), Quaternion.Euler(new Vector3(0, 0, 90))).transform; //prefabYBounds can be used, because the sprite got turned by 90 degrees

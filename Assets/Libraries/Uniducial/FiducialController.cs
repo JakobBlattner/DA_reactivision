@@ -60,10 +60,10 @@ public class FiducialController : MonoBehaviour
     private float m_RotationSpeed;
     private float m_RotationAcceleration;
     private bool m_IsVisible;
-    private float lastTimeMoved;
-    private float lastTimeMovedThreshold;
     private bool isLoopBarMarker;
     private bool isJoker;
+    private bool isSnapped;
+    private Vector3 oldPosition;
 
     public float RotationMultiplier = 1;
 
@@ -98,9 +98,9 @@ public class FiducialController : MonoBehaviour
         //check if marker is a loopBarMarker;
         this.isLoopBarMarker = this.GetComponent<LoopController>();
         this.isJoker = this.transform.parent.CompareTag("JokerParent");
-        //60fps threshold
-        lastTimeMovedThreshold = 1/60;//GetComponent<NoteMarker>().GetLastTimeMovedThreshold();
-        this.lastTimeMoved = Time.time;
+        this.isSnapped = false;
+        //movement threshold
+        this.oldPosition = transform.position;
     }
 
     void Start()
@@ -176,16 +176,21 @@ public class FiducialController : MonoBehaviour
             if (this.InvertX) xPos = 1 - xPos;
             if (this.InvertY) yPos = 1 - yPos;
 
+            //this if is for rotation purpose only
             if (this.m_ControlsGUIElement)
             {
                 transform.position = new Vector3(xPos, 1 - yPos, 0);
             }
-            else if(Time.time - lastTimeMoved >= lastTimeMovedThreshold)
+            else
             {
-                lastTimeMoved = Time.time;
-                transform.position = m_TokenPosition.CalculateGridPosition(MarkerID, CameraOffset, isLoopBarMarker, isJoker, this);
-
-                /*
+                //transform.position = m_TokenPosition.CalculateGridPosition(MarkerID, CameraOffset, isLoopBarMarker, isJoker, this);
+                Vector3 newPos = m_TokenPosition.CalculateGridPosition(MarkerID, CameraOffset, isLoopBarMarker, isJoker, this, Camera.main.WorldToScreenPoint(oldPosition));
+                if(!Vector3.Equals(newPos, oldPosition))
+                {
+                    transform.position = newPos;
+                    oldPosition = newPos;
+                }
+                /* written by the librarys author
                 Vector3 position = new Vector3(xPos * Screen.width,
                     (1 - yPos) * Screen.height, this.CameraOffset);
                 this.m_WorldPosition = this.m_MainCamera.ScreenToWorldPoint(position);
@@ -271,6 +276,13 @@ public class FiducialController : MonoBehaviour
         }
     }
 
+    #region Setter
+    public void SetIsSnapped(bool v)
+    {
+        isSnapped = v;
+    }
+    #endregion
+
     #region Getter
 
     public bool isAttachedToGUIComponent()
@@ -316,6 +328,10 @@ public class FiducialController : MonoBehaviour
     public bool IsVisible
     {
         get { return this.m_IsVisible; }
+    }
+    public bool IsSnapped()
+    {
+        return isSnapped;
     }
     #endregion
 }
