@@ -95,13 +95,24 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
             updatedTuioObjects = new List<TuioObject>();
         }
 
-        this.RunThroughMarkerListAndUpdateActiveMarkers(redMarkers);
-        this.RunThroughMarkerListAndUpdateActiveMarkers(blueMarkers);
-        this.RunThroughMarkerListAndUpdateActiveMarkers(greenMarkers);
+        this.RemoveActiveMarkersIfTheySwitchedPosition();
+        this.RunThroughMarkerListAndUpdateActiveMarkers(redMarkers, red);
+        this.RunThroughMarkerListAndUpdateActiveMarkers(blueMarkers, blue);
+        this.RunThroughMarkerListAndUpdateActiveMarkers(greenMarkers, green);
+    }
+
+    //removes markers saved in activeMarkersOnGrid array if they are not on the position they got saved in the array
+    private void RemoveActiveMarkersIfTheySwitchedPosition()
+    {
+        for (int i = 0; i < activeMarkersOnGrid.Length; i++)
+        {
+            if (activeMarkersOnGrid[i] != null && i != m_tokenPosition.GetTactPosition(activeMarkersOnGrid[i].transform.position) - 1)
+                activeMarkersOnGrid[i] = null;
+        }
     }
 
     //Gets beat from each marker of the passed list and checks if this marker is the latest marker on said beat
-    private void RunThroughMarkerListAndUpdateActiveMarkers(List<GameObject> markerList)
+    private void RunThroughMarkerListAndUpdateActiveMarkers(List<GameObject> markerList, Color color)
     {
         foreach (GameObject marker in markerList)
         {
@@ -109,16 +120,22 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
             int beat = m_tokenPosition.GetTactPosition(marker.transform.position) - 1;
 
             //checks if this marker isn't already the on in the activeMarker list
-            if (activeMarkersOnGrid[beat] != marker)
+            if (activeMarkersOnGrid[beat] != marker && marker.GetComponent<FiducialController>().IsSnapped())
             {
                 //if beat position is empty
                 if (activeMarkersOnGrid[beat] == null)
+                {
                     activeMarkersOnGrid[beat] = marker;
-                //if position is not empty and new marker hast been alive before
+                    marker.GetComponent<ColorAccToPosition>().SetCurrentColor(color);
+                    Debug.Log("no marker here, setting current marker " + marker);
+                }
+                //if position is not empty, current marker hast snapped before marker on beat and beat is not the same with marker on beat (switched position)
                 else if (activeMarkersOnGrid[beat].GetComponent<NoteMarker>().GetLastTimeSnapped() < marker.GetComponent<NoteMarker>().GetLastTimeSnapped())
                 {
                     activeMarkersOnGrid[beat].GetComponent<ColorAccToPosition>().SetCurrentColor(grey);
                     activeMarkersOnGrid[beat] = marker;
+                    marker.GetComponent<ColorAccToPosition>().SetCurrentColor(color);
+                    Debug.Log("marker already here, switchting with current marker " + marker);
                 }
             }
         }
@@ -152,7 +169,6 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
         Debug.Log("Remove Marker has been called");
         GameObject currentMarker = markers[tobj.getSymbolID()];
 
-        //TODO check list according to color and check each lastTimeMoved from NoteMarker    
         if (redMarkers.Contains(currentMarker))
         {
             redMarkers.Remove(currentMarker);
