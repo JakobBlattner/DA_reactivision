@@ -150,7 +150,7 @@ public class TuneManager : MonoBehaviour
             }
         }
 
-        Debug.Log("Marker " + marker.fiducialController.MarkerID + " moved by " + delta);
+        //Debug.Log("Marker " + marker.fiducialController.MarkerID + " moved by " + delta);
     }
 
     public void NoteMarkerRemoved(NoteMarker marker)
