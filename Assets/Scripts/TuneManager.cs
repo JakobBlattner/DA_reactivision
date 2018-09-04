@@ -22,7 +22,7 @@ public class TuneManager : MonoBehaviour
     public int lastSentNote = 0;
 
     private static SerialPort serialPort;
-    private static String[] serialPortNames = {"COM5", "/dev/cu.usbmodem1411", "/dev/cu.usbmodem1421" };
+    private static String[] serialPortNames = {"COM1", "COM2", "COM3", "COM4", "COM5", "/dev/cu.usbmodem1411", "/dev/cu.usbmodem1421" };
     private String receivedMsg = "";
     private int msgIndex = 0;
     private int damping = 0;
