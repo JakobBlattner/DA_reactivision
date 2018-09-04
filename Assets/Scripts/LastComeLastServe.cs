@@ -5,10 +5,11 @@ using TUIO;
 using UniducialLibrary;
 using System;
 
+/**
+ * This class is responsible for the active and inactive marker algorithm.
+ * It implements the TuioListener Interface, so that every marker movement etc. is instantly recognized.
+ * **/
 public class LastComeLastServe : MonoBehaviour, TuioListener
-//implement TUIOListener
-//set boolean after each event from TUIOListener
-//check in loop if boolean event has been triggered/ set and act accordingly
 {
     private Color red;
     private Color blue;
@@ -106,8 +107,25 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     {
         for (int i = 0; i < activeMarkersOnGrid.Length; i++)
         {
-            if (activeMarkersOnGrid[i] != null && i != m_tokenPosition.GetTactPosition(activeMarkersOnGrid[i].transform.position) - 1)
-                activeMarkersOnGrid[i] = null;
+            if (activeMarkersOnGrid[i] != null)
+            {
+                //TODO change to get key from marker dictionary
+                int width = (int)(Settings.GetMarkerWidhMultiplier(activeMarkersOnGrid[i].GetComponent<FiducialController>().MarkerID) * 2);
+
+                if (i != m_tokenPosition.GetTactPosition(activeMarkersOnGrid[i].transform.position) - 1)//1/4
+                    activeMarkersOnGrid[i] = null;
+
+                if (width > 1 && activeMarkersOnGrid[i + 1] != null && activeMarkersOnGrid[i + 1] != activeMarkersOnGrid[i])//1/2
+                    activeMarkersOnGrid[i + 1] = null;
+
+                if (width > 2 && activeMarkersOnGrid[i + 2] != null && activeMarkersOnGrid[i + 2] != activeMarkersOnGrid[i])//3/4
+                    activeMarkersOnGrid[i + 2] = null;
+
+                if (width > 3 && activeMarkersOnGrid[i + 3] != null && activeMarkersOnGrid[i + 3] != activeMarkersOnGrid[i])//4/4
+                    activeMarkersOnGrid[i + 3] = null;
+
+                i += width - 1; //otherwise it would check e.g. the second beat of a 3/4 marker and the if queries above would be wrong
+            }
         }
     }
 
@@ -119,25 +137,65 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
             //gets beat on which the the marker lies on
             int beat = m_tokenPosition.GetTactPosition(marker.transform.position) - 1;
 
-            //checks if this marker isn't already the on in the activeMarker list
+            //checks if this marker isn't already the one in the activeMarker list
             if (activeMarkersOnGrid[beat] != marker && marker.GetComponent<FiducialController>().IsSnapped())
             {
-                //if beat position is empty
-                if (activeMarkersOnGrid[beat] == null)
+                int width = (int)(Settings.GetMarkerWidhMultiplier(marker.GetComponent<FiducialController>().MarkerID) * 2);
+
+                //if beat position is empty or if position is not empty, current marker hast snapped before marker on beat 
+                if (activeMarkersOnGrid[beat] == null || (activeMarkersOnGrid[beat].GetComponent<NoteMarker>().GetLastTimeSnapped() < marker.GetComponent<NoteMarker>().GetLastTimeSnapped()))
                 {
-                    activeMarkersOnGrid[beat] = marker;
-                    marker.GetComponent<ColorAccToPosition>().SetCurrentColor(color);
-                    Debug.Log("no marker here, setting current marker " + marker);
-                }
-                //if position is not empty, current marker hast snapped before marker on beat and beat is not the same with marker on beat (switched position)
-                else if (activeMarkersOnGrid[beat].GetComponent<NoteMarker>().GetLastTimeSnapped() < marker.GetComponent<NoteMarker>().GetLastTimeSnapped())
-                {
-                    activeMarkersOnGrid[beat].GetComponent<ColorAccToPosition>().SetCurrentColor(grey);
-                    activeMarkersOnGrid[beat] = marker;
-                    marker.GetComponent<ColorAccToPosition>().SetCurrentColor(color);
-                    Debug.Log("marker already here, switchting with current marker " + marker);
+                    //if the marker is wider/longer than one beat
+                    if (width > 1) //mind 1/2
+                    {
+                        //checks if second beat of the marker is not ok, if so: break
+                        if (beat + 1 > m_settings.beats || (activeMarkersOnGrid[beat + 1] != null && (activeMarkersOnGrid[beat + 1].GetComponent<NoteMarker>().GetLastTimeSnapped() > marker.GetComponent<NoteMarker>().GetLastTimeSnapped())))//1/2
+                            break;
+                        else
+                        {
+                            if (width > 2)// mind 3/4
+                            {
+                                //checks if third beat of the marker is not ok, if so: break
+                                if (beat - 1 < 0 || (activeMarkersOnGrid[beat - 1] != null && (activeMarkersOnGrid[beat - 1].GetComponent<NoteMarker>().GetLastTimeSnapped() > marker.GetComponent<NoteMarker>().GetLastTimeSnapped())))//3/4
+                                    break;
+                                else
+                                {
+                                    if (width > 3)// 4/4
+                                    {
+                                        //checks if fourth beat of the marker is not ok, if so: break
+                                        if (beat + 2 > m_settings.beats || (activeMarkersOnGrid[beat + 2] != null && (activeMarkersOnGrid[beat + 2].GetComponent<NoteMarker>().GetLastTimeSnapped() > marker.GetComponent<NoteMarker>().GetLastTimeSnapped())))//4/4
+                                            break;
+                                        this.ActivateMarkerOnBeatWithColor(marker, beat + 2, color); //4/4
+                                    }
+                                    this.ActivateMarkerOnBeatWithColor(marker, beat - 1, color); //3/4
+                                }
+                            }
+                            this.ActivateMarkerOnBeatWithColor(marker, beat + 1, color); //1/2
+                        }
+                    }
+                    this.ActivateMarkerOnBeatWithColor(marker, beat, color); //1/4
                 }
             }
+        }
+    }
+
+    private void ActivateMarkerOnBeatWithColor(GameObject marker, int beat, Color color)
+    {
+        if (activeMarkersOnGrid[beat] != null)
+        {
+            activeMarkersOnGrid[beat].GetComponent<ColorAccToPosition>().SetCurrentColor(grey);
+            this.RemoveMarkerFromActiveMarkersOnGrid(activeMarkersOnGrid[beat]);
+        }
+        activeMarkersOnGrid[beat] = marker;
+        marker.GetComponent<ColorAccToPosition>().SetCurrentColor(color); //if marker was deactivated/ grey
+    }
+
+    private void RemoveMarkerFromActiveMarkersOnGrid(GameObject marker)
+    {
+        for (int i = 0; i < activeMarkersOnGrid.Length; i++)
+        {
+            if (activeMarkersOnGrid[i] == marker)
+                activeMarkersOnGrid[i] = null;
         }
     }
 
@@ -163,12 +221,12 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
         }
     }
 
-    //when marker gets removed from table
+    //when marker gets removed from table, remove from every coloured list and activeMarkersOnGrid array
     private void RemoveMarker(TuioObject tobj)
     {
-        Debug.Log("Remove Marker has been called");
         GameObject currentMarker = markers[tobj.getSymbolID()];
 
+        //remove from colored lists
         if (redMarkers.Contains(currentMarker))
         {
             redMarkers.Remove(currentMarker);
@@ -181,13 +239,17 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
         {
             greenMarkers.Remove(currentMarker);
         }
+
+        //remove from activeMarkersOnGrid array
+        RemoveMarkerFromActiveMarkersOnGrid(currentMarker);
     }
 
     //when changing color and/or beat
     private void UpdateMarker(TuioObject tobj)
     {
         //use threshold for movement
-
+        //TODO is this method needed?
+        //for logging only? - if so, add threshold
     }
 
     //callback method, adds TuioObject to the list of active tuioObjects
@@ -205,7 +267,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     //callback method, removes TuioObject from the list of active tuioObjects
     public void RemoveTuioObject(TuioObject tobj)
     {
-        addedTuioObjects.Remove(tobj);
+        removedTuioObjects.Add(tobj);
     }
 
 

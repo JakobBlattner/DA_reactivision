@@ -118,7 +118,7 @@ public class TokenPosition
             if (m_obj.getMotionSpeed() == 0)
             {
                 #region X-Axis
-                position.x = this.CalculateXPosition(position, isLoopBarMarker, Settings.GetMarkerWithMultiplier(markerID));
+                position.x = this.CalculateXPosition(position, isLoopBarMarker, Settings.GetMarkerWidhMultiplier(markerID));
                 #endregion
 
                 #region Y-Axis

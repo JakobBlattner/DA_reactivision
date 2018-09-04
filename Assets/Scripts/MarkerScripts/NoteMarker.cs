@@ -29,7 +29,7 @@ public class NoteMarker : MonoBehaviour
 
         // Determine the duration
         fiducialController = this.GetComponent<FiducialController>();
-        duration = (int)(Settings.GetMarkerWithMultiplier(fiducialController.MarkerID) * 2);// 1 = 1/4, 2 = 2/4, 3 = 3/4, 4 = 4/4
+        duration = (int)(Settings.GetMarkerWidhMultiplier(fiducialController.MarkerID) * 2);// 1 = 1/4, 2 = 2/4, 3 = 3/4, 4 = 4/4
     }
 
     void Update()

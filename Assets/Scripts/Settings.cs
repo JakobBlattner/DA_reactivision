@@ -110,7 +110,7 @@ public class Settings : MonoBehaviour
         pentatonicTunes[8] = 20;
     }
 
-    public static float GetMarkerWithMultiplier(int markerID)
+    public static float GetMarkerWidhMultiplier(int markerID)
     {
         return markerID < lastIndexOfOneFourthMarker ? 0.5f : (markerID < lastIndexOfOneHalfMarker ? 1 : (markerID < lastIndexOfThreeFourthMarker ? 1.5f : 2));
     }

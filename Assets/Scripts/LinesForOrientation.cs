@@ -36,7 +36,7 @@ public class LinesForOrientation : MonoBehaviour
         m_sRend = belongingMarker.GetComponent<SpriteRenderer>();
         childrenSpriteRenderer = GetComponentsInChildren<SpriteRenderer>();
 
-        spriteWidthMultiplier = Settings.GetMarkerWithMultiplier(m_fiducial.MarkerID);
+        spriteWidthMultiplier = Settings.GetMarkerWidhMultiplier(m_fiducial.MarkerID);
         scaleFactorTopBottomX = belongingMarker.transform.localScale.x * m_settings.thickenFactorTopBottomX; ;
         scaleFactorLefRightX = m_settings.scaleFactorLefRightX;
         scaleFactorY = m_settings.scaleFactorY;
