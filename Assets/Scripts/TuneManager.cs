@@ -9,10 +9,6 @@ using System.IO;
 
 public class TuneManager : MonoBehaviour
 {
-    public NoteMarker[] noteMarkers;
-    public NoteMarker[] activeMarkers;
-    public NoteMarker[] inactiveMarkers;
-
     public LoopController startController;
     public LoopController endController;
     public LocationBar locationBar;
@@ -21,45 +17,39 @@ public class TuneManager : MonoBehaviour
     public int lastSentNote = 0;
 
     private static SerialPort serialPort;
-    private static String[] serialPortNames = {"COM5", "/dev/cu.usbmodem1411", "/dev/cu.usbmodem1421" };
+    private static String[] serialPortNames = { "COM5", "/dev/cu.usbmodem1411", "/dev/cu.usbmodem1421" };
+    private static int serialBaudrate = 9600;
+
     private String receivedMsg = "";
     private int msgIndex = 0;
     private int damping = 0;
-    private static int serialBaudrate = 9600;
-    private Settings m_settings;
-    private int lastIndexOfOneFourthMarker;
 
-    /*TODO:
-     Rewrite so that TuneManager is only responsible for communication with the arduino:
-     - TuneManager get's actice marker from LastComeLastServe.cs
-     */
+    private Settings m_settings;
+    public LastComeLastServe lastComeLastServe;
+
+    private int tunesPerString;
+    private bool enableChords;
+
+    public GameObject[] activeMarkers;
+    private GameObject noteToSend;
+    private GameObject redNoteToSend;
+    private GameObject greenNoteToSend;
+    private GameObject blueNoteToSend;
 
     // Use this for initialization
     void Start()
     {
         m_settings = Settings.Instance;
+        locationBar = Component.FindObjectOfType<LocationBar>();
+        lastComeLastServe = Component.FindObjectOfType<LastComeLastServe>();
 
-        lastIndexOfOneFourthMarker = 13;
-
-        noteMarkers = new NoteMarker[m_settings.beats];
-        activeMarkers = new NoteMarker[m_settings.beats];
-        inactiveMarkers = new NoteMarker[100];
+        tunesPerString = m_settings.tunesPerString;
+        enableChords = lastComeLastServe.enableChords;
 
         // Get loop controllers
         var x = Component.FindObjectsOfType<LoopController>();
         startController = x[0].startMarker ? x[0] : x[1];
         endController = x[0].startMarker ? x[1] : x[0];
-
-        locationBar = Component.FindObjectOfType<LocationBar>();
-
-
-        // Get note markers
-        var markerObjets = GameObject.FindGameObjectsWithTag(m_settings.markerTag);
-        noteMarkers = new NoteMarker[markerObjets.Length];
-        for (int i = 0; i < noteMarkers.Length; ++i)
-        {
-            noteMarkers[i] = markerObjets[i].GetComponent<NoteMarker>();
-        }
 
         Boolean serialConnected = false;
         for (int i = 0; i < serialPortNames.Length && !serialConnected; i++)
@@ -86,108 +76,69 @@ public class TuneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         var tactPosWithOffset = this.locationBar.GetTactPosition(this.locationBar.transform.position - locationBarOffset);
 
         if (lastSentNote < tactPosWithOffset || tactPosWithOffset == 0)
         {
             lastSentNote = tactPosWithOffset;
-            //Debug.Log(tactPosWithOffset);
-            NoteMarker noteMarker = activeMarkers[lastSentNote];
-            if (noteMarker != null) // TODO: add edge case handling if duration > 1 and tactPostWithOffset == 0
+
+            if (enableChords)
             {
-                // TODO: Serial Communication with Arduino
-                lastSentNote += noteMarker.duration - 1;
-                int noteToSend = this.locationBar.GetNote(noteMarker.transform.position);
-                Debug.Log("Send note " + noteToSend + " (MarkerID = " + noteMarker.fiducialController.MarkerID + ")");
-                int s = 0;
-                int f = 0;
-                if (noteToSend < lastIndexOfOneFourthMarker)
-                { // TODO: create a function for this
-                    s = 2;
-                    f = noteToSend;
-                }
-                else if (8 <= noteToSend && noteToSend < 16)
-                {
-                    s = 1;
-                    f = noteToSend - 8;
-                }
-                else if (16 <= noteToSend && noteToSend < 30)
-                {
-                    s = 0;
-                    f = noteToSend - 16;
-                }
-                if (serialPort.IsOpen)
-                {
-                    serialPort.WriteLine(msgIndex + "," + s + "," + f + "," + noteMarker.duration + "," + damping);
-                    Debug.Log("[LOG: wrote cmd: ]" + msgIndex + "," + s + "," + f + "," + noteMarker.duration + "," + damping);
-                }
-                Debug.Log("Marker " + noteMarker.fiducialController.MarkerID + " with Note " + noteToSend + " has been played for " + noteMarker.duration);
-                /*do // wait until received msg starts with last sent id
-                {
-                    receivedMsg = serialPort.ReadExisting();
-                    Debug.Log("[LOG: received: " + receivedMsg + "]");
-                } while (!receivedMsg.StartsWith("" + msgIndex));
-                Debug.Log(receivedMsg);*/
-                msgIndex++;
+                noteToSend = lastComeLastServe.GetActiveMarkers(Color.white)[tactPosWithOffset];
+                this.SendNote(noteToSend, null, null);
             }
+            else
+            {
+                redNoteToSend = lastComeLastServe.GetActiveMarkers(m_settings.red)[tactPosWithOffset];
+                greenNoteToSend = lastComeLastServe.GetActiveMarkers(m_settings.green)[tactPosWithOffset];
+                blueNoteToSend = lastComeLastServe.GetActiveMarkers(m_settings.blue)[tactPosWithOffset];
+
+                this.SendNote(redNoteToSend, blueNoteToSend, greenNoteToSend);
+            }            
         }
-
-
         //var locationBarTactPosition = GetTactPosition(this.locationBar.transform.position);
         //var noteMarker = this.activeMarkers[locationBarTactPosition];
     }
 
-    /*#region NoteMarker Interaction Messages
-
-    public void NoteMarkerMoved(NoteMarker marker, Vector2 delta)
-    {
-        // Remove from active markers
-        for (int i = 0; i < this.activeMarkers.Length; ++i)
+    //TODO check mit Raphael
+    private void SendNote(GameObject firstNote, GameObject secondNote, GameObject thirdNote)
+    {/*
+        if (noteToSend != null) // TODO: add edge case handling if duration > 1 and tactPostWithOffset == 0
         {
-            if (this.activeMarkers[i] == marker)
-            {
-                this.activeMarkers[i] = null;
-                break;
+            // TODO: Serial Communication with Arduino
+            lastSentNote += noteToSend.duration - 1;
+            int noteToSend = this.locationBar.GetNote(noteToSend.transform.position);
+            Debug.Log("Send note " + noteToSend + " (MarkerID = " + noteToSend.fiducialController.MarkerID + ")");
+            int s = 0;
+            int f = 0;
+            if (noteToSend < tunesPerString)
+            { // TODO: create a function for this
+                s = 2;
+                f = noteToSend;
             }
-        }
-
-        //Debug.Log("Marker " + marker.fiducialController.MarkerID + " moved by " + delta);
-    }
-
-    public void NoteMarkerRemoved(NoteMarker marker)
-    {// Remove from active markers
-        var tactPos = this.locationBar.GetTactPosition(marker.lastPosition);
-
-        for (int i = 0; i < this.activeMarkers.Length; ++i)
-        {
-            if (this.activeMarkers[i] == marker)
+            else if (tunesPerString <= noteToSend && noteToSend < tunesPerString * 2)
             {
-                this.activeMarkers[i] = null;
-                break;
+                s = 1;
+                f = noteToSend - tunesPerString;
             }
-        }
-
-        Debug.Log("Marker " + marker.fiducialController.MarkerID + " removed from position " + tactPos);
+            else if (tunesPerString * 2 <= noteToSend && noteToSend < tunesPerString*3 )//*TODO: check; hier stand anstatt "tunesPerString*3" 30
+            {
+                s = 0;
+                f = noteToSend - tunesPerString * 2;
+            }
+            if (serialPort.IsOpen)
+            {
+                serialPort.WriteLine(msgIndex + "," + s + "," + f + "," + noteToSend.duration + "," + damping);
+                Debug.Log("[LOG: wrote cmd: ]" + msgIndex + "," + s + "," + f + "," + noteToSend.duration + "," + damping);
+            }
+            Debug.Log("Marker " + noteToSend.fiducialController.MarkerID + " with Note " + noteToSend + " has been played for " + noteToSend.duration);
+            /*do // wait until received msg starts with last sent id
+            {
+                receivedMsg = serialPort.ReadExisting();
+                Debug.Log("[LOG: received: " + receivedMsg + "]");
+            } while (!receivedMsg.StartsWith("" + msgIndex));
+            Debug.Log(receivedMsg);*/
+            //msgIndex++;
+        //}
     }
-
-    public void NoteMarkerPositioned(NoteMarker marker)
-    {
-        // Add to active markers
-        var tactPos = this.locationBar.GetTactPosition(marker.lastPosition);
-
-        if (tactPos < 1 || tactPos > 16)
-        {
-            return;
-        }
-
-        if (this.activeMarkers[tactPos] != null)
-        {
-            return;
-        }
-
-        this.activeMarkers[tactPos] = marker;
-        Debug.Log("Marker " + marker.fiducialController.MarkerID + " positioned at " + tactPos + ")");
-    }
-    #endregion*/
 }

@@ -45,7 +45,7 @@ public class JokerMarker : MonoBehaviour
             if (oldPosition == Vector3.back)
             {
                 //TODO: check if needs to be rewritten to: switch to nearest pentatonic position
-                Debug.Log("User changed position of Joker with ID " + fiducialController.MarkerID);
+                Debug.Log("Joker Marker " + fiducialController.MarkerID + "has been set.");
                 realYPosition = pos.y;
                 pos.y = heightOffSet + pentatonicTunes[(int)Random.Range(0, pentatonicTunes.Length)] * cellHeightInPx - cellHeightInPx / 2;
                 oldPosition = pos;

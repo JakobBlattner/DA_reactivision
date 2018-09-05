@@ -51,7 +51,7 @@ public class Settings : MonoBehaviour
     public readonly Vector3 cellSizeWorld;
 
     //for jitter threshold
-    public readonly float movementThreshold;
+    public readonly Vector2 movementThreshold;
 
     //for OuterLinesForOrientation
     public readonly float thickenFactorTopBottomX = 2;
@@ -99,7 +99,7 @@ public class Settings : MonoBehaviour
         cellSizeWorld.x = worldDiff.x / beats;
         cellSizeWorld.y = worldDiff.y / tunes;
 
-        movementThreshold = Vector2.Distance(Camera.main.WorldToScreenPoint(Vector2.zero), Camera.main.WorldToScreenPoint(new Vector2(cellSizeWorld.x / 2, cellSizeWorld.y / 2)));//new Vector3(movementThresholdInWorld.x * Screen.width, (1 - movementThresholdInWorld.y) * Screen.height, this.CameraOffset);
+        movementThreshold = Camera.main.WorldToScreenPoint(new Vector2(cellSizeWorld.x / 2, cellSizeWorld.y / 2)) - Camera.main.WorldToScreenPoint(Vector2.zero);
 
         pentatonicTunes = new int[9];
         pentatonicTunes[0] = 1;

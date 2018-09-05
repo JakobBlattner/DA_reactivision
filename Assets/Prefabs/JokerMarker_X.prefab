@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4549878381212032}
   - component: {fileID: 212026771750005612}
   - component: {fileID: 114259891586641682}
-  - component: {fileID: 114263040939116940}
   - component: {fileID: 114691715541254454}
   - component: {fileID: 114217719305868046}
   - component: {fileID: 114622179038133294}
@@ -87,10 +86,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f234f674185354ca11cf79ac0cb9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blue: {r: 0, g: 0.011764706, b: 1, a: 1}
-  red: {r: 0.85882354, g: 0, b: 0, a: 1}
-  green: {r: 0, g: 0.77254903, b: 0.023529412, a: 1}
-  currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114259891586641682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -111,20 +106,6 @@ MonoBehaviour:
   CameraOffset: 10
   RotateAround: 1
   RotationMultiplier: 1
---- !u!114 &114263040939116940
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1047065078092614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d21892b808fab4291ba9f7f28056f475, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lastPosition: {x: 0, y: 0}
-  duration: 0
-  fiducialController: {fileID: 0}
 --- !u!114 &114622179038133294
 MonoBehaviour:
   m_ObjectHideFlags: 1

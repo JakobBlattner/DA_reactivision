@@ -26,7 +26,7 @@ public class TokenPosition
     private Vector2 worldDiff;
 
     //for Movement threshold
-    private float movementThreshold;
+    private Vector2 movementThreshold;
     private Vector3 correctOldPos;
 
     private TuioManager m_tuioManager;
@@ -105,7 +105,7 @@ public class TokenPosition
                 correctOldPos = new Vector3(oldPositionInScreen.x, fiducialController.gameObject.GetComponent<JokerMarker>().GetRealYPosition(), oldPositionInScreen.z);
 
             //...and the new position is NOT far away enough from the old position (different for Joker Markers), then set position to oldPosition 
-            if (isJoker ? Vector2.Distance(position, correctOldPos) < movementThreshold : Vector2.Distance(position, oldPositionInScreen) < movementThreshold)
+            if (isJoker ? this.MovedFurtherThanThreshold(position, correctOldPos) : this.MovedFurtherThanThreshold(position, oldPositionInScreen))
                 position = oldPositionInScreen;
             //...and the new position is far away enoug from the old position, set snapped to false
             else
@@ -187,6 +187,14 @@ public class TokenPosition
         }
         position.x += (widthOffsetInPx + snappingDistance);
         return position.x;
+    }
+
+    public bool MovedFurtherThanThreshold(Vector3 pos1, Vector3 pos2)
+    {
+        Debug.Log("X: " + Math.Abs(pos1.x - pos2.x) + " " + movementThreshold.x);
+        Debug.Log("Y: " + Math.Abs(pos1.y - pos2.y) + " " + movementThreshold.y);
+        Debug.Log(Math.Abs(pos1.x - pos2.x) < movementThreshold.x || Math.Abs(pos1.y - pos2.y) < movementThreshold.y);
+        return Math.Abs(pos1.x - pos2.x) < movementThreshold.x || Math.Abs(pos1.y - pos2.y) < movementThreshold.y;
     }
 
     #region For OuterLinesForOrientation

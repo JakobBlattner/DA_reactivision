@@ -18,8 +18,6 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     private Color green;
     private Color grey;
 
-    private float movementThreshold;
-
     private List<GameObject> redMarkers;
     private List<GameObject> greenMarkers;
     private List<GameObject> blueMarkers;
@@ -43,8 +41,6 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     {
         m_tokenPosition = TokenPosition.Instance;
         m_settings = Settings.Instance;
-
-        movementThreshold = m_settings.movementThreshold;
 
         redMarkers = new List<GameObject>();
         greenMarkers = new List<GameObject>();
@@ -104,7 +100,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
 
         if (!enableChords)
         {
-            this.RemoveActiveMarkersIfTheySwitchedPosition(null, activeMarkersOnGrid);//, Color.white);
+            this.RemoveActiveMarkersIfTheySwitchedPosition(null, activeMarkersOnGrid);
 
             this.RunThroughMarkerListAndUpdateActiveMarkers(redMarkers, activeMarkersOnGrid, red);
             this.RunThroughMarkerListAndUpdateActiveMarkers(blueMarkers, activeMarkersOnGrid, blue);
@@ -112,19 +108,18 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
         }
         else
         {
-            this.RemoveActiveMarkersIfTheySwitchedPosition(redMarkers, activeREDMarkersOnGrid);//, red);
-            this.RemoveActiveMarkersIfTheySwitchedPosition(greenMarkers, activeGREENMarkersOnGrid);//, green);
-            this.RemoveActiveMarkersIfTheySwitchedPosition(blueMarkers, activeBLUEMarkersOnGrid);//, blue);
+            this.RemoveActiveMarkersIfTheySwitchedPosition(redMarkers, activeREDMarkersOnGrid);
+            this.RemoveActiveMarkersIfTheySwitchedPosition(greenMarkers, activeGREENMarkersOnGrid);
+            this.RemoveActiveMarkersIfTheySwitchedPosition(blueMarkers, activeBLUEMarkersOnGrid);
 
             this.RunThroughMarkerListAndUpdateActiveMarkers(redMarkers, activeREDMarkersOnGrid, red);
             this.RunThroughMarkerListAndUpdateActiveMarkers(greenMarkers, activeGREENMarkersOnGrid, green);
             this.RunThroughMarkerListAndUpdateActiveMarkers(blueMarkers, activeBLUEMarkersOnGrid, blue);
         }
-        //Debug.Log("red: " + redMarkers.Count + " green: " + greenMarkers.Count + " blue: " + blueMarkers.Count);
     }
 
     //removes markers saved in activeMarkersOnGrid array if they are not on the position they got saved in the array
-    private void RemoveActiveMarkersIfTheySwitchedPosition(List<GameObject> markerList, GameObject[] activeMarkersArray/*, Color colorOfString*/)
+    private void RemoveActiveMarkersIfTheySwitchedPosition(List<GameObject> markerList, GameObject[] activeMarkersArray)
     {
         for (int i = 0; i < activeMarkersArray.Length; i++)
         {
@@ -200,6 +195,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                         }
                     }
                     this.ActivateMarkerOnBeatWithColor(marker, activeMarkersArray, beat, color); //1/4
+                    Debug.Log("Marker " + m_fiducial.MarkerID + " with length " + width + " got activated on beat " + (beat + 1) + ".");
                 }
             }
         }
@@ -231,6 +227,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
         if (tobj.getSymbolID() != m_settings.startLoopBarMarkerID && tobj.getSymbolID() != m_settings.endLoopBarMarkerID)
         {
             GameObject currentMarker = markers[tobj.getSymbolID()];
+            Debug.Log("Marker " + tobj.getSymbolID() + " has been added to the grid.");
 
             //gets current color and adds marker to the according List
             ColorAccToPosition m_colorAccToPosition = currentMarker.GetComponent<ColorAccToPosition>();
@@ -252,9 +249,10 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     {
         if (tobj.getSymbolID() != m_settings.startLoopBarMarkerID && tobj.getSymbolID() != m_settings.endLoopBarMarkerID)
         {
-
             GameObject currentMarker = markers[tobj.getSymbolID()];
             GameObject[] currentList = activeMarkersOnGrid;
+
+            Debug.Log("Marker " + tobj.getSymbolID() + " has been removed from the grid.");
 
             //remove from colored lists
             if (redMarkers.Contains(currentMarker))
@@ -300,27 +298,45 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                 redMarkers.Add(currentMarker);
 
                 if (blueMarkers.Contains(currentMarker))
+                {
                     blueMarkers.Remove(currentMarker);
+                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors from red to blue.");
+                }
                 else if (greenMarkers.Contains(currentMarker))
+                {
                     greenMarkers.Remove(currentMarker);
+                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors from red to green.");
+                }
             }
             else if (m_color == green && !greenMarkers.Contains(currentMarker))
             {
                 greenMarkers.Add(currentMarker);
 
                 if (blueMarkers.Contains(currentMarker))
+                {
                     blueMarkers.Remove(currentMarker);
+                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors green to blue.");
+                }
                 else if (redMarkers.Contains(currentMarker))
+                {
                     redMarkers.Remove(currentMarker);
+                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors green to red.");
+                }
             }
             else if (m_color == blue && !blueMarkers.Contains(currentMarker))
             {
                 blueMarkers.Add(currentMarker);
 
                 if (greenMarkers.Contains(currentMarker))
+                {
                     greenMarkers.Remove(currentMarker);
+                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors blue to green.");
+                }
                 else if (redMarkers.Contains(currentMarker))
+                {
                     redMarkers.Remove(currentMarker);
+                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors blue to red.");
+                }
             }
         }
     }
@@ -343,6 +359,18 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
         removedTuioObjects.Add(tobj);
     }
 
+
+    internal GameObject[] GetActiveMarkers(Color color)
+    {
+        if (enableChords)
+            return activeMarkersOnGrid;
+        else if (color == m_settings.red)
+            return activeREDMarkersOnGrid;
+        else if (color == m_settings.green)
+            return activeGREENMarkersOnGrid;
+        else
+            return activeBLUEMarkersOnGrid;
+    }
 
     #region not needed TuioListener methods
     public void refresh(TuioTime ftime)

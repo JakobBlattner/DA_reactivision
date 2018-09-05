@@ -184,7 +184,7 @@ public class FiducialController : MonoBehaviour
             else
             {
                 Vector3 newPos = m_TokenPosition.CalculateGridPosition(MarkerID, CameraOffset, isLoopBarMarker, isJoker, this, Camera.main.WorldToScreenPoint(oldPosition));
-                if(!Vector3.Equals(newPos, oldPosition))
+                if (newPos != oldPosition)//m_TokenPosition.MovedFurtherThanThreshold(Camera.main.WorldToScreenPoint(newPos), Camera.main.WorldToScreenPoint(oldPosition)))
                 {
                     transform.position = newPos;
                     oldPosition = newPos;
