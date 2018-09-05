@@ -7,7 +7,6 @@ public class NoteMarker : MonoBehaviour
     public Vector2 lastPosition;
     //TODO change threshold
     private Vector2 threshold = new Vector2(1.5f, 1.5f);
-    private float lastTimeSnapped;
 
     private TuneManager manager;
     public int duration = 0;
@@ -41,7 +40,7 @@ public class NoteMarker : MonoBehaviour
         {
             if (lastTimeAlive > 0f && Time.time > (lastTimeAlive + lastTimeMovedThreshold))
             {
-                manager.NoteMarkerRemoved(this);
+                //manager.NoteMarkerRemoved(this);
                 lastTimeAlive = -1f;
             }
             return;
@@ -57,7 +56,7 @@ public class NoteMarker : MonoBehaviour
             // No can do babydooll
             if (lastTimeMoved > 0f && Time.time > (lastTimeMoved + lastTimeMovedThreshold))
             {
-                manager.NoteMarkerPositioned(this);
+                //manager.NoteMarkerPositioned(this);
                 lastTimeMoved = -1f;
             }
             return;
@@ -65,18 +64,10 @@ public class NoteMarker : MonoBehaviour
 
         // I was moved
         lastPosition = currentPosition;
-        manager.NoteMarkerMoved(this, delta);
+        //manager.NoteMarkerMoved(this, delta);
         lastTimeMoved = Time.time;
     }
 
-    public void SetLastTimeSnapped(float v)
-    {
-        this.lastTimeSnapped = v;
-    }
 
-    public float GetLastTimeSnapped()
-    {
-        return lastTimeSnapped;
-    }
 
 }

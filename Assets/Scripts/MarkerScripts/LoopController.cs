@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class LoopController : MonoBehaviour
 {
-
+    private Settings m_settings;
     private TuioManager m_tuioManager;
     private TuioObject m_obj;
     private TokenPosition m_tokenPosition;
@@ -28,7 +28,8 @@ public class LoopController : MonoBehaviour
 
     void Start()
     {
-        GameObject[] loopMarkers = GameObject.FindGameObjectsWithTag("LoopGO");
+        m_settings = Settings.Instance;
+        GameObject[] loopMarkers = GameObject.FindGameObjectsWithTag(m_settings.loopMarkerTag);
         int counter = 0;
 
         foreach (GameObject loopMarker in loopMarkers)

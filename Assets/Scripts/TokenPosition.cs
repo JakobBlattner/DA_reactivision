@@ -153,7 +153,7 @@ public class TokenPosition
                 #endregion
 
                 fiducialController.SetIsSnapped(true);
-                fiducialController.gameObject.GetComponent<NoteMarker>().SetLastTimeSnapped(Time.time);
+                fiducialController.SetLastTimeSnapped(Time.time);
             }
             //if the marker is moving, the position will be set in the return statement
             //else{}

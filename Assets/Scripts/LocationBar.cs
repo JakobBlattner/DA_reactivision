@@ -29,19 +29,20 @@ public class LocationBar : MonoBehaviour
 
     void Start()
     {
-        GameObject[] loopMarkers = GameObject.FindGameObjectsWithTag("LoopGO");
+        m_settings = Settings.Instance;
+        m_tokenPostion = TokenPosition.Instance;
+        m_lineRenderer = this.GetComponent<LineRenderer>();
+
+        GameObject[] loopMarkers = GameObject.FindGameObjectsWithTag(m_settings.loopMarkerTag);
+
         foreach (GameObject loopMarker in loopMarkers)
         {
 
             if (loopMarker.GetComponent<LoopController>().startMarker)
-                startBarPosition = loopMarker.transform.position;//Camera.main.WorldToScreenPoint(loopMarker.transform.position);
+                startBarPosition = loopMarker.transform.position;
             else
-                endBarPosition = loopMarker.transform.position;//Camera.main.WorldToScreenPoint(loopMarker.transform.position);
+                endBarPosition = loopMarker.transform.position;
         }
-
-        m_tokenPostion = TokenPosition.Instance;
-        m_settings = Settings.Instance;
-        m_lineRenderer = this.GetComponent<LineRenderer>();
 
         //Gets non changing variables
         bpm = m_settings.bpm;

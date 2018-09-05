@@ -17,8 +17,7 @@ public class TuneManager : MonoBehaviour
     public LoopController endController;
     public LocationBar locationBar;
 
-
-    public Vector3 locationBarOffset = new Vector3(0.1f, 0.1f, 0);
+    public Vector3 locationBarOffset = new Vector3(0.1f, 0.1f, 0); //TODO Set as time threshold 
     public int lastSentNote = 0;
 
     private static SerialPort serialPort;
@@ -28,6 +27,7 @@ public class TuneManager : MonoBehaviour
     private int damping = 0;
     private static int serialBaudrate = 9600;
     private Settings m_settings;
+    private int lastIndexOfOneFourthMarker;
 
     /*TODO:
      Rewrite so that TuneManager is only responsible for communication with the arduino:
@@ -38,6 +38,8 @@ public class TuneManager : MonoBehaviour
     void Start()
     {
         m_settings = Settings.Instance;
+
+        lastIndexOfOneFourthMarker = 13;
 
         noteMarkers = new NoteMarker[m_settings.beats];
         activeMarkers = new NoteMarker[m_settings.beats];
@@ -100,7 +102,7 @@ public class TuneManager : MonoBehaviour
                 Debug.Log("Send note " + noteToSend + " (MarkerID = " + noteMarker.fiducialController.MarkerID + ")");
                 int s = 0;
                 int f = 0;
-                if (noteToSend < 8)
+                if (noteToSend < lastIndexOfOneFourthMarker)
                 { // TODO: create a function for this
                     s = 2;
                     f = noteToSend;
@@ -136,7 +138,7 @@ public class TuneManager : MonoBehaviour
         //var noteMarker = this.activeMarkers[locationBarTactPosition];
     }
 
-    #region NoteMarker Interaction Messages
+    /*#region NoteMarker Interaction Messages
 
     public void NoteMarkerMoved(NoteMarker marker, Vector2 delta)
     {
@@ -187,5 +189,5 @@ public class TuneManager : MonoBehaviour
         this.activeMarkers[tactPos] = marker;
         Debug.Log("Marker " + marker.fiducialController.MarkerID + " positioned at " + tactPos + ")");
     }
-    #endregion
+    #endregion*/
 }

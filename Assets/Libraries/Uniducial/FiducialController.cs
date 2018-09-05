@@ -41,7 +41,6 @@ public class FiducialController : MonoBehaviour
     public bool AutoHideGO = false;
     private bool m_ControlsGUIElement = false;
 
-
     public float CameraOffset = 10;
     public RotationAxis RotateAround = RotationAxis.Back;
     private UniducialLibrary.TuioManager m_TuioManager;
@@ -63,6 +62,7 @@ public class FiducialController : MonoBehaviour
     private bool isLoopBarMarker;
     private bool isJoker;
     private bool isSnapped;
+    private float lastTimeSnapped;
     private Vector3 oldPosition;
 
     public float RotationMultiplier = 1;
@@ -331,6 +331,16 @@ public class FiducialController : MonoBehaviour
     public bool IsSnapped()
     {
         return isSnapped;
+    }
+
+    public void SetLastTimeSnapped(float v)
+    {
+        this.lastTimeSnapped = v;
+    }
+
+    public float GetLastTimeSnapped()
+    {
+        return lastTimeSnapped;
     }
     #endregion
 }

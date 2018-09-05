@@ -11,6 +11,8 @@ using System;
  * **/
 public class LastComeLastServe : MonoBehaviour, TuioListener
 {
+    public bool enableChords;
+
     private Color red;
     private Color blue;
     private Color green;
@@ -21,10 +23,12 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     private List<GameObject> redMarkers;
     private List<GameObject> greenMarkers;
     private List<GameObject> blueMarkers;
-    private List<GameObject> allColoredMarkers;
 
     private Dictionary<int, GameObject> markers;
     private GameObject[] activeMarkersOnGrid;
+    private GameObject[] activeREDMarkersOnGrid;
+    private GameObject[] activeGREENMarkersOnGrid;
+    private GameObject[] activeBLUEMarkersOnGrid;
 
     private List<TuioObject> addedTuioObjects;
     private List<TuioObject> removedTuioObjects;
@@ -45,7 +49,6 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
         redMarkers = new List<GameObject>();
         greenMarkers = new List<GameObject>();
         blueMarkers = new List<GameObject>();
-        allColoredMarkers = new List<GameObject>();
 
         red = m_settings.red;
         blue = m_settings.blue;
@@ -57,6 +60,9 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
         updatedTuioObjects = new List<TuioObject>();
 
         activeMarkersOnGrid = new GameObject[m_settings.beats];
+        activeREDMarkersOnGrid = new GameObject[m_settings.beats];
+        activeGREENMarkersOnGrid = new GameObject[m_settings.beats];
+        activeBLUEMarkersOnGrid = new GameObject[m_settings.beats];
 
         //add this class to the callback list of the client
         m_tuiomanager = TuioManager.Instance;
@@ -96,113 +102,133 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
             updatedTuioObjects = new List<TuioObject>();
         }
 
-        this.RemoveActiveMarkersIfTheySwitchedPosition();
-        this.RunThroughMarkerListAndUpdateActiveMarkers(redMarkers, red);
-        this.RunThroughMarkerListAndUpdateActiveMarkers(blueMarkers, blue);
-        this.RunThroughMarkerListAndUpdateActiveMarkers(greenMarkers, green);
+        if (!enableChords)
+        {
+            this.RemoveActiveMarkersIfTheySwitchedPosition(null, activeMarkersOnGrid);//, Color.white);
+
+            this.RunThroughMarkerListAndUpdateActiveMarkers(redMarkers, activeMarkersOnGrid, red);
+            this.RunThroughMarkerListAndUpdateActiveMarkers(blueMarkers, activeMarkersOnGrid, blue);
+            this.RunThroughMarkerListAndUpdateActiveMarkers(greenMarkers, activeMarkersOnGrid, green);
+        }
+        else
+        {
+            this.RemoveActiveMarkersIfTheySwitchedPosition(redMarkers, activeREDMarkersOnGrid);//, red);
+            this.RemoveActiveMarkersIfTheySwitchedPosition(greenMarkers, activeGREENMarkersOnGrid);//, green);
+            this.RemoveActiveMarkersIfTheySwitchedPosition(blueMarkers, activeBLUEMarkersOnGrid);//, blue);
+
+            this.RunThroughMarkerListAndUpdateActiveMarkers(redMarkers, activeREDMarkersOnGrid, red);
+            this.RunThroughMarkerListAndUpdateActiveMarkers(greenMarkers, activeGREENMarkersOnGrid, green);
+            this.RunThroughMarkerListAndUpdateActiveMarkers(blueMarkers, activeBLUEMarkersOnGrid, blue);
+        }
+        //Debug.Log("red: " + redMarkers.Count + " green: " + greenMarkers.Count + " blue: " + blueMarkers.Count);
     }
 
     //removes markers saved in activeMarkersOnGrid array if they are not on the position they got saved in the array
-    private void RemoveActiveMarkersIfTheySwitchedPosition()
+    private void RemoveActiveMarkersIfTheySwitchedPosition(List<GameObject> markerList, GameObject[] activeMarkersArray/*, Color colorOfString*/)
     {
-        for (int i = 0; i < activeMarkersOnGrid.Length; i++)
+        for (int i = 0; i < activeMarkersArray.Length; i++)
         {
-            if (activeMarkersOnGrid[i] != null)
+            if (activeMarkersArray[i] != null)
             {
                 //TODO change to get key from marker dictionary
-                int width = (int)(Settings.GetMarkerWidhMultiplier(activeMarkersOnGrid[i].GetComponent<FiducialController>().MarkerID) * 2);
+                int width = (int)(Settings.GetMarkerWidhMultiplier(activeMarkersArray[i].GetComponent<FiducialController>().MarkerID) * 2);
 
-                if (i != m_tokenPosition.GetTactPosition(activeMarkersOnGrid[i].transform.position) - 1)//1/4
-                    activeMarkersOnGrid[i] = null;
+                if ((i != m_tokenPosition.GetTactPosition(activeMarkersArray[i].transform.position) - 1))//1/4
+                    activeMarkersArray[i] = null;
 
-                if (width > 1 && activeMarkersOnGrid[i + 1] != null && activeMarkersOnGrid[i + 1] != activeMarkersOnGrid[i])//1/2
-                    activeMarkersOnGrid[i + 1] = null;
+                //if chords are enabled and the color of the current marker is not the color of the current string being checked
+                if (enableChords && activeMarkersArray[i] != null && !markerList.Contains(activeMarkersArray[i]))
+                    activeMarkersArray[i] = null;
 
-                if (width > 2 && activeMarkersOnGrid[i + 2] != null && activeMarkersOnGrid[i + 2] != activeMarkersOnGrid[i])//3/4
-                    activeMarkersOnGrid[i + 2] = null;
+                if (width > 1 && activeMarkersArray[i + 1] != null && activeMarkersArray[i + 1] != activeMarkersArray[i])//1/2
+                    activeMarkersArray[i + 1] = null;
 
-                if (width > 3 && activeMarkersOnGrid[i + 3] != null && activeMarkersOnGrid[i + 3] != activeMarkersOnGrid[i])//4/4
-                    activeMarkersOnGrid[i + 3] = null;
+                if (width > 2 && activeMarkersArray[i + 2] != null && activeMarkersArray[i + 2] != activeMarkersArray[i])//3/4
+                    activeMarkersArray[i + 2] = null;
 
-                i += width - 1; //otherwise it would check e.g. the second beat of a 3/4 marker and the if queries above would be wrong
+                if (width > 3 && activeMarkersArray[i + 3] != null && activeMarkersArray[i + 3] != activeMarkersArray[i])//4/4
+                    activeMarkersArray[i + 3] = null;
+
+                i += width - 1; //otherwise it would check e.g. the second beat of a 3/4 marker and the if queries (and their indices) above would be wrong
             }
         }
     }
 
     //Gets beat from each marker of the passed list and checks if this marker is the latest marker on said beat
-    private void RunThroughMarkerListAndUpdateActiveMarkers(List<GameObject> markerList, Color color)
+    private void RunThroughMarkerListAndUpdateActiveMarkers(List<GameObject> markerList, GameObject[] activeMarkersArray, Color color)
     {
         foreach (GameObject marker in markerList)
         {
             //gets beat on which the the marker lies on
             int beat = m_tokenPosition.GetTactPosition(marker.transform.position) - 1;
+            FiducialController m_fiducial = marker.GetComponent<FiducialController>();
 
             //checks if this marker isn't already the one in the activeMarker list
-            if (activeMarkersOnGrid[beat] != marker && marker.GetComponent<FiducialController>().IsSnapped())
+            if (activeMarkersArray[beat] != marker && m_fiducial.IsSnapped())
             {
-                int width = (int)(Settings.GetMarkerWidhMultiplier(marker.GetComponent<FiducialController>().MarkerID) * 2);
+                int width = (int)(Settings.GetMarkerWidhMultiplier(m_fiducial.MarkerID) * 2);
 
                 //if beat position is empty or if position is not empty, current marker hast snapped before marker on beat 
-                if (activeMarkersOnGrid[beat] == null || (activeMarkersOnGrid[beat].GetComponent<NoteMarker>().GetLastTimeSnapped() < marker.GetComponent<NoteMarker>().GetLastTimeSnapped()))
+                if (activeMarkersArray[beat] == null || (activeMarkersArray[beat].GetComponent<FiducialController>().GetLastTimeSnapped() < m_fiducial.GetLastTimeSnapped()))
                 {
                     //if the marker is wider/longer than one beat
                     if (width > 1) //mind 1/2
                     {
                         //checks if second beat of the marker is not ok, if so: break
-                        if (beat + 1 > m_settings.beats || (activeMarkersOnGrid[beat + 1] != null && (activeMarkersOnGrid[beat + 1].GetComponent<NoteMarker>().GetLastTimeSnapped() > marker.GetComponent<NoteMarker>().GetLastTimeSnapped())))//1/2
+                        if (beat + 1 > m_settings.beats || (activeMarkersArray[beat + 1] != null && (activeMarkersArray[beat + 1].GetComponent<FiducialController>().GetLastTimeSnapped() > m_fiducial.GetLastTimeSnapped())))//1/2
                             break;
                         else
                         {
                             if (width > 2)// mind 3/4
                             {
                                 //checks if third beat of the marker is not ok, if so: break
-                                if (beat - 1 < 0 || (activeMarkersOnGrid[beat - 1] != null && (activeMarkersOnGrid[beat - 1].GetComponent<NoteMarker>().GetLastTimeSnapped() > marker.GetComponent<NoteMarker>().GetLastTimeSnapped())))//3/4
+                                if (beat - 1 < 0 || (activeMarkersArray[beat - 1] != null && (activeMarkersArray[beat - 1].GetComponent<FiducialController>().GetLastTimeSnapped() > m_fiducial.GetLastTimeSnapped())))//3/4
                                     break;
                                 else
                                 {
                                     if (width > 3)// 4/4
                                     {
                                         //checks if fourth beat of the marker is not ok, if so: break
-                                        if (beat + 2 > m_settings.beats || (activeMarkersOnGrid[beat + 2] != null && (activeMarkersOnGrid[beat + 2].GetComponent<NoteMarker>().GetLastTimeSnapped() > marker.GetComponent<NoteMarker>().GetLastTimeSnapped())))//4/4
+                                        if (beat + 2 > m_settings.beats || (activeMarkersArray[beat + 2] != null && (activeMarkersArray[beat + 2].GetComponent<FiducialController>().GetLastTimeSnapped() > m_fiducial.GetLastTimeSnapped())))//4/4
                                             break;
-                                        this.ActivateMarkerOnBeatWithColor(marker, beat + 2, color); //4/4
+                                        this.ActivateMarkerOnBeatWithColor(marker, activeMarkersArray, beat + 2, color); //4/4
                                     }
-                                    this.ActivateMarkerOnBeatWithColor(marker, beat - 1, color); //3/4
+                                    this.ActivateMarkerOnBeatWithColor(marker, activeMarkersArray, beat - 1, color); //3/4
                                 }
                             }
-                            this.ActivateMarkerOnBeatWithColor(marker, beat + 1, color); //1/2
+                            this.ActivateMarkerOnBeatWithColor(marker, activeMarkersArray, beat + 1, color); //1/2
                         }
                     }
-                    this.ActivateMarkerOnBeatWithColor(marker, beat, color); //1/4
+                    this.ActivateMarkerOnBeatWithColor(marker, activeMarkersArray, beat, color); //1/4
                 }
             }
         }
     }
 
-    private void ActivateMarkerOnBeatWithColor(GameObject marker, int beat, Color color)
+    private void ActivateMarkerOnBeatWithColor(GameObject marker, GameObject[] activeMarkersArray, int beat, Color color)
     {
-        if (activeMarkersOnGrid[beat] != null)
+        if (activeMarkersArray[beat] != null)
         {
-            activeMarkersOnGrid[beat].GetComponent<ColorAccToPosition>().SetCurrentColor(grey);
-            this.RemoveMarkerFromActiveMarkersOnGrid(activeMarkersOnGrid[beat]);
+            activeMarkersArray[beat].GetComponent<ColorAccToPosition>().SetCurrentColor(grey);
+            this.RemoveMarkerFromActiveMarkersOnGrid(activeMarkersArray[beat], activeMarkersArray);
         }
-        activeMarkersOnGrid[beat] = marker;
+        activeMarkersArray[beat] = marker;
         marker.GetComponent<ColorAccToPosition>().SetCurrentColor(color); //if marker was deactivated/ grey
     }
 
-    private void RemoveMarkerFromActiveMarkersOnGrid(GameObject marker)
+    private void RemoveMarkerFromActiveMarkersOnGrid(GameObject marker, GameObject[] activeMarkersArray)
     {
-        for (int i = 0; i < activeMarkersOnGrid.Length; i++)
+        for (int i = 0; i < activeMarkersArray.Length; i++)
         {
-            if (activeMarkersOnGrid[i] == marker)
-                activeMarkersOnGrid[i] = null;
+            if (activeMarkersArray[i] == marker)
+                activeMarkersArray[i] = null;
         }
     }
 
     private void AddMarker(TuioObject tobj)
     {
         //prevents loopBar Markers to be added to lists
-        if (tobj.getSymbolID() != 34 && tobj.getSymbolID() != 35)
+        if (tobj.getSymbolID() != m_settings.startLoopBarMarkerID && tobj.getSymbolID() != m_settings.endLoopBarMarkerID)
         {
             GameObject currentMarker = markers[tobj.getSymbolID()];
 
@@ -224,32 +250,79 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     //when marker gets removed from table, remove from every coloured list and activeMarkersOnGrid array
     private void RemoveMarker(TuioObject tobj)
     {
-        GameObject currentMarker = markers[tobj.getSymbolID()];
+        if (tobj.getSymbolID() != m_settings.startLoopBarMarkerID && tobj.getSymbolID() != m_settings.endLoopBarMarkerID)
+        {
 
-        //remove from colored lists
-        if (redMarkers.Contains(currentMarker))
-        {
-            redMarkers.Remove(currentMarker);
-        }
-        else if (blueMarkers.Contains(currentMarker))
-        {
-            blueMarkers.Remove(currentMarker);
-        }
-        else if (greenMarkers.Contains(currentMarker))
-        {
-            greenMarkers.Remove(currentMarker);
-        }
+            GameObject currentMarker = markers[tobj.getSymbolID()];
+            GameObject[] currentList = activeMarkersOnGrid;
 
-        //remove from activeMarkersOnGrid array
-        RemoveMarkerFromActiveMarkersOnGrid(currentMarker);
+            //remove from colored lists
+            if (redMarkers.Contains(currentMarker))
+            {
+                redMarkers.Remove(currentMarker);
+                if (enableChords)
+                    currentList = activeREDMarkersOnGrid;
+            }
+            else if (blueMarkers.Contains(currentMarker))
+            {
+                blueMarkers.Remove(currentMarker);
+                if (enableChords)
+                    currentList = activeBLUEMarkersOnGrid;
+            }
+            else if (greenMarkers.Contains(currentMarker))
+            {
+                greenMarkers.Remove(currentMarker);
+                if (enableChords)
+                    currentList = activeGREENMarkersOnGrid;
+            }
+
+            //remove from activeMarkersOnGrid array
+            RemoveMarkerFromActiveMarkersOnGrid(currentMarker, currentList);
+        }
     }
 
-    //when changing color and/or beat
+    //keeps color allocation of markers up to date
     private void UpdateMarker(TuioObject tobj)
     {
-        //use threshold for movement
-        //TODO is this method needed?
-        //for logging only? - if so, add threshold
+        //prevents loopBar Markers to be added to lists
+        if (tobj.getSymbolID() != m_settings.startLoopBarMarkerID && tobj.getSymbolID() != m_settings.endLoopBarMarkerID)
+        {
+            GameObject currentMarker = markers[tobj.getSymbolID()];
+
+            //gets current color, adds marker to the according List and removes from other lists (if containing)
+            ColorAccToPosition m_colorAccToPosition = currentMarker.GetComponent<ColorAccToPosition>();
+            //updates sprite color - going too fast for loop in ColoAccToPosition script
+            m_colorAccToPosition.CheckColor();
+            Color m_color = currentMarker.GetComponent<SpriteRenderer>().color;
+
+            if (m_color == red && !redMarkers.Contains(currentMarker))
+            {
+                redMarkers.Add(currentMarker);
+
+                if (blueMarkers.Contains(currentMarker))
+                    blueMarkers.Remove(currentMarker);
+                else if (greenMarkers.Contains(currentMarker))
+                    greenMarkers.Remove(currentMarker);
+            }
+            else if (m_color == green && !greenMarkers.Contains(currentMarker))
+            {
+                greenMarkers.Add(currentMarker);
+
+                if (blueMarkers.Contains(currentMarker))
+                    blueMarkers.Remove(currentMarker);
+                else if (redMarkers.Contains(currentMarker))
+                    redMarkers.Remove(currentMarker);
+            }
+            else if (m_color == blue && !blueMarkers.Contains(currentMarker))
+            {
+                blueMarkers.Add(currentMarker);
+
+                if (greenMarkers.Contains(currentMarker))
+                    greenMarkers.Remove(currentMarker);
+                else if (redMarkers.Contains(currentMarker))
+                    redMarkers.Remove(currentMarker);
+            }
+        }
     }
 
     //callback method, adds TuioObject to the list of active tuioObjects
