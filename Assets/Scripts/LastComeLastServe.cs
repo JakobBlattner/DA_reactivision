@@ -363,7 +363,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
 
     internal GameObject[] GetActiveMarkers(Color color)
     {
-        if (enableChords)
+        if (!enableChords)
             return activeMarkersOnGrid;
         else if (color == m_settings.red)
             return activeREDMarkersOnGrid;

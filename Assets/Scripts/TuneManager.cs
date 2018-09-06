@@ -11,7 +11,7 @@ public class TuneManager : MonoBehaviour
 {
     public LoopController startController;
     public LoopController endController;
-    public LocationBar m_locationBar;
+    public LineRenderer m_locationBarLineRenderer;
 
     public Vector3 locationBarOffset = new Vector3(0.1f, 0.1f, 0); //TODO Set as time threshold 
     public int lastSentNote = 0;
@@ -41,7 +41,7 @@ public class TuneManager : MonoBehaviour
     void Start()
     {
         m_settings = Settings.Instance;
-        m_locationBar = Component.FindObjectOfType<LocationBar>();
+        m_locationBarLineRenderer = Component.FindObjectOfType<LocationBar>().GetComponent<LineRenderer>();
         m_lastComeLastServe = Component.FindObjectOfType<LastComeLastServe>();
         m_tokenposition = TokenPosition.Instance;
 
@@ -80,12 +80,12 @@ public class TuneManager : MonoBehaviour
     {
         //--> beat + 1 darf nicht mehr verändert werden-- > threshold
         // TODO: add edge case handling if duration > 1 and tactPostWithOffset == 0
-        int tactPosWithOffset = this.m_locationBar.GetTactPosition(this.m_locationBar.transform.position - locationBarOffset);
+        int tactPosWithOffset = m_tokenposition.GetTactPosition(this.m_locationBarLineRenderer.GetPosition(0) - locationBarOffset);
 
         if (tactPosWithOffset != oldTactPos)
         {
             lastSentNote = tactPosWithOffset;
-            int nextBeat = tactPosWithOffset == 16 ? 1 : tactPosWithOffset + 1;
+            int nextBeat = tactPosWithOffset < m_settings.beats ? tactPosWithOffset + 1 : 1;
 
             //reads active markers dependend on enabled chords or not
             if (!enableChords)
@@ -128,7 +128,7 @@ public class TuneManager : MonoBehaviour
                 Debug.Log("Marker " + id + " on string " + (i + 1)+  " with fret " + tuneHeight + " will be played for " + duration + ".");
             }
             else
-                messageToSend += "," + -1 + "," + -1 + "," + -1 + "," + -1;
+                messageToSend += "," + -1 + "," + -1 + "," + -1;
         }
 
         lastSentNote++;
