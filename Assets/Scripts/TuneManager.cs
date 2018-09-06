@@ -128,7 +128,7 @@ public class TuneManager : MonoBehaviour
                 Debug.Log("Marker " + id + " on string " + (i + 1)+  " with fret " + tuneHeight + " will be played for " + duration + ".");
             }
             else
-                messageToSend += "," + -1 + "," + -1 + "," + -1 + "," + -1;
+                messageToSend += "," + -1 + "," + -1 + "," + -1;
         }
 
         lastSentNote++;
