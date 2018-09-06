@@ -91,7 +91,12 @@ public class TuneManager : MonoBehaviour
             if (!enableChords)
             {
                 activeMarkers = m_lastComeLastServe.GetActiveMarkers(Color.white);
-                this.SendNote(new GameObject[] { activeMarkers[tactPosWithOffset] }, new bool[] { activeMarkers[nextBeat] == null });
+                GameObject[] arrayToSend = new GameObject[3];
+
+                //calculates string on guitar which will be played and sets the tune to be played on the position of the array assigned to the string
+                arrayToSend[m_tokenposition.GetNote(activeMarkers[tactPosWithOffset].transform.position) / tunesPerString] = activeMarkers[tactPosWithOffset];
+
+                this.SendNote(arrayToSend, new bool[] { activeMarkers[nextBeat] == null });
             }
             else
             {
@@ -111,16 +116,19 @@ public class TuneManager : MonoBehaviour
 
         for (int i = 0; i < notesToSend.Length; i++)
         {
-            int id = notesToSend[i].GetComponent<FiducialController>().MarkerID;
-            int duration = (int)(Settings.GetMarkerWidhMultiplier(id) * 2);
-            int tuneHeight = m_tokenposition.GetNote(notesToSend[i].transform.position);
-            int guitarString = tuneHeight / tunesPerString;
-            tuneHeight = tuneHeight % tunesPerString;
-            //if the next beat is empty --> damping = 1, else damping = 0 
-            int damping = isNextBeatEmpty[i] ? 1 : 0;
+            if (notesToSend[i] != null)
+            {
+                int id = notesToSend[i].GetComponent<FiducialController>().MarkerID;
+                int duration = (int)(Settings.GetMarkerWidhMultiplier(id) * 2);
+                int tuneHeight = m_tokenposition.GetNote(notesToSend[i].transform.position) % tunesPerString;
+                //if the next beat is empty --> damping = 1, else damping = 0 
+                int damping = isNextBeatEmpty[i] ? 1 : 0;
 
-            messageToSend += "," + guitarString + "," + tuneHeight + "," + duration + "," + damping;
-            Debug.Log("Marker " + id + " with fret " + tuneHeight + " on string " + guitarString + " will be played for " + duration + ".");
+                messageToSend += "," + tuneHeight + "," + duration + "," + damping;
+                Debug.Log("Marker " + id + " on string " + (i + 1)+  " with fret " + tuneHeight + " will be played for " + duration + ".");
+            }
+            else
+                messageToSend += "," + -1 + "," + -1 + "," + -1 + "," + -1;
         }
 
         lastSentNote++;
