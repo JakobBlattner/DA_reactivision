@@ -183,12 +183,13 @@ public class FiducialController : MonoBehaviour
             }
             else
             {
+                //
                 Vector3 newPos = m_TokenPosition.CalculateGridPosition(MarkerID, CameraOffset, isLoopBarMarker, isJoker, this, Camera.main.WorldToScreenPoint(oldPosition));
-                if (newPos != oldPosition)//m_TokenPosition.MovedFurtherThanThreshold(Camera.main.WorldToScreenPoint(newPos), Camera.main.WorldToScreenPoint(oldPosition)))
-                {
-                    transform.position = newPos;
+                if (isSnapped && oldPosition != newPos)
                     oldPosition = newPos;
-                }
+                transform.position = newPos;
+
+
                 /* written by the librarys author
                 Vector3 position = new Vector3(xPos * Screen.width,
                     (1 - yPos) * Screen.height, this.CameraOffset);
