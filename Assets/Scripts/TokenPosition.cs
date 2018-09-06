@@ -26,8 +26,8 @@ public class TokenPosition
     private Vector2 worldDiff;
 
     //for Movement threshold
-    private float movementThreshold;
-    private Vector3 correctOldPos;
+    private Vector2 movementThreshold;
+    private Vector3 realOldPos;
 
     private TuioManager m_tuioManager;
     private Settings m_settings;
@@ -102,31 +102,29 @@ public class TokenPosition
         {
             //reads correctOldPos if marker is a JokerMarkers
             if (isJoker)
-                correctOldPos = new Vector3(oldPositionInScreen.x, fiducialController.gameObject.GetComponent<JokerMarker>().GetRealYPosition(), oldPositionInScreen.z);
+                realOldPos = new Vector3(oldPositionInScreen.x, fiducialController.gameObject.GetComponent<JokerMarker>().GetRealOldYPosition(), oldPositionInScreen.z);
 
             //...and the new position is NOT far away enough from the old position (different for Joker Markers), then set position to oldPosition 
-            if (isJoker ? Vector2.Distance(position, correctOldPos) < movementThreshold : Vector2.Distance(position, oldPositionInScreen) < movementThreshold)
+            if (isJoker ? !this.MovedFurtherThanThreshold(position, realOldPos, isJoker) : !this.MovedFurtherThanThreshold(position, oldPositionInScreen, isJoker))
                 position = oldPositionInScreen;
             //...and the new position is far away enoug from the old position, set snapped to false
-            else
+            else if (this.MovedFurtherThanThreshold(position, oldPositionInScreen, isJoker))
                 fiducialController.SetIsSnapped(false);
         }
         //otherwise, if marker is NOT snapped...
         else if (!fiducialController.IsSnapped())
         {
-            //...and motion speed is zero, snap him to nearest grid position and set snapped to true
+            //...and motion speed is zero, snap him to nearest grid position, set snapped to true and save the time of snapping (for lastcomelastserve algorithm)
             if (m_obj.getMotionSpeed() == 0)
             {
                 #region X-Axis
-                position.x = this.CalculateXPosition(position, isLoopBarMarker, Settings.GetMarkerWithMultiplier(markerID));
+                position.x = this.CalculateXPosition(position, isLoopBarMarker, Settings.GetMarkerWidhMultiplier(markerID));
                 #endregion
 
                 #region Y-Axis
                 //suggests the y Position because it's a joker marker
                 if (isJoker)
-                {
                     position.y = fiducialController.gameObject.GetComponent<JokerMarker>().CalculateYPosition(position, fiducialController);
-                }
                 //doesn't move object on y-axis, when it's a LoopBarMarker
                 else if (!isLoopBarMarker)
                 {
@@ -153,7 +151,7 @@ public class TokenPosition
                 #endregion
 
                 fiducialController.SetIsSnapped(true);
-                fiducialController.gameObject.GetComponent<NoteMarker>().SetLastTimeSnapped(Time.time);
+                fiducialController.SetLastTimeSnapped(Time.time);
             }
             //if the marker is moving, the position will be set in the return statement
             //else{}
@@ -187,6 +185,11 @@ public class TokenPosition
         }
         position.x += (widthOffsetInPx + snappingDistance);
         return position.x;
+    }
+
+    public bool MovedFurtherThanThreshold(Vector3 pos1, Vector3 pos2, bool isJoker)
+    {
+        return isJoker? Math.Abs(pos1.x - pos2.x) > movementThreshold.x : (Math.Abs(pos1.x - pos2.x) > movementThreshold.x || Math.Abs(pos1.y - pos2.y) > movementThreshold.y);
     }
 
     #region For OuterLinesForOrientation

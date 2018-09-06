@@ -9,7 +9,7 @@ public class JokerMarker : MonoBehaviour
     private int numberOfTunes;
     //private Dictionary<int, Vector3> jokerMarker;
     private Vector3 oldPosition;
-    private float realYPosition;
+    private float realOldYPosition;
     private SpriteRenderer[] childrenSpriteRenderer;
     private SpriteRenderer m_sRend;
     private Settings m_settings;
@@ -45,8 +45,8 @@ public class JokerMarker : MonoBehaviour
             if (oldPosition == Vector3.back)
             {
                 //TODO: check if needs to be rewritten to: switch to nearest pentatonic position
-                Debug.Log("User changed position of Joker with ID " + fiducialController.MarkerID);
-                realYPosition = pos.y;
+                Debug.Log("Joker Marker " + fiducialController.MarkerID + "has been set.");
+                realOldYPosition = pos.y;
                 pos.y = heightOffSet + pentatonicTunes[(int)Random.Range(0, pentatonicTunes.Length)] * cellHeightInPx - cellHeightInPx / 2;
                 oldPosition = pos;
 
@@ -81,8 +81,8 @@ public class JokerMarker : MonoBehaviour
         }
     }
 
-    public float GetRealYPosition()
+    public float GetRealOldYPosition()
     {
-        return realYPosition;
+        return realOldYPosition;
     }
 }

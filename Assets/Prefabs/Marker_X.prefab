@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4603114484922352}
   - component: {fileID: 212873842367819186}
   - component: {fileID: 114448333054319800}
-  - component: {fileID: 114595937076349414}
   - component: {fileID: 114804873815064360}
   - component: {fileID: 114614251169622152}
   - component: {fileID: 114127332647231322}
@@ -76,20 +75,6 @@ MonoBehaviour:
   CameraOffset: 10
   RotateAround: 1
   RotationMultiplier: 1
---- !u!114 &114595937076349414
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1605195690530796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d21892b808fab4291ba9f7f28056f475, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lastPosition: {x: 0, y: 0}
-  duration: 0
-  fiducialController: {fileID: 0}
 --- !u!114 &114614251169622152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -101,10 +86,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f234f674185354ca11cf79ac0cb9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blue: {r: 0, g: 0.011764706, b: 1, a: 1}
-  red: {r: 0.85882354, g: 0, b: 0, a: 1}
-  green: {r: 0, g: 0.77254903, b: 0.023529412, a: 1}
-  currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114804873815064360
 MonoBehaviour:
   m_ObjectHideFlags: 1
