@@ -6,6 +6,7 @@ using UnityEngine;
 using TUIO;
 using UniducialLibrary;
 using System.IO;
+using System.Linq;
 
 public class TuneManager : MonoBehaviour
 {
@@ -117,10 +118,28 @@ public class TuneManager : MonoBehaviour
                 }
                 if (serialPort.IsOpen)
                 {
-                    serialPort.WriteLine(msgIndex + "," + s + "," + f + "," + noteMarker.duration + "," + damping);
-                    Debug.Log("[LOG: wrote cmd: ]" + msgIndex + "," + s + "," + f + "," + noteMarker.duration + "," + damping);
+                    // FOR TESTING ONLY - TODO: get this from lastcomelastserve in future
+                    int noteMarkerFret0 = 1;
+                    int noteMarkerFret1 = 2;
+                    int noteMarkerFret2 = 3;
+
+                    int noteMarkerDuration0 = 1;
+                    int noteMarkerDuration1 = 1;
+                    int noteMarkerDuration2 = 2;
+
+                    int noteMarkerDamping0 = 0;
+                    int noteMarkerDamping1 = 1;
+                    int noteMarkerDamping2 = 1;
+                    int[] cmdArray = {msgIndex, this.locationBar.bpm, noteMarkerFret0, noteMarkerDuration0, noteMarkerDamping0, noteMarkerFret1, noteMarkerDuration1, noteMarkerDamping1, noteMarkerFret2, noteMarkerDuration2, noteMarkerDamping2};
+                    // FOR TESTING ONLY
+                    /*
+                     * Message format is message index, bpm, 1st NOTE, 2nd NOTE, 3rd NOTE
+                     * NOTE format is fret(<0 if pause), duration(1|2|3|4), damping(0|1)
+                     */
+                    serialPort.WriteLine(string.Join(",", Array.ConvertAll(cmdArray, x => x.ToString())));
+                    Debug.Log("[LOG: wrote cmd: ]" + string.Join(",", Array.ConvertAll(cmdArray, x => x.ToString())));
                 }
-                Debug.Log("Marker " + noteMarker.fiducialController.MarkerID + " with Note " + noteToSend + " has been played for " + noteMarker.duration);
+                Debug.Log("Marker " + noteMarker.fiducialController.MarkerID + " with Note " + noteToSend + " has been played for " + noteMarker.duration); //most likely remove this, because timing issues
                 /*do // wait until received msg starts with last sent id
                 {
                     receivedMsg = serialPort.ReadExisting();
