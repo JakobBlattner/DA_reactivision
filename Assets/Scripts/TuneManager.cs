@@ -6,6 +6,7 @@ using UnityEngine;
 using TUIO;
 using UniducialLibrary;
 using System.IO;
+using System.Linq;
 
 public class TuneManager : MonoBehaviour
 {
@@ -17,10 +18,9 @@ public class TuneManager : MonoBehaviour
     public int lastSentNote = 0;
 
     private static SerialPort serialPort;
-    private static String[] serialPortNames = { "COM5", "/dev/cu.usbmodem1411", "/dev/cu.usbmodem1421" };
-    private static int serialBaudrate = 9600;
-
-    private string receivedMsg = "";
+    private static String[] serialPortNames = {"COM1", "COM2", "COM3", "COM4", "COM5", "/dev/cu.usbmodem1411", "/dev/cu.usbmodem1421" };
+    private int serialBaudrate = 9600;
+    private String receivedMsg = "";
     private int msgIndex = 0;
     private int damping = 0;
     private string messageToSend;
