@@ -132,8 +132,8 @@ public class LocationBar : MonoBehaviour
         return TokenPosition.Instance.GetTactPosition(pos);
     }
 
-    public int GetNote(Vector2 pos)
+    /*public int GetNote(Vector2 pos)
     {
         return TokenPosition.Instance.GetNote(pos);
-    }
+    }*/
 }

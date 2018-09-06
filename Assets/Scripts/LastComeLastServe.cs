@@ -128,7 +128,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                 //TODO change to get key from marker dictionary
                 int width = (int)(Settings.GetMarkerWidhMultiplier(activeMarkersArray[i].GetComponent<FiducialController>().MarkerID) * 2);
 
-                if ((i != m_tokenPosition.GetTactPosition(activeMarkersArray[i].transform.position) - 1))//1/4
+                if ((i != m_tokenPosition.GetTactPosition(activeMarkersArray[i].transform.position)))//1/4
                     activeMarkersArray[i] = null;
 
                 //if chords are enabled and the color of the current marker is not the color of the current string being checked
@@ -155,7 +155,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
         foreach (GameObject marker in markerList)
         {
             //gets beat on which the the marker lies on
-            int beat = m_tokenPosition.GetTactPosition(marker.transform.position) - 1;
+            int beat = m_tokenPosition.GetTactPosition(marker.transform.position);
             FiducialController m_fiducial = marker.GetComponent<FiducialController>();
 
             //checks if this marker isn't already the one in the activeMarker list
@@ -195,7 +195,8 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                         }
                     }
                     this.ActivateMarkerOnBeatWithColor(marker, activeMarkersArray, beat, color); //1/4
-                    Debug.Log("Marker " + m_fiducial.MarkerID + " with length " + width + " got activated on beat " + (beat + 1) + ".");
+                    //TODO send correct message for individual marker width
+                    Debug.Log("Marker " + m_fiducial.MarkerID + " with length " + width + " got activated on beat " + beat + ".");
                 }
             }
         }
