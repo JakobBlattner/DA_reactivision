@@ -124,7 +124,7 @@ public class Settings : MonoBehaviour
         endLoopBarMarkerID = GameObject.FindGameObjectsWithTag(loopMarkerTag)[1].GetComponent<FiducialController>().MarkerID;
     }
 
-    public static float GetMarkerWidhMultiplier(int markerID)
+    public float GetMarkerWidthMultiplier(int markerID)
     {
         return markerID < lastIndexOfOneFourthMarker ? 0.5f : (markerID < lastIndexOfOneHalfMarker ? 1 : (markerID < lastIndexOfThreeFourthMarker ? 1.5f : 2));
     }

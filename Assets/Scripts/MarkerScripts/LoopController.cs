@@ -46,7 +46,8 @@ public class LoopController : MonoBehaviour
         m_tokenPosition = TokenPosition.Instance;
         m_locationBar = FindObjectsOfType<LocationBar>()[0];
         m_fiducialController = this.GetComponent<FiducialController>();
-        newPos = new Vector3(startMarker ? m_tokenPosition.GetXPosForBeat(0, false) : m_tokenPosition.GetXPosForBeat(15, false), transform.position.y, transform.position.z);
+        transform.position = new Vector3(startMarker ? m_tokenPosition.GetXPosForBeat(0) : m_tokenPosition.GetXPosForBeat(16), transform.position.y, transform.position.z);
+        newPos = transform.position;
     }
 
     void Update()

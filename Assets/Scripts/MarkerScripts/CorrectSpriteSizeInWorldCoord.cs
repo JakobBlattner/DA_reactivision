@@ -8,6 +8,6 @@ public class CorrectSpriteSizeInWorldCoord : MonoBehaviour
     {
         Settings m_settings = Settings.Instance;
         float lengthAndHeight = m_settings.cellSizeWorld.x;
-        transform.localScale = new Vector2(lengthAndHeight * Settings.GetMarkerWidhMultiplier(GetComponent<FiducialController>().MarkerID), lengthAndHeight/2);
+        transform.localScale = new Vector2(lengthAndHeight * (transform.parent.name.Equals("TestMarkers") ? 0.5f : m_settings.GetMarkerWidthMultiplier(GetComponent<FiducialController>().MarkerID)), lengthAndHeight/2);
     }
 }

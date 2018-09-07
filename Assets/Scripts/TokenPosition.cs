@@ -118,7 +118,7 @@ public class TokenPosition
             if (m_obj.getMotionSpeed() == 0)
             {
                 #region X-Axis
-                position.x = this.CalculateXPosition(position, isLoopBarMarker, Settings.GetMarkerWidhMultiplier(markerID));
+                position.x = this.CalculateXPosition(position, isLoopBarMarker, m_settings.GetMarkerWidthMultiplier(markerID));
                 #endregion
 
                 #region Y-Axis
@@ -128,7 +128,7 @@ public class TokenPosition
                 //doesn't move object on y-axis, when it's a LoopBarMarker
                 else if (!isLoopBarMarker)
                 {
-                    float snappingDistance = cellHeightInPx / 2;
+                    float snappingDistance = 0;// cellHeightInPx / 2;
 
                     //if marker is below grid area
                     if (position.y < heightOffsetInPx + snappingDistance)
@@ -162,9 +162,9 @@ public class TokenPosition
     //In screen space
     public float CalculateXPosition(Vector3 position, bool isLoopBarMarker, float markerWidthMultiplier)
     {
-        float snappingDistance = cellWidthInPx / 2 + cellWidthInPx * markerWidthMultiplier;//different marker sizes have effects on snapping distances
-        if (isLoopBarMarker)
-            snappingDistance = cellWidthInPx / 2;
+        float snappingDistance = /*cellWidthInPx / 2 +*/ cellWidthInPx * markerWidthMultiplier;//different marker sizes have effects on snapping distances
+
+        if (isLoopBarMarker) snappingDistance = 0;
 
         //if marker is below grid area
         if (position.x < widthOffsetInPx + snappingDistance)
@@ -189,13 +189,13 @@ public class TokenPosition
 
     public bool MovedFurtherThanThreshold(Vector3 pos1, Vector3 pos2, bool isJoker)
     {
-        return isJoker? Math.Abs(pos1.x - pos2.x) > movementThreshold.x : (Math.Abs(pos1.x - pos2.x) > movementThreshold.x || Math.Abs(pos1.y - pos2.y) > movementThreshold.y);
+        return isJoker ? Math.Abs(pos1.x - pos2.x) > movementThreshold.x : (Math.Abs(pos1.x - pos2.x) > movementThreshold.x || Math.Abs(pos1.y - pos2.y) > movementThreshold.y);
     }
 
-    #region For OuterLinesForOrientation
-    public float GetXPosForBeat(int beat, bool getCenterCoordinates)
+    #region For OuterLinesForOrientation.cs and LoopController.cs Start()
+    public float GetXPosForBeat(int beat)
     {
-        return Camera.main.ScreenToWorldPoint(new Vector3(beat * cellWidthInPx + widthOffsetInPx + (getCenterCoordinates ? cellWidthInPx / 2 : 0), 0, 0)).x;
+        return Camera.main.ScreenToWorldPoint(new Vector3(beat * cellWidthInPx + widthOffsetInPx, 0, 0)).x;
     }
 
     public float GetYPosForTune(int tune)

@@ -31,6 +31,8 @@ public class FiducialController : MonoBehaviour
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
 
+    public bool testMarker;
+
     //translation
     public bool IsPositionMapped = false;
     public bool InvertX = false;
@@ -84,7 +86,7 @@ public class FiducialController : MonoBehaviour
             Debug.LogWarning("Rotation of GUIText or GUITexture is not supported. Use a plane with a texture instead.");
             this.m_ControlsGUIElement = true;
         }
-
+        this.testMarker = transform.parent.name.Equals("TestMarkers");
         this.m_ScreenPosition = Vector2.zero;
         this.m_WorldPosition = Vector3.zero;
         this.m_Direction = Vector2.zero;
@@ -183,19 +185,23 @@ public class FiducialController : MonoBehaviour
             }
             else
             {
-                //
-                Vector3 newPos = m_TokenPosition.CalculateGridPosition(MarkerID, CameraOffset, isLoopBarMarker, isJoker, this, Camera.main.WorldToScreenPoint(oldPosition));
-                if (isSnapped && oldPosition != newPos)
-                    oldPosition = newPos;
-                transform.position = newPos;
 
-
-                /* written by the librarys author
-                Vector3 position = new Vector3(xPos * Screen.width,
-                    (1 - yPos) * Screen.height, this.CameraOffset);
-                this.m_WorldPosition = this.m_MainCamera.ScreenToWorldPoint(position);
-                //worldPosition += cameraOffset * mainCamera.transform.forward;
-                transform.position = this.m_WorldPosition;*/
+                if (testMarker)
+                {
+                    // written by the librarys author
+                    Vector3 position = new Vector3(xPos * Screen.width, (1 - yPos) * Screen.height, this.CameraOffset);
+                    this.m_WorldPosition = this.m_MainCamera.ScreenToWorldPoint(position - new Vector3(20, -10, 0));
+                    m_WorldPosition += CameraOffset * m_MainCamera.transform.forward;
+                    transform.position = this.m_WorldPosition;
+                }
+                else
+                {
+                    //
+                    Vector3 newPos = m_TokenPosition.CalculateGridPosition(MarkerID, CameraOffset, isLoopBarMarker, isJoker, this, Camera.main.WorldToScreenPoint(oldPosition));
+                    if (isSnapped && oldPosition != newPos)
+                        oldPosition = newPos;
+                    transform.position = newPos;
+                }
             }
         }
 

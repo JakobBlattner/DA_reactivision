@@ -31,9 +31,9 @@ public class OuterLinesForOrientation : MonoBehaviour
         float xPos;
 
         //spawns number of beats Outer_Line_For_Orientation prefabs in loop for Top and Bottom
-        for (int i = 0; i < m_settings.beats; i++)
+        for (int i = 0; i < m_settings.beats + 1; i++)
         {
-            xPos = m_tokenPosition.GetXPosForBeat(i, false);
+            xPos = m_tokenPosition.GetXPosForBeat(i);
             GameObject currentGO = Instantiate(prefab, new Vector3(xPos, topYPos, 0), Quaternion.identity);
             currentGO.transform.parent = this.transform;
             currentGO = Instantiate(prefab, new Vector3(xPos, bottomYPos, 0), Quaternion.identity);
