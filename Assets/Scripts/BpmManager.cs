@@ -46,7 +46,7 @@ public class BpmManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (serialConnected && serialPort.IsOpen && serialPort.BytesToRead > 0)
+        if (serialConnected && serialPort.IsOpen)
         {
             //bpm = Int32.Parse(serialPort.ReadExisting().Trim());
 

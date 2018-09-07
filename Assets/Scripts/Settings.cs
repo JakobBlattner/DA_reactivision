@@ -17,7 +17,7 @@ public class Settings : MonoBehaviour
     //communication values
     public readonly int serialBaudrate = 9600;
     public readonly string[] serialPortNames = { "COM1", "COM2", "COM3", "COM4", "/dev/cu.usbmodem1421" };
-    public readonly string[] serialPortNamesBpm = { "COM5", "/dev/cu.usbmodem1411" };
+    public readonly string[] serialPortNamesBpm = { "COM6", "/dev/cu.usbmodem1411" };
     public readonly Vector2 locationBarOffset;
 
     //color values

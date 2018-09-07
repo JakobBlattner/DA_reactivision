@@ -16,6 +16,8 @@ public class LocationBar : MonoBehaviour
     private LineRenderer m_lineRenderer;
     private BpmManager bpmManager;
 
+    private Rigidbody2D m_rigidbody2D;
+
     //for in update loop calculation
     private float timeForTotalDistance;
     private float cellsBetweenBars;
@@ -31,7 +33,7 @@ public class LocationBar : MonoBehaviour
 
     void Start()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(100,0);
+        m_rigidbody2D = GetComponent<Rigidbody2D>();
 
         m_settings = Settings.Instance;
         m_tokenPostion = TokenPosition.Instance;
@@ -58,6 +60,9 @@ public class LocationBar : MonoBehaviour
         //sets first two points of line renderer
         this.ResetLoop();
         startTime = Time.time;
+
+        this.transform.position = new Vector3(startBarPosition.x, transform.position.y, transform.position.z);
+        m_rigidbody2D.velocity = new Vector2(1, 0);
     }
 
     void FixedUpdate()
@@ -86,6 +91,14 @@ public class LocationBar : MonoBehaviour
         //resets loop if endBar has been reached by current_location_bar
         if (lerpVec.x >= endBarPosition.x)
             this.ResetLoop();
+
+        //----------------------------------------------------------------------for velocity approach
+        bpm = bpmManager.getBpm();
+        m_rigidbody2D.velocity = new Vector2(1/bpm, 0);
+
+
+        if (this.transform.position.x > endBarPosition.x)
+            this.transform.position = new Vector3(startBarPosition.x, transform.position.y, transform.position.z);
     }
 
 
@@ -148,9 +161,4 @@ public class LocationBar : MonoBehaviour
     public int GetTactPosition(Vector2 pos) {
         return TokenPosition.Instance.GetTactPosition(pos);
     }
-
-    /*public int GetNote(Vector2 pos)
-    {
-        return TokenPosition.Instance.GetNote(pos);
-    }*/
 }
