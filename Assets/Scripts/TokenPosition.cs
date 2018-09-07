@@ -193,9 +193,9 @@ public class TokenPosition
     }
 
     #region For OuterLinesForOrientation
-    public float GetXPosForBeat(int beat)
+    public float GetXPosForBeat(int beat, bool getCenterCoordinates)
     {
-        return Camera.main.ScreenToWorldPoint(new Vector3(beat * cellWidthInPx + widthOffsetInPx + cellWidthInPx / 2, 0, 0)).x;
+        return Camera.main.ScreenToWorldPoint(new Vector3(beat * cellWidthInPx + widthOffsetInPx + (getCenterCoordinates ? cellWidthInPx / 2 : 0), 0, 0)).x;
     }
 
     public float GetYPosForTune(int tune)

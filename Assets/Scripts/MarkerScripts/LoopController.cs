@@ -42,11 +42,11 @@ public class LoopController : MonoBehaviour
         if (counter == 0)
             Debug.LogError("No Loop Start GameObject defined. Must be exactely one.");
 
-        newPos = this.transform.position;
         m_tuioManager = TuioManager.Instance;
         m_tokenPosition = TokenPosition.Instance;
         m_locationBar = FindObjectsOfType<LocationBar>()[0];
         m_fiducialController = this.GetComponent<FiducialController>();
+        newPos = new Vector3(startMarker ? m_tokenPosition.GetXPosForBeat(0, false) : m_tokenPosition.GetXPosForBeat(15, false), transform.position.y, transform.position.z);
     }
 
     void Update()
