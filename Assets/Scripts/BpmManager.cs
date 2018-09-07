@@ -15,26 +15,26 @@ public class BpmManager : MonoBehaviour {
     private static String[] serialPortNames;
     private int serialBaudrate;
     private String receivedMsg = "";
-
+    private Boolean serialConnected = false;
 
 	// Use this for initialization
 	void Start () {
         m_settings = Settings.Instance;
-        bpm = m_settings.bpm;
-        Boolean serialConnected = false;
-        for (int i = 0; i < serialPortNames.Length && !serialConnected; i++)
+        this.bpm = m_settings.bpm;
+
+        for (int i = 0; i < m_settings.serialPortNamesBpm.Length && !serialConnected; i++)
         {
             try
             {
-                Debug.Log("Trying to open serial connection on port: " + serialPortNames[i]);
-                serialPort = new SerialPort(serialPortNames[i], serialBaudrate);
+                Debug.Log("Trying to open serial connection on port: " + m_settings.serialPortNamesBpm[i]);
+                serialPort = new SerialPort(m_settings.serialPortNamesBpm[i], m_settings.serialBaudrate);
                 serialPort.Open();
-                Debug.Log("Opened serial connection on port: " + serialPortNames[i]);
+                Debug.Log("Opened serial connection on port: " + m_settings.serialPortNamesBpm[i]);
                 serialConnected = true;
             }
             catch (IOException)
             {
-                Debug.Log("Failed to open serial connection on port: " + serialPortNames[i]);
+                Debug.Log("Failed to open serial connection on port: " + m_settings.serialPortNamesBpm[i]);
             }
         }
         if (!serialConnected)
@@ -46,10 +46,34 @@ public class BpmManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (serialPort.IsOpen)
+        if (serialConnected && serialPort.IsOpen && serialPort.BytesToRead > 0)
         {
-            bpm = Int32.Parse(serialPort.ReadExisting().Trim());
-            Debug.Log("[LOG: received BPM: ]" + bpm);
+            //bpm = Int32.Parse(serialPort.ReadExisting().Trim());
+
+            try{
+                receivedMsg = serialPort.ReadExisting().Trim();
+                if (receivedMsg.Contains(";"))
+                {
+                    int bpmVal = Int32.Parse(receivedMsg.Split(';')[0]);
+                    if(bpmVal >= 60){
+                        bpm = bpmVal;
+                        Debug.Log("[LOG: received BPM: ]" + bpm);        
+                    }
+                }
+            }
+            catch (OverflowException)
+            {
+                ; // ignore this too
+            }
+            catch (FormatException) 
+            {
+                ; // ignore this
+            }
+
         }
 	}
+
+    public int getBpm() {
+        return bpm;
+    }
 }

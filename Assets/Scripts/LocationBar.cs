@@ -14,12 +14,14 @@ public class LocationBar : MonoBehaviour
     private TokenPosition m_tokenPostion;
     private Settings m_settings;
     private LineRenderer m_lineRenderer;
+    private BpmManager bpmManager;
 
     //for in update loop calculation
     private float timeForTotalDistance;
     private float cellsBetweenBars;
     private float speed;
     private float lengthTravelledInPercent;
+    private float oldLengthTravelledInPercent = -1;
 
     private float cellWidth;
     private int msPerCell;
@@ -29,10 +31,13 @@ public class LocationBar : MonoBehaviour
 
     void Start()
     {
+        GetComponent<Rigidbody2D>().velocity = new Vector2(100,0);
+
         m_settings = Settings.Instance;
         m_tokenPostion = TokenPosition.Instance;
         m_lineRenderer = this.GetComponent<LineRenderer>();
 
+        bpmManager = Component.FindObjectOfType<BpmManager>();
         GameObject[] loopMarkers = GameObject.FindGameObjectsWithTag(m_settings.loopMarkerTag);
 
         foreach (GameObject loopMarker in loopMarkers)
@@ -62,6 +67,15 @@ public class LocationBar : MonoBehaviour
 
         currentTime = Time.time;
         lengthTravelledInPercent = ((currentTime - startTime) * speed) / totalDistance;
+        if(lengthTravelledInPercent >= oldLengthTravelledInPercent)
+        {
+            oldLengthTravelledInPercent = lengthTravelledInPercent;
+        }
+        else
+        {
+            lengthTravelledInPercent = oldLengthTravelledInPercent; // + 0.001f;   
+        }
+            
 
         Vector3 lerpVec = Vector3.Lerp(startBarPosition, endBarPosition, lengthTravelledInPercent);
 
@@ -82,6 +96,7 @@ public class LocationBar : MonoBehaviour
         m_lineRenderer.SetPosition(1, new Vector3(startBarPosition.x, 5 /*equals max y position in px*/, 10));
 
         startTime = Time.time;
+        oldLengthTravelledInPercent = -1;
     }
 
     //Sets new position of StartBar in screen space
@@ -121,6 +136,8 @@ public class LocationBar : MonoBehaviour
 
     private void UpdateValues()
     {
+        bpm = bpmManager.getBpm();
+        msPerCell = 60000 / bpm; //in ms
         cellsBetweenBars = totalDistance / cellWidth;
         timeForTotalDistance = (cellsBetweenBars * msPerCell) / 1000;
         speed = (totalDistance / timeForTotalDistance);
