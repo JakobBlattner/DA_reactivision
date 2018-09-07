@@ -7,6 +7,7 @@ public class NoteMarker : MonoBehaviour
     public int duration = 0;
 
     public FiducialController fiducialController;
+    private Settings m_settings;
 
     // TODO: May depend on BPM
     private readonly float lastTimeMovedThreshold = 2.2534f;
@@ -16,7 +17,8 @@ public class NoteMarker : MonoBehaviour
     {
         // Determine the duration
         fiducialController = this.GetComponent<FiducialController>();
-        duration = (int)(Settings.GetMarkerWidhMultiplier(fiducialController.MarkerID) * 2);// 1 = 1/4, 2 = 2/4, 3 = 3/4, 4 = 4/4
+        m_settings = Settings.Instance;
+        duration = (int)(m_settings.GetMarkerWidthMultiplier(fiducialController.MarkerID) * 2);// 1 = 1/4, 2 = 2/4, 3 = 3/4, 4 = 4/4
     }
 
     void Update()

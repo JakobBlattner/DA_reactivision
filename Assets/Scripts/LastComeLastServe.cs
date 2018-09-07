@@ -126,7 +126,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
             if (activeMarkersArray[i] != null)
             {
                 //TODO change to get key from marker dictionary
-                int width = (int)(Settings.GetMarkerWidhMultiplier(activeMarkersArray[i].GetComponent<FiducialController>().MarkerID) * 2);
+                int width = (int)(m_settings.GetMarkerWidthMultiplier(activeMarkersArray[i].GetComponent<FiducialController>().MarkerID) * 2);
 
                 if ((i != m_tokenPosition.GetTactPosition(activeMarkersArray[i].transform.position)))//1/4
                     activeMarkersArray[i] = null;
@@ -161,7 +161,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
             //checks if this marker isn't already the one in the activeMarker list
             if (activeMarkersArray[beat] != marker && m_fiducial.IsSnapped())
             {
-                int width = (int)(Settings.GetMarkerWidhMultiplier(m_fiducial.MarkerID) * 2);
+                int width = (int)(m_settings.GetMarkerWidthMultiplier(m_fiducial.MarkerID) * 2);
 
                 //if beat position is empty or if position is not empty, current marker hast snapped before marker on beat 
                 if (activeMarkersArray[beat] == null || (activeMarkersArray[beat].GetComponent<FiducialController>().GetLastTimeSnapped() < m_fiducial.GetLastTimeSnapped()))

@@ -118,7 +118,7 @@ public class TokenPosition
             if (m_obj.getMotionSpeed() == 0)
             {
                 #region X-Axis
-                position.x = this.CalculateXPosition(position, isLoopBarMarker, Settings.GetMarkerWidhMultiplier(markerID));
+                position.x = this.CalculateXPosition(position, isLoopBarMarker, m_settings.GetMarkerWidthMultiplier(markerID));
                 #endregion
 
                 #region Y-Axis
@@ -128,7 +128,7 @@ public class TokenPosition
                 //doesn't move object on y-axis, when it's a LoopBarMarker
                 else if (!isLoopBarMarker)
                 {
-                    float snappingDistance = cellHeightInPx / 2;
+                    float snappingDistance = 0;// cellHeightInPx / 2;
 
                     //if marker is below grid area
                     if (position.y < heightOffsetInPx + snappingDistance)
@@ -162,13 +162,13 @@ public class TokenPosition
     //In screen space
     public float CalculateXPosition(Vector3 position, bool isLoopBarMarker, float markerWidthMultiplier)
     {
-        float snappingDistance = cellWidthInPx / 2 + cellWidthInPx * markerWidthMultiplier;//different marker sizes have effects on snapping distances
-        if (isLoopBarMarker)
-            snappingDistance = cellWidthInPx / 2;
+        float snappingDistance = /*cellWidthInPx / 2 +*/ cellWidthInPx * markerWidthMultiplier;//different marker sizes have effects on snapping distances
+
+        if (isLoopBarMarker) snappingDistance = 0;
 
         //if marker is below grid area
         if (position.x < widthOffsetInPx + snappingDistance)
-            position.x = -snappingDistance;
+            position.x = 0;
         //if marker is above grid area
         else if (position.x > gridWidthInPx + widthOffsetInPx - snappingDistance)
             position.x = gridWidthInPx + widthOffsetInPx - 2 * snappingDistance;

@@ -121,13 +121,13 @@ public class TuneManager : MonoBehaviour
             if (notesToSend[i] != null)
             {
                 int id = notesToSend[i].GetComponent<FiducialController>().MarkerID;
-                int duration = (int)(Settings.GetMarkerWidhMultiplier(id) * 2);
+                int duration = (int)(m_settings.GetMarkerWidthMultiplier(id) * 2);
                 int tuneHeight = m_tokenposition.GetNote(notesToSend[i].transform.position) % tunesPerString;
                 //if the next beat is empty --> damping = 1, else damping = 0 
                 int damping = isNextBeatEmpty[i] ? 1 : 0;
 
                 messageToSend += "," + tuneHeight + "," + duration + "," + damping;
-                Debug.Log("Playing Marker " + id + " on string " + (i + 1) + " with fret " + tuneHeight + " on position " + lastSentNote + ".");
+                Debug.Log("Playing Marker " + id + " on string " + (i + 1) + " with fret " + (tuneHeight + 1) + " on position " + (lastSentNote + 1) + ".");
             }
             else
                 messageToSend += "," + -1 + "," + -1 + "," + -1;
