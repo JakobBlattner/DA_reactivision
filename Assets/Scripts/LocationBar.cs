@@ -7,7 +7,7 @@ using UnityEngine;
 public class LocationBar : MonoBehaviour
 {
 
-    public int bpm;
+    private int bpm;
     public Vector3 startBarPosition;
     public Vector3 endBarPosition;
 
@@ -55,7 +55,7 @@ public class LocationBar : MonoBehaviour
         startTime = Time.time;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         //calculates the speed according to the cells between start and end bar and bpm
         this.UpdateValues();

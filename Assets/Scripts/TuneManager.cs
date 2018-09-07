@@ -14,12 +14,12 @@ public class TuneManager : MonoBehaviour
     public LoopController endController;
     public LineRenderer m_locationBarLineRenderer;
 
-    public Vector3 locationBarOffset = new Vector3(0.1f, 0.1f, 0); //TODO Set as time threshold 
+    public Vector3 locationBarOffset;
     public int lastSentNote = 0;
 
     private static SerialPort serialPort;
-    private static String[] serialPortNames = {"COM1", "COM2", "COM3", "COM4", "COM5", "/dev/cu.usbmodem1411", "/dev/cu.usbmodem1421" };
-    private int serialBaudrate = 9600;
+    private static String[] serialPortNames;
+    private int serialBaudrate;
     private String receivedMsg = "";
     private int msgIndex = 0;
     private int damping = 0;
@@ -44,6 +44,9 @@ public class TuneManager : MonoBehaviour
         m_locationBarLineRenderer = Component.FindObjectOfType<LocationBar>().GetComponent<LineRenderer>();
         m_lastComeLastServe = Component.FindObjectOfType<LastComeLastServe>();
         m_tokenposition = TokenPosition.Instance;
+
+        serialBaudrate = m_settings.serialBaudrate;
+        serialPortNames = m_settings.serialPortNames;
 
         tunesPerString = m_settings.tunesPerString;
         enableChords = m_lastComeLastServe.enableChords;
@@ -76,16 +79,15 @@ public class TuneManager : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        //--> beat + 1 darf nicht mehr verändert werden-- > threshold
-        // TODO: add edge case handling if duration > 1 and tactPostWithOffset == 0
+        locationBarOffset = m_settings.locationBarOffset;
         int tactPosWithOffset = m_tokenposition.GetTactPosition(this.m_locationBarLineRenderer.GetPosition(0) - locationBarOffset);
 
         if (tactPosWithOffset != oldTactPos)
         {
             lastSentNote = tactPosWithOffset;
-            int nextBeat = tactPosWithOffset < m_settings.beats ? tactPosWithOffset + 1 : 1;
+            int nextBeat = tactPosWithOffset < (m_settings.beats - 1) ? tactPosWithOffset + 1 : 0;
 
             //reads active markers dependend on enabled chords or not
             if (!enableChords)
@@ -125,7 +127,7 @@ public class TuneManager : MonoBehaviour
                 int damping = isNextBeatEmpty[i] ? 1 : 0;
 
                 messageToSend += "," + tuneHeight + "," + duration + "," + damping;
-                Debug.Log("Marker " + id + " on string " + (i + 1)+  " with fret " + tuneHeight + " will be played for " + duration + ".");
+                Debug.Log("Playing Marker " + id + " on string " + (i + 1) + " with fret " + tuneHeight + " on position " + lastSentNote + ".");
             }
             else
                 messageToSend += "," + -1 + "," + -1 + "," + -1;

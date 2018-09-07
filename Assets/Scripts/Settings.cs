@@ -14,6 +14,11 @@ public class Settings : MonoBehaviour
     private TuioManager tuioManager;
     private static Settings m_settings;
 
+    //communication values
+    public readonly int serialBaudrate = 9600;
+    public readonly string[] serialPortNames = { "COM1", "COM2", "COM3", "COM4", "COM5", "/dev/cu.usbmodem1411", "/dev/cu.usbmodem1421" };
+    public readonly Vector2 locationBarOffset;
+
     //color values
     public readonly Color red = new Color(220, 0, 0, 255);
     public readonly Color green = new Color(0, 200, 0, 255);
@@ -29,14 +34,15 @@ public class Settings : MonoBehaviour
     public readonly int endLoopBarMarkerID;
 
     //music stuff
+    public readonly int bpm = 100;
     public readonly int tunes = 24;
     public readonly int beats = 16;
     public readonly int tunesPerString = 8;
     public readonly int heightOffSetInPx = Camera.main.pixelHeight / 64;
     public readonly int widthOffSetInPx = Camera.main.pixelWidth / 64;
+
     //for JokerMarker
     public readonly int[] pentatonicTunes;
-    public readonly int bpm = 100;
 
     //grid in px
     public readonly float gridHeightInPx;
@@ -100,6 +106,7 @@ public class Settings : MonoBehaviour
         cellSizeWorld.y = worldDiff.y / tunes;
 
         movementThreshold = Camera.main.WorldToScreenPoint(new Vector2(cellSizeWorld.x / 2, cellSizeWorld.y / 2)) - Camera.main.WorldToScreenPoint(Vector2.zero);
+        locationBarOffset = cellSizeWorld * 0.01f;
 
         pentatonicTunes = new int[9];
         pentatonicTunes[0] = 1;
@@ -120,5 +127,4 @@ public class Settings : MonoBehaviour
     {
         return markerID < lastIndexOfOneFourthMarker ? 0.5f : (markerID < lastIndexOfOneHalfMarker ? 1 : (markerID < lastIndexOfThreeFourthMarker ? 1.5f : 2));
     }
-
 }
