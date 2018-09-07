@@ -15,15 +15,7 @@ public class LoopController : MonoBehaviour
     private FiducialController m_fiducialController;
 
     public bool startMarker = false;
-    //public int touchArea = 1;
-    //public int minLoopArea = 10;
     private GameObject otherLoopMarker;
-    //private bool moving = false;
-    //private float xPos;
-    //private float xTouchPos;
-    //private float otherLoopMarkerXPos;
-    //private GameObject movingCursor;
-    //private GameObject[] cursors;
     private Vector3 newPos;
 
     void Start()
