@@ -25,7 +25,7 @@ public class OuterLinesForOrientation : MonoBehaviour
         m_camera = GameObject.FindGameObjectWithTag(m_settings.mainCameraTag).GetComponent<Camera>();
 
         //Instantiates variables for spawning top and bottom prefabs
-        float prefabYBounds = prefab.GetComponent<SpriteRenderer>().bounds.size.y/2;
+        float prefabYBounds = prefab.GetComponent<SpriteRenderer>().bounds.size.y / 2;
         float topYPos = -5 + prefabYBounds;
         float bottomYPos = 5 - prefabYBounds;
         float xPos;
@@ -33,7 +33,7 @@ public class OuterLinesForOrientation : MonoBehaviour
         //spawns number of beats Outer_Line_For_Orientation prefabs in loop for Top and Bottom
         for (int i = 0; i < m_settings.beats; i++)
         {
-            xPos = m_tokenPosition.GetXPosForBeat(i);
+            xPos = m_tokenPosition.GetXPosForBeat(i, false);
             GameObject currentGO = Instantiate(prefab, new Vector3(xPos, topYPos, 0), Quaternion.identity);
             currentGO.transform.parent = this.transform;
             currentGO = Instantiate(prefab, new Vector3(xPos, bottomYPos, 0), Quaternion.identity);
