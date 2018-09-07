@@ -168,7 +168,7 @@ public class TokenPosition
 
         //if marker is below grid area
         if (position.x < widthOffsetInPx + snappingDistance)
-            position.x = 0;
+            position.x = -snappingDistance;
         //if marker is above grid area
         else if (position.x > gridWidthInPx + widthOffsetInPx - snappingDistance)
             position.x = gridWidthInPx + widthOffsetInPx - 2 * snappingDistance;
@@ -189,13 +189,13 @@ public class TokenPosition
 
     public bool MovedFurtherThanThreshold(Vector3 pos1, Vector3 pos2, bool isJoker)
     {
-        return isJoker? Math.Abs(pos1.x - pos2.x) > movementThreshold.x : (Math.Abs(pos1.x - pos2.x) > movementThreshold.x || Math.Abs(pos1.y - pos2.y) > movementThreshold.y);
+        return isJoker ? Math.Abs(pos1.x - pos2.x) > movementThreshold.x : (Math.Abs(pos1.x - pos2.x) > movementThreshold.x || Math.Abs(pos1.y - pos2.y) > movementThreshold.y);
     }
 
-    #region For OuterLinesForOrientation
-    public float GetXPosForBeat(int beat, bool getCenterCoordinates)
+    #region For OuterLinesForOrientation.cs and LoopController.cs Start()
+    public float GetXPosForBeat(int beat)
     {
-        return Camera.main.ScreenToWorldPoint(new Vector3(beat * cellWidthInPx + widthOffsetInPx + (getCenterCoordinates ? cellWidthInPx / 2 : 0), 0, 0)).x;
+        return Camera.main.ScreenToWorldPoint(new Vector3(beat * cellWidthInPx + widthOffsetInPx, 0, 0)).x;
     }
 
     public float GetYPosForTune(int tune)
