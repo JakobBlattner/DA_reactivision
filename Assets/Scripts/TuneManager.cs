@@ -12,7 +12,7 @@ public class TuneManager : MonoBehaviour
 {
     public LoopController startController;
     public LoopController endController;
-    public LineRenderer m_locationBarLineRenderer;
+    public Transform m_locationBar;
 
     public Vector3 locationBarOffset;
     public int lastSentNote = 0;
@@ -41,7 +41,7 @@ public class TuneManager : MonoBehaviour
     void Start()
     {
         m_settings = Settings.Instance;
-        m_locationBarLineRenderer = Component.FindObjectOfType<LocationBar>().GetComponent<LineRenderer>();
+        m_locationBar = Component.FindObjectOfType<LocationBar>().transform;
         m_lastComeLastServe = Component.FindObjectOfType<LastComeLastServe>();
         m_tokenposition = TokenPosition.Instance;
 
@@ -82,7 +82,7 @@ public class TuneManager : MonoBehaviour
     void FixedUpdate()
     {
         locationBarOffset = m_settings.locationBarOffset;
-        int tactPosWithOffset = m_tokenposition.GetTactPosition(this.m_locationBarLineRenderer.GetPosition(0) - locationBarOffset);
+        int tactPosWithOffset = m_tokenposition.GetTactPosition(this.m_locationBar.position - locationBarOffset);
 
         if (tactPosWithOffset != oldTactPos)
         {
@@ -139,7 +139,7 @@ public class TuneManager : MonoBehaviour
         if (serialPort.IsOpen)
         {
             serialPort.WriteLine(messageToSend);
-            Debug.Log("[LOG: wrote cmd: ]" + messageToSend);
+            //Debug.Log("[LOG: wrote cmd: ]" + messageToSend);
         }
 
         msgIndex++;
