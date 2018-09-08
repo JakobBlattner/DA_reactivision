@@ -94,7 +94,7 @@ public class LocationBar : MonoBehaviour
 
         //----------------------------------------------------------------------for velocity approach
         bpm = bpmManager.getBpm();
-        m_rigidbody2D.velocity = new Vector2(1/bpm, 0);
+        m_rigidbody2D.velocity = new Vector2(bpm/10, 0);
 
 
         if (this.transform.position.x > endBarPosition.x)
