@@ -50,8 +50,8 @@ public class LinesForOrientation : MonoBehaviour
         if (lineRight == null)
             lineRight = transform.Find("Line_Right");
 
-        startLoopBar = GameObject.Find("Loop_Bar_0").transform;
-        endLoopBar = GameObject.Find("Loop_Bar_1").transform;
+        startLoopBar = GameObject.Find("Loop_Bar_Start").transform;
+        endLoopBar = GameObject.Find("Loop_Bar_End").transform;
     }
 
     // Update is called once per frame
