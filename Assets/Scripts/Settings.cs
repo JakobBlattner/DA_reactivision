@@ -21,12 +21,13 @@ public class Settings : MonoBehaviour
     public readonly Vector2 locationBarOffset;
 
     //color values
-    public readonly Color red = new Color(220, 0, 0, 255);
-    public readonly Color green = new Color(0, 200, 0, 255);
-    public readonly Color blue = new Color(0, 0, 255, 255);
+    public readonly Color red = new Color(0.85f, 0, 0.24f, 1);
+    public readonly Color green = new Color(0, 0.94f, 0, 1);
+    public readonly Color blue = new Color(0, 0, 1, 1);
     public readonly Color grey = new Color(0.5f, 0.5f, 0.5f, 0.5f);
 
-    //tag names
+    //tags and names
+    public readonly string locationBarName = "Current_Location_Bar";
     public readonly string markerTag = "Marker";
     public readonly string jokerParentTag = "JokerParent";
     public readonly string mainCameraTag = "MainCamera";
