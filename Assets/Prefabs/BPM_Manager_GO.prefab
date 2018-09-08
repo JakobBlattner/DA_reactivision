@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4424577428971560}
   - component: {fileID: 114885086161876284}
   m_Layer: 0
-  m_Name: BPM_Manager
+  m_Name: BPM_Manager_GO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
