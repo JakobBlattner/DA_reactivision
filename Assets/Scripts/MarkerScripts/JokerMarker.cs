@@ -36,15 +36,9 @@ public class JokerMarker : MonoBehaviour
         //only does something, if the marker lays still
         if (fiducialController.MovementDirection == Vector2.zero)
         {
-            //removes marker from list, if the token has been moved on the x axis
+            //if marker is not in the recognised jokerMarker dictionary - set y Position
             if (oldPosition.x != pos.x)
             {
-                oldPosition = Vector3.back;
-            }
-            //if marker is not in the recognised jokerMarker dictionary - set y Position
-            if (oldPosition == Vector3.back)
-            {
-                //TODO: check if needs to be rewritten to: switch to nearest pentatonic position
                 Debug.Log("Joker Marker " + fiducialController.MarkerID + "has been set.");
                 realOldYPosition = pos.y;
                 pos.y = heightOffSet + pentatonicTunes[(int)Random.Range(0, pentatonicTunes.Length)] * cellHeightInPx - cellHeightInPx / 2;

@@ -36,7 +36,6 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     private Settings m_settings;
     private TokenPosition m_tokenPosition;
 
-    // Use this for initialization
     void Start()
     {
         m_tokenPosition = TokenPosition.Instance;
@@ -125,7 +124,6 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
         {
             if (activeMarkersArray[i] != null)
             {
-                //TODO change to get key from marker dictionary
                 int width = (int)(m_settings.GetMarkerWidthMultiplier(activeMarkersArray[i].GetComponent<FiducialController>().MarkerID) * 2);
 
                 if ((i != m_tokenPosition.GetTactPosition(activeMarkersArray[i].transform.position) - Mathf.Floor(width / 2)))//1/4
@@ -157,10 +155,9 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
             //gets beat on which the the marker lies on
             int beat = m_tokenPosition.GetTactPosition(marker.transform.position);
             FiducialController m_fiducial = marker.GetComponent<FiducialController>();
-            //Debug.Log(m_fiducial.MarkerID + " beat: " + beat);
 
             //checks if this marker isn't already the one in the activeMarker list
-            if (activeMarkersArray[beat] != marker && m_fiducial.IsSnapped())
+            if (activeMarkersArray[beat] != marker && m_fiducial.IsSnapped() )
             {
                 int width = (int)(m_settings.GetMarkerWidthMultiplier(m_fiducial.MarkerID) * 2);
 
@@ -196,7 +193,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                         }
                     }
                     this.ActivateMarkerOnBeatWithColor(marker, activeMarkersArray, beat, color); //1/4
-                    Debug.Log("Marker " + m_fiducial.MarkerID + " got activated on position " + (width > 3 ? beat - 1 : (width > 1 ? beat : beat + 1)) + " for " + width + " beats.");
+                    Debug.Log("Marker " + m_fiducial.MarkerID + " got activated on position " + (width > 3 ? beat - 1 : (width > 1 ? beat : beat + 1)) + " for " + width + " beat/s.");
                 }
             }
         }
@@ -301,12 +298,12 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                 if (blueMarkers.Contains(currentMarker))
                 {
                     blueMarkers.Remove(currentMarker);
-                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors from red to blue.");
+                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors from blue to red.");
                 }
                 else if (greenMarkers.Contains(currentMarker))
                 {
                     greenMarkers.Remove(currentMarker);
-                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors from red to green.");
+                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors from green to red.");
                 }
             }
             else if (m_color == green && !greenMarkers.Contains(currentMarker))
@@ -316,12 +313,12 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                 if (blueMarkers.Contains(currentMarker))
                 {
                     blueMarkers.Remove(currentMarker);
-                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors green to blue.");
+                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors blue to green.");
                 }
                 else if (redMarkers.Contains(currentMarker))
                 {
                     redMarkers.Remove(currentMarker);
-                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors green to red.");
+                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors red to green.");
                 }
             }
             else if (m_color == blue && !blueMarkers.Contains(currentMarker))
@@ -331,12 +328,12 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                 if (greenMarkers.Contains(currentMarker))
                 {
                     greenMarkers.Remove(currentMarker);
-                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors blue to green.");
+                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors green to blue.");
                 }
                 else if (redMarkers.Contains(currentMarker))
                 {
                     redMarkers.Remove(currentMarker);
-                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors blue to red.");
+                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors red to blue.");
                 }
             }
         }
@@ -358,6 +355,47 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     public void RemoveTuioObject(TuioObject tobj)
     {
         removedTuioObjects.Add(tobj);
+    }
+
+    internal bool IsBeingPlayed(int id)
+    {
+        return IsBeingPlayed(markers[id]);
+    }
+
+    //checks if marker is currently being played
+    internal bool IsBeingPlayed(GameObject marker)
+    {
+        return IsMarkerInActiveMarkers(marker) && IsCurrentLocationBarOverTune(marker);
+    }
+
+    private bool IsCurrentLocationBarOverTune(GameObject marker)
+    {
+        GameObject currentLocationBar = GameObject.Find(m_settings.locationBarName);
+        Vector3 spriteSize = marker.GetComponent<SpriteRenderer>().bounds.size;
+
+        return currentLocationBar.transform.position.x >= (marker.transform.position.x - spriteSize.x / 2) && currentLocationBar.transform.position.x <= (marker.transform.position.x + spriteSize.x / 2);
+    }
+
+    private bool IsMarkerInActiveMarkers(GameObject marker)
+    {
+        if (enableChords)
+        {
+            for (int i = 0; i < activeREDMarkersOnGrid.Length; i++)
+            {
+                if (activeREDMarkersOnGrid[i] == marker || activeBLUEMarkersOnGrid[i] == marker || activeGREENMarkersOnGrid[i] == marker)
+                    return true;
+            }
+            return false;
+        }
+        else
+        {
+            for (int i = 0; i < activeMarkersOnGrid.Length; i++)
+            {
+                if (activeMarkersOnGrid[i] == marker)
+                    return true;
+            }
+            return false;
+        }
     }
 
 

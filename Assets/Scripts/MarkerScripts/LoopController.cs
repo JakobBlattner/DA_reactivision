@@ -54,13 +54,10 @@ public class LoopController : MonoBehaviour
     {
         if (m_obj != null)
         {
-            if (m_obj.getMotionSpeed() == 0 &&
+            if (m_fiducialController.IsSnapped() &&
                 this.transform.position.x != newPos.x)
             {
-                newPos = Camera.main.WorldToScreenPoint(this.transform.position);
-                newPos = Camera.main.ScreenToWorldPoint(new Vector3(m_tokenPosition.CalculateXPosition(newPos, true, 1), newPos.y, newPos.z));
-
-                this.transform.position = newPos;
+                newPos = this.transform.position;
 
                 //tells locationBar new position
                 if (startMarker)
@@ -68,6 +65,17 @@ public class LoopController : MonoBehaviour
                 else
                     m_locationBar.SetEndBarPosition(newPos);
             }
+
+            //if marker is moving, set new startbarposition
+           // if (this.transform.position.x != newPos.x)
+            /*{
+                newPos = transform.position;
+
+                if (startMarker)
+                    m_locationBar.SetStartBarPosition(newPos);
+                else
+                    m_locationBar.SetEndBarPosition(newPos);
+            }*/
         }
         else
             m_obj = m_tuioManager.GetMarker(m_fiducialController.MarkerID);
