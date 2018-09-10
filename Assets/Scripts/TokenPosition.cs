@@ -157,6 +157,7 @@ public class TokenPosition
                 #endregion
 
                 fiducialController.SetIsSnapped(true);
+                fiducialController.SetSnappingPosition(m_MainCamera.ScreenToWorldPoint(position));
                 fiducialController.SetLastTimeSnapped(Time.time);
             }
             //if the marker is moving, the position will be set in the return statement
