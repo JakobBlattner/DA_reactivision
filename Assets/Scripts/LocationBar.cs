@@ -46,9 +46,11 @@ public class LocationBar : MonoBehaviour
         bpm = bpmManager.getBpm();
         m_rigidbody2D.velocity = new Vector2((cellWidth * bpm) / 60, 0);
 
+        //sets position to startBar position if it's x position is below the startbar
         if (this.transform.position.x < startBarPosition.x)
-            this.transform.position = new Vector3(endBarPosition.x, transform.position.y, transform.position.z);
+            this.transform.position = new Vector3(startBarPosition.x, transform.position.y, transform.position.z);
 
+        //sets position to startBar position if it's x position is above the endbar
         if (this.transform.position.x > endBarPosition.x)
             this.transform.position = new Vector3(startBarPosition.x, transform.position.y, transform.position.z);
     }
@@ -56,14 +58,14 @@ public class LocationBar : MonoBehaviour
     //Sets new position of StartBar in screen space
     public void SetStartBarPosition(Vector3 newPosition)
     {
-        Debug.Log("The start-loopbar has been set from beat " + m_tokenPostion.GetTactPosition(startBarPosition) + 1 + " to " + m_tokenPostion.GetTactPosition(newPosition) + 1 + ".");
+        Debug.Log("The start-loopbar has been set from beat " + (m_tokenPostion.GetTactPosition(startBarPosition) + 1) + " to " + (m_tokenPostion.GetTactPosition(newPosition) + 1) + ".");
         this.startBarPosition = newPosition;
     }
 
     //Sets new position of EndBar in screen space
     public void SetEndBarPosition(Vector3 newPosition)
     {
-        Debug.Log("The end-loopbar has been set from beat " + m_tokenPostion.GetTactPosition(endBarPosition) + 1 + " to " + m_tokenPostion.GetTactPosition(newPosition) + 1 + ".");
+        Debug.Log("The end-loopbar has been set from beat " + (m_tokenPostion.GetTactPosition(endBarPosition) + 1) + " to " + (m_tokenPostion.GetTactPosition(newPosition) + 1) + ".");
         this.endBarPosition = newPosition;
     }
 }

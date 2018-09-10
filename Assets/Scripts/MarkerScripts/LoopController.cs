@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class LoopController : MonoBehaviour
 {
+    public GameObject ghostPrefab;
+    private GameObject ghost;
+
     private Settings m_settings;
     private TuioManager m_tuioManager;
     private TuioObject m_obj;
@@ -66,16 +69,24 @@ public class LoopController : MonoBehaviour
                     m_locationBar.SetEndBarPosition(newPos);
             }
 
-            //if marker is moving, set new startbarposition
-           // if (this.transform.position.x != newPos.x)
-            /*{
-                newPos = transform.position;
+            if (!m_fiducialController.IsSnapped() && ghost == null)
+                ghost = GameObject.Instantiate(ghostPrefab, newPos, Quaternion.identity);
+            else if (m_fiducialController.IsSnapped())
+            {
+                Destroy(ghost);
+                ghost = null;
+            }
 
-                if (startMarker)
-                    m_locationBar.SetStartBarPosition(newPos);
-                else
-                    m_locationBar.SetEndBarPosition(newPos);
-            }*/
+            //if marker is moving, set new startbarposition
+            /*if (this.transform.position.x != newPos.x)
+             {
+                 newPos = transform.position;
+
+                 if (startMarker)
+                     m_locationBar.SetStartBarPosition(newPos);
+                 else
+                     m_locationBar.SetEndBarPosition(newPos);
+             }*/
         }
         else
             m_obj = m_tuioManager.GetMarker(m_fiducialController.MarkerID);

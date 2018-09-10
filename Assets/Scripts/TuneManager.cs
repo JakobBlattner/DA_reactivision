@@ -84,7 +84,7 @@ public class TuneManager : MonoBehaviour
         locationBarOffset = m_settings.locationBarOffset;
         int tactPosWithOffset = m_tokenposition.GetTactPosition(this.m_locationBar.position - locationBarOffset);
 
-        if (tactPosWithOffset != oldTactPos)
+        if (tactPosWithOffset >= m_tokenposition.GetTactPosition(GameObject.Find(m_settings.startBarLoop).transform.position) && tactPosWithOffset != oldTactPos)
         {
             lastSentNote = tactPosWithOffset;
             int nextBeat = tactPosWithOffset < (m_settings.beats - 1) ? tactPosWithOffset + 1 : 0;

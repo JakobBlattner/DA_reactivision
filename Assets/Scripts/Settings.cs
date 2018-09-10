@@ -28,6 +28,7 @@ public class Settings : MonoBehaviour
 
     //tags and names
     public readonly string locationBarName = "Current_Location_Bar";
+    public readonly string startBarLoop = "Loop_Bar_Start";
     public readonly string markerTag = "Marker";
     public readonly string jokerParentTag = "JokerParent";
     public readonly string mainCameraTag = "MainCamera";
