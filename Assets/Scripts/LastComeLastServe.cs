@@ -76,6 +76,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
 
     public void LateUpdate()
     {
+        //Debug.Log("Do LateUpdate in LastComeLastServe");
         //if new marker(s) has/ have been set, act accordingly
         if (addedTuioObjects.Count != 0)
         {
@@ -157,7 +158,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
             FiducialController m_fiducial = marker.GetComponent<FiducialController>();
 
             //checks if this marker isn't already the one in the activeMarker list
-            if (activeMarkersArray[beat] != marker && m_fiducial.IsSnapped() )
+            if (activeMarkersArray[beat] != marker && m_fiducial.IsSnapped())
             {
                 int width = (int)(m_settings.GetMarkerWidthMultiplier(m_fiducial.MarkerID) * 2);
 
@@ -221,11 +222,16 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
 
     private void AddMarker(TuioObject tobj)
     {
-        //prevents loopBar Markers to be added to lists
-        if (tobj.getSymbolID() != m_settings.startLoopBarMarkerID && tobj.getSymbolID() != m_settings.endLoopBarMarkerID)
+        int symbolID = tobj.getSymbolID();
+        if (!markers.ContainsKey(symbolID))
         {
-            GameObject currentMarker = markers[tobj.getSymbolID()];
-            Debug.Log("Marker " + tobj.getSymbolID() + " has been added to the grid.");
+            return;
+        }
+        //prevents loopBar Markers to be added to lists
+        if (symbolID != m_settings.startLoopBarMarkerID && symbolID != m_settings.endLoopBarMarkerID)
+        {
+            GameObject currentMarker = markers[symbolID];
+            Debug.Log("Marker " + symbolID + " has been added to the grid.");
 
             //gets current color and adds marker to the according List
             ColorAccToPosition m_colorAccToPosition = currentMarker.GetComponent<ColorAccToPosition>();
@@ -245,12 +251,17 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     //when marker gets removed from table, remove from every coloured list and activeMarkersOnGrid array
     private void RemoveMarker(TuioObject tobj)
     {
-        if (tobj.getSymbolID() != m_settings.startLoopBarMarkerID && tobj.getSymbolID() != m_settings.endLoopBarMarkerID)
+        int symbolID = tobj.getSymbolID();
+        if (!markers.ContainsKey(symbolID))
         {
-            GameObject currentMarker = markers[tobj.getSymbolID()];
+            return;
+        }
+        if (symbolID != m_settings.startLoopBarMarkerID && symbolID != m_settings.endLoopBarMarkerID)
+        {
+            GameObject currentMarker = markers[symbolID];
             GameObject[] currentList = activeMarkersOnGrid;
 
-            Debug.Log("Marker " + tobj.getSymbolID() + " has been removed from the grid.");
+            Debug.Log("Marker " + symbolID + " has been removed from the grid.");
 
             //remove from colored lists
             if (redMarkers.Contains(currentMarker))
@@ -280,10 +291,15 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     //keeps color allocation of markers up to date
     private void UpdateMarker(TuioObject tobj)
     {
-        //prevents loopBar Markers to be added to lists
-        if (tobj.getSymbolID() != m_settings.startLoopBarMarkerID && tobj.getSymbolID() != m_settings.endLoopBarMarkerID)
+        int symbolID = tobj.getSymbolID();
+        if (!markers.ContainsKey(symbolID))
         {
-            GameObject currentMarker = markers[tobj.getSymbolID()];
+            return;
+        }
+        //prevents loopBar Markers to be added to lists
+        if (symbolID != m_settings.startLoopBarMarkerID && symbolID != m_settings.endLoopBarMarkerID)
+        {
+            GameObject currentMarker = markers[symbolID];
 
             //gets current color, adds marker to the according List and removes from other lists (if containing)
             ColorAccToPosition m_colorAccToPosition = currentMarker.GetComponent<ColorAccToPosition>();
@@ -298,12 +314,12 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                 if (blueMarkers.Contains(currentMarker))
                 {
                     blueMarkers.Remove(currentMarker);
-                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors from blue to red.");
+                    Debug.Log("Marker " + symbolID + " switched colors from blue to red.");
                 }
                 else if (greenMarkers.Contains(currentMarker))
                 {
                     greenMarkers.Remove(currentMarker);
-                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors from green to red.");
+                    Debug.Log("Marker " + symbolID + " switched colors from green to red.");
                 }
             }
             else if (m_color == green && !greenMarkers.Contains(currentMarker))
@@ -313,12 +329,12 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                 if (blueMarkers.Contains(currentMarker))
                 {
                     blueMarkers.Remove(currentMarker);
-                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors blue to green.");
+                    Debug.Log("Marker " + symbolID + " switched colors blue to green.");
                 }
                 else if (redMarkers.Contains(currentMarker))
                 {
                     redMarkers.Remove(currentMarker);
-                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors red to green.");
+                    Debug.Log("Marker " + symbolID + " switched colors red to green.");
                 }
             }
             else if (m_color == blue && !blueMarkers.Contains(currentMarker))
@@ -328,12 +344,12 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                 if (greenMarkers.Contains(currentMarker))
                 {
                     greenMarkers.Remove(currentMarker);
-                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors green to blue.");
+                    Debug.Log("Marker " + symbolID + " switched colors green to blue.");
                 }
                 else if (redMarkers.Contains(currentMarker))
                 {
                     redMarkers.Remove(currentMarker);
-                    Debug.Log("Marker " + tobj.getSymbolID() + " switched colors red to blue.");
+                    Debug.Log("Marker " + symbolID + " switched colors red to blue.");
                 }
             }
         }

@@ -10,6 +10,8 @@ using System.Linq;
 
 public class TuneManager : MonoBehaviour
 {
+    public LoopController startController;
+    public LoopController endController;
     public Transform m_locationBar;
 
     public Vector3 locationBarOffset;
@@ -50,6 +52,11 @@ public class TuneManager : MonoBehaviour
         enableChords = m_lastComeLastServe.enableChords;
         oldTactPos = -1;
 
+        // Get loop controllers
+        var x = Component.FindObjectsOfType<LoopController>();
+        startController = x[0].startMarker ? x[0] : x[1];
+        endController = x[0].startMarker ? x[1] : x[0];
+
         Boolean serialConnected = false;
         for (int i = 0; i < serialPortNames.Length && !serialConnected; i++)
         {
@@ -57,6 +64,7 @@ public class TuneManager : MonoBehaviour
             {
                 Debug.Log("Trying to open serial connection on port: " + serialPortNames[i]);
                 serialPort = new SerialPort(serialPortNames[i], serialBaudrate);
+                serialPort.WriteTimeout = 100; // ms
                 serialPort.Open();
                 Debug.Log("Opened serial connection on port: " + serialPortNames[i]);
                 serialConnected = true;
@@ -107,7 +115,7 @@ public class TuneManager : MonoBehaviour
 
     private void SendNote(GameObject[] notesToSend, bool[] isNextBeatEmpty)
     {
-        messageToSend = msgIndex + "";
+        messageToSend = msgIndex + ",100";
 
         for (int i = 0; i < notesToSend.Length; i++)
         {
@@ -120,10 +128,10 @@ public class TuneManager : MonoBehaviour
                 int damping = isNextBeatEmpty[i] ? 1 : 0;
 
                 messageToSend += "," + tuneHeight + "," + duration + "," + damping;
-                Debug.Log("Playing Marker " + id + " on string " + (i + 1) + " with fret " + (tuneHeight + 1) + " on position " + (lastSentNote + 1) + (damping == 1 ? " with damping." : " without damping."));
+                Debug.Log("Playing Marker " + id + " on string " + (i + 1) + " with fret " + (tuneHeight + 1) + " on position " + (lastSentNote + 1) + ((damping == 1) ? " with damping." : " without damping."));
             }
             else
-                messageToSend += "," + -1 + "," + -1 + "," + -1;
+                messageToSend += "," + -1 + "," + 0 + "," + 0;
         }
 
         lastSentNote++;
@@ -131,8 +139,22 @@ public class TuneManager : MonoBehaviour
 
         if (serialPort.IsOpen)
         {
-            serialPort.WriteLine(messageToSend);
-            //Debug.Log("[LOG: wrote cmd: ]" + messageToSend);
+            Debug.Log("[LOG: going to write cmd: ]" + messageToSend);
+            try
+            {
+                serialPort.WriteLine(messageToSend);
+                Debug.Log("[LOG: wrote cmd: ]" + messageToSend);
+            }
+            catch (IOException)
+            {
+                Debug.Log("[LOG: Failed to write cmd: ]" + messageToSend);
+            }
+            while (serialPort.BytesToRead > 0)
+            {
+                Debug.Log("Arduino says: " + serialPort.ReadExisting());
+            }
+
+
         }
 
         msgIndex++;
