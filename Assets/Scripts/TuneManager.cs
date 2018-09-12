@@ -10,8 +10,6 @@ using System.Linq;
 
 public class TuneManager : MonoBehaviour
 {
-    public LoopController startController;
-    public LoopController endController;
     public Transform m_locationBar;
 
     public Vector3 locationBarOffset;
@@ -52,11 +50,6 @@ public class TuneManager : MonoBehaviour
         enableChords = m_lastComeLastServe.enableChords;
         oldTactPos = -1;
 
-        // Get loop controllers
-        var x = Component.FindObjectsOfType<LoopController>();
-        startController = x[0].startMarker ? x[0] : x[1];
-        endController = x[0].startMarker ? x[1] : x[0];
-
         Boolean serialConnected = false;
         for (int i = 0; i < serialPortNames.Length && !serialConnected; i++)
         {
@@ -84,7 +77,7 @@ public class TuneManager : MonoBehaviour
         locationBarOffset = m_settings.locationBarOffset;
         int tactPosWithOffset = m_tokenposition.GetTactPosition(this.m_locationBar.position - locationBarOffset);
 
-        if (tactPosWithOffset != oldTactPos)
+        if (tactPosWithOffset >= m_tokenposition.GetTactPosition(GameObject.Find(m_settings.startBarLoop).transform.position) && tactPosWithOffset != oldTactPos)
         {
             lastSentNote = tactPosWithOffset;
             int nextBeat = tactPosWithOffset < (m_settings.beats - 1) ? tactPosWithOffset + 1 : 0;
@@ -127,7 +120,7 @@ public class TuneManager : MonoBehaviour
                 int damping = isNextBeatEmpty[i] ? 1 : 0;
 
                 messageToSend += "," + tuneHeight + "," + duration + "," + damping;
-                Debug.Log("Playing Marker " + id + " on string " + (i + 1) + " with fret " + (tuneHeight + 1) + " on position " + (lastSentNote + 1) + ".");
+                Debug.Log("Playing Marker " + id + " on string " + (i + 1) + " with fret " + (tuneHeight + 1) + " on position " + (lastSentNote + 1) + (damping == 1 ? " with damping." : " without damping."));
             }
             else
                 messageToSend += "," + -1 + "," + -1 + "," + -1;

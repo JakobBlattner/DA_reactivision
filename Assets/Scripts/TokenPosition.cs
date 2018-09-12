@@ -31,6 +31,7 @@ public class TokenPosition
 
     private TuioManager m_tuioManager;
     private Settings m_settings;
+    private LastComeLastServe m_lastComeLastServe;
     private static TokenPosition m_Instance;
 
     public static TokenPosition Instance
@@ -59,6 +60,7 @@ public class TokenPosition
         //init variables
         m_tuioManager = TuioManager.Instance;
         m_settings = Settings.Instance;
+        m_lastComeLastServe = GameObject.FindObjectOfType<LastComeLastServe>();
         m_MainCamera = GameObject.FindGameObjectWithTag(m_settings.mainCameraTag).GetComponent<Camera>();
 
         beats = m_settings.beats;
@@ -94,6 +96,10 @@ public class TokenPosition
 
     public Vector3 CalculateGridPosition(int markerID, float cameraOffset, bool isLoopBarMarker, bool isJoker, FiducialController fiducialController, Vector3 oldPositionInScreen)
     {
+        //does not change position if the marker is currently being played
+        if (!isLoopBarMarker && m_lastComeLastServe.IsBeingPlayed(markerID))
+            return fiducialController.gameObject.transform.position;
+
         TuioObject m_obj = m_tuioManager.GetMarker(markerID);
         Vector3 position = new Vector3(m_obj.getX() * Screen.width, isLoopBarMarker ? 0.5f * Screen.height : (1 - m_obj.getY()) * Screen.height, cameraOffset);
 
@@ -128,7 +134,7 @@ public class TokenPosition
                 //doesn't move object on y-axis, when it's a LoopBarMarker
                 else if (!isLoopBarMarker)
                 {
-                    float snappingDistance = 0;// cellHeightInPx / 2;
+                    float snappingDistance = - cellHeightInPx / 2;
 
                     //if marker is below grid area
                     if (position.y < heightOffsetInPx + snappingDistance)
@@ -151,6 +157,7 @@ public class TokenPosition
                 #endregion
 
                 fiducialController.SetIsSnapped(true);
+                fiducialController.SetSnappingPosition(m_MainCamera.ScreenToWorldPoint(position));
                 fiducialController.SetLastTimeSnapped(Time.time);
             }
             //if the marker is moving, the position will be set in the return statement
