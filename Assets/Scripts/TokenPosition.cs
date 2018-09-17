@@ -134,7 +134,7 @@ public class TokenPosition
                 //doesn't move object on y-axis, when it's a LoopBarMarker
                 else if (!isLoopBarMarker)
                 {
-                    float snappingDistance = - cellHeightInPx / 2;
+                    float snappingDistance = -cellHeightInPx / 2;
 
                     //if marker is below grid area
                     if (position.y < heightOffsetInPx + snappingDistance)
@@ -157,7 +157,6 @@ public class TokenPosition
                 #endregion
 
                 fiducialController.SetIsSnapped(true);
-                fiducialController.SetSnappingPosition(m_MainCamera.ScreenToWorldPoint(position));
                 fiducialController.SetLastTimeSnapped(Time.time);
             }
             //if the marker is moving, the position will be set in the return statement
