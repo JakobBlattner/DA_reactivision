@@ -169,7 +169,7 @@ public class TokenPosition
     //In screen space
     public float CalculateXPosition(Vector3 position, bool isLoopBarMarker, float markerWidthMultiplier)
     {
-        float snappingDistance = /*cellWidthInPx / 2 +*/ cellWidthInPx * markerWidthMultiplier;//different marker sizes have effects on snapping distances
+        float snappingDistance = cellWidthInPx * markerWidthMultiplier;//different marker sizes have effects on snapping distances
 
         if (isLoopBarMarker) snappingDistance = 0;
 

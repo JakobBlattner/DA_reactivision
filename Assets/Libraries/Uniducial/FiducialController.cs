@@ -192,7 +192,7 @@ public class FiducialController : MonoBehaviour
                     // written by the librarys author
                     //visualizes the current position of the marker - for test purposes
                     Vector3 position = new Vector3(xPos * Screen.width, (1 - yPos) * Screen.height, this.CameraOffset);
-                    this.m_WorldPosition = this.m_MainCamera.ScreenToWorldPoint(position - new Vector3(20, -10, 0));
+                    this.m_WorldPosition = this.m_MainCamera.ScreenToWorldPoint(position);// - new Vector3(20, -10, 0));
                     m_WorldPosition += CameraOffset * m_MainCamera.transform.forward;
                     transform.position = this.m_WorldPosition;
                 }

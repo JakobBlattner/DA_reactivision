@@ -10,7 +10,9 @@ public class LogHandler : MonoBehaviour
     private StreamWriter _writer;
     void Awake()
     {
-        _writer = File.AppendText("log.txt");
+        DateTime now = DateTime.Now;
+        string formatted = now.ToString(" dd'.'MM'.'yyyy' 'HH'_'mm'_'ss");
+        _writer = File.AppendText("log" + formatted + ".txt");
         _writer.Write("\n\n=============== Game started ================\n\n");
         DontDestroyOnLoad(gameObject);
         Application.logMessageReceived+=HandleLog;
