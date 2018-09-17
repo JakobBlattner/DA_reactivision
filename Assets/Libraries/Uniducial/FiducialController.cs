@@ -64,7 +64,6 @@ public class FiducialController : MonoBehaviour
     private bool isLoopBarMarker;
     private bool isJoker;
     private bool isSnapped;
-    private Vector3 snappingPosition;
     private float lastTimeSnapped;
     private Vector3 oldPosition;
 
@@ -189,12 +188,13 @@ public class FiducialController : MonoBehaviour
 
                 if (testMarker)
                 {
-                    // written by the librarys author
                     //visualizes the current position of the marker - for test purposes
-                    Vector3 position = new Vector3(xPos * Screen.width, (1 - yPos) * Screen.height, this.CameraOffset);
-                    this.m_WorldPosition = this.m_MainCamera.ScreenToWorldPoint(position);// - new Vector3(20, -10, 0));
+                    Vector3 position = new Vector3(xPos * (Screen.width - 80), (1 - yPos) * Screen.height, this.CameraOffset);
+                    position.x += 40;
+                    this.m_WorldPosition = this.m_MainCamera.ScreenToWorldPoint(position);
                     m_WorldPosition += CameraOffset * m_MainCamera.transform.forward;
                     transform.position = this.m_WorldPosition;
+
                 }
                 else
                 {
@@ -235,22 +235,6 @@ public class FiducialController : MonoBehaviour
             }
             transform.localRotation = rotation;
         }
-    }
-
-    //mainly for debugging/ logging
-    internal void SetSnappingPosition(Vector3 vector3)
-    {
-        if (snappingPosition != null || snappingPosition != vector3)
-        {
-            int width = (int)(Settings.Instance.GetMarkerWidthMultiplier(MarkerID) * 2);
-            int newBeat = (m_TokenPosition.GetTactPosition(vector3));
-            int oldBeat = (m_TokenPosition.GetTactPosition(snappingPosition));
-
-            Debug.Log("Marker " + MarkerID + " was moved from beat " + 
-                (width > 3 ? oldBeat - 1 : (width > 1 ? oldBeat : oldBeat + 1)) + " on note " + (m_TokenPosition.GetNote(snappingPosition) + 1) + 
-                " to beat " + (width > 3 ? newBeat - 1 : (width > 1 ? newBeat : newBeat + 1)) + " on note " + (m_TokenPosition.GetNote(vector3) + 1));
-        }
-        snappingPosition = vector3;
     }
 
     private void ShowGameObject()
