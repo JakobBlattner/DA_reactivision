@@ -35,7 +35,9 @@ public class TuneManager : MonoBehaviour
     private GameObject[] activeRedNotes;
     private GameObject[] activeGreenNotes;
     private GameObject[] activeBlueNotes;
+    private int[] lastSentIDs = { -1, -1, -1 };
     private int oldTactPos;
+
 
     // Use this for initialization
     void Start()
@@ -98,8 +100,15 @@ public class TuneManager : MonoBehaviour
 
                 //calculates string on guitar which will be played and sets the tune to be played on the position of the array assigned to the string
                 arrayToSend[m_tokenposition.GetNote(activeMarkers[tactPosWithOffset].transform.position) / tunesPerString] = activeMarkers[tactPosWithOffset];
-
-                this.SendNote(arrayToSend, new bool[] { activeMarkers[nextBeat] == null });
+                if (tactPosWithOffset > 0)
+                {
+                    lastSentIDs[0] = activeMarkers[tactPosWithOffset - 1] != null ? activeMarkers[tactPosWithOffset - 1].GetComponent<FiducialController>().MarkerID : -1;
+                }
+                else
+                {
+                    lastSentIDs[0] = -1;
+                }
+                this.SendNote(arrayToSend, new bool[] { activeMarkers[nextBeat] == null }, lastSentIDs);
             }
             else
             {
@@ -107,13 +116,25 @@ public class TuneManager : MonoBehaviour
                 activeGreenNotes = m_lastComeLastServe.GetActiveMarkers(m_settings.green);
                 activeBlueNotes = m_lastComeLastServe.GetActiveMarkers(m_settings.blue);
 
-                this.SendNote(new GameObject[] { activeRedNotes[tactPosWithOffset], activeGreenNotes[tactPosWithOffset], activeBlueNotes[tactPosWithOffset] }, new bool[] { activeRedNotes[nextBeat] == null, activeGreenNotes[nextBeat] == null, activeBlueNotes[nextBeat] == null });
+                if (tactPosWithOffset > 0)
+                {
+                    lastSentIDs[0] = activeRedNotes[tactPosWithOffset - 1] != null ? activeRedNotes[tactPosWithOffset - 1].GetComponent<FiducialController>().MarkerID : -1;
+                    lastSentIDs[1] = activeGreenNotes[tactPosWithOffset - 1] != null ? activeGreenNotes[tactPosWithOffset - 1].GetComponent<FiducialController>().MarkerID : -1;
+                    lastSentIDs[2] = activeBlueNotes[tactPosWithOffset - 1] != null ? activeBlueNotes[tactPosWithOffset - 1].GetComponent<FiducialController>().MarkerID : -1;
+                }
+                else
+                {
+                    lastSentIDs[0] = -1;
+                    lastSentIDs[1] = -1;
+                    lastSentIDs[2] = -1;
+                }
+                this.SendNote(new GameObject[] { activeRedNotes[tactPosWithOffset], activeGreenNotes[tactPosWithOffset], activeBlueNotes[tactPosWithOffset] }, new bool[] { activeRedNotes[nextBeat] == null, activeGreenNotes[nextBeat] == null, activeBlueNotes[nextBeat] == null }, lastSentIDs);
             }
             oldTactPos = tactPosWithOffset;
         }
     }
 
-    private void SendNote(GameObject[] notesToSend, bool[] isNextBeatEmpty)
+    private void SendNote(GameObject[] notesToSend, bool[] isNextBeatEmpty, int[] lastSentID)
     {
         messageToSend = msgIndex + ",100";
 
@@ -124,6 +145,10 @@ public class TuneManager : MonoBehaviour
                 int id = notesToSend[i].GetComponent<FiducialController>().MarkerID;
                 int duration = (int)(m_settings.GetMarkerWidthMultiplier(id) * 2);
                 int tuneHeight = m_tokenposition.GetNote(notesToSend[i].transform.position) % tunesPerString;
+                if (id == lastSentID[i])  //don't send new fret
+                {
+                    tuneHeight = -1;
+                }
                 //if the next beat is empty --> damping = 1, else damping = 0 
                 int damping = isNextBeatEmpty[i] ? 1 : 0;
 
