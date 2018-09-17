@@ -101,8 +101,8 @@ public class TokenPosition
             return fiducialController.gameObject.transform.position;
 
         TuioObject m_obj = m_tuioManager.GetMarker(markerID);
-        Vector3 position = new Vector3(m_obj.getX() * Screen.width, isLoopBarMarker ? 0.5f * Screen.height : (1 - m_obj.getY()) * Screen.height, cameraOffset);
-
+        Vector3 position = new Vector3(m_obj.getX() * (Screen.width - 80), isLoopBarMarker ? 0.5f * Screen.height : (1 - m_obj.getY()) * Screen.height, cameraOffset);
+        position.x += 40;
         //when the marker is snapped... 
         if (fiducialController.IsSnapped())
         {
@@ -168,7 +168,7 @@ public class TokenPosition
     //In screen space
     public float CalculateXPosition(Vector3 position, bool isLoopBarMarker, float markerWidthMultiplier)
     {
-        float snappingDistance = cellWidthInPx * markerWidthMultiplier;//different marker sizes have effects on snapping distances
+        float snappingDistance = /*cellWidthInPx / 2 +*/ cellWidthInPx * markerWidthMultiplier;//different marker sizes have effects on snapping distances
 
         if (isLoopBarMarker) snappingDistance = 0;
 
