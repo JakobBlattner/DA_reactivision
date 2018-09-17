@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MarkerID: 0
-  realMarker: 0
+  testMarker: 0
   IsPositionMapped: 1
   InvertX: 0
   InvertY: 0
@@ -109,7 +109,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3cbb2ddc37812d142b2f3b4a9f800069, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eba851609fbbdd24aa311ff06c523a94, type: 3}
   m_Color: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   m_FlipX: 0
   m_FlipY: 0
