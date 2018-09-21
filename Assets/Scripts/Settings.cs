@@ -13,6 +13,7 @@ public class Settings : MonoBehaviour
 
     private TuioManager tuioManager;
     private static Settings m_settings;
+    internal float lastTimeAddedThreshold = 0.2f;
 
     //communication values
     public readonly int serialBaudrate = 9600;
@@ -129,6 +130,6 @@ public class Settings : MonoBehaviour
 
     public float GetMarkerWidthMultiplier(int markerID)
     {
-        return markerID < lastIndexOfOneFourthMarker ? 0.5f : (markerID < lastIndexOfOneHalfMarker ? 1 : (markerID < lastIndexOfThreeFourthMarker ? 1.5f : 2));
+        return markerID <= lastIndexOfOneFourthMarker ? 0.5f : (markerID <= lastIndexOfOneHalfMarker ? 1 : (markerID <= lastIndexOfThreeFourthMarker ? 1.5f : 2));
     }
 }

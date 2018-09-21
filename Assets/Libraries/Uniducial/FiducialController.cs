@@ -68,6 +68,7 @@ public class FiducialController : MonoBehaviour
     private Vector3 oldPosition;
 
     public float RotationMultiplier = 1;
+    private float? lastTimeAdded;
 
     void Awake()
     {
@@ -289,6 +290,11 @@ public class FiducialController : MonoBehaviour
     {
         isSnapped = v;
     }
+
+    public void SetLastTimeAdded(float time)
+    {
+        lastTimeAdded = time;
+    }
     #endregion
 
     #region Getter
@@ -350,6 +356,11 @@ public class FiducialController : MonoBehaviour
     public float GetLastTimeSnapped()
     {
         return lastTimeSnapped;
+    }
+
+    public float? GetLastTimeAdded()
+    {
+        return lastTimeAdded;
     }
     #endregion
 }

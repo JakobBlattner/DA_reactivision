@@ -223,13 +223,13 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     private void AddMarker(TuioObject tobj)
     {
         int symbolID = tobj.getSymbolID();
-        //if a marker ID is being recognized which is not being used be the program, cancel call
-        if (!markers.ContainsKey(symbolID))
-            return;
-        //prevents loopBar Markers to be added to lists
-        if (symbolID != m_settings.startLoopBarMarkerID && symbolID != m_settings.endLoopBarMarkerID)
+        //if a marker ID is being recognized which is not being used be the program, cancel call and...
+        //...prevents loopBar Markers to be added to lists
+        if (markers.ContainsKey(symbolID) &&
+            symbolID != m_settings.startLoopBarMarkerID && symbolID != m_settings.endLoopBarMarkerID)
         {
             GameObject currentMarker = markers[symbolID];
+            currentMarker.GetComponent<FiducialController>().SetLastTimeAdded(Time.time);
             Debug.Log("Marker " + symbolID + " has been added to the grid.");
 
             //gets current color and adds marker to the according List
@@ -251,39 +251,43 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     private void RemoveMarker(TuioObject tobj)
     {
         int symbolID = tobj.getSymbolID();
-        if (!markers.ContainsKey(symbolID))
+
+        if (markers.ContainsKey(symbolID) && symbolID != m_settings.startLoopBarMarkerID && symbolID != m_settings.endLoopBarMarkerID)
         {
-            return;
-        }
-        if (symbolID != m_settings.startLoopBarMarkerID && symbolID != m_settings.endLoopBarMarkerID)
-        {
-            GameObject currentMarker = markers[symbolID];
-            GameObject[] currentList = activeMarkersOnGrid;
 
-            Debug.Log("Marker " + symbolID + " has been removed from the grid.");
+            float? lastTimeAdded = markers[symbolID].GetComponent<FiducialController>().GetLastTimeAdded();
+            //checks the last time the Marker has been added to the table and doesn't remove it if it's too low (marker has been removed too fast --> false positive from fiducial library)
+            if (lastTimeAdded == null || lastTimeAdded > m_settings.lastTimeAddedThreshold)
+            {
 
-            //remove from colored lists
-            if (redMarkers.Contains(currentMarker))
-            {
-                redMarkers.Remove(currentMarker);
-                if (enableChords)
-                    currentList = activeREDMarkersOnGrid;
-            }
-            else if (blueMarkers.Contains(currentMarker))
-            {
-                blueMarkers.Remove(currentMarker);
-                if (enableChords)
-                    currentList = activeBLUEMarkersOnGrid;
-            }
-            else if (greenMarkers.Contains(currentMarker))
-            {
-                greenMarkers.Remove(currentMarker);
-                if (enableChords)
-                    currentList = activeGREENMarkersOnGrid;
-            }
+                GameObject currentMarker = markers[symbolID];
+                GameObject[] currentList = activeMarkersOnGrid;
 
-            //remove from activeMarkersOnGrid array
-            RemoveMarkerFromActiveMarkersOnGrid(currentMarker, currentList);
+                Debug.Log("Marker " + symbolID + " has been removed from the grid.");
+
+                //remove from colored lists
+                if (redMarkers.Contains(currentMarker))
+                {
+                    redMarkers.Remove(currentMarker);
+                    if (enableChords)
+                        currentList = activeREDMarkersOnGrid;
+                }
+                else if (blueMarkers.Contains(currentMarker))
+                {
+                    blueMarkers.Remove(currentMarker);
+                    if (enableChords)
+                        currentList = activeBLUEMarkersOnGrid;
+                }
+                else if (greenMarkers.Contains(currentMarker))
+                {
+                    greenMarkers.Remove(currentMarker);
+                    if (enableChords)
+                        currentList = activeGREENMarkersOnGrid;
+                }
+
+                //remove from activeMarkersOnGrid array
+                RemoveMarkerFromActiveMarkersOnGrid(currentMarker, currentList);
+            }
         }
     }
 
