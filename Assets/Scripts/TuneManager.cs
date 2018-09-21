@@ -108,7 +108,7 @@ public class TuneManager : MonoBehaviour
                 {
                     lastSentIDs[0] = -1;
                 }
-                this.SendNote(arrayToSend, new bool[] { activeMarkers[nextBeat] == null }, lastSentIDs);
+                this.SendNote(arrayToSend, new bool[] { activeMarkers[nextBeat] == null }, lastSentIDs, tactPosWithOffset);
             }
             else
             {
@@ -116,7 +116,7 @@ public class TuneManager : MonoBehaviour
                 activeGreenNotes = m_lastComeLastServe.GetActiveMarkers(m_settings.green);
                 activeBlueNotes = m_lastComeLastServe.GetActiveMarkers(m_settings.blue);
 
-                if (tactPosWithOffset > 0)
+                if (tactPosWithOffset > m_tokenposition.GetTactPosition(GameObject.Find(m_settings.startBarLoop).transform.position)) // TODO don'T use > 0 use > min tact
                 {
                     lastSentIDs[0] = activeRedNotes[tactPosWithOffset - 1] != null ? activeRedNotes[tactPosWithOffset - 1].GetComponent<FiducialController>().MarkerID : -1;
                     lastSentIDs[1] = activeGreenNotes[tactPosWithOffset - 1] != null ? activeGreenNotes[tactPosWithOffset - 1].GetComponent<FiducialController>().MarkerID : -1;
@@ -128,15 +128,17 @@ public class TuneManager : MonoBehaviour
                     lastSentIDs[1] = -1;
                     lastSentIDs[2] = -1;
                 }
-                this.SendNote(new GameObject[] { activeRedNotes[tactPosWithOffset], activeGreenNotes[tactPosWithOffset], activeBlueNotes[tactPosWithOffset] }, new bool[] { activeRedNotes[nextBeat] == null, activeGreenNotes[nextBeat] == null, activeBlueNotes[nextBeat] == null }, lastSentIDs);
+                this.SendNote(new GameObject[] { activeRedNotes[tactPosWithOffset], activeGreenNotes[tactPosWithOffset], activeBlueNotes[tactPosWithOffset] }, new bool[] { activeRedNotes[nextBeat] == null, activeGreenNotes[nextBeat] == null, activeBlueNotes[nextBeat] == null }, lastSentIDs, tactPosWithOffset);
             }
             oldTactPos = tactPosWithOffset;
         }
     }
 
-    private void SendNote(GameObject[] notesToSend, bool[] isNextBeatEmpty, int[] lastSentID)
+    private void SendNote(GameObject[] notesToSend, bool[] isNextBeatEmpty, int[] lastSentID, int tactPos)
     {
         messageToSend = msgIndex + ",100";
+        int startBarTactPosition = m_tokenposition.GetTactPosition(GameObject.Find(m_settings.startBarLoop).transform.position);
+        int endBarTactPosition = m_tokenposition.GetTactPosition(GameObject.Find(m_settings.endtBarLoop).transform.position);
 
         for (int i = 0; i < notesToSend.Length; i++)
         {
@@ -145,13 +147,17 @@ public class TuneManager : MonoBehaviour
                 int id = notesToSend[i].GetComponent<FiducialController>().MarkerID;
                 int duration = (int)(m_settings.GetMarkerWidthMultiplier(id) * 2);
                 int tuneHeight = m_tokenposition.GetNote(notesToSend[i].transform.position) % tunesPerString;
-                if (id == lastSentID[i])  //don't send new fret
-                {
-                    tuneHeight = -1;
-                }
+                //if (id == lastSentID[i])  //don't send new fret
+                //{
+                //    tuneHeight = -1;
+                //}
                 //if the next beat is empty --> damping = 1, else damping = 0 
                 int damping = isNextBeatEmpty[i] ? 1 : 0;
 
+                // adjusting parameters
+                tuneHeight = id == lastSentID[i] ? -1 : tuneHeight;  //don't send new fret if it's the same note
+                duration -= tactPos + 1 - startBarTactPosition;  // subtract duration for what's before the start loop bar
+                damping = endBarTactPosition == tactPos ? 1 : damping;  //always damp if it's the last note
                 messageToSend += "," + tuneHeight + "," + duration + "," + damping;
                 Debug.Log("Playing Marker " + id + " on string " + (i + 1) + " with fret " + (tuneHeight + 1) + " on position " + (lastSentNote + 1) + ((damping == 1) ? " with damping." : " without damping."));
             }
