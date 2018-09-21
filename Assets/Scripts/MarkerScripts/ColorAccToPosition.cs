@@ -31,21 +31,6 @@ public class ColorAccToPosition : MonoBehaviour
         currentColor = rend.color;
     }
 
-    void Update()
-    {
-        if (rend.isVisible && currentColor != grey)
-        {
-            note = m_tokenPosition.GetNote(this.transform.position);
-
-            if (note < tunesPerString)
-                rend.color = blue;
-            else if (note < tunesPerString * 2)
-                rend.color = green;
-            else
-                rend.color = red;
-        }
-    }
-
     public void SetCurrentColor(Color color)
     {
         rend.color = color;

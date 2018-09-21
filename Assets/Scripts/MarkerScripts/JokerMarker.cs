@@ -6,6 +6,7 @@ public class JokerMarker : MonoBehaviour
 {
 
     private int[] pentatonicTunes;
+    private TokenPosition m_tokenPosition;
     private int numberOfTunes;
     //private Dictionary<int, Vector3> jokerMarker;
     private Vector3 oldPosition;
@@ -15,6 +16,7 @@ public class JokerMarker : MonoBehaviour
     private Settings m_settings;
     private float cellHeightInPx;
     private float heightOffSet;
+    private LastComeLastServe m_lastComeLastServe;
 
     // Use this for initialization
     void Start()
@@ -28,10 +30,12 @@ public class JokerMarker : MonoBehaviour
         cellHeightInPx = m_settings.cellHeightInPx;
         heightOffSet = m_settings.heightOffSetInPx;
 
+        m_lastComeLastServe = GameObject.FindObjectOfType<LastComeLastServe>();
         pentatonicTunes = m_settings.pentatonicTunes;
+        m_tokenPosition = TokenPosition.Instance;
     }
 
-    public float CalculateYPosition(Vector3 pos, FiducialController fiducialController)
+    public float CalculateYPosition(Vector3 pos, FiducialController fiducialController, int currentBeat)
     {
         //only does something, if the marker lays still
         if (fiducialController.MovementDirection == Vector2.zero)
@@ -39,9 +43,34 @@ public class JokerMarker : MonoBehaviour
             //if marker is not in the recognised jokerMarker dictionary - set y Position
             if (oldPosition.x != pos.x)
             {
-                Debug.Log("Joker Marker " + fiducialController.MarkerID + "has been set.");
+                Debug.Log("Joker Marker " + fiducialController.MarkerID + " has been set.");
                 realOldYPosition = pos.y;
-                pos.y = heightOffSet + pentatonicTunes[(int)Random.Range(0, pentatonicTunes.Length)] * cellHeightInPx - cellHeightInPx / 2;
+
+                //checks which pentatonic tunes are not occupied
+                List<List<GameObject>> allActiveMarkers = m_lastComeLastServe.GetAllActiveMarkers();
+                List<int> freePentatonicTuneHeights = new List<int>();
+
+                for (int i = 0; i < allActiveMarkers.Count; i++)
+                {
+                    for (int j = 0; j < pentatonicTunes.Length; j++)
+                    {
+                        if ((i + 1) * m_settings.tunesPerString < pentatonicTunes[j])
+                            break;
+
+                        //if (allActiveMarkers[i][currentBeat] != null)
+                        // Debug.Log(m_tokenPosition.GetNote(allActiveMarkers[i][currentBeat].transform.position) + " " + pentatonicTunes[j]);
+                        if (!freePentatonicTuneHeights.Contains(pentatonicTunes[j]) && (allActiveMarkers[i][currentBeat] == null || m_tokenPosition.GetNote(allActiveMarkers[i][currentBeat].transform.position) + 1 != pentatonicTunes[j]))
+                        {
+                            if (allActiveMarkers[i][currentBeat] != null)
+                                Debug.Log(m_tokenPosition.GetNote(allActiveMarkers[i][currentBeat].transform.position) + 1 + " " + pentatonicTunes[j]);
+
+                            freePentatonicTuneHeights.Add(pentatonicTunes[j]);
+                        }
+                    }
+                }
+                Debug.Log(freePentatonicTuneHeights.Count);
+                //Gets random pentatonic tune and calculates y position based on said tune
+                pos.y = heightOffSet + freePentatonicTuneHeights[(int)Random.Range(0, freePentatonicTuneHeights.Count)] * cellHeightInPx - cellHeightInPx / 2;
                 oldPosition = pos;
 
                 return pos.y;

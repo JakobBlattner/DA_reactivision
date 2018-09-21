@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-/*This class automatically logs every Debug call in this program in a file called 'log.txt'*/
+/*This class automatically logs every Debug call in this program in a log-file*/
 public class LogHandler : MonoBehaviour
 {
     private StreamWriter _writer;
@@ -12,7 +12,7 @@ public class LogHandler : MonoBehaviour
     {
         DateTime now = DateTime.Now;
         string formatted = now.ToString(" dd'.'MM'.'yyyy' 'HH'_'mm'_'ss");
-        _writer = File.AppendText("log" + formatted + ".txt");
+        _writer = File.AppendText("./logs/log" + formatted + ".txt");
         _writer.Write("\n\n=============== Game started ================\n\n");
         DontDestroyOnLoad(gameObject);
         Application.logMessageReceived+=HandleLog;

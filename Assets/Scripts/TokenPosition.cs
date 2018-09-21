@@ -101,7 +101,6 @@ public class TokenPosition
             return fiducialController.gameObject.transform.position;
 
         TuioObject m_obj = m_tuioManager.GetMarker(markerID);
-        //-80 and +40 and the next valid codeline solved a problem with the build reactivision-like table we used
         Vector3 position = new Vector3(m_obj.getX() * (Screen.width), isLoopBarMarker ? 0.5f * Screen.height : (1 - m_obj.getY()) * Screen.height, cameraOffset);
         //next line: see last comment
         //when the marker is snapped... 
@@ -131,8 +130,7 @@ public class TokenPosition
                 #region Y-Axis
                 //suggests the y Position because it's a joker marker
                 if (isJoker)
-                    position.y = fiducialController.gameObject.GetComponent<JokerMarker>().CalculateYPosition(position, fiducialController);
-                //doesn't move object on y-axis, when it's a LoopBarMarker
+                    position.y = fiducialController.gameObject.GetComponent<JokerMarker>().CalculateYPosition(position, fiducialController, this.GetTactPosition(Camera.main.ScreenToWorldPoint(position)));
                 else if (!isLoopBarMarker)
                 {
                     float snappingDistance = -cellHeightInPx / 2;
