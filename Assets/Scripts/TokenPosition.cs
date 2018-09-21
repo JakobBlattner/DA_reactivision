@@ -101,8 +101,9 @@ public class TokenPosition
             return fiducialController.gameObject.transform.position;
 
         TuioObject m_obj = m_tuioManager.GetMarker(markerID);
-        Vector3 position = new Vector3(m_obj.getX() * (Screen.width - 80), isLoopBarMarker ? 0.5f * Screen.height : (1 - m_obj.getY()) * Screen.height, cameraOffset);
-        position.x += 40;
+        //-80 and +40 and the next valid codeline solved a problem with the build reactivision-like table we used
+        Vector3 position = new Vector3(m_obj.getX() * (Screen.width), isLoopBarMarker ? 0.5f * Screen.height : (1 - m_obj.getY()) * Screen.height, cameraOffset);
+        //next line: see last comment
         //when the marker is snapped... 
         if (fiducialController.IsSnapped())
         {
@@ -168,19 +169,27 @@ public class TokenPosition
     //In screen space
     public float CalculateXPosition(Vector3 position, bool isLoopBarMarker, float markerWidthMultiplier)
     {
-        float snappingDistance = /*cellWidthInPx / 2 +*/ cellWidthInPx * markerWidthMultiplier;//different marker sizes have effects on snapping distances
+        float snappingDistance = cellWidthInPx * markerWidthMultiplier;//different marker sizes have effects on snapping distances
 
         if (isLoopBarMarker) snappingDistance = 0;
 
-        //if marker is below grid area
+        //if marker is left of grid area
         if (position.x < widthOffsetInPx + snappingDistance)
+        {
+            Debug.Log("position.x < widthOffsetInPx + snappingDistance: " + position.x + " < " + widthOffsetInPx + " + " + snappingDistance);
+            Debug.Log("Setting position.x to 0.");
             position.x = 0;
+        }
         //if marker is above grid area
         else if (position.x > gridWidthInPx + widthOffsetInPx - snappingDistance)
+        {
+            Debug.Log("position.x > gridWidthInPx + widthOffsetInPx - snappingDistance: " + position.x + " > " + gridWidthInPx + " + " + widthOffsetInPx + " - " + snappingDistance);
             position.x = gridWidthInPx + widthOffsetInPx - 2 * snappingDistance;
+        }
         //if marker is on grid area
         else
         {
+            Debug.Log("Marker is on grid area");
             float xPos = position.x - widthOffsetInPx - snappingDistance;
             float markerXOffset = xPos % cellWidthInPx;
             if (markerXOffset < cellWidthInPx / 2)

@@ -68,6 +68,7 @@ public class FiducialController : MonoBehaviour
     private Vector3 oldPosition;
 
     public float RotationMultiplier = 1;
+    private float? lastTimeAdded;
 
     void Awake()
     {
@@ -175,8 +176,13 @@ public class FiducialController : MonoBehaviour
             //calculate world position with respect to camera view direction
             float xPos = this.m_ScreenPosition.x;
             float yPos = this.m_ScreenPosition.y;
+
+            Debug.Log("xPos: " + xPos);
+
             if (this.InvertX) xPos = 1 - xPos;
             if (this.InvertY) yPos = 1 - yPos;
+
+
 
             //this if is for rotation purpose only
             if (this.m_ControlsGUIElement)
@@ -189,8 +195,7 @@ public class FiducialController : MonoBehaviour
                 if (testMarker)
                 {
                     //visualizes the current position of the marker - for test purposes
-                    Vector3 position = new Vector3(xPos * (Screen.width - 80), (1 - yPos) * Screen.height, this.CameraOffset);
-                    position.x += 40;
+                    Vector3 position = new Vector3(xPos * (Screen.width), (1 - yPos) * Screen.height, this.CameraOffset);
                     this.m_WorldPosition = this.m_MainCamera.ScreenToWorldPoint(position);
                     m_WorldPosition += CameraOffset * m_MainCamera.transform.forward;
                     transform.position = this.m_WorldPosition;
@@ -289,6 +294,11 @@ public class FiducialController : MonoBehaviour
     {
         isSnapped = v;
     }
+
+    public void SetLastTimeAdded(float time)
+    {
+        lastTimeAdded = time;
+    }
     #endregion
 
     #region Getter
@@ -350,6 +360,11 @@ public class FiducialController : MonoBehaviour
     public float GetLastTimeSnapped()
     {
         return lastTimeSnapped;
+    }
+
+    public float? GetLastTimeAdded()
+    {
+        return lastTimeAdded;
     }
     #endregion
 }
