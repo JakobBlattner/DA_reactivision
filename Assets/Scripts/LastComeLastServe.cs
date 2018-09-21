@@ -295,64 +295,67 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     private void UpdateMarker(TuioObject tobj)
     {
         int symbolID = tobj.getSymbolID();
-        if (!markers.ContainsKey(symbolID))
-        {
-            return;
-        }
-        //prevents loopBar Markers to be added to lists
-        if (symbolID != m_settings.startLoopBarMarkerID && symbolID != m_settings.endLoopBarMarkerID)
+
+        //checks if fiducial library recognized marker which is not being used in this program and...
+        //... prevents loopBar Markers to be added to lists
+        if (markers.ContainsKey(symbolID) &&
+            symbolID != m_settings.startLoopBarMarkerID && symbolID != m_settings.endLoopBarMarkerID)
         {
             GameObject currentMarker = markers[symbolID];
 
-            //gets current color, adds marker to the according List and removes from other lists (if containing)
-            ColorAccToPosition m_colorAccToPosition = currentMarker.GetComponent<ColorAccToPosition>();
-            //updates sprite color - going too fast for loop in ColoAccToPosition script
-            m_colorAccToPosition.CheckColor();
-            Color m_color = currentMarker.GetComponent<SpriteRenderer>().color;
-
-            if (m_color == red && !redMarkers.Contains(currentMarker))
+            //checks if marker if snapped, if so --> no further changements made (color change etc.)
+            if (!currentMarker.GetComponent<FiducialController>().IsSnapped())
             {
-                redMarkers.Add(currentMarker);
+                //gets current color, adds marker to the according List and removes from other lists (if containing)
+                ColorAccToPosition m_colorAccToPosition = currentMarker.GetComponent<ColorAccToPosition>();
+                //updates sprite color - going too fast for loop in ColoAccToPosition script
+                m_colorAccToPosition.CheckColor();
+                Color m_color = currentMarker.GetComponent<SpriteRenderer>().color;
 
-                if (blueMarkers.Contains(currentMarker))
+                if (m_color == red && !redMarkers.Contains(currentMarker))
                 {
-                    blueMarkers.Remove(currentMarker);
-                    Debug.Log("Marker " + symbolID + " switched colors from blue to red.");
-                }
-                else if (greenMarkers.Contains(currentMarker))
-                {
-                    greenMarkers.Remove(currentMarker);
-                    Debug.Log("Marker " + symbolID + " switched colors from green to red.");
-                }
-            }
-            else if (m_color == green && !greenMarkers.Contains(currentMarker))
-            {
-                greenMarkers.Add(currentMarker);
+                    redMarkers.Add(currentMarker);
 
-                if (blueMarkers.Contains(currentMarker))
-                {
-                    blueMarkers.Remove(currentMarker);
-                    Debug.Log("Marker " + symbolID + " switched colors blue to green.");
+                    if (blueMarkers.Contains(currentMarker))
+                    {
+                        blueMarkers.Remove(currentMarker);
+                        Debug.Log("Marker " + symbolID + " switched colors from blue to red.");
+                    }
+                    else if (greenMarkers.Contains(currentMarker))
+                    {
+                        greenMarkers.Remove(currentMarker);
+                        Debug.Log("Marker " + symbolID + " switched colors from green to red.");
+                    }
                 }
-                else if (redMarkers.Contains(currentMarker))
+                else if (m_color == green && !greenMarkers.Contains(currentMarker))
                 {
-                    redMarkers.Remove(currentMarker);
-                    Debug.Log("Marker " + symbolID + " switched colors red to green.");
-                }
-            }
-            else if (m_color == blue && !blueMarkers.Contains(currentMarker))
-            {
-                blueMarkers.Add(currentMarker);
+                    greenMarkers.Add(currentMarker);
 
-                if (greenMarkers.Contains(currentMarker))
-                {
-                    greenMarkers.Remove(currentMarker);
-                    Debug.Log("Marker " + symbolID + " switched colors green to blue.");
+                    if (blueMarkers.Contains(currentMarker))
+                    {
+                        blueMarkers.Remove(currentMarker);
+                        Debug.Log("Marker " + symbolID + " switched colors blue to green.");
+                    }
+                    else if (redMarkers.Contains(currentMarker))
+                    {
+                        redMarkers.Remove(currentMarker);
+                        Debug.Log("Marker " + symbolID + " switched colors red to green.");
+                    }
                 }
-                else if (redMarkers.Contains(currentMarker))
+                else if (m_color == blue && !blueMarkers.Contains(currentMarker))
                 {
-                    redMarkers.Remove(currentMarker);
-                    Debug.Log("Marker " + symbolID + " switched colors red to blue.");
+                    blueMarkers.Add(currentMarker);
+
+                    if (greenMarkers.Contains(currentMarker))
+                    {
+                        greenMarkers.Remove(currentMarker);
+                        Debug.Log("Marker " + symbolID + " switched colors green to blue.");
+                    }
+                    else if (redMarkers.Contains(currentMarker))
+                    {
+                        redMarkers.Remove(currentMarker);
+                        Debug.Log("Marker " + symbolID + " switched colors red to blue.");
+                    }
                 }
             }
         }
