@@ -223,10 +223,9 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     private void AddMarker(TuioObject tobj)
     {
         int symbolID = tobj.getSymbolID();
+        //if a marker ID is being recognized which is not being used be the program, cancel call
         if (!markers.ContainsKey(symbolID))
-        {
             return;
-        }
         //prevents loopBar Markers to be added to lists
         if (symbolID != m_settings.startLoopBarMarkerID && symbolID != m_settings.endLoopBarMarkerID)
         {
