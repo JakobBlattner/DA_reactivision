@@ -18,7 +18,7 @@ use default locations or specify an absolute path -->
     <!-- available amoeba sets are default, small or mini - or an alternative *.trees file
   ... also allows to enable the additional yamaarashi symbols,
       as well as the limitation to a maximum fiducial ID -->
-    <fiducial amoeba="default" max_fid="35"/>
+    <fiducial amoeba="default" max_fid="37"/>
     <!-- specifies the maximum finger size and tracking sensitivity - size zero disables fingers -->
     <finger size="0" sensitivity="100"/>
     <!-- specifies the minimum blob size - size zero disables blob tracking
@@ -28,9 +28,9 @@ use default locations or specify an absolute path -->
     <filter fiducial="false" finger="false" blob="true"/>
     <!-- the default display options at startup: dest, source, none
  ... also allows to enable the frame equalizer at startup -->
-    <image display="dest" fullscreen="false" equalize="true"/>
+    <image display="src" fullscreen="false" equalize="false"/>
     <!-- the threshold gradient and tile size ... maximum threads for multithreading -->
-    <threshold gradient="64" tile="6" threads="max"/>
+    <threshold gradient="43" tile="6" threads="max"/>
     <!-- the calibration file ... X,Y and angle inversion -->
     <calibration file="default.grid" invert=" xy"/>
 </reactivision>
