@@ -132,8 +132,7 @@ public class TokenPosition
                 #region Y-Axis
                 //suggests the y Position because it's a joker marker
                 if (isJoker)
-                    position.y = fiducialController.gameObject.GetComponent<JokerMarker>().CalculateYPosition(position, fiducialController);
-                //doesn't move object on y-axis, when it's a LoopBarMarker
+                    position.y = fiducialController.gameObject.GetComponent<JokerMarker>().CalculateYPosition(position, fiducialController, this.GetTactPosition(Camera.main.ScreenToWorldPoint(position)));
                 else if (!isLoopBarMarker)
                 {
                     float snappingDistance = -cellHeightInPx / 2;

@@ -194,7 +194,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                         }
                     }
                     this.ActivateMarkerOnBeatWithColor(marker, activeMarkersArray, beat, color); //1/4
-                    Debug.Log("Marker " + m_fiducial.MarkerID + " got activated on position " + (width > 3 ? beat - 1 : (width > 1 ? beat : beat + 1)) + " for " + width + " beat/s.");
+                    Debug.Log("Marker " + m_fiducial.MarkerID + " got activated on position " + (width > 3 ? beat - 1 : (width > 1 ? beat : beat + 1)) + " on tune " + (m_tokenPosition.GetNote(marker.transform.position)+1) + " for " + width + " beat/s.");
                 }
             }
         }
@@ -431,6 +431,26 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
             return activeGREENMarkersOnGrid;
         else
             return activeBLUEMarkersOnGrid;
+    }
+
+    internal List<List<GameObject>> GetAllActiveMarkers()
+    {
+        List<List<GameObject>> allActiveMarkersList = new List<List<GameObject>>();
+
+        if (!enableChords)
+        {
+            allActiveMarkersList.Add(new List<GameObject>(activeMarkersOnGrid));
+            return allActiveMarkersList;
+        }
+        else
+        {
+            allActiveMarkersList.Add(new List<GameObject>(activeBLUEMarkersOnGrid));
+            allActiveMarkersList.Add(new List<GameObject>(activeGREENMarkersOnGrid));
+            allActiveMarkersList.Add(new List<GameObject>(activeREDMarkersOnGrid));
+
+            return allActiveMarkersList;
+        }
+
     }
 
     #region not needed TuioListener methods

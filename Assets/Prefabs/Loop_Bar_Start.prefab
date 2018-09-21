@@ -268,8 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9a1e9c48a52914084e2f383504f2d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ghostPrefab: {fileID: 1973028194951108, guid: 2f1a58c2f7df5ba47aa765e82cee1448,
-    type: 2}
+  ghostPrefab: {fileID: 0}
   startMarker: 1
 --- !u!212 &212289934828149952
 SpriteRenderer:
@@ -352,7 +351,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3cbb2ddc37812d142b2f3b4a9f800069, type: 3}
-  m_Color: {r: 0, g: 0.8490566, b: 0.015579484, a: 0.101960786}
+  m_Color: {r: 0, g: 0.8490566, b: 0.015579484, a: 0.2509804}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -397,7 +396,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3cbb2ddc37812d142b2f3b4a9f800069, type: 3}
-  m_Color: {r: 0.8509804, g: 0, b: 0.0158546, a: 0.101960786}
+  m_Color: {r: 0.8509804, g: 0, b: 0.0158546, a: 0.2509804}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -487,7 +486,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3cbb2ddc37812d142b2f3b4a9f800069, type: 3}
-  m_Color: {r: 0.022692788, g: 0, b: 0.8509804, a: 0.101960786}
+  m_Color: {r: 0.022692788, g: 0, b: 0.8509804, a: 0.2509804}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
