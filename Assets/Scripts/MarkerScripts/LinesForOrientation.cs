@@ -21,6 +21,7 @@ public class LinesForOrientation : MonoBehaviour
     private SpriteRenderer right_spriteRenderer;
     private SpriteRenderer top_spriteRenderer;
     private SpriteRenderer bottom_spriteRenderer;
+    private float bottomOffset;
     private Transform lineTop;
     private Transform lineBottom;
     private Transform lineLeft;
@@ -64,6 +65,8 @@ public class LinesForOrientation : MonoBehaviour
         top_spriteRenderer = lineTop.GetComponent<SpriteRenderer>();
         bottom_spriteRenderer = lineBottom.GetComponent<SpriteRenderer>();
 
+        bottomOffset = Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight / 2 + m_settings.heightOffSetInPx_bottom, 0)).y;
+
         inActiveColor = m_settings.linesForOrientationInactiveColor;
         this.SetColorOfLines(inActiveColor, 1);
     }
@@ -80,7 +83,7 @@ public class LinesForOrientation : MonoBehaviour
             //get current position and set position of children accordingly
             currentPos = belongingMarker.transform.position;
             lineTop.position = new Vector3(currentPos.x, 5 - (childrenSpriteRenderer[0].bounds.size.y) / 2, lineTop.position.z);
-            lineBottom.position = new Vector3(currentPos.x, -5 + (childrenSpriteRenderer[1].bounds.size.y) / 2, lineBottom.position.z);
+            lineBottom.position = new Vector3(currentPos.x, -5 + (childrenSpriteRenderer[1].bounds.size.y) / 2 + bottomOffset, lineBottom.position.z);
             lineLeft.position = new Vector3(startLoopBar.position.x + (childrenSpriteRenderer[2].bounds.size.x) / 2, currentPos.y, lineLeft.position.z);
             lineRight.position = new Vector3(endLoopBar.position.x - (childrenSpriteRenderer[3].bounds.size.x) / 2, currentPos.y, lineRight.position.z);
 
@@ -93,10 +96,10 @@ public class LinesForOrientation : MonoBehaviour
                 lineLeft.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX * 2, 1);
                 lineRight.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX * 2, 1);
 
-                //sets color of this linesForOrientation and TODO: other linestForOrientation markers of same beat 
+                //sets color of this linesForOrientation and...
                 this.SetColorOfLines(bm_spriteRenderer.color, 0.5f);
 
-                //if(m_fiducial.Speed != 0 && )
+                //...TODO: other linestForOrientation markers of same beat 
             }
             else
             {

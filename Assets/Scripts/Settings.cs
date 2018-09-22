@@ -105,8 +105,8 @@ public class Settings : MonoBehaviour
         cellHeightInPx = gridHeightInPx / tunes;
         cellWidthInPx = gridWidthInPx / beats;
 
-        minWorldCoords = m_MainCamera.ScreenToWorldPoint(new Vector2(0 + (widthOffSetInPx), 0 + heightOffSetInPx_bottom));
-        maxWorldCoords = m_MainCamera.ScreenToWorldPoint(new Vector2(m_MainCamera.pixelWidth - (widthOffSetInPx), m_MainCamera.pixelHeight - heightOffSetInPx_top));
+        minWorldCoords = m_MainCamera.ScreenToWorldPoint(new Vector2(0 + widthOffSetInPx, 0 + heightOffSetInPx_bottom));
+        maxWorldCoords = m_MainCamera.ScreenToWorldPoint(new Vector2(m_MainCamera.pixelWidth - widthOffSetInPx, m_MainCamera.pixelHeight - heightOffSetInPx_top));
         worldDiff = maxWorldCoords - minWorldCoords;
 
         cellSizeWorld = Vector2.zero;

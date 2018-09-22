@@ -26,8 +26,8 @@ public class OuterLinesForOrientation : MonoBehaviour
 
         //Instantiates variables for spawning top and bottom prefabs
         float prefabYBounds = prefab.GetComponent<SpriteRenderer>().bounds.size.y / 2;
-        float topYPos = -5 + prefabYBounds; //TODO remove TopOffset
-        float bottomYPos = 5 - prefabYBounds;// TODO add BottomOffset
+        float topYPos = -5 + prefabYBounds + Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight / 2 + m_settings.heightOffSetInPx_bottom, 0)).y;
+        float bottomYPos = 5 - prefabYBounds;
         float xPos;
 
         //spawns number of beats Outer_Line_For_Orientation prefabs in loop for Top and Bottom
