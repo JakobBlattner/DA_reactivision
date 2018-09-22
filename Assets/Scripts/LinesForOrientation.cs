@@ -65,7 +65,7 @@ public class LinesForOrientation : MonoBehaviour
         bottom_spriteRenderer = lineBottom.GetComponent<SpriteRenderer>();
 
         inActiveColor = m_settings.linesForOrientationInactiveColor;
-        this.SetColorOfLines(inActiveColor);
+        this.SetColorOfLines(inActiveColor, 1);
     }
 
     // Update is called once per frame
@@ -94,7 +94,9 @@ public class LinesForOrientation : MonoBehaviour
                 lineRight.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX * 2, 1);
 
                 //sets color of this linesForOrientation and TODO: other linestForOrientation markers of same beat 
-                this.SetColorOfLines(bm_spriteRenderer.color);
+                this.SetColorOfLines(bm_spriteRenderer.color, 0.5f);
+
+                //if(m_fiducial.Speed != 0 && )
             }
             else
             {
@@ -104,7 +106,7 @@ public class LinesForOrientation : MonoBehaviour
                 lineLeft.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX, 1);
                 lineRight.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX, 1);
 
-                this.SetColorOfLines(inActiveColor);
+                this.SetColorOfLines(inActiveColor, 1);
             }
         }
         //if the marker is not visible, also deactivate the linesForOrientation
@@ -115,12 +117,29 @@ public class LinesForOrientation : MonoBehaviour
         }
     }
 
-    private void SetColorOfLines(Color color)
+    private void SetColorOfLines(Color color, float intensity)
     {
+        color = new Color(color.r, color.g, color.b, intensity);
+
         left_spriteRenderer.color = color;
         right_spriteRenderer.color = color;
         top_spriteRenderer.color = color;
         bottom_spriteRenderer.color = color;
+
+        if (color != inActiveColor)
+        {
+            left_spriteRenderer.sortingOrder = 1;
+            right_spriteRenderer.sortingOrder = 1;
+            top_spriteRenderer.sortingOrder = 1;
+            bottom_spriteRenderer.sortingOrder = 1;
+        }
+        else
+        {
+            left_spriteRenderer.sortingOrder = 0;
+            right_spriteRenderer.sortingOrder = 0;
+            top_spriteRenderer.sortingOrder = 0;
+            bottom_spriteRenderer.sortingOrder = 0;
+        }
     }
 
     private void EnableChildrenSpriteRenderer(bool v)
