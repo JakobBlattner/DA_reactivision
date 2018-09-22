@@ -24,7 +24,7 @@ public class ColorSetter : MonoBehaviour
                 s_rend.color = m_settings.green;
 
             if (transform.parent.parent.tag.Equals(m_settings.loopMarkerTag))
-                s_rend.color = new Color(s_rend.color.r, s_rend.color.g, s_rend.color.b, 0.1f);
+                s_rend.color = new Color(s_rend.color.r, s_rend.color.g, s_rend.color.b, m_settings.loopbarMarkerColorIntensity);
 
             if (!red && !green && !blue)
                 Debug.Log(this.name + " has no color set in ColorSetter component.");
