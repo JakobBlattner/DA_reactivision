@@ -33,6 +33,10 @@ public class JokerMarker : MonoBehaviour
         m_lastComeLastServe = GameObject.FindObjectOfType<LastComeLastServe>();
         pentatonicTunes = m_settings.pentatonicTunes;
         m_tokenPosition = TokenPosition.Instance;
+
+        float markerWidthMultiplier = m_settings.GetMarkerWidthMultiplier(GetComponent<FiducialController>().MarkerID);
+        Transform jokerIcon = transform.GetChild(1);
+        jokerIcon.localScale = new Vector3(jokerIcon.localScale.x / (markerWidthMultiplier*2), jokerIcon.localScale.y, jokerIcon.localScale.z);
     }
 
     public float CalculateYPosition(Vector3 pos, FiducialController fiducialController, int currentBeat)
