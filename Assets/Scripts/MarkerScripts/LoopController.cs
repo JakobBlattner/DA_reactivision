@@ -45,6 +45,9 @@ public class LoopController : MonoBehaviour
         if (counter == 0)
             Debug.LogError("No Loop Start GameObject defined. Must be exactely one.");
 
+        if (ghostPrefab == null)
+            Debug.LogError("No ghost prefab defined.");
+
         m_tuioManager = TuioManager.Instance;
         m_tokenPosition = TokenPosition.Instance;
         m_locationBar = FindObjectsOfType<LocationBar>()[0];
