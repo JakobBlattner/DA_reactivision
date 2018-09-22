@@ -6,6 +6,7 @@ using UniducialLibrary;
 public class LinesForOrientation : MonoBehaviour
 {
     public GameObject belongingMarker;
+    private Color inActiveColor;
 
     private Settings m_settings;
 
@@ -15,7 +16,11 @@ public class LinesForOrientation : MonoBehaviour
     private Vector3 currentPos;
     private Transform startLoopBar;
     private Transform endLoopBar;
-
+    private SpriteRenderer bm_spriteRenderer;
+    private SpriteRenderer left_spriteRenderer;
+    private SpriteRenderer right_spriteRenderer;
+    private SpriteRenderer top_spriteRenderer;
+    private SpriteRenderer bottom_spriteRenderer;
     private Transform lineTop;
     private Transform lineBottom;
     private Transform lineLeft;
@@ -50,8 +55,17 @@ public class LinesForOrientation : MonoBehaviour
         if (lineRight == null)
             lineRight = transform.Find("Line_Right");
 
-        startLoopBar = GameObject.Find("Loop_Bar_Start").transform;
-        endLoopBar = GameObject.Find("Loop_Bar_End").transform;
+        startLoopBar = GameObject.Find(m_settings.startBarLoop).transform;
+        endLoopBar = GameObject.Find(m_settings.endtBarLoop).transform;
+
+        bm_spriteRenderer = belongingMarker.GetComponent<SpriteRenderer>();
+        left_spriteRenderer = lineLeft.GetComponent<SpriteRenderer>();
+        right_spriteRenderer = lineRight.GetComponent<SpriteRenderer>();
+        top_spriteRenderer = lineTop.GetComponent<SpriteRenderer>();
+        bottom_spriteRenderer = lineBottom.GetComponent<SpriteRenderer>();
+
+        inActiveColor = m_settings.linesForOrientationInactiveColor;
+        this.SetColorOfLines(inActiveColor);
     }
 
     // Update is called once per frame
@@ -63,7 +77,7 @@ public class LinesForOrientation : MonoBehaviour
             if (!childrenSpriteRenderer[0].isVisible)
                 EnableChildrenSpriteRenderer(true);
 
-            //get current position and set position oof children accordingly
+            //get current position and set position of children accordingly
             currentPos = belongingMarker.transform.position;
             lineTop.position = new Vector3(currentPos.x, 5 - (childrenSpriteRenderer[0].bounds.size.y) / 2, lineTop.position.z);
             lineBottom.position = new Vector3(currentPos.x, -5 + (childrenSpriteRenderer[1].bounds.size.y) / 2, lineBottom.position.z);
@@ -78,6 +92,9 @@ public class LinesForOrientation : MonoBehaviour
                 lineBottom.localScale = new Vector3(scaleFactorTopBottomX, scaleFactorY * 2, 1);
                 lineLeft.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX * 2, 1);
                 lineRight.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX * 2, 1);
+
+                //sets color of this linesForOrientation and TODO: other linestForOrientation markers of same beat 
+                this.SetColorOfLines(bm_spriteRenderer.color);
             }
             else
             {
@@ -86,14 +103,24 @@ public class LinesForOrientation : MonoBehaviour
                 lineBottom.localScale = new Vector3(scaleFactorTopBottomX, scaleFactorY, 1);
                 lineLeft.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX, 1);
                 lineRight.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX, 1);
+
+                this.SetColorOfLines(inActiveColor);
             }
         }
-        //if the marker is not visible, also deactivate the linesFor Orientation
+        //if the marker is not visible, also deactivate the linesForOrientation
         else if (childrenSpriteRenderer[0].isVisible)
         {
             //deactivate spriteRenderer in children
             EnableChildrenSpriteRenderer(false);
         }
+    }
+
+    private void SetColorOfLines(Color color)
+    {
+        left_spriteRenderer.color = color;
+        right_spriteRenderer.color = color;
+        top_spriteRenderer.color = color;
+        bottom_spriteRenderer.color = color;
     }
 
     private void EnableChildrenSpriteRenderer(bool v)

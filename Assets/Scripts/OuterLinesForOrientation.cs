@@ -41,8 +41,8 @@ public class OuterLinesForOrientation : MonoBehaviour
         }
 
         //Instantiates variables for spawning and updating left and right lines on loopBars
-        startLoopBar = GameObject.Find("Loop_Bar_Start").transform;
-        endLoopBar = GameObject.Find("Loop_Bar_End").transform;
+        startLoopBar = GameObject.Find(m_settings.startBarLoop).transform;
+        endLoopBar = GameObject.Find(m_settings.endtBarLoop).transform;
         int numberOfTunes = m_settings.tunes;
         leftLines = new Transform[numberOfTunes + 1];
         rightLines = new Transform[numberOfTunes + 1];

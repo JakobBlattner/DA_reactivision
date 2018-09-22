@@ -76,17 +76,6 @@ public class LoopController : MonoBehaviour
                 Destroy(ghost);
                 ghost = null;
             }
-
-            //if marker is moving, set new startbarposition
-            /*if (this.transform.position.x != newPos.x)
-             {
-                 newPos = transform.position;
-
-                 if (startMarker)
-                     m_locationBar.SetStartBarPosition(newPos);
-                 else
-                     m_locationBar.SetEndBarPosition(newPos);
-             }*/
         }
         else
             m_obj = m_tuioManager.GetMarker(m_fiducialController.MarkerID);
