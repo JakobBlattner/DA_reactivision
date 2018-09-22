@@ -21,6 +21,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     private List<GameObject> redMarkers;
     private List<GameObject> greenMarkers;
     private List<GameObject> blueMarkers;
+    private List<TuioObject> markersOnGrid;
 
     private Dictionary<int, GameObject> markers;
     private GameObject[] activeMarkersOnGrid;
@@ -40,6 +41,8 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     {
         m_tokenPosition = TokenPosition.Instance;
         m_settings = Settings.Instance;
+
+        markersOnGrid = new List<TuioObject>();
 
         redMarkers = new List<GameObject>();
         greenMarkers = new List<GameObject>();
@@ -194,7 +197,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                         }
                     }
                     this.ActivateMarkerOnBeatWithColor(marker, activeMarkersArray, beat, color); //1/4
-                    Debug.Log("Marker " + m_fiducial.MarkerID + " got activated on position " + (width > 3 ? beat - 1 : (width > 1 ? beat : beat + 1)) + " on tune " + (m_tokenPosition.GetNote(marker.transform.position)+1) + " for " + width + " beat/s.");
+                    Debug.Log("Marker " + m_fiducial.MarkerID + " got activated on position " + (width > 3 ? beat - 1 : (width > 1 ? beat : beat + 1)) + " on tune " + (m_tokenPosition.GetNote(marker.transform.position) + 1) + " for " + width + " beat/s.");
                 }
             }
         }
@@ -222,6 +225,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
 
     private void AddMarker(TuioObject tobj)
     {
+        // TODO: This is not called if reacitvision is already running, and marker is on table
         int symbolID = tobj.getSymbolID();
         //if a marker ID is being recognized which is not being used be the program, cancel call and...
         //...prevents loopBar Markers to be added to lists
@@ -365,11 +369,37 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     public void AddTuioObject(TuioObject tobj)
     {
         addedTuioObjects.Add(tobj);
+        Boolean isInMarkers = false;
+        foreach (TuioObject to in markersOnGrid)
+        {
+            if (to.getSymbolID() == tobj.getSymbolID())
+            {
+                isInMarkers = true;
+                break;
+            }
+        }
+        if (!isInMarkers)
+        {
+            markersOnGrid.Add(new TuioObject(tobj));
+        }
     }
 
     //callback method, adds TuioObject to the list of updated tuioObjects
     public void UpdateTuioObject(TuioObject tobj)
     {
+        Boolean isInMarkers = false;
+        foreach (TuioObject to in markersOnGrid)
+        {
+            if (to.getSymbolID() == tobj.getSymbolID())
+            {
+                isInMarkers = true;
+                break;
+            }
+        }
+        if (!isInMarkers)
+        {
+            AddTuioObject(tobj);
+        }
         updatedTuioObjects.Add(tobj);
     }
 
@@ -377,6 +407,13 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     public void RemoveTuioObject(TuioObject tobj)
     {
         removedTuioObjects.Add(tobj);
+        foreach (TuioObject to in markersOnGrid)
+        {
+            if (to.getSymbolID() == tobj.getSymbolID())
+            {
+                markersOnGrid.Remove(to);
+            }
+        }
     }
 
     internal bool IsBeingPlayed(int id)
