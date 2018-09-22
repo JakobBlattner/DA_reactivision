@@ -16,6 +16,8 @@ public class TuneManager : MonoBehaviour
 
     public Vector3 locationBarOffset;
     public int lastSentNote = 0;
+    public int lastReceivedNote = 0;
+    public bool skipMessage = false;
 
     private static SerialPort serialPort;
     private static String[] serialPortNames;
@@ -155,18 +157,17 @@ public class TuneManager : MonoBehaviour
                 int damping = isNextBeatEmpty[i] ? 1 : 0;
 
                 // adjusting parameters
-                int oldTuneHeight = tuneHeight;
                 tuneHeight = id == lastSentID[i] ? -1 : tuneHeight;  //don't send new fret if it's the same note
                 duration -= id == lastSentID[i] ? tactPos + 1 - startBarTactPosition : 0;  // subtract duration for what's before the start loop bar
                 damping = endBarTactPosition == tactPos ? 1 : damping;  //always damp if it's the last note
                 messageToSend += "," + tuneHeight + "," + duration + "," + damping;
-                Debug.Log("Playing Marker " + id + " on string " + (i + 1) + " with fret " + (tuneHeight != -1 ? (tuneHeight + 1) : (oldTuneHeight +1)) + " on position " + (lastSentNote + 1) + ((damping == 1) ? " with damping." : " without damping."));
+                Debug.Log("Playing Marker " + id + " on string " + (i + 1) + " with fret " + (tuneHeight + 1) + " on position " + (lastSentNote + 1) + ((damping == 1) ? " with damping." : " without damping."));
             }
             else
                 messageToSend += "," + -1 + "," + 0 + "," + 0;
         }
 
-        lastSentNote++;
+        //lastSentNote++;
         //Debug.Log("Send note " + noteToSend + " (MarkerID = " + noteToSend.fiducialController.MarkerID + ")");
 
         if (serialPort.IsOpen)
@@ -174,8 +175,18 @@ public class TuneManager : MonoBehaviour
             Debug.Log("[LOG: going to write cmd: ]" + messageToSend);
             try
             {
-                serialPort.WriteLine(messageToSend);
-                Debug.Log("[LOG: wrote cmd: ]" + messageToSend);
+                if (!skipMessage)
+                {
+                    serialPort.WriteLine(messageToSend);
+                    lastSentNote++;
+                    Debug.Log("[LOG: wrote cmd: ]" + messageToSend);
+                }
+                else
+                {
+                    Debug.Log("Skipping message." + messageToSend);
+                    skipMessage = false;
+                }
+
             }
             catch (IOException)
             {
@@ -183,10 +194,15 @@ public class TuneManager : MonoBehaviour
             }
             while (serialPort.BytesToRead > 0)
             {
-                Debug.Log("Arduino says: " + serialPort.ReadExisting());
+                receivedMsg = serialPort.ReadExisting();
+                Debug.Log("Arduino says: " + receivedMsg);
+                // if receivedMsg index is 2 beats behind, skip the next beat.
+                lastReceivedNote = Int32.Parse(receivedMsg.Split(',')[0]);
+                if (lastSentNote > msgIndex + 1)
+                {
+                    skipMessage = true;
+                }
             }
-
-
         }
 
         msgIndex++;
