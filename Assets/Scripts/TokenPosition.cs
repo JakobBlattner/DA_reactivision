@@ -174,20 +174,16 @@ public class TokenPosition
         //if marker is left of grid area
         if (position.x < widthOffsetInPx + snappingDistance)
         {
-            Debug.Log("position.x < widthOffsetInPx + snappingDistance: " + position.x + " < " + widthOffsetInPx + " + " + snappingDistance);
-            Debug.Log("Setting position.x to 0.");
             position.x = 0;
         }
         //if marker is above grid area
         else if (position.x > gridWidthInPx + widthOffsetInPx - snappingDistance)
         {
-            Debug.Log("position.x > gridWidthInPx + widthOffsetInPx - snappingDistance: " + position.x + " > " + gridWidthInPx + " + " + widthOffsetInPx + " - " + snappingDistance);
             position.x = gridWidthInPx + widthOffsetInPx - 2 * snappingDistance;
         }
         //if marker is on grid area
         else
         {
-            Debug.Log("Marker is on grid area");
             float xPos = position.x - widthOffsetInPx - snappingDistance;
             float markerXOffset = xPos % cellWidthInPx;
             if (markerXOffset < cellWidthInPx / 2)

@@ -50,23 +50,28 @@ public class JokerMarker : MonoBehaviour
                 List<List<GameObject>> allActiveMarkers = m_lastComeLastServe.GetAllActiveMarkers();
                 List<int> freePentatonicTuneHeights = new List<int>();
 
-                for (int i = 0; i < allActiveMarkers.Count; i++)
+                int i = 0;
+                bool isInRangeOfString = false;
+                //Gets current tune of marker and thereby knows on which string it must calc free tune
+                if (m_lastComeLastServe.enableChords)
                 {
-                    for (int j = 0; j < pentatonicTunes.Length; j++)
-                    {
-                        if ((i + 1) * m_settings.tunesPerString < pentatonicTunes[j])
-                            break;
+                    i = m_tokenPosition.GetNote(Camera.main.ScreenToWorldPoint(pos));
+                    i = i < m_settings.tunesPerString ? 0 : (i < (m_settings.tunesPerString * 2) ? 1 : 2);
+                }
 
-                        //if (allActiveMarkers[i][currentBeat] != null)
-                        // Debug.Log(m_tokenPosition.GetNote(allActiveMarkers[i][currentBeat].transform.position) + " " + pentatonicTunes[j]);
-                        if (!freePentatonicTuneHeights.Contains(pentatonicTunes[j]) && (allActiveMarkers[i][currentBeat] == null || m_tokenPosition.GetNote(allActiveMarkers[i][currentBeat].transform.position) + 1 != pentatonicTunes[j]))
-                        {
-                            if (allActiveMarkers[i][currentBeat] != null)
-                                Debug.Log(m_tokenPosition.GetNote(allActiveMarkers[i][currentBeat].transform.position) + 1 + " " + pentatonicTunes[j]);
+                for (int j = 0; j < pentatonicTunes.Length; j++)
+                {
+                    //if chords are not enabled, jump between strings
+                    if (!m_lastComeLastServe.enableChords && (i + 1) * m_settings.tunesPerString < pentatonicTunes[j])
+                        i++;
+                    //else if chords are enabled, check if current pentatonic tune is in range of current string
+                    else if (m_lastComeLastServe.enableChords && i * m_settings.tunesPerString < pentatonicTunes[j] && pentatonicTunes[j] < (i + 1) * m_settings.tunesPerString)
+                        isInRangeOfString = true;
+                    else
+                        isInRangeOfString = false;
 
-                            freePentatonicTuneHeights.Add(pentatonicTunes[j]);
-                        }
-                    }
+                    if ((m_lastComeLastServe.enableChords ? isInRangeOfString : 1 == 1) && (allActiveMarkers[i][currentBeat] == null || m_tokenPosition.GetNote(allActiveMarkers[i][currentBeat].transform.position) + 1 != pentatonicTunes[j]))
+                        freePentatonicTuneHeights.Add(pentatonicTunes[j]);
                 }
                 Debug.Log(freePentatonicTuneHeights.Count);
                 //Gets random pentatonic tune and calculates y position based on said tune

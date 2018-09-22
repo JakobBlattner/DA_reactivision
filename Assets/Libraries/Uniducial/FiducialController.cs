@@ -177,12 +177,8 @@ public class FiducialController : MonoBehaviour
             float xPos = this.m_ScreenPosition.x;
             float yPos = this.m_ScreenPosition.y;
 
-            Debug.Log("xPos: " + xPos);
-
             if (this.InvertX) xPos = 1 - xPos;
-            if (this.InvertY) yPos = 1 - yPos;
-
-
+            if (this.InvertY) yPos = 1 - yPos;  
 
             //this if is for rotation purpose only
             if (this.m_ControlsGUIElement)
