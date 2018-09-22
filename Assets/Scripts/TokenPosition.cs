@@ -9,7 +9,8 @@ public class TokenPosition
 {
     private int beats;
     private int tunes;
-    private int heightOffsetInPx;
+    private int heightOffsetInPx_top;
+    private int heightOffsetInPx_bottom;
     private int widthOffsetInPx;
 
     //in px
@@ -68,7 +69,8 @@ public class TokenPosition
 
         //variables in world coordinates
         widthOffsetInPx = m_settings.widthOffSetInPx;
-        heightOffsetInPx = m_settings.heightOffSetInPx;
+        heightOffsetInPx_top = m_settings.heightOffSetInPx_top;
+        heightOffsetInPx_bottom = m_settings.heightOffSetInPx_bottom;
         minWorldCoords = m_settings.minWorldCoords;
         maxWorldCoords = m_settings.maxWorldCoords;
         worldDiff = m_settings.worldDiff;
@@ -136,22 +138,22 @@ public class TokenPosition
                     float snappingDistance = -cellHeightInPx / 2;
 
                     //if marker is below grid area
-                    if (position.y < heightOffsetInPx + snappingDistance)
+                    if (position.y < heightOffsetInPx_top + snappingDistance)
                         position.y = 0;
                     //if marker is above grid area
-                    else if (position.y > gridHeightInPx + heightOffsetInPx - snappingDistance)
-                        position.y = gridHeightInPx + heightOffsetInPx - cellHeightInPx;
+                    else if (position.y > gridHeightInPx + heightOffsetInPx_bottom - snappingDistance)
+                        position.y = gridHeightInPx + heightOffsetInPx_bottom - cellHeightInPx;
                     //if marker is on grid area
                     else
                     {
-                        float yPos = position.y - heightOffsetInPx - snappingDistance;
+                        float yPos = position.y - heightOffsetInPx_bottom - snappingDistance;
                         float markerYOffset = yPos % cellHeightInPx;
                         if (markerYOffset < cellHeightInPx / 2)
                             position.y = yPos - markerYOffset;
                         else
                             position.y = yPos - markerYOffset + cellHeightInPx;
                     }
-                    position.y += (heightOffsetInPx + snappingDistance);
+                    position.y += (heightOffsetInPx_bottom + snappingDistance);
                 }
                 #endregion
 
@@ -209,7 +211,7 @@ public class TokenPosition
 
     public float GetYPosForTune(int tune)
     {
-        return Camera.main.ScreenToWorldPoint(new Vector3(0, tune * cellHeightInPx + heightOffsetInPx + cellHeightInPx / 2, 0)).y;
+        return Camera.main.ScreenToWorldPoint(new Vector3(0, tune * cellHeightInPx + heightOffsetInPx_bottom + cellHeightInPx / 2, 0)).y;
     }
     #endregion
 

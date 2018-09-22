@@ -45,7 +45,8 @@ public class Settings : MonoBehaviour
     public readonly int tunes = 24;
     public readonly int beats = 16;
     public readonly int tunesPerString = 8;
-    public readonly int heightOffSetInPx = Camera.main.pixelHeight / 64;
+    public readonly int heightOffSetInPx_top = Camera.main.pixelHeight / 64;
+    public readonly int heightOffSetInPx_bottom = Camera.main.pixelHeight / 10;
     public readonly int widthOffSetInPx = Camera.main.pixelWidth / 64;
 
     //for JokerMarker
@@ -99,13 +100,13 @@ public class Settings : MonoBehaviour
 
         Camera m_MainCamera = Camera.main;
 
-        gridHeightInPx = m_MainCamera.pixelHeight - heightOffSetInPx * 2;
+        gridHeightInPx = m_MainCamera.pixelHeight - heightOffSetInPx_top - heightOffSetInPx_bottom;
         gridWidthInPx = m_MainCamera.pixelWidth - widthOffSetInPx * 2;
         cellHeightInPx = gridHeightInPx / tunes;
         cellWidthInPx = gridWidthInPx / beats;
 
-        minWorldCoords = m_MainCamera.ScreenToWorldPoint(new Vector2(0 + (widthOffSetInPx), 0 + heightOffSetInPx));
-        maxWorldCoords = m_MainCamera.ScreenToWorldPoint(new Vector2(m_MainCamera.pixelWidth - (widthOffSetInPx), m_MainCamera.pixelHeight - heightOffSetInPx));
+        minWorldCoords = m_MainCamera.ScreenToWorldPoint(new Vector2(0 + (widthOffSetInPx), 0 + heightOffSetInPx_bottom));
+        maxWorldCoords = m_MainCamera.ScreenToWorldPoint(new Vector2(m_MainCamera.pixelWidth - (widthOffSetInPx), m_MainCamera.pixelHeight - heightOffSetInPx_top));
         worldDiff = maxWorldCoords - minWorldCoords;
 
         cellSizeWorld = Vector2.zero;

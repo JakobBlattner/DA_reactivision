@@ -15,7 +15,7 @@ public class JokerMarker : MonoBehaviour
     private SpriteRenderer m_sRend;
     private Settings m_settings;
     private float cellHeightInPx;
-    private float heightOffSet;
+    private float heightOffSet_bottom;
     private LastComeLastServe m_lastComeLastServe;
 
     // Use this for initialization
@@ -28,7 +28,7 @@ public class JokerMarker : MonoBehaviour
         m_settings = Settings.Instance;
         numberOfTunes = m_settings.tunes;
         cellHeightInPx = m_settings.cellHeightInPx;
-        heightOffSet = m_settings.heightOffSetInPx;
+        heightOffSet_bottom = m_settings.heightOffSetInPx_bottom;
 
         m_lastComeLastServe = GameObject.FindObjectOfType<LastComeLastServe>();
         pentatonicTunes = m_settings.pentatonicTunes;
@@ -79,7 +79,7 @@ public class JokerMarker : MonoBehaviour
                 }
                 Debug.Log(freePentatonicTuneHeights.Count);
                 //Gets random pentatonic tune and calculates y position based on said tune
-                pos.y = heightOffSet + freePentatonicTuneHeights[(int)Random.Range(0, freePentatonicTuneHeights.Count)] * cellHeightInPx - cellHeightInPx / 2;
+                pos.y = heightOffSet_bottom + freePentatonicTuneHeights[(int)Random.Range(0, freePentatonicTuneHeights.Count)] * cellHeightInPx - cellHeightInPx / 2;
                 oldPosition = pos;
 
                 return pos.y;
