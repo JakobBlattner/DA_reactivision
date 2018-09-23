@@ -114,6 +114,7 @@ public class TokenPosition
         //when the marker is snapped... 
         if (fiducialController.IsSnapped())
         {
+            position.x = this.CalculateXPosition(position, isLoopBarMarker, m_settings.GetMarkerWidthMultiplier(markerID), false); // calculate x position while not moving
             //reads correctOldPos if marker is a JokerMarkers
             if (isJoker)
                 realOldPos = new Vector3(oldPositionInScreen.x, fiducialController.gameObject.GetComponent<JokerMarker>().GetRealOldYPosition(), oldPositionInScreen.z);
@@ -128,12 +129,12 @@ public class TokenPosition
         //otherwise, if marker is NOT snapped...
         else if (!fiducialController.IsSnapped())
         {
-            //position.x = this.CalculateXPosition(position, isLoopBarMarker, m_settings.GetMarkerWidthMultiplier(markerID));
+            
             //...and motion speed is zero, snap him to nearest grid position, set snapped to true and save the time of snapping (for lastcomelastserve algorithm)
             if (m_obj.getMotionSpeed() == 0)
             {
                 #region X-Axis
-                position.x = this.CalculateXPosition(position, isLoopBarMarker, m_settings.GetMarkerWidthMultiplier(markerID));
+                position.x = this.CalculateXPosition(position, isLoopBarMarker, m_settings.GetMarkerWidthMultiplier(markerID), false); // calculate x position while not moving
                 #endregion
 
                 #region Y-Axis
@@ -167,6 +168,10 @@ public class TokenPosition
                 fiducialController.SetIsSnapped(true);
                 fiducialController.SetLastTimeSnapped(Time.time);
             }
+            else
+            {
+                position.x = this.CalculateXPosition(position, isLoopBarMarker, m_settings.GetMarkerWidthMultiplier(markerID), true); // calculate x position while moving 
+            }
             //if the marker is moving, the position will be set in the return statement
             //else{}
         }
@@ -174,42 +179,52 @@ public class TokenPosition
     }
 
     //In screen space
-    public float CalculateXPosition(Vector3 position, bool isLoopBarMarker, float markerWidthMultiplier)
+    public float CalculateXPosition(Vector3 position, bool isLoopBarMarker, float markerWidthMultiplier, bool isMoving)
     {
         float snappingDistance = cellWidthInPx * markerWidthMultiplier;//different marker sizes have effects on snapping distances
 
         if (isLoopBarMarker) snappingDistance = 0;
 
 
-        Debug.Log("position.x: " + position.x);
-        Debug.Log("cellWidthInPx: " + cellWidthInPx);
-        Debug.Log("markerWidthMultiplier: " + markerWidthMultiplier);
-        Debug.Log("snappingDistance: " + snappingDistance);
-        Debug.Log("widthOffsetInPx: " + widthOffsetInPx);
+        // Debug.Log("position.x: " + position.x);
+        // Debug.Log("cellWidthInPx: " + cellWidthInPx);
+        // Debug.Log("markerWidthMultiplier: " + markerWidthMultiplier);
+        // Debug.Log("snappingDistance: " + snappingDistance);
+        // Debug.Log("widthOffsetInPx: " + widthOffsetInPx);
 
         //if marker is left of grid area
         if (position.x < widthOffsetInPx + snappingDistance)
         {
-            Debug.Log("Too left...");
+            // Debug.Log("Too left...");
             position.x = 0;
+            position.x += (widthOffsetInPx + snappingDistance);
         }
         //if marker is above grid area
         else if (position.x > gridWidthInPx + widthOffsetInPx - snappingDistance)
         {
             position.x = gridWidthInPx + widthOffsetInPx - 2 * snappingDistance;
+            position.x += (widthOffsetInPx + snappingDistance);
         }
         //if marker is on grid area
         else
         {
-            float xPos = position.x - widthOffsetInPx - snappingDistance;
-            float markerXOffset = xPos % cellWidthInPx;
-            if (markerXOffset < cellWidthInPx / 2)
-                position.x = xPos - markerXOffset;
+            if(isMoving)
+            {
+                ;  // TODO: this is some shitty code...
+            }
             else
-                position.x = xPos - markerXOffset + cellWidthInPx;
+            {
+                float xPos = position.x - widthOffsetInPx - snappingDistance;
+                float markerXOffset = xPos % cellWidthInPx;
+                if (markerXOffset < cellWidthInPx / 2)
+                    position.x = xPos - markerXOffset;
+                else
+                    position.x = xPos - markerXOffset + cellWidthInPx;
+                position.x += (widthOffsetInPx + snappingDistance);
+            }
 
         }
-        position.x += (widthOffsetInPx + snappingDistance);
+
         return position.x;
     }
 
