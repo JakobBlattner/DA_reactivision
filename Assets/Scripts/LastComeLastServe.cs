@@ -185,6 +185,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                         //if the marker is wider/longer than one beat
                         if (width > 1) //mind 1/2
                         {
+                            beat = beat == 0 ? 1 : beat;  // TODO: beat can't be at 0 for width > 1
                             //checks if second beat of the marker is not ok, if so: break
                             if (beat - 1 > m_settings.beats || (activeMarkersArray[beat - 1] != null && (activeMarkersArray[beat - 1].GetComponent<FiducialController>().GetLastTimeSnapped() > m_fiducial.GetLastTimeSnapped())))//1/2
                                 break;
@@ -192,6 +193,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                             {
                                 if (width > 2)// mind 3/4
                                 {
+                                    beat = beat == 0 ? 2 : beat;  // TODO: beat can't be at 0 for width > 1
                                     //checks if third beat of the marker is not ok, if so: break
                                     if (beat + 1 < 0 || (activeMarkersArray[beat + 1] != null && (activeMarkersArray[beat + 1].GetComponent<FiducialController>().GetLastTimeSnapped() > m_fiducial.GetLastTimeSnapped())))//3/4
                                         break;
@@ -199,6 +201,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                                     {
                                         if (width > 3)// 4/4
                                         {
+                                            beat = beat == 0 ? 3 : beat;  // TODO: beat can't be at 0 for width > 3
                                             //checks if fourth beat of the marker is not ok, if so: break
                                             if (beat - 2 > m_settings.beats || (activeMarkersArray[beat - 2] != null && (activeMarkersArray[beat - 2].GetComponent<FiducialController>().GetLastTimeSnapped() > m_fiducial.GetLastTimeSnapped())))//4/4
                                                 break;

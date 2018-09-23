@@ -128,6 +128,7 @@ public class TokenPosition
         //otherwise, if marker is NOT snapped...
         else if (!fiducialController.IsSnapped())
         {
+            //position.x = this.CalculateXPosition(position, isLoopBarMarker, m_settings.GetMarkerWidthMultiplier(markerID));
             //...and motion speed is zero, snap him to nearest grid position, set snapped to true and save the time of snapping (for lastcomelastserve algorithm)
             if (m_obj.getMotionSpeed() == 0)
             {
@@ -179,9 +180,17 @@ public class TokenPosition
 
         if (isLoopBarMarker) snappingDistance = 0;
 
+
+        Debug.Log("position.x: " + position.x);
+        Debug.Log("cellWidthInPx: " + cellWidthInPx);
+        Debug.Log("markerWidthMultiplier: " + markerWidthMultiplier);
+        Debug.Log("snappingDistance: " + snappingDistance);
+        Debug.Log("widthOffsetInPx: " + widthOffsetInPx);
+
         //if marker is left of grid area
         if (position.x < widthOffsetInPx + snappingDistance)
         {
+            Debug.Log("Too left...");
             position.x = 0;
         }
         //if marker is above grid area
