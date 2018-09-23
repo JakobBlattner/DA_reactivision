@@ -51,7 +51,7 @@ public class JokerMarker : MonoBehaviour
                 realOldYPosition = pos.y;
 
                 //checks which pentatonic tunes are not occupied
-                List<List<GameObject>> allActiveMarkers = m_lastComeLastServe.GetAllActiveMarkers();
+                List<GameObject[]> allActiveMarkers = m_lastComeLastServe.GetAllActiveMarkers();
                 List<int> freePentatonicTuneHeights = new List<int>();
 
                 int i = 0;
@@ -77,7 +77,6 @@ public class JokerMarker : MonoBehaviour
                     if ((m_lastComeLastServe.enableChords ? isInRangeOfString : 1 == 1) && (allActiveMarkers[i][currentBeat] == null || m_tokenPosition.GetNote(allActiveMarkers[i][currentBeat].transform.position) + 1 != pentatonicTunes[j]))
                         freePentatonicTuneHeights.Add(pentatonicTunes[j]);
                 }
-                Debug.Log(freePentatonicTuneHeights.Count);
                 //Gets random pentatonic tune and calculates y position based on said tune
                 pos.y = heightOffSet_bottom + freePentatonicTuneHeights[(int)Random.Range(0, freePentatonicTuneHeights.Count)] * cellHeightInPx - cellHeightInPx / 2;
                 oldPosition = pos;

@@ -470,20 +470,20 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
             return activeBLUEMarkersOnGrid;
     }
 
-    internal List<List<GameObject>> GetAllActiveMarkers()
+    internal List<GameObject[]> GetAllActiveMarkers()
     {
-        List<List<GameObject>> allActiveMarkersList = new List<List<GameObject>>();
+        List<GameObject[]> allActiveMarkersList = new List<GameObject[]>();
 
         if (!enableChords)
         {
-            allActiveMarkersList.Add(new List<GameObject>(activeMarkersOnGrid));
+            allActiveMarkersList.Add(activeMarkersOnGrid);
             return allActiveMarkersList;
         }
         else
         {
-            allActiveMarkersList.Add(new List<GameObject>(activeBLUEMarkersOnGrid));
-            allActiveMarkersList.Add(new List<GameObject>(activeGREENMarkersOnGrid));
-            allActiveMarkersList.Add(new List<GameObject>(activeREDMarkersOnGrid));
+            allActiveMarkersList.Add(activeBLUEMarkersOnGrid);
+            allActiveMarkersList.Add(activeGREENMarkersOnGrid);
+            allActiveMarkersList.Add(activeREDMarkersOnGrid);
 
             return allActiveMarkersList;
         }

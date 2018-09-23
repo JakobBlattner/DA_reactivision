@@ -5671,6 +5671,10 @@ Prefab:
       propertyPath: belongingMarker
       value: 
       objectReference: {fileID: 1913730370}
+    - target: {fileID: 1845146744747286, guid: 7f2a71eaafe167f46a9efce1ecc94eca, type: 2}
+      propertyPath: m_Name
+      value: Marker_0_lines
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f2a71eaafe167f46a9efce1ecc94eca, type: 2}
   m_IsPrefabParent: 0

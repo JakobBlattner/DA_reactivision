@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UniducialLibrary;
+using System;
 
 public class LinesForOrientation : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class LinesForOrientation : MonoBehaviour
     private Color inActiveColor;
 
     private Settings m_settings;
-
+    private TokenPosition m_tokenPosition;
+    private LastComeLastServe m_lastComeLastServe;
     private SpriteRenderer m_sRend;
     private SpriteRenderer[] childrenSpriteRenderer;
 
@@ -33,11 +35,14 @@ public class LinesForOrientation : MonoBehaviour
     private float scaleFactorLefRightX;
 
     private FiducialController m_fiducial;
+    private float maxSpeedToShowOtherLinesForOrientation;
 
     void Start()
     {
         m_fiducial = belongingMarker.GetComponent<FiducialController>();
         m_settings = Settings.Instance;
+        m_tokenPosition = TokenPosition.Instance;
+        m_lastComeLastServe = GameObject.FindObjectOfType<LastComeLastServe>();
 
         m_sRend = belongingMarker.GetComponent<SpriteRenderer>();
         childrenSpriteRenderer = GetComponentsInChildren<SpriteRenderer>();
@@ -67,8 +72,10 @@ public class LinesForOrientation : MonoBehaviour
 
         bottomOffset = Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight / 2 + m_settings.heightOffSetInPx_bottom, 0)).y;
 
+        maxSpeedToShowOtherLinesForOrientation = m_settings.maxSpeedToShowOtherLinesForOrientation;
+
         inActiveColor = m_settings.linesForOrientationInactiveColor;
-        this.SetColorOfLines(inActiveColor, 1);
+        this.SetColorOfLines(inActiveColor, 1, true);
     }
 
     // Update is called once per frame
@@ -97,9 +104,13 @@ public class LinesForOrientation : MonoBehaviour
                 lineRight.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX * 2, 1);
 
                 //sets color of this linesForOrientation and...
-                this.SetColorOfLines(bm_spriteRenderer.color, 0.5f);
+                this.SetColorOfLines(bm_spriteRenderer.color, 0.5f, true);
 
-                //...TODO: other linestForOrientation markers of same beat 
+                //...other linestForOrientation markers of same beat if speed is slower than the seen value
+                if (m_fiducial.Speed < maxSpeedToShowOtherLinesForOrientation)
+                    this.ActivateLinesOfOtherMarkersOnSameBeat(true);
+                else
+                    this.ActivateLinesOfOtherMarkersOnSameBeat(false);
             }
             else
             {
@@ -109,7 +120,7 @@ public class LinesForOrientation : MonoBehaviour
                 lineLeft.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX, 1);
                 lineRight.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX, 1);
 
-                this.SetColorOfLines(inActiveColor, 1);
+                this.SetColorOfLines(inActiveColor, 1, true);
             }
         }
         //if the marker is not visible, also deactivate the linesForOrientation
@@ -120,14 +131,38 @@ public class LinesForOrientation : MonoBehaviour
         }
     }
 
-    private void SetColorOfLines(Color color, float intensity)
+    private void ActivateLinesOfOtherMarkersOnSameBeat(bool v)
+    {
+        int currentBeat = m_tokenPosition.GetTactPosition(m_fiducial.transform.position);
+        List<GameObject[]> allActiveMarkers = m_lastComeLastServe.GetAllActiveMarkers();
+
+        foreach (GameObject[] guitarString in allActiveMarkers)
+        {
+            if (guitarString[currentBeat] != null && guitarString[currentBeat].name != m_fiducial.gameObject.name)
+            {
+                //Debug.Log(guitarString[currentBeat].name);
+                LinesForOrientation linesFromOtherMarker = GameObject.Find("Marker_" + guitarString[currentBeat].GetComponent<FiducialController>().MarkerID + "_lines").GetComponent<LinesForOrientation>();
+                if (v)
+                    linesFromOtherMarker.SetColorOfLines(linesFromOtherMarker.GetSpriteRenderer().color, 0.5f, false);
+                else
+                    linesFromOtherMarker.SetColorOfLines(inActiveColor, 1, false);
+            }
+        }
+    }
+
+    public void SetColorOfLines(Color color, float intensity, bool allLines)
     {
         color = new Color(color.r, color.g, color.b, intensity);
 
         left_spriteRenderer.color = color;
         right_spriteRenderer.color = color;
-        top_spriteRenderer.color = color;
-        bottom_spriteRenderer.color = color;
+
+        //only sets all colours to passed color if allLines is true
+        if (allLines)
+        {
+            top_spriteRenderer.color = color;
+            bottom_spriteRenderer.color = color;
+        }
 
         if (color != inActiveColor)
         {
@@ -143,6 +178,11 @@ public class LinesForOrientation : MonoBehaviour
             top_spriteRenderer.sortingOrder = 0;
             bottom_spriteRenderer.sortingOrder = 0;
         }
+    }
+
+    public SpriteRenderer GetSpriteRenderer()
+    {
+        return bm_spriteRenderer;
     }
 
     private void EnableChildrenSpriteRenderer(bool v)

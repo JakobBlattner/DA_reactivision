@@ -15,6 +15,7 @@ public class Settings : MonoBehaviour
     private static Settings m_settings;
     internal float lastTimeAddedThreshold = 0.2f;
     internal Color linesForOrientationInactiveColor = new Color(0.5f, 0.5f, 0.5f, 1);
+    internal float maxSpeedToShowOtherLinesForOrientation = 0.5f;
 
     //communication values
     public readonly int serialBaudrate = 9600;
