@@ -11,8 +11,6 @@ public class ColouredAreasSizeSetter : MonoBehaviour
         float totalHeightOfTunesOnString = m_settings.worldDiff.y / 3 / 2;
         float startPointWithTopOffsetInWorld = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight - m_settings.heightOffSetInPx_top, 0)).y;
 
-        Debug.Log(startPointWithTopOffsetInWorld);
-
         for (int i = 0; i < transform.childCount; i++)
         {
             Transform childTransform = transform.GetChild(i).transform;

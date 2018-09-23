@@ -36,6 +36,9 @@ public class LinesForOrientation : MonoBehaviour
 
     private FiducialController m_fiducial;
     private float maxSpeedToShowOtherLinesForOrientation;
+    private bool activateColoredLinesForOrientation;
+    private int oldBeat;
+    private List<LinesForOrientation> otherMarkersOnSameBeat;
 
     void Start()
     {
@@ -76,10 +79,12 @@ public class LinesForOrientation : MonoBehaviour
 
         inActiveColor = m_settings.linesForOrientationInactiveColor;
         this.SetColorOfLines(inActiveColor, 1, true);
+        otherMarkersOnSameBeat = new List<LinesForOrientation>();
+        oldBeat = 0;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (m_sRend.isVisible)
         {
@@ -112,6 +117,8 @@ public class LinesForOrientation : MonoBehaviour
                 else
                     this.ActivateLinesOfOtherMarkersOnSameBeat(false);
             }
+            else if (m_fiducial.IsSnapped() && activateColoredLinesForOrientation)
+                this.SetColorOfLines(bm_spriteRenderer.color, 0.5f, false);//colors left and right LinesForOrientation
             else
             {
                 //make lines thin again
@@ -120,6 +127,7 @@ public class LinesForOrientation : MonoBehaviour
                 lineLeft.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX, 1);
                 lineRight.localScale = new Vector3(scaleFactorY, scaleFactorLefRightX, 1);
 
+                this.ActivateLinesOfOtherMarkersOnSameBeat(false);
                 this.SetColorOfLines(inActiveColor, 1, true);
             }
         }
@@ -134,23 +142,33 @@ public class LinesForOrientation : MonoBehaviour
     private void ActivateLinesOfOtherMarkersOnSameBeat(bool v)
     {
         int currentBeat = m_tokenPosition.GetTactPosition(m_fiducial.transform.position);
+        //deactiveates colors from other markers on oldBeat
+        if (oldBeat != currentBeat)
+        {
+            foreach (LinesForOrientation linesFromOtherMarker in otherMarkersOnSameBeat)
+                linesFromOtherMarker.ActivateColoredLinesForOrientation(false);
+            otherMarkersOnSameBeat = new List<LinesForOrientation>();
+            oldBeat = currentBeat;
+        }
+
         List<GameObject[]> allActiveMarkers = m_lastComeLastServe.GetAllActiveMarkers();
 
         foreach (GameObject[] guitarString in allActiveMarkers)
         {
             if (guitarString[currentBeat] != null && guitarString[currentBeat].name != m_fiducial.gameObject.name)
             {
-                //Debug.Log(guitarString[currentBeat].name);
-                LinesForOrientation linesFromOtherMarker = GameObject.Find("Marker_" + guitarString[currentBeat].GetComponent<FiducialController>().MarkerID + "_lines").GetComponent<LinesForOrientation>();
-                if (v)
-                    linesFromOtherMarker.SetColorOfLines(linesFromOtherMarker.GetSpriteRenderer().color, 0.5f, false);
-                else
-                    linesFromOtherMarker.SetColorOfLines(inActiveColor, 1, false);
+                LinesForOrientation linesFromOtherMarker = GameObject.Find(guitarString[currentBeat].name + "_lines").GetComponent<LinesForOrientation>();
+
+                //adds current lines from other marker to list (for color deactivation purpose)
+                if (!otherMarkersOnSameBeat.Contains(linesFromOtherMarker))
+                    otherMarkersOnSameBeat.Add(linesFromOtherMarker);
+                //sets color to other marker on same beat to it's own color
+                linesFromOtherMarker.ActivateColoredLinesForOrientation(v);
             }
         }
     }
 
-    public void SetColorOfLines(Color color, float intensity, bool allLines)
+    private void SetColorOfLines(Color color, float intensity, bool allLines)
     {
         color = new Color(color.r, color.g, color.b, intensity);
 
@@ -180,9 +198,9 @@ public class LinesForOrientation : MonoBehaviour
         }
     }
 
-    public SpriteRenderer GetSpriteRenderer()
+    public void ActivateColoredLinesForOrientation(bool v)
     {
-        return bm_spriteRenderer;
+        activateColoredLinesForOrientation = v;
     }
 
     private void EnableChildrenSpriteRenderer(bool v)
