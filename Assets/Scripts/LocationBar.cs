@@ -58,14 +58,14 @@ public class LocationBar : MonoBehaviour
     //Sets new position of StartBar in screen space
     public void SetStartBarPosition(Vector3 newPosition)
     {
-        Debug.Log("The start-loopbar has been set from beat " + (m_tokenPostion.GetTactPosition(startBarPosition) + 1) + " to " + (m_tokenPostion.GetTactPosition(newPosition) + 1) + ".");
+        Debug.Log("The start-loopbar has been set from beat " + (m_tokenPostion.GetTactPositionForLoopBarMarker(startBarPosition) + 1) + " to " + (m_tokenPostion.GetTactPositionForLoopBarMarker(newPosition) + 1) + ".");
         this.startBarPosition = newPosition;
     }
 
     //Sets new position of EndBar in screen space
     public void SetEndBarPosition(Vector3 newPosition)
     {
-        Debug.Log("The end-loopbar has been set from beat " + (m_tokenPostion.GetTactPosition(endBarPosition) + 1) + " to " + (m_tokenPostion.GetTactPosition(newPosition) + 1) + ".");
+        Debug.Log("The end-loopbar has been set from beat " + (m_tokenPostion.GetTactPositionForLoopBarMarker(endBarPosition) + 1) + " to " + (m_tokenPostion.GetTactPositionForLoopBarMarker(newPosition) + 1) + ".");
         this.endBarPosition = newPosition;
     }
 }

@@ -61,7 +61,7 @@ public class LoopController : MonoBehaviour
         if (m_obj != null)
         {
             if (m_fiducialController.IsSnapped() &&
-                this.transform.position.x != newPos.x)
+                !Mathf.Approximately(this.transform.position.x, newPos.x))
             {
                 newPos = this.transform.position;
 

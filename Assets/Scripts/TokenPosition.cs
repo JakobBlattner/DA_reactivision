@@ -96,6 +96,12 @@ public class TokenPosition
         return relativeXpos < 0 ? 0 : (relativeXpos >= 1 ? 15 : (int)Mathf.Floor(relativeXpos * beats));
     }
 
+    public float GetTactPositionForLoopBarMarker(Vector2 pos)
+    {
+        var relativeXpos = (pos.x - minWorldCoords.x) / (cellSizeWorld.x * beats);
+        return relativeXpos * beats;
+    }
+
     public Vector3 CalculateGridPosition(int markerID, float cameraOffset, bool isLoopBarMarker, bool isJoker, FiducialController fiducialController, Vector3 oldPositionInScreen)
     {
         //does not change position if the marker is currently being played

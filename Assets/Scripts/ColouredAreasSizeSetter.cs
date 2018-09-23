@@ -8,10 +8,16 @@ public class ColouredAreasSizeSetter : MonoBehaviour
     void Awake()
     {
         Settings m_settings = Settings.Instance;
-        float totalHeightOfTunesOnString = /*m_settings.tunesPerString **/m_settings.cellSizeWorld.y;
+        float totalHeightOfTunesOnString = m_settings.worldDiff.y / 3 / 2;
+        float startPointWithTopOffsetInWorld = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight - m_settings.heightOffSetInPx_top, 0)).y;
 
-        transform.localScale = new Vector2(transform.localScale.x, totalHeightOfTunesOnString);
-        //transform.localPosition = new Vector2(transform.localPosition.x,
-            //Camera.main.ScreenToWorldPoint(new Vector3(0, (m_settings.heightOffSetInPx_bottom + m_settings.gridHeightInPx), 0)).y);
+        Debug.Log(startPointWithTopOffsetInWorld);
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Transform childTransform = transform.GetChild(i).transform;
+            childTransform.localScale = new Vector2(childTransform.transform.localScale.x, totalHeightOfTunesOnString);
+            childTransform.position = new Vector2(childTransform.position.x, startPointWithTopOffsetInWorld - (totalHeightOfTunesOnString) - i * (totalHeightOfTunesOnString * 2));
+        }
     }
 }
