@@ -309,6 +309,8 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
 
                 //remove from activeMarkersOnGrid array
                 RemoveMarkerFromActiveMarkersOnGrid(currentMarker, currentList);
+                //set isSnapped to false
+                currentMarker.GetComponent<FiducialController>().SetIsSnapped(false);
             }
         }
     }
