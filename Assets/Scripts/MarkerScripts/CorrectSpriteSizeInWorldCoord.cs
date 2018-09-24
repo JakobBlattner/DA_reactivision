@@ -7,7 +7,8 @@ public class CorrectSpriteSizeInWorldCoord : MonoBehaviour
     void Awake()
     {
         Settings m_settings = Settings.Instance;
-        float lengthAndHeight = m_settings.cellSizeWorld.x;
-        transform.localScale = new Vector2(lengthAndHeight * (transform.parent.name.Equals("TestMarkers") ? 0.5f : m_settings.GetMarkerWidthMultiplier(GetComponent<FiducialController>().MarkerID)), lengthAndHeight/2);
+        float width = m_settings.GetMarkerWidthMultiplier(GetComponent<FiducialController>().MarkerID) * 2;
+        float scaleFactor = m_settings.cellSizeWorld.x * (transform.parent.name.Equals(m_settings.testMarkerParentName) ? 0.5f : width / 2);
+        transform.localScale = new Vector2(scaleFactor, scaleFactor / width);
     }
 }

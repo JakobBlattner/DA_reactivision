@@ -86,7 +86,7 @@ public class LinesForOrientation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_sRend.isVisible)
+        if (m_sRend.isVisible && m_fiducial.IsInActiveMarkers())
         {
             //activate spriterenderer in children if deactivated
             if (!childrenSpriteRenderer[0].isVisible)
@@ -131,8 +131,8 @@ public class LinesForOrientation : MonoBehaviour
                 this.SetColorOfLines(inActiveColor, 1, true);
             }
         }
-        //if the marker is not visible, also deactivate the linesForOrientation
-        else if (childrenSpriteRenderer[0].isVisible)
+        //if the marker (= childrenSpriteRenderer[0]) is not visible, also deactivate the linesForOrientation
+        else if (childrenSpriteRenderer[0].isVisible || !m_fiducial.IsInActiveMarkers())
         {
             //deactivate spriteRenderer in children
             EnableChildrenSpriteRenderer(false);

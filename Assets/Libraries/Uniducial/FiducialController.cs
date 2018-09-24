@@ -49,6 +49,7 @@ public class FiducialController : MonoBehaviour
     private Camera m_MainCamera;
 
     private TokenPosition m_TokenPosition;
+    private Settings m_settings;
 
     //members
     private Vector2 m_ScreenPosition;
@@ -70,16 +71,16 @@ public class FiducialController : MonoBehaviour
     public float RotationMultiplier = 1;
     private float? lastTimeAdded;
 
+
     void Awake()
     {
         this.m_TuioManager = UniducialLibrary.TuioManager.Instance;
+        m_settings = Settings.Instance;
 
         //uncomment next line to set port explicitly (default is 3333)
         //tuioManager.TuioPort = 7777;
 
         this.m_TuioManager.Connect();
-
-
 
         //check if the game object needs to be transformed in normalized 2d space
         if (isAttachedToGUIComponent())
@@ -87,7 +88,7 @@ public class FiducialController : MonoBehaviour
             Debug.LogWarning("Rotation of GUIText or GUITexture is not supported. Use a plane with a texture instead.");
             this.m_ControlsGUIElement = true;
         }
-        this.testMarker = transform.parent.name.Equals("TestMarkers");
+        this.testMarker = transform.parent.name.Equals(m_settings.testMarkerParentName);
         this.m_ScreenPosition = Vector2.zero;
         this.m_WorldPosition = Vector3.zero;
         this.m_Direction = Vector2.zero;
@@ -100,7 +101,7 @@ public class FiducialController : MonoBehaviour
         this.m_IsVisible = true;
         //check if marker is a loopBarMarker;
         this.isLoopBarMarker = this.GetComponent<LoopController>();
-        this.isJoker = this.transform.parent.CompareTag(Settings.Instance.jokerParentTag);
+        this.isJoker = this.transform.parent.CompareTag(m_settings.jokerParentTag);
         this.isSnapped = false;
         //movement threshold
         this.oldPosition = transform.position;
@@ -109,7 +110,7 @@ public class FiducialController : MonoBehaviour
     void Start()
     {
         //get reference to main camera
-        this.m_MainCamera = GameObject.FindGameObjectWithTag(Settings.Instance.mainCameraTag).GetComponent<Camera>();
+        this.m_MainCamera = GameObject.FindGameObjectWithTag(m_settings.mainCameraTag).GetComponent<Camera>();
 
         //intantiate TokenPosition
         this.m_TokenPosition = TokenPosition.Instance;
@@ -361,6 +362,11 @@ public class FiducialController : MonoBehaviour
     public float? GetLastTimeAdded()
     {
         return lastTimeAdded;
+    }
+
+    internal bool IsInActiveMarkers()
+    {
+        return GetComponent<SpriteRenderer>().color != m_settings.grey;
     }
     #endregion
 }

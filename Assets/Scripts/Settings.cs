@@ -38,6 +38,7 @@ public class Settings : MonoBehaviour
     public readonly string jokerParentTag = "JokerParent";
     public readonly string mainCameraTag = "MainCamera";
     public readonly string loopMarkerTag = "LoopGO";
+    public readonly string testMarkerParentName = "TestMarkers";
     public readonly int startLoopBarMarkerID;
     public readonly int endLoopBarMarkerID;
 
