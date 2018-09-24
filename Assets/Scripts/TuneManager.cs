@@ -84,12 +84,26 @@ public class TuneManager : MonoBehaviour
         }
     }
 
+    private bool locationBarIsNearStartBar(float epsilon)
+    {
+        float xDiff = GameObject.Find(m_settings.startBarLoop).transform.position.x - GameObject.Find(m_settings.locationBarName).transform.position.x;
+        if (Math.Abs(xDiff) < epsilon)
+        {
+            return true;
+        }
+        return false;
+    }
+
     void FixedUpdate()
     {
         locationBarOffset = m_settings.locationBarOffset;
         int tactPosWithOffset = m_tokenposition.GetTactPosition(this.m_locationBar.position - locationBarOffset);
-
-        if (tactPosWithOffset >= m_tokenposition.GetTactPosition(GameObject.Find(m_settings.startBarLoop).transform.position) && tactPosWithOffset != oldTactPos)
+        int startBarTactPosition = m_tokenposition.GetTactPosition(GameObject.Find(m_settings.startBarLoop).transform.position);
+        int endBarTactPosition = m_tokenposition.GetTactPosition(GameObject.Find(m_settings.endtBarLoop).transform.position);
+        // TODO: if beat
+        Debug.Log(GameObject.Find(m_settings.startBarLoop).transform.position.x + "," + GameObject.Find(m_settings.locationBarName).transform.position.x);
+        Debug.Log("Is Appr?: " + Mathf.Approximately(GameObject.Find(m_settings.startBarLoop).transform.position.x, GameObject.Find(m_settings.locationBarName).transform.position.x));
+        if (tactPosWithOffset >= startBarTactPosition && (tactPosWithOffset != oldTactPos || (endBarTactPosition - startBarTactPosition == 1 && locationBarIsNearStartBar(0.07f))))
         {
             lastSentNote = tactPosWithOffset;
             int nextBeat = tactPosWithOffset < (m_settings.beats - 1) ? tactPosWithOffset + 1 : 0;
