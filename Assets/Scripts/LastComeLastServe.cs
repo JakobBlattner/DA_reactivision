@@ -21,7 +21,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     private List<GameObject> redMarkers;
     private List<GameObject> greenMarkers;
     private List<GameObject> blueMarkers;
-    private List<TuioObject> markersOnGrid;
+    private List<int> markersOnGrid; //being used for already on table lying marker recognition and adding on startup
 
     private Dictionary<int, GameObject> markers;
     private GameObject[] activeMarkersOnGrid;
@@ -44,7 +44,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
         m_tokenPosition = TokenPosition.Instance;
         m_settings = Settings.Instance;
 
-        markersOnGrid = new List<TuioObject>();
+        markersOnGrid = new List<int>();
 
         redMarkers = new List<GameObject>();
         greenMarkers = new List<GameObject>();
@@ -387,37 +387,20 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     public void AddTuioObject(TuioObject tobj)
     {
         addedTuioObjects.Add(tobj);
-        Boolean isInMarkers = false;
-        foreach (TuioObject to in markersOnGrid)
-        {
-            if (to.getSymbolID() == tobj.getSymbolID())
-            {
-                isInMarkers = true;
-                break;
-            }
-        }
-        if (!isInMarkers)
-        {
-            markersOnGrid.Add(new TuioObject(tobj));
-        }
+
+        if (!markersOnGrid.Contains(tobj.getSymbolID()))
+            markersOnGrid.Add(tobj.getSymbolID());
     }
 
     //callback method, adds TuioObject to the list of updated tuioObjects
     public void UpdateTuioObject(TuioObject tobj)
     {
-        Boolean isInMarkers = false;
-        foreach (TuioObject to in markersOnGrid)
+        if (!markersOnGrid.Contains(tobj.getSymbolID()))
         {
-            if (to.getSymbolID() == tobj.getSymbolID())
-            {
-                isInMarkers = true;
-                break;
-            }
+            markersOnGrid.Add(tobj.getSymbolID());
+            addedTuioObjects.Add(tobj);
         }
-        if (!isInMarkers)
-        {
-            AddTuioObject(tobj);
-        }
+
         updatedTuioObjects.Add(tobj);
     }
 
@@ -425,13 +408,9 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     public void RemoveTuioObject(TuioObject tobj)
     {
         removedTuioObjects.Add(tobj);
-        foreach (TuioObject to in markersOnGrid)
-        {
-            if (to.getSymbolID() == tobj.getSymbolID())
-            {
-                markersOnGrid.Remove(to);
-            }
-        }
+
+        if (markersOnGrid.Contains(tobj.getSymbolID()))
+            markersOnGrid.Remove(tobj.getSymbolID());
     }
 
     internal bool IsBeingPlayed(int id)
