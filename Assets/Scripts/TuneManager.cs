@@ -136,6 +136,23 @@ public class TuneManager : MonoBehaviour
         }
     }
 
+    private bool isBeatEmpty(int stringIndex, int beatIndex)
+    {
+        if (stringIndex == 0 && activeRedNotes[beatIndex] == null)
+        {
+            return true;
+        }
+        else if (stringIndex == 1 && activeGreenNotes[beatIndex] == null)
+        {
+            return true;
+        }
+        else if (stringIndex == 2 && activeBlueNotes[beatIndex] == null)
+        {
+            return true;
+        }
+        return false;
+    }
+
     private void SendNote(GameObject[] notesToSend, bool[] isNextBeatEmpty, int[] lastSentID, int tactPos)
     {
         messageToSend = msgIndex + ",100";
@@ -154,19 +171,28 @@ public class TuneManager : MonoBehaviour
                 //    tuneHeight = -1;
                 //}
                 //if the next beat is empty --> damping = 1, else damping = 0 
-                int damping = isNextBeatEmpty[i] ? 1 : 0;
+                int damping = 0; // isBeatEmpty(i, tactPos + 1) ? 1 : 0;
 
                 // adjusting parameters
                 tuneHeight = id == lastSentID[i] ? -1 : tuneHeight;  //don't send new fret if it's the same note
                 duration -= id == lastSentID[i] ? tactPos + 1 - startBarTactPosition : 0;  // subtract duration for what's before the start loop bar
                 duration = tactPos == endBarTactPosition - 1 ? 1 : duration; // cut off duration if it's the last note in loop area
-                damping = tactPos == endBarTactPosition - 1 ? 1 : damping;  //always damp if it's the last note
+                //damping = tactPos == endBarTactPosition -1 && isFirstBeatEmpty(i) ? 1 : 0;  //always damp if it's the last note
+                if (tactPos == endBarTactPosition - 1) //always damp if it's the last note
+                {
+                    damping = 1;
+                    if (!isBeatEmpty(i, startBarTactPosition + 1)) // but not if the first one isn't empty
+                    {
+                        damping = 0;
+                    }
+                }
+                // TODO: don'T damp if the first note is not empty
 
                 messageToSend += "," + tuneHeight + "," + duration + "," + damping;
                 Debug.Log("Playing Marker " + id + " on string " + (i + 1) + " with fret " + (tuneHeight + 1) + " on position " + (lastSentNote + 1) + ((damping == 1) ? " with damping." : " without damping."));
             }
             else
-                messageToSend += "," + -1 + "," + 0 + "," + 0;
+                messageToSend += "," + -1 + "," + 0 + "," + 1;
         }
 
         //lastSentNote++;
@@ -196,13 +222,25 @@ public class TuneManager : MonoBehaviour
             }
             while (serialPort.BytesToRead > 0)
             {
-                receivedMsg = serialPort.ReadExisting();
-                Debug.Log("Arduino says: " + receivedMsg);
-                // if receivedMsg index is 2 beats behind, skip the next beat.
-                lastReceivedNote = Int32.Parse(receivedMsg.Split(',')[0]);
-                if (lastSentNote > msgIndex + 1)
+                try
                 {
-                    skipMessage = true;
+                    receivedMsg = serialPort.ReadExisting();
+
+                    // if receivedMsg index is 2 beats behind, skip the next beat.
+                    if (receivedMsg.Length > 0)
+                    {
+                        Debug.Log("Arduino says: " + receivedMsg);
+                        lastReceivedNote = Int32.Parse(receivedMsg.Split(',')[0]);
+                        if (lastSentNote > msgIndex + 1)
+                        {
+                            skipMessage = true;
+                        }
+                    }
+                }
+                catch (FormatException)
+                {
+                    // ignore this
+                    ;
                 }
             }
         }
