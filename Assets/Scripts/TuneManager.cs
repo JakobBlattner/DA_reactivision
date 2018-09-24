@@ -159,7 +159,9 @@ public class TuneManager : MonoBehaviour
                 // adjusting parameters
                 tuneHeight = id == lastSentID[i] ? -1 : tuneHeight;  //don't send new fret if it's the same note
                 duration -= id == lastSentID[i] ? tactPos + 1 - startBarTactPosition : 0;  // subtract duration for what's before the start loop bar
-                damping = endBarTactPosition == tactPos ? 1 : damping;  //always damp if it's the last note
+                duration = tactPos == endBarTactPosition - 1 ? 1 : duration; // cut off duration if it's the last note in loop area
+                damping = tactPos == endBarTactPosition - 1 ? 1 : damping;  //always damp if it's the last note
+
                 messageToSend += "," + tuneHeight + "," + duration + "," + damping;
                 Debug.Log("Playing Marker " + id + " on string " + (i + 1) + " with fret " + (tuneHeight + 1) + " on position " + (lastSentNote + 1) + ((damping == 1) ? " with damping." : " without damping."));
             }
