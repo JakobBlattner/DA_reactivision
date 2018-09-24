@@ -225,7 +225,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1047065078092614, guid: c14ddf9e3d28667439530b5426323616, type: 2}
       propertyPath: m_Name
-      value: JokerMarker_30
+      value: Marker_30
       objectReference: {fileID: 0}
     - target: {fileID: 114259891586641682, guid: c14ddf9e3d28667439530b5426323616,
         type: 2}
@@ -902,7 +902,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1047065078092614, guid: c14ddf9e3d28667439530b5426323616, type: 2}
       propertyPath: m_Name
-      value: JokerMarker_22
+      value: Marker_22
       objectReference: {fileID: 0}
     - target: {fileID: 114259891586641682, guid: c14ddf9e3d28667439530b5426323616,
         type: 2}
@@ -968,7 +968,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1047065078092614, guid: c14ddf9e3d28667439530b5426323616, type: 2}
       propertyPath: m_Name
-      value: JokerMarker_12
+      value: Marker_12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c14ddf9e3d28667439530b5426323616, type: 2}
@@ -2214,7 +2214,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1047065078092614, guid: c14ddf9e3d28667439530b5426323616, type: 2}
       propertyPath: m_Name
-      value: JokerMarker_23
+      value: Marker_23
       objectReference: {fileID: 0}
     - target: {fileID: 114259891586641682, guid: c14ddf9e3d28667439530b5426323616,
         type: 2}
@@ -6499,7 +6499,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1047065078092614, guid: c14ddf9e3d28667439530b5426323616, type: 2}
       propertyPath: m_Name
-      value: JokerMarker_37
+      value: Marker_37
       objectReference: {fileID: 0}
     - target: {fileID: 114259891586641682, guid: c14ddf9e3d28667439530b5426323616,
         type: 2}
@@ -7804,7 +7804,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1047065078092614, guid: c14ddf9e3d28667439530b5426323616, type: 2}
       propertyPath: m_Name
-      value: JokerMarker_13
+      value: Marker_13
       objectReference: {fileID: 0}
     - target: {fileID: 114259891586641682, guid: c14ddf9e3d28667439530b5426323616,
         type: 2}

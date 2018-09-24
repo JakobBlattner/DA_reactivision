@@ -110,7 +110,6 @@ public class TokenPosition
 
         TuioObject m_obj = m_tuioManager.GetMarker(markerID);
         Vector3 position = new Vector3(m_obj.getX() * (Screen.width), isLoopBarMarker ? 0.5f * Screen.height : (1 - m_obj.getY()) * Screen.height, cameraOffset);
-        //next line: see last comment
         //when the marker is snapped... 
         if (fiducialController.IsSnapped())
         {
@@ -172,8 +171,6 @@ public class TokenPosition
             {
                 position.x = this.CalculateXPosition(position, isLoopBarMarker, m_settings.GetMarkerWidthMultiplier(markerID), true); // calculate x position while moving 
             }
-            //if the marker is moving, the position will be set in the return statement
-            //else{}
         }
         return this.m_MainCamera.ScreenToWorldPoint(position);
     }
@@ -185,7 +182,6 @@ public class TokenPosition
 
         if (isLoopBarMarker) snappingDistance = 0;
 
-
         // Debug.Log("position.x: " + position.x);
         // Debug.Log("cellWidthInPx: " + cellWidthInPx);
         // Debug.Log("markerWidthMultiplier: " + markerWidthMultiplier);
@@ -195,11 +191,10 @@ public class TokenPosition
         //if marker is left of grid area
         if (position.x < widthOffsetInPx + snappingDistance)
         {
-            // Debug.Log("Too left...");
-            position.x = 0;
-            position.x += (widthOffsetInPx + snappingDistance);
+            position.x = widthOffsetInPx + snappingDistance;
         }
-        //if marker is above grid area
+        //if marker is right of grid area
+        //TODO fix snapping
         else if (position.x > gridWidthInPx + widthOffsetInPx - snappingDistance)
         {
             position.x = gridWidthInPx + widthOffsetInPx - 2 * snappingDistance;
@@ -208,11 +203,8 @@ public class TokenPosition
         //if marker is on grid area
         else
         {
-            if(isMoving)
-            {
-                ;  // TODO: this is some shitty code...
-            }
-            else
+            //and not moving
+            if(!isMoving)
             {
                 float xPos = position.x - widthOffsetInPx - snappingDistance;
                 float markerXOffset = xPos % cellWidthInPx;
@@ -222,7 +214,6 @@ public class TokenPosition
                     position.x = xPos - markerXOffset + cellWidthInPx;
                 position.x += (widthOffsetInPx + snappingDistance);
             }
-
         }
 
         return position.x;
