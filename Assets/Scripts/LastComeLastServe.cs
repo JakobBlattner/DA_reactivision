@@ -33,6 +33,11 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     private List<TuioObject> removedTuioObjects;
     private List<TuioObject> updatedTuioObjects;
 
+    //lists which will only be accessed by the implemented TuioListener Interface methods
+    private List<TuioObject> addedTuioObjectsI;
+    private List<TuioObject> removedTuioObjectsI;
+    private List<TuioObject> updatedTuioObjectsI;
+
     private Dictionary<int, int> currentTunes;
 
     private TuioManager m_tuiomanager;
@@ -58,6 +63,10 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
         addedTuioObjects = new List<TuioObject>();
         removedTuioObjects = new List<TuioObject>();
         updatedTuioObjects = new List<TuioObject>();
+
+        addedTuioObjectsI = new List<TuioObject>();
+        removedTuioObjectsI = new List<TuioObject>();
+        updatedTuioObjectsI = new List<TuioObject>();
 
         activeMarkersOnGrid = new GameObject[m_settings.beats];
         activeREDMarkersOnGrid = new GameObject[m_settings.beats];
@@ -88,22 +97,34 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
         if (addedTuioObjects.Count != 0)
         {
             foreach (TuioObject tuioObject in addedTuioObjects)
+            {
                 this.AddMarker(tuioObject);
-            addedTuioObjects = new List<TuioObject>();
+                addedTuioObjectsI.Remove(tuioObject);
+            }
+            //addedTuioObjects = new List<TuioObject>();
         }
 
         if (removedTuioObjects.Count != 0)
         {
             foreach (TuioObject tuioObject in removedTuioObjects)
+            {
                 this.RemoveMarker(tuioObject);
-            removedTuioObjects = new List<TuioObject>();
+                removedTuioObjectsI.Remove(tuioObject);
+            }
+            //removedTuioObjects = new List<TuioObject>();
         }
         if (updatedTuioObjects.Count != 0)
         {
             foreach (TuioObject tuioObject in updatedTuioObjects)
+            {
                 this.UpdateMarker(tuioObject);
-            updatedTuioObjects = new List<TuioObject>();
+                updatedTuioObjectsI.Remove(tuioObject);
+            }
+            //updatedTuioObjects = new List<TuioObject>();
         }
+        addedTuioObjects = new List<TuioObject>(addedTuioObjectsI);
+        updatedTuioObjects = new List<TuioObject>(updatedTuioObjectsI);
+        removedTuioObjects = new List<TuioObject>(removedTuioObjectsI);
 
         if (!enableChords)
         {
@@ -388,7 +409,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     //callback method, adds TuioObject to the list of active tuioObjects
     public void AddTuioObject(TuioObject tobj)
     {
-        addedTuioObjects.Add(tobj);
+        addedTuioObjectsI.Add(tobj);
 
         if (!markersOnGrid.Contains(tobj.getSymbolID()))
             markersOnGrid.Add(tobj.getSymbolID());
@@ -400,16 +421,16 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
         if (!markersOnGrid.Contains(tobj.getSymbolID()))
         {
             markersOnGrid.Add(tobj.getSymbolID());
-            addedTuioObjects.Add(tobj);
+            addedTuioObjectsI.Add(tobj);
         }
 
-        updatedTuioObjects.Add(tobj);
+        updatedTuioObjectsI.Add(tobj);
     }
 
     //callback method, removes TuioObject from the list of active tuioObjects
     public void RemoveTuioObject(TuioObject tobj)
     {
-        removedTuioObjects.Add(tobj);
+        removedTuioObjectsI.Add(tobj);
 
         if (markersOnGrid.Contains(tobj.getSymbolID()))
             markersOnGrid.Remove(tobj.getSymbolID());
