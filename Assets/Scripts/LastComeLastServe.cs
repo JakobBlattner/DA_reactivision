@@ -93,31 +93,42 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
 
     public void LateUpdate()
     {
-        //if new marker(s) has/ have been added, updated or removed, execute respective method and remove from list which is only for interfaces
-        if (addedTuioObjects.Count != 0)
+        try
         {
-            foreach (TuioObject tuioObject in addedTuioObjects)
+            //if new marker(s) has/ have been added, updated or removed, execute respective method and remove from list which is only for interfaces
+            if (addedTuioObjects.Count != 0)
             {
-                this.AddMarker(tuioObject);
-                addedTuioObjectsI.Remove(tuioObject);
+                foreach (TuioObject tuioObject in addedTuioObjects)
+                {
+                    this.AddMarker(tuioObject);
+                    addedTuioObjectsI.Remove(tuioObject);
+                }
             }
-        }
 
-        if (removedTuioObjects.Count != 0)
-        {
-            foreach (TuioObject tuioObject in removedTuioObjects)
+            if (removedTuioObjects.Count != 0)
             {
-                this.RemoveMarker(tuioObject);
-                removedTuioObjectsI.Remove(tuioObject);
+                foreach (TuioObject tuioObject in removedTuioObjects)
+                {
+                    this.RemoveMarker(tuioObject);
+                    removedTuioObjectsI.Remove(tuioObject);
+                }
             }
+            if (updatedTuioObjects.Count != 0)
+            {
+                foreach (TuioObject tuioObject in updatedTuioObjects)
+                {
+                    this.UpdateMarker(tuioObject);
+                    updatedTuioObjectsI.Remove(tuioObject);
+                }
+            }
+
+            addedTuioObjects = addedTuioObjectsI;
+            updatedTuioObjects = updatedTuioObjectsI;
+            removedTuioObjects = removedTuioObjectsI;
         }
-        if (updatedTuioObjects.Count != 0)
+        catch (InvalidOperationException e)
         {
-            foreach (TuioObject tuioObject in updatedTuioObjects)
-            {
-                this.UpdateMarker(tuioObject);
-                updatedTuioObjectsI.Remove(tuioObject);
-            }
+            //this doesn't resemble good coding...
         }
 
         if (!enableChords)
@@ -138,10 +149,6 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
             this.RunThroughMarkerListAndUpdateActiveMarkers(greenMarkers, activeGREENMarkersOnGrid, green);
             this.RunThroughMarkerListAndUpdateActiveMarkers(blueMarkers, activeBLUEMarkersOnGrid, blue);
         }
-
-        addedTuioObjects = new List<TuioObject>(addedTuioObjectsI);
-        updatedTuioObjects = new List<TuioObject>(updatedTuioObjectsI);
-        removedTuioObjects = new List<TuioObject>(removedTuioObjectsI);
     }
 
     //removes markers saved in activeMarkersOnGrid array if they are not on the position they got saved in the array
@@ -187,7 +194,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                 int beat = m_tokenPosition.GetTactPosition(marker.transform.position);
                 //gets tune on which the marker lies on and checks if the tune has changed. If so --> log message
                 int tune = m_tokenPosition.GetNote(marker.transform.position);
-                if (( tune + 1) != currentTunes[m_fiducial.MarkerID])
+                if ((tune + 1) != currentTunes[m_fiducial.MarkerID])
                 {
                     //only sends Log message if it's not the first tune change
                     if (currentTunes[m_fiducial.MarkerID] != 0)
