@@ -23,7 +23,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     private List<GameObject> blueMarkers;
     private List<int> markersOnGrid; //being used for already on table lying marker recognition and adding on startup
 
-    private Dictionary<int, GameObject> markers;
+    internal Dictionary<int, GameObject> markers;
     private GameObject[] activeMarkersOnGrid;
     private GameObject[] activeREDMarkersOnGrid;
     private GameObject[] activeGREENMarkersOnGrid;
@@ -93,7 +93,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
 
     public void LateUpdate()
     {
-        //if new marker(s) has/ have been set, act accordingly
+        //if new marker(s) has/ have been added, updated or removed, execute respective method and remove from list which is only for interfaces
         if (addedTuioObjects.Count != 0)
         {
             foreach (TuioObject tuioObject in addedTuioObjects)
@@ -101,7 +101,6 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                 this.AddMarker(tuioObject);
                 addedTuioObjectsI.Remove(tuioObject);
             }
-            //addedTuioObjects = new List<TuioObject>();
         }
 
         if (removedTuioObjects.Count != 0)
@@ -111,7 +110,6 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                 this.RemoveMarker(tuioObject);
                 removedTuioObjectsI.Remove(tuioObject);
             }
-            //removedTuioObjects = new List<TuioObject>();
         }
         if (updatedTuioObjects.Count != 0)
         {
@@ -120,11 +118,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                 this.UpdateMarker(tuioObject);
                 updatedTuioObjectsI.Remove(tuioObject);
             }
-            //updatedTuioObjects = new List<TuioObject>();
         }
-        addedTuioObjects = new List<TuioObject>(addedTuioObjectsI);
-        updatedTuioObjects = new List<TuioObject>(updatedTuioObjectsI);
-        removedTuioObjects = new List<TuioObject>(removedTuioObjectsI);
 
         if (!enableChords)
         {
@@ -144,6 +138,10 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
             this.RunThroughMarkerListAndUpdateActiveMarkers(greenMarkers, activeGREENMarkersOnGrid, green);
             this.RunThroughMarkerListAndUpdateActiveMarkers(blueMarkers, activeBLUEMarkersOnGrid, blue);
         }
+
+        addedTuioObjects = new List<TuioObject>(addedTuioObjectsI);
+        updatedTuioObjects = new List<TuioObject>(updatedTuioObjectsI);
+        removedTuioObjects = new List<TuioObject>(removedTuioObjectsI);
     }
 
     //removes markers saved in activeMarkersOnGrid array if they are not on the position they got saved in the array
@@ -191,8 +189,10 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                 int tune = m_tokenPosition.GetNote(marker.transform.position);
                 if (tune != currentTunes[m_fiducial.MarkerID])
                 {
-                    Debug.Log("Marker " + m_fiducial.MarkerID + " changed tune from " + (currentTunes[m_fiducial.MarkerID] + 1) + " to " + (tune + 1) + ".");
-                    currentTunes[m_fiducial.MarkerID] = tune;
+                    //only sends Log message if it's not the first tune change
+                    if (currentTunes[m_fiducial.MarkerID] != 0)
+                        Debug.Log("Marker " + m_fiducial.MarkerID + " changed tune from " + (currentTunes[m_fiducial.MarkerID] + 1) + " to " + (tune + 1) + ".");
+                    currentTunes[m_fiducial.MarkerID] = tune + 1;
                 }
 
                 //checks if this marker isn't already the one in the activeMarker list
@@ -445,6 +445,22 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
     internal bool IsBeingPlayed(GameObject marker)
     {
         return IsMarkerInActiveMarkers(marker) && IsCurrentLocationBarOverTune(marker);
+    }
+
+    internal bool IsOtherMarkerBeingPlayedAtThisBeat(int beat)
+    {
+        if (!enableChords)
+            return activeMarkersOnGrid[beat] != null && IsCurrentLocationBarOverTune(activeMarkersOnGrid[beat]);
+        else
+        {
+            if (activeREDMarkersOnGrid[beat] != null && IsCurrentLocationBarOverTune(activeREDMarkersOnGrid[beat]))
+                return true;
+            else if (activeGREENMarkersOnGrid[beat] != null && IsCurrentLocationBarOverTune(activeGREENMarkersOnGrid[beat]))
+                return true;
+            else if (activeBLUEMarkersOnGrid[beat] != null && IsCurrentLocationBarOverTune(activeBLUEMarkersOnGrid[beat]))
+                return true;
+        }
+        return false;
     }
 
     private bool IsCurrentLocationBarOverTune(GameObject marker)

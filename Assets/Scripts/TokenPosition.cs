@@ -106,7 +106,9 @@ public class TokenPosition
     {
         //does not change position if the marker is currently being played
         if (!isLoopBarMarker && m_lastComeLastServe.IsBeingPlayed(markerID))
+        {
             return fiducialController.gameObject.transform.position;
+        }
 
         TuioObject m_obj = m_tuioManager.GetMarker(markerID);
         Vector3 position = new Vector3(m_obj.getX() * (Screen.width), isLoopBarMarker ? 0.5f * Screen.height : (1 - m_obj.getY()) * Screen.height, cameraOffset);
@@ -128,7 +130,6 @@ public class TokenPosition
         //otherwise, if marker is NOT snapped...
         else if (!fiducialController.IsSnapped())
         {
-
             //...and motion speed is zero, snap him to nearest grid position, set snapped to true and save the time of snapping (for lastcomelastserve algorithm)
             if (m_obj.getMotionSpeed() == 0)
             {
@@ -164,8 +165,11 @@ public class TokenPosition
                 }
                 #endregion
 
-                fiducialController.SetIsSnapped(true);
-                fiducialController.SetLastTimeSnapped(Time.time);
+                //check if another tune is currently being played, if so: snap marker
+                if(!m_lastComeLastServe.IsOtherMarkerBeingPlayedAtThisBeat(this.GetTactPosition(m_lastComeLastServe.markers[beats].transform.position))){
+                    fiducialController.SetIsSnapped(true);
+                    fiducialController.SetLastTimeSnapped(Time.time);
+                }
             }
             else
             {
