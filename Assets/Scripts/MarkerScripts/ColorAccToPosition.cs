@@ -31,6 +31,12 @@ public class ColorAccToPosition : MonoBehaviour
         currentColor = rend.color;
     }
 
+    void LateUpdate()
+    {
+        if (rend.color != grey)
+            this.CheckColor();
+    }
+
     public void SetCurrentColor(Color color)
     {
         rend.color = color;

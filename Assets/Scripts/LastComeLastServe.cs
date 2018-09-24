@@ -187,7 +187,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                 int beat = m_tokenPosition.GetTactPosition(marker.transform.position);
                 //gets tune on which the marker lies on and checks if the tune has changed. If so --> log message
                 int tune = m_tokenPosition.GetNote(marker.transform.position);
-                if (tune != currentTunes[m_fiducial.MarkerID])
+                if (( tune + 1) != currentTunes[m_fiducial.MarkerID])
                 {
                     //only sends Log message if it's not the first tune change
                     if (currentTunes[m_fiducial.MarkerID] != 0)
