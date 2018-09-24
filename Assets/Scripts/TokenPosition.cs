@@ -128,7 +128,7 @@ public class TokenPosition
         //otherwise, if marker is NOT snapped...
         else if (!fiducialController.IsSnapped())
         {
-            
+
             //...and motion speed is zero, snap him to nearest grid position, set snapped to true and save the time of snapping (for lastcomelastserve algorithm)
             if (m_obj.getMotionSpeed() == 0)
             {
@@ -182,29 +182,20 @@ public class TokenPosition
 
         if (isLoopBarMarker) snappingDistance = 0;
 
-        // Debug.Log("position.x: " + position.x);
-        // Debug.Log("cellWidthInPx: " + cellWidthInPx);
-        // Debug.Log("markerWidthMultiplier: " + markerWidthMultiplier);
-        // Debug.Log("snappingDistance: " + snappingDistance);
-        // Debug.Log("widthOffsetInPx: " + widthOffsetInPx);
-
         //if marker is left of grid area
         if (position.x < widthOffsetInPx + snappingDistance)
-        {
             position.x = widthOffsetInPx + snappingDistance;
-        }
         //if marker is right of grid area
-        //TODO fix snapping
         else if (position.x > gridWidthInPx + widthOffsetInPx - snappingDistance)
         {
-            position.x = gridWidthInPx + widthOffsetInPx - 2 * snappingDistance;
+            position.x = gridWidthInPx - 2 * snappingDistance;
             position.x += (widthOffsetInPx + snappingDistance);
         }
         //if marker is on grid area
         else
         {
             //and not moving
-            if(!isMoving)
+            if (!isMoving)
             {
                 float xPos = position.x - widthOffsetInPx - snappingDistance;
                 float markerXOffset = xPos % cellWidthInPx;
@@ -219,12 +210,12 @@ public class TokenPosition
         return position.x;
     }
 
+    //checks if token has moved further than a certain threshold
     public bool MovedFurtherThanThreshold(Vector3 pos1, Vector3 pos2, bool isJoker)
     {
         return isJoker ? Math.Abs(pos1.x - pos2.x) > movementThreshold.x : (Math.Abs(pos1.x - pos2.x) > movementThreshold.x || Math.Abs(pos1.y - pos2.y) > movementThreshold.y);
     }
 
-    #region For OuterLinesForOrientation.cs and LoopController.cs Start()
     public float GetXPosForBeat(int beat)
     {
         return Camera.main.ScreenToWorldPoint(new Vector3(beat * cellWidthInPx + widthOffsetInPx, 0, 0)).x;
@@ -234,6 +225,4 @@ public class TokenPosition
     {
         return Camera.main.ScreenToWorldPoint(new Vector3(0, tune * cellHeightInPx + heightOffsetInPx_bottom + cellHeightInPx / 2, 0)).y;
     }
-    #endregion
-
 }
