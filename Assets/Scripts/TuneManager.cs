@@ -101,8 +101,6 @@ public class TuneManager : MonoBehaviour
         int startBarTactPosition = m_tokenposition.GetTactPosition(GameObject.Find(m_settings.startBarLoop).transform.position);
         int endBarTactPosition = m_tokenposition.GetTactPosition(GameObject.Find(m_settings.endtBarLoop).transform.position);
         // TODO: if beat
-        Debug.Log(GameObject.Find(m_settings.startBarLoop).transform.position.x + "," + GameObject.Find(m_settings.locationBarName).transform.position.x);
-        Debug.Log("Is Appr?: " + Mathf.Approximately(GameObject.Find(m_settings.startBarLoop).transform.position.x, GameObject.Find(m_settings.locationBarName).transform.position.x));
         if (tactPosWithOffset >= startBarTactPosition && (tactPosWithOffset != oldTactPos || (endBarTactPosition - startBarTactPosition == 1 && locationBarIsNearStartBar(0.07f))))
         {
             lastSentNote = tactPosWithOffset;
