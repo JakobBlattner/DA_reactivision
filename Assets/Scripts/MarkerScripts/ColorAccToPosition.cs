@@ -10,7 +10,8 @@ public class ColorAccToPosition : MonoBehaviour
     private Color green;
     private Color grey;
     private Color currentColor;
-
+    private LastComeLastServe m_lastcomelastserve;
+    private FiducialController m_fiducial;
     private SpriteRenderer rend;
     private TokenPosition m_tokenPosition;
     private Settings m_settings;
@@ -29,12 +30,26 @@ public class ColorAccToPosition : MonoBehaviour
         m_tokenPosition = TokenPosition.Instance;
         tunesPerString = Settings.Instance.tunesPerString;
         currentColor = rend.color;
+
+        m_lastcomelastserve = GameObject.FindObjectOfType<LastComeLastServe>();
+        m_fiducial = GetComponent<FiducialController>();
     }
 
     public void SetCurrentColor(Color color)
     {
         rend.color = color;
         currentColor = color;
+    }
+
+    void LateUpdate()
+    {
+        if (rend.color != grey)
+            this.CheckColor();
+
+        if (m_fiducial.IsSnapped() && !m_lastcomelastserve.IsMarkerInActiveMarkers(this.gameObject))
+        {
+            rend.color = grey;
+        }
     }
 
     public void CheckColor()

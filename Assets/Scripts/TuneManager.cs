@@ -154,17 +154,19 @@ public class TuneManager : MonoBehaviour
                 //    tuneHeight = -1;
                 //}
                 //if the next beat is empty --> damping = 1, else damping = 0 
-                int damping = isNextBeatEmpty[i] ? 1 : 0;
+                int damping = 0;
 
                 // adjusting parameters
                 tuneHeight = id == lastSentID[i] ? -1 : tuneHeight;  //don't send new fret if it's the same note
                 duration -= id == lastSentID[i] ? tactPos + 1 - startBarTactPosition : 0;  // subtract duration for what's before the start loop bar
-                damping = endBarTactPosition == tactPos ? 1 : damping;  //always damp if it's the last note
+                //damping = endBarTactPosition == tactPos ? 1 : damping;  //always damp if it's the last note
                 messageToSend += "," + tuneHeight + "," + duration + "," + damping;
-                Debug.Log("Playing Marker " + id + " on string " + (i + 1) + " with fret " + (tuneHeight + 1) + " on position " + (lastSentNote + 1) + ((damping == 1) ? " with damping." : " without damping."));
+                Debug.Log("Playing Marker " + id + " on string " + (i + 1) + " with fret " + (tuneHeight + 1) + " on position " + (lastSentNote + 1) + ".");
             }
             else
-                messageToSend += "," + -1 + "," + 0 + "," + 0;
+            {
+                messageToSend += "," + -1 + "," + 0 + "," + 1;
+            }
         }
 
         //lastSentNote++;

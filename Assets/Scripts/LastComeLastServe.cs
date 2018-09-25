@@ -134,7 +134,8 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
             {
                 int width = (int)(m_settings.GetMarkerWidthMultiplier(activeMarkersArray[i].GetComponent<FiducialController>().MarkerID) * 2);
 
-                if ((i != m_tokenPosition.GetTactPosition(activeMarkersArray[i].transform.position) - Mathf.Floor(width / 2)))//1/4
+                //Debug.Log((i + " " + (m_tokenPosition.GetTactPosition(activeMarkersArray[i].transform.position) - Mathf.Floor(width / 2))));
+                if ((i != (m_tokenPosition.GetTactPosition(activeMarkersArray[i].transform.position) - Mathf.Floor(width / 2) + ((width == 2 || width == 4) ? 1 : 0))))//1/4
                     activeMarkersArray[i] = null;
 
                 //if chords are enabled and the color of the current marker is not the color of the current string being checked
@@ -166,6 +167,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
             {
                 //gets beat on which the the marker lies on
                 int beat = m_tokenPosition.GetTactPosition(marker.transform.position);
+                int width = (int)(m_settings.GetMarkerWidthMultiplier(m_fiducial.MarkerID) * 2);
                 //gets tune on which the marker lies on and checks if the tune has changed. If so --> log message
                 int tune = m_tokenPosition.GetNote(marker.transform.position);
                 if (tune != currentTunes[m_fiducial.MarkerID])
@@ -174,11 +176,14 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                     currentTunes[m_fiducial.MarkerID] = tune;
                 }
 
+                bool thisMarkerIsInvalid = false;
+
+                if (width == 2 || width == 4)
+                    beat++;
+
                 //checks if this marker isn't already the one in the activeMarker list
                 if (activeMarkersArray[beat] != marker)
                 {
-                    int width = (int)(m_settings.GetMarkerWidthMultiplier(m_fiducial.MarkerID) * 2);
-
                     //if beat position is empty or if position is not empty, current marker hast snapped before marker on beat 
                     if (activeMarkersArray[beat] == null || (activeMarkersArray[beat].GetComponent<FiducialController>().GetLastTimeSnapped() < m_fiducial.GetLastTimeSnapped()))
                     {
@@ -188,33 +193,37 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
                             beat = beat == 0 ? 1 : beat;  // TODO: beat can't be at 0 for width > 1
                             //checks if second beat of the marker is not ok, if so: break
                             if (beat - 1 > m_settings.beats || (activeMarkersArray[beat - 1] != null && (activeMarkersArray[beat - 1].GetComponent<FiducialController>().GetLastTimeSnapped() > m_fiducial.GetLastTimeSnapped())))//1/2
-                                break;
-                            else
+                                thisMarkerIsInvalid = true;
+                            else if (!thisMarkerIsInvalid)
                             {
                                 if (width > 2)// mind 3/4
                                 {
                                     beat = beat == 0 ? 2 : beat;  // TODO: beat can't be at 0 for width > 1
                                     //checks if third beat of the marker is not ok, if so: break
                                     if (beat + 1 < 0 || (activeMarkersArray[beat + 1] != null && (activeMarkersArray[beat + 1].GetComponent<FiducialController>().GetLastTimeSnapped() > m_fiducial.GetLastTimeSnapped())))//3/4
-                                        break;
-                                    else
+                                        thisMarkerIsInvalid = true;
+                                    else if (!thisMarkerIsInvalid)
                                     {
                                         if (width > 3)// 4/4
                                         {
                                             beat = beat == 0 ? 3 : beat;  // TODO: beat can't be at 0 for width > 3
                                             //checks if fourth beat of the marker is not ok, if so: break
                                             if (beat - 2 > m_settings.beats || (activeMarkersArray[beat - 2] != null && (activeMarkersArray[beat - 2].GetComponent<FiducialController>().GetLastTimeSnapped() > m_fiducial.GetLastTimeSnapped())))//4/4
-                                                break;
-                                            this.ActivateMarkerOnBeatWithColor(marker, activeMarkersArray, beat - 2, color); //4/4
+                                                thisMarkerIsInvalid = true;
+                                            else if (!thisMarkerIsInvalid)
+                                                this.ActivateMarkerOnBeatWithColor(marker, activeMarkersArray, beat - 2, color); //4/4
                                         }
-                                        this.ActivateMarkerOnBeatWithColor(marker, activeMarkersArray, beat + 1, color); //3/4
+                                        if (!thisMarkerIsInvalid) this.ActivateMarkerOnBeatWithColor(marker, activeMarkersArray, beat + 1, color); //3/4
                                     }
                                 }
-                                this.ActivateMarkerOnBeatWithColor(marker, activeMarkersArray, beat - 1, color); //1/2
+                                if (!thisMarkerIsInvalid) this.ActivateMarkerOnBeatWithColor(marker, activeMarkersArray, beat - 1, color); //1/2
                             }
                         }
-                        this.ActivateMarkerOnBeatWithColor(marker, activeMarkersArray, beat, color); //1/4
-                        Debug.Log("Marker " + m_fiducial.MarkerID + " got activated on position " + (width > 3 ? beat - 1 : (width > 1 ? beat : beat + 1)) + " on tune " + (m_tokenPosition.GetNote(marker.transform.position) + 1) + " for " + width + " beat/s.");
+                        if (!thisMarkerIsInvalid)
+                        {
+                            this.ActivateMarkerOnBeatWithColor(marker, activeMarkersArray, beat, color); //1/4
+                            Debug.Log("Marker " + m_fiducial.MarkerID + " got activated on position " + (width > 3 ? beat - 1 : (width > 1 ? beat : beat + 1)) + " on tune " + (m_tokenPosition.GetNote(marker.transform.position) + 1) + " for " + width + " beat/s.");
+                        }
                     }
                 }
             }
@@ -434,7 +443,7 @@ public class LastComeLastServe : MonoBehaviour, TuioListener
         return currentLocationBar.transform.position.x >= (marker.transform.position.x - spriteSize.x / 2) && currentLocationBar.transform.position.x <= (marker.transform.position.x + spriteSize.x / 2);
     }
 
-    private bool IsMarkerInActiveMarkers(GameObject marker)
+    public bool IsMarkerInActiveMarkers(GameObject marker)
     {
         if (enableChords)
         {

@@ -48,7 +48,7 @@ public class Settings : MonoBehaviour
     public readonly int beats = 16;
     public readonly int tunesPerString = 8;
     public readonly int heightOffSetInPx_top = Camera.main.pixelHeight / 64;
-    public readonly int heightOffSetInPx_bottom = Camera.main.pixelHeight / 10;
+    public readonly int heightOffSetInPx_bottom = Camera.main.pixelHeight / 9;
     public readonly int widthOffSetInPx = Camera.main.pixelWidth / 64;
 
     //for JokerMarker
